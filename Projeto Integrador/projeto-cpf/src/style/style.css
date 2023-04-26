@@ -1,0 +1,25 @@
+/* Area de login */
+
+.container_main{
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+}
+
+.container_imagem{
+    background-color: blue;
+    width: 50%;
+    height:900px;
+}
+
+.container_login{
+    background-color: aquamarine;
+    width: 50%;
+    height: 900px;
+}
+
+.container_login .input-login{
+    position: absolute;
+    margin: 0 auto auto;
+}
