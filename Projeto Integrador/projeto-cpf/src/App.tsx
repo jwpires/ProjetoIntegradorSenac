@@ -1,13 +1,15 @@
 import React from 'react';
 import './style/style.css';
-import HeaderMenu from './header/HeaderMenu';
-import Baseboard from './baseboard/Baseboard';
+import HeaderMenu from './components/header/HeaderMenu';
+import Baseboard from './components/baseboard/Baseboard';
+import Login from './components/login/login';
 
 
 function App() {
   return (
     <div className="App">
-     <h2>Teste</h2>
+       <HeaderMenu/>
+        {/* <Login/> */}
     </div>
   );
 }

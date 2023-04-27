@@ -1,5 +1,4 @@
-/* Area de login */
-
+/****** Area de login ********/
 .container_main{
     display: flex;
     flex-direction: row;
@@ -10,16 +9,32 @@
 .container_imagem{
     background-color: blue;
     width: 50%;
-    height:900px;
+    height:800px;
 }
 
 .container_login{
-    background-color: aquamarine;
+    position:relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: brown;
     width: 50%;
-    height: 900px;
+    height: 800px;
+    
 }
 
 .container_login .input-login{
-    position: absolute;
-    margin: 0 auto auto;
+    width: 300px;
+    height: 30px;
+    
+}
+
+
+/* ************** display Flex Padrão****** */
+
+
+/* *************Menu******************* */
+.flex-container-menu{
+    display: flex;
 }

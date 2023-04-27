@@ -1,5 +1,5 @@
 import React from 'react';
-import '../style/style.css';
+import '../../style/style.css';
 
 function Login() {
     
@@ -14,7 +14,7 @@ function Login() {
             
             <div className="container_login">
 
-                <input type="text" className='input-login' placeholder='Login' /><br />
+                <input type="text" className='input-login' placeholder='Login' />  {/* <br /> */}
                 <input type="text" className='input-login' placeholder='Password' />
 
             </div>
