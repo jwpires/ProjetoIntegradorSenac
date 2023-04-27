@@ -37,4 +37,14 @@
 /* *************Menu******************* */
 .flex-container-menu{
     display: flex;
+    list-style: none;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.flex-container-menu a{
+    width: 200px;
+    border: 1px solid black;
+    text-align: center;
+    text-decoration: none;
 }
