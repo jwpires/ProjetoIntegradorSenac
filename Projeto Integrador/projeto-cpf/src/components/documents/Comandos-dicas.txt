@@ -1,0 +1,6 @@
+criar rotas:
+npm instal react-router-dom
+
+criar pasta de módulos:
+npm init
+npm install --save express

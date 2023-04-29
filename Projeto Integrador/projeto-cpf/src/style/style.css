@@ -44,7 +44,15 @@
 
 .flex-container-menu a{
     width: 200px;
-    border: 1px solid black;
+    /* border: 1px solid black;  */
     text-align: center;
     text-decoration: none;
+    color: #000;
+    margin: 5px 0 5px 0;
+}
+
+.flex-container-menu a:hover{
+    color: #FFF;
+    background-color: #4D3EFC;
+    font-weight: bolder;
 }
