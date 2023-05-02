@@ -1,15 +1,13 @@
 import React from 'react';
 import '../../style/style.css';
 
+
 function Login() {
-    
     return (
-        <div className="container_main">
+        
+        <div className="container_main_login">
             <div className="container_imagem">
-
-                <img src="..\images\img-login.png" alt="exibe imagem do login" />
-                
-
+                <img src={require("../../images/logo.png")} alt="exibe imagem do login" />
             </div>
             
             <div className="container_login">

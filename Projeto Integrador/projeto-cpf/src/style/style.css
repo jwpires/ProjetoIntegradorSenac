@@ -1,26 +1,38 @@
+body,html{
+    width: 100%;
+    height:100%;
+} 
+
 /****** Area de login ********/
-.container_main{
+
+.container_main_login{
     display: flex;
     flex-direction: row;
-    height: 100%;
+    /* height: 100%; */
     width: 100%;
+   /* margin-top: 3%; */
+    
 }
 
 .container_imagem{
-    background-color: blue;
+    display: flex; 
     width: 50%;
-    height:800px;
+    height:100%; 
+    align-items: center; 
+    justify-content: center;
+    background-color: #4D3EFC; 
 }
 
+.container_imagem img{
+    width: 100%;
+} 
+
 .container_login{
-    position:relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: brown;
     width: 50%;
-    height: 800px;
     
 }
 

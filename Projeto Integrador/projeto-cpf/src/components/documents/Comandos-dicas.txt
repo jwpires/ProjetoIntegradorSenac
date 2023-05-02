@@ -4,3 +4,7 @@ npm instal react-router-dom
 criar pasta de módulos:
 npm init
 npm install --save express
+
+
+Atualizar git:
+git pull origin master
