@@ -1,21 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2&display=swap');
+
+
 body,html{
     width: 100%;
     height:100%;
 } 
 
-/****** Area de login ********/
-
+/**************** página de login *****************/
+/*  */
 .container_main_login{
     display: flex;
     flex-direction: row;
-    /* height: 100%; */
-    width: 100%;
-   /* margin-top: 3%; */
-    
+     height: 100vh;
+    width: 100%;   
 }
 
 .container_imagem{
     display: flex; 
+    flex-direction: column;
+    color: #FFF;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 25px;
     width: 50%;
     height:100%; 
     align-items: center; 
@@ -37,8 +42,12 @@ body,html{
 }
 
 .container_login .input-login{
-    width: 300px;
-    height: 30px;
+    width: 40%;
+    height: 5%;
+    border-radius: 25px 25px 25px 25px;
+    margin-bottom: 1%;
+    font-size: 16px;
+    text-align: center;
     
 }
 
