@@ -37,20 +37,58 @@ body,html{
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 50%;    
+}
+
+.container_login header{
+    position: absolute;
+    top: 0px;
     width: 50%;
-    
+    height: 15%;
+    background-color: #4D3EFC;
+}
+
+.container_login h1{
+    text-align: center;
+}
+
+.container_login h1:hover{
+    font-size: 30px;
+    transition: .4s;
+}
+
+.container_login header h1 a{
+    color: #FFF;
+    font-family: 'Exo 2', sans-serif;
 }
 
 .container_login .input-login{
     width: 40%;
     height: 5%;
-    border-radius: 25px 25px 25px 25px;
-    margin-bottom: 1%;
+    border-radius: 10px 10px 10px 10px;
+    margin-bottom: 3%;
     font-size: 16px;
+    font-family: 'Exo 2', sans-serif;
     text-align: center;
     
 }
 
+.login-acessar{
+    width: 35%;
+    height: 5%;
+    background-color: #4D3EFC;
+    color: #FFF;
+    font-weight: bold;
+    font-size: 16px;
+    font-family: 'Exo 2', sans-serif;
+    border-radius: 25px 25px;
+}
+
+.login-acessar:hover{
+    width: 40%;
+    font-size: 20px;
+    transition: .5s;
+}
 
 /* ************** display Flex Padrão****** */
 
