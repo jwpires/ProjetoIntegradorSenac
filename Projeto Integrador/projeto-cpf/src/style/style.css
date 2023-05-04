@@ -6,8 +6,11 @@ body,html{
     height:100%;
 } 
 
-/**************** página de login *****************/
-/*  */
+/**************** Inicio layout página de login *****************/
+/*
+Div principal dos componentes
+dos inputs do login
+*/
 .container_main_login{
     display: flex;
     flex-direction: row;
@@ -15,6 +18,10 @@ body,html{
     width: 100%;   
 }
 
+/*
+Div principal dos componentes
+da imagem do logo
+*/
 .container_imagem{
     display: flex; 
     flex-direction: column;
@@ -45,11 +52,17 @@ body,html{
     top: 0px;
     width: 50%;
     height: 15%;
-    background-color: #4D3EFC;
+    background-color: #e2d4ee;
 }
 
-.container_login h1{
+/* Configuração aplicada para tela de login
+e cadastro de usuário */
+.container_login h1, .container_login h3{
     text-align: center;
+}
+
+.link{
+    text-decoration: none;
 }
 
 .container_login h1:hover{
@@ -57,8 +70,8 @@ body,html{
     transition: .4s;
 }
 
-.container_login header h1 a{
-    color: #FFF;
+.container_login header h1, .container_login header h3{
+    color: #4D3EFC;
     font-family: 'Exo 2', sans-serif;
 }
 
@@ -89,8 +102,11 @@ body,html{
     font-size: 20px;
     transition: .5s;
 }
+/**************** Fim layout página de login *****************/
 
-/* ************** display Flex Padrão****** */
+
+
+
 
 
 /* *************Menu******************* */

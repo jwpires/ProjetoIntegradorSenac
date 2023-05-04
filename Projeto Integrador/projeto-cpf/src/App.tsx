@@ -6,7 +6,9 @@ import Baseboard from './components/baseboard/Baseboard';
 import Login from './components/pages/login';
 import Home from './components/pages/home';
 import Sobre from './components/pages/sobre';
-
+import NotFound from './components/pages/notfound';
+import CadastroUsuario from './components/pages/cadastroUsuario';
+import CadastroNovaSenha from './components/pages/cadastroNovaSenha';
 
 function App() {
 
@@ -16,6 +18,9 @@ function App() {
         <Route path='/' element={<Home/>}/>
         <Route path='/sobre' element={<Sobre/>}/>
         <Route path='/login' element={<Login/>}/>
+          <Route path='/cadastroUsuario' element={<CadastroUsuario/>}/>
+          <Route path='/cadastroNovaSenha' element={<CadastroNovaSenha/>}/>
+        <Route path='*' element={<NotFound/>}/>
         <Route/>
       </Routes>
        
