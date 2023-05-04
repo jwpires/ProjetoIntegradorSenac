@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Exo+2&display=swap');
 
 
-body,html{
+/* body,html{
     width: 100%;
     height:100%;
-} 
+}  */
 
 /**************** Inicio layout página de login *****************/
 /*
@@ -14,7 +14,7 @@ dos inputs do login
 .container_main_login{
     display: flex;
     flex-direction: row;
-     height: 100vh;
+    height: 100vh;
     width: 100%;   
 }
 
@@ -28,7 +28,7 @@ da imagem do logo
     color: #FFF;
     font-family: 'Exo 2', sans-serif;
     font-size: 25px;
-    width: 50%;
+    width: 65%;
     height:100%; 
     align-items: center; 
     justify-content: center;
@@ -36,7 +36,7 @@ da imagem do logo
 }
 
 .container_imagem img{
-    width: 100%;
+    max-width: 70%;
 } 
 
 .container_login{
@@ -44,25 +44,38 @@ da imagem do logo
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 50%;    
+    width: 35%;    
 }
 
 .container_login header{
     position: absolute;
     top: 0px;
-    width: 50%;
+    width: 35%;
     height: 15%;
     background-color: #e2d4ee;
 }
 
-/* Configuração aplicada para tela de login
-e cadastro de usuário */
-.container_login h1, .container_login h3{
+.descricao{
+    font-size: 2vmax;
+    font-family: 'Exo 2', sans-serif;
+    text-align: center;
+    
+}
+
+.container_login label{
+    font-size: 1vmax;
+    font-weight: bolder;
+    font-family: 'Exo 2', sans-serif;
+    margin-top: 10px;
+}
+
+.container_login h3{
     text-align: center;
 }
 
 .link{
     text-decoration: none;
+    color: #4D3EFC;
 }
 
 .container_login h1:hover{
@@ -76,7 +89,7 @@ e cadastro de usuário */
 }
 
 .container_login .input-login{
-    width: 40%;
+    width: 60%;
     height: 5%;
     border-radius: 10px 10px 10px 10px;
     margin-bottom: 3%;
@@ -86,7 +99,7 @@ e cadastro de usuário */
     
 }
 
-.login-acessar{
+.botao-padrao{
     width: 35%;
     height: 5%;
     background-color: #4D3EFC;
@@ -97,19 +110,21 @@ e cadastro de usuário */
     border-radius: 25px 25px;
 }
 
-.login-acessar:hover{
+.botao-padrao:hover{
     width: 40%;
     font-size: 20px;
     transition: .5s;
 }
-/**************** Fim layout página de login *****************/
+
+/* ******************* Layout cadastro usuários ***************** */
+
+.descricao-cad-usuario-h3{
+    font-size: 1vmax;
+}
 
 
 
-
-
-
-/* *************Menu******************* */
+/* *************************** Menu **************************** */
 .flex-container-menu{
     display: flex;
     list-style: none;
