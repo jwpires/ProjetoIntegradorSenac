@@ -7,16 +7,16 @@ import { Link } from 'react-router-dom';
 function CadastroNovaSenha() {
     return (
         
-        <div className="container_main_login">
+        <div className="container_main_padrao">
                       
-            <div className="container_login">
+            <div className="container_padrao">
                 
                 <header>
                     <h1 className='descricao'>Esqueceu sua senha?</h1>
                     <h3 className='descricao-cad-usuario-h3'>Redefina aqui ou volte para a tela de <Link to={'/login'}>Login</Link></h3>
                 </header>
 
-                <input type='email' className='input-login' placeholder='Informe o Email' /> 
+                <input type='email' className='input-padrao' placeholder='Informe o Email' /> 
                 <input type="submit" className='botao-padrao' value="Enviar" />
 
             </div>

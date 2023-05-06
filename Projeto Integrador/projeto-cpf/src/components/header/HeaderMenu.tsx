@@ -5,14 +5,16 @@ function HeaderMenu(props:{exibe:boolean}) {
     if(props.exibe==true){
         return (
             <div className="flex-container">
-                <Menu opcao1={'Home'} opcao2={'Conta Bancária'} opcao3={'Receita'} opcao4={'Lançamento de Despesa'} 
-                opcao5={'Mov. Bancária'} opcao6={'Relatórios'} opcao7={'Sair'}/>
+                <Menu home={'Home'} contaBancaria={'Conta Bancária'} receita={'Receita'} lancamentoDespesa={'Lançamento de Despesa'} 
+                movBancaria={'Mov. Bancária'} relatorios={'Relatórios'} sair={'Sair'}/>
             </div>
         );
     }
 
     return(
-        <div></div>
+        <div>
+
+        </div>
     );
     
 }

@@ -11,7 +11,7 @@
 Div principal dos componentes
 dos inputs do login
 */
-.container_main_login{
+.container_main_padrao{
     display: flex;
     flex-direction: row;
     height: 100vh;
@@ -39,7 +39,7 @@ da imagem do logo
     max-width: 70%;
 } 
 
-.container_login{
+.container_padrao{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -47,7 +47,7 @@ da imagem do logo
     width: 35%;    
 }
 
-.container_login header{
+.container_padrao header{
     position: absolute;
     top: 0px;
     width: 35%;
@@ -62,14 +62,14 @@ da imagem do logo
     
 }
 
-.container_login label{
+.container_padrao label{
     font-size: 1vmax;
     font-weight: bolder;
     font-family: 'Exo 2', sans-serif;
     margin-top: 10px;
 }
 
-.container_login h3{
+.container_padrao h3{
     text-align: center;
 }
 
@@ -78,17 +78,17 @@ da imagem do logo
     color: #4D3EFC;
 }
 
-.container_login h1:hover{
+.container_padrao h1:hover{
     font-size: 30px;
     transition: .4s;
 }
 
-.container_login header h1, .container_login header h3{
+.container_padrao header h1, .container_padrao header h3{
     color: #4D3EFC;
     font-family: 'Exo 2', sans-serif;
 }
 
-.container_login .input-login{
+.container_padrao .input-padrao{
     width: 60%;
     height: 5%;
     border-radius: 10px 10px 10px 10px;

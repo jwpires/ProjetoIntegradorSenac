@@ -2,20 +2,30 @@ import React from 'react';
 import { isPropertySignature } from 'typescript';
 import '../../style/style.css';
 import Login from '../pages/login';
-import { Link } from 'react-router-dom';
+import { Link, Route, Routes } from 'react-router-dom';
+
+
+type Props = {
+    home?: String,
+    contaBancaria?: String,
+    receita?: String,
+    lancamentoDespesa?: String,
+    movBancaria?: String,
+    relatorios?: String,
+    sair?: String
+}
 
 // Menu que será exibido em todas as telas, exceto Login
-function Menu(props:{opcao1:String, opcao2:String, opcao3:String, opcao4:String, 
-    opcao5:String, opcao6:String, opcao7:String}) {
+function Menu(props: Props) {
     return(
         <div className="flex-container-menu">
-            <Link to={"/"}><li>{props.opcao1}</li></Link>
-            <Link to={"/"}><li>{props.opcao2}</li></Link>
-            <Link to={"/"}><li>{props.opcao3}</li></Link>
-            <Link to={"/"}><li>{props.opcao4}</li></Link>
-            <Link to={"/"}><li>{props.opcao5}</li></Link>
-            <Link to={"/"}><li>{props.opcao6}</li></Link>
-            <Link to={"/login"}><li>{props.opcao7}</li></Link>
+            <Link to={"/home"}><li>{props.home}</li></Link>
+            <Link to={"/cadastroBanco"}><li>{props.contaBancaria}</li></Link>
+            <Link to={"/"}><li>{props.receita}</li></Link>
+            <Link to={"/"}><li>{props.lancamentoDespesa}</li></Link>
+            <Link to={"/"}><li>{props.movBancaria}</li></Link>
+            <Link to={"/"}><li>{props.relatorios}</li></Link>
+            <Link to={"/login"}><li>{props.sair}</li></Link>
         </div>
     );
 }
