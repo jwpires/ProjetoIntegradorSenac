@@ -122,6 +122,21 @@ da imagem do logo
     font-size: 1vmax;
 }
 
+/* ******************* Layout do cadastro do Banco ***************** */
+.container-cadBanco{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh; 
+    width: 100%;
+}
+
+.cadBanco{
+    border: #4D3EFC solid 1px;
+    height: 60vh;
+    
+}
+
 
 
 /* *************************** Menu **************************** */
