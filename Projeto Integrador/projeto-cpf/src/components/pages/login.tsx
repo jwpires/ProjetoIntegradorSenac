@@ -20,10 +20,12 @@ function Login() {
                 
                 </header>
 
-                <input type="text" className='input-padrao' placeholder='Login' /> 
-                <input type="password" className='input-padrao' placeholder='Senha' />
-                <input type="submit" className='botao-padrao' value="Acessar" />
-                <label><Link to={'/cadastroNovaSenha'} className='link'>Esqueci minha senha.</Link></label>
+                <div className="campos">
+                    <input type="text" className='input-padrao' placeholder='Login' /> 
+                    <input type="password" className='input-padrao' placeholder='Senha' />
+                    <input type="submit" className='botao-padrao' value="Acessar" />
+                    <label><Link to={'/cadastroNovaSenha'} className='link'>Esqueci minha senha.</Link></label>
+                </div> 
 
             </div>
 

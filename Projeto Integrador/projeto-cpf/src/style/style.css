@@ -22,35 +22,28 @@ dos inputs do login
 Div principal dos componentes
 da imagem do logo
 */
-.container_imagem{
-    display: flex; 
-    flex-direction: column;
-    color: #FFF;
-    font-family: 'Exo 2', sans-serif;
-    font-size: 25px;
-    width: 65%;
-    height:100%; 
-    align-items: center; 
-    justify-content: center;
-    background-color: #4D3EFC; 
-}
-
-.container_imagem img{
-    max-width: 70%;
-} 
-
 .container_padrao{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    /* justify-content: center; */
     width: 35%;    
 }
 
+.campos{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+
+}
+
 .container_padrao header{
-    position: absolute;
+    /* position: absolute; */
     top: 0px;
-    width: 35%;
+    width: 100%;
     height: 15%;
     background-color: #e2d4ee;
 }
@@ -116,6 +109,23 @@ da imagem do logo
     transition: .5s;
 }
 
+.container_imagem{
+    display: flex; 
+    flex-direction: column;
+    color: #FFF;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 25px;
+    width: 65%;
+    height:100%; 
+    align-items: center; 
+    justify-content: center;
+    background-color: #4D3EFC; 
+}
+
+.container_imagem img{
+    max-width: 70%;
+} 
+
 /* ******************* Layout cadastro usuários ***************** */
 
 .descricao-cad-usuario-h3{
@@ -126,29 +136,64 @@ da imagem do logo
 .container-cadBanco{
     display: flex;
     flex-direction: column;
-    align-items: center;
+    /* align-items: center; */
     height: 100vh; 
-    width: 100%;
+    /* width: 100%; */
+}
+
+.divCadBanco{
+    width: 90%;
+    height: 60vh;
+    margin: auto 5%;
 }
 
 .cadBanco{
+    display: flex;
+    flex-direction: column;
     border: #4D3EFC solid 1px;
-    height: 60vh;
-    
+    border-radius: 25px;
+    /* width: 100%; */
+    height: 100%;
+    align-items: center;
+
 }
+
+.cadBanco input {
+    width: 60%;
+    height: 5%;
+}
+
+.raio_group{
+    /* width: 100%; */
+    width: 60%;
+    height: 30%;
+    margin: 5px auto;
+}
+
+.raio_group label{
+    font-family: 'Exo 2', sans-serif;
+    font-size: 15px;
+}
+
+.raio_group label input{
+    width: 20px;
+}
+
+
 
 
 
 /* *************************** Menu **************************** */
 .flex-container-menu{
     display: flex;
+    flex-wrap: wrap;
     list-style: none;
     flex-direction: row;
     justify-content: center;
 }
 
 .flex-container-menu a{
-    width: 200px;
+     width: 200px; 
     /* border: 1px solid black;  */
     text-align: center;
     text-decoration: none;
