@@ -19,7 +19,7 @@ type Props = {
 function Menu(props: Props) {
     return(
         <div className="flex-container-menu">
-            <Link to={"/home"}><li>{props.home}</li></Link>
+            <Link to={"/"}><li>{props.home}</li></Link>
             <Link to={"/cadastroBanco"}><li>{props.contaBancaria}</li></Link>
             <Link to={"/"}><li>{props.receita}</li></Link>
             <Link to={"/"}><li>{props.lancamentoDespesa}</li></Link>

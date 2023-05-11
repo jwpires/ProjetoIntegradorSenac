@@ -23,8 +23,7 @@ function App() {
         <Route path='/login' element={<Login/>}/>
           <Route path='/cadastroUsuario' element={<CadastroUsuario/>}/>
           <Route path='/cadastroNovaSenha' element={<CadastroNovaSenha/>}/>
-        <Route path='*' element={<NotFound/>}/>
-        <Route/>
+         <Route path='*' element={<NotFound/>}/>
       </Routes>
     </div>
   );
