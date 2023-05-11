@@ -92,7 +92,7 @@ da imagem do logo
     
 }
 
-.botao-padrao{
+.botao-padrao, #salvar{
     width: 35%;
     height: 5%;
     background-color: #4D3EFC;
@@ -103,7 +103,7 @@ da imagem do logo
     border-radius: 25px 25px;
 }
 
-.botao-padrao:hover{
+.botao-padrao:hover, #salvar:hover{
     width: 40%;
     font-size: 20px;
     transition: .5s;
@@ -143,44 +143,67 @@ da imagem do logo
 
 .divCadBanco{
     width: 90%;
-    height: 60vh;
-    margin: auto 5%;
+    height: 80vh;
+    margin: auto 5%; 
+    align-items: center;
 }
 
 .cadBanco{
     display: flex;
     flex-direction: column;
-    border: #4D3EFC solid 1px;
-    border-radius: 25px;
+    /* border: #4D3EFC solid 1px; */
+    /* border-radius: 25px; */
     /* width: 100%; */
     height: 100%;
-    align-items: center;
+    align-items: center; 
 
 }
 
-.cadBanco input {
+.adiciona-banco {
+    width: 61%;
+    height: auto;
+    margin-top: 30px;
+    /* border: #000 solid 1px; */
+}
+
+.adiciona-banco select{
+    width: 90%;
+    height: 30px;    
+}
+
+
+.adiciona-banco button{
+    width: 10%;
+    height: 30px;
+    /* font-size: 18px; */
+}
+
+
+.cadBanco input{
     width: 60%;
     height: 5%;
+    margin-top: 10px;
 }
-
+   
 .raio_group{
-    /* width: 100%; */
+    border: #4D3EFC solid 1px;
     width: 60%;
     height: 30%;
     margin: 5px auto;
+
 }
 
 .raio_group label{
     font-family: 'Exo 2', sans-serif;
     font-size: 15px;
+    
 }
 
 .raio_group label input{
     width: 20px;
+    height: 10%;
+    margin-top: 20px;
 }
-
-
-
 
 
 /* *************************** Menu **************************** */

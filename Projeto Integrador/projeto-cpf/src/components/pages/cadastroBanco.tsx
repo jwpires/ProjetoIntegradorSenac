@@ -15,9 +15,9 @@ function CadastroBanco() {
                         <h1 className='descricao'>Cadastro de Conta Bancária!</h1>
                     </header>
 
-                    <div className='divCadBanco'>
+                    <div className='divCadBanco'>  
                         <form action="" method="post" className="cadBanco">
-                            <div>
+                            <div className='adiciona-banco'>
                                 <select name="Banco" id="">
                                     <option value="">Informe o Banco</option>
                                 </select>
@@ -27,13 +27,17 @@ function CadastroBanco() {
                             <input type="text" name="" id="" placeholder='Nome do proprietário da conta:'/>
                             <input type="text" name="" id="" placeholder='Informe número da conta'/>
                             
+                            <label>Tipo de Conta:</label>
                             <div className="raio_group">
 
                                 <label><input type="radio" name="tipo_conta" id="" />Conta Corrente</label><br />
                                 <label><input type="radio" name="tipo_conta" id="" />Conta Salário</label><br />
                                 <label><input type="radio" name="tipo_conta" id="" />Conta Poupança</label>
                             </div>
+                            
+                            
                             <input type="text" name="" id="" placeholder='Saldo inicial:'/>
+                            <input type="submit" id='salvar' value="salvar" />
                         </form>
                     </div>
 
