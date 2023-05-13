@@ -10,6 +10,7 @@ import Home from './components/pages/home';
 import CadastroBanco from './components/pages/cadastroBanco';
 import Sobre from './components/pages/sobre';
 import NotFound from './components/pages/notfound';
+import SobreItemCPF from './components/pages/sobreItemCPF';
 
 
 function App() {
@@ -20,10 +21,11 @@ function App() {
         <Route path='/' element={<Home/>}/>
         <Route path='/cadastroBanco' element={<CadastroBanco/>}/>
         <Route path='/sobre' element={<Sobre/>}/>
+          <Route path='/sobre/:parametro' element={<SobreItemCPF/>}/> {/* parametros dinâmicos */}
         <Route path='/login' element={<Login/>}/>
           <Route path='/cadastroUsuario' element={<CadastroUsuario/>}/>
-          <Route path='/cadastroNovaSenha' element={<CadastroNovaSenha/>}/>
-         <Route path='*' element={<NotFound/>}/>
+          <Route path='/cadastroNovaSenha' element={<CadastroNovaSenha/>}/> {/* */}
+        <Route path='*' element={<NotFound/>}/>
       </Routes>
     </div>
   );
