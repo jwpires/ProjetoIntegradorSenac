@@ -99,6 +99,7 @@ da imagem do logo
     font-size: 16px;
     font-family: 'Exo 2', sans-serif;
     border-radius: 25px 25px;
+    margin: 5px 0 ;
 }
 
 .botao-padrao:hover, #salvar:hover{

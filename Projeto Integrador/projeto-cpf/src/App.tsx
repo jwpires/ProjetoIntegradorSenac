@@ -7,13 +7,14 @@ import Login from './components/pages/login';
 import CadastroUsuario from './components/pages/cadastroUsuario';
 import CadastroNovaSenha from './components/pages/cadastroNovaSenha';
 import Home from './components/pages/home';
-import CadastroBanco from './components/pages/cadastroBanco';
+import CadastroContaBanco from './components/pages/cadastroContaBanco';
 import Sobre from './components/pages/sobre';
 import NotFound from './components/pages/notfound';
 import SobreItemCPF from './components/pages/sobreItemCPF';
 import Contador from './components/pages/contador';
 import CadastroReceita from './components/pages/cadastroReceita';
 import CadastroGrupoReceita from './components/pages/cadastroGrupoReceita';
+import CadastroBanco from './components/pages/cadastroBanco';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
     <div className="App">
       <Routes>
         <Route path='/' element={<Home/>}/>
+        <Route path='/cadastroContaBanco' element={<CadastroContaBanco/>}/>
         <Route path='/cadastroBanco' element={<CadastroBanco/>}/>
         <Route path='/cadastroReceita' element={<CadastroReceita />} />
           <Route path='/cadastroGrupoReceita' element={<CadastroGrupoReceita/>}/>
