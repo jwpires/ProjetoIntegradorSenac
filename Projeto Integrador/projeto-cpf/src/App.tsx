@@ -13,6 +13,7 @@ import NotFound from './components/pages/notfound';
 import SobreItemCPF from './components/pages/sobreItemCPF';
 import Contador from './components/pages/contador';
 import CadastroReceita from './components/pages/cadastroReceita';
+import CadastroGrupoReceita from './components/pages/cadastroGrupoReceita';
 
 
 function App() {
@@ -22,7 +23,8 @@ function App() {
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/cadastroBanco' element={<CadastroBanco/>}/>
-        <Route path='/cadastroReceita' element={<CadastroReceita/>}/>
+        <Route path='/cadastroReceita' element={<CadastroReceita />} />
+          <Route path='/cadastroGrupoReceita' element={<CadastroGrupoReceita/>}/>
         
         <Route path='/sobre' element={<Sobre/>}/>
           <Route path='/sobre/:parametro' element={<SobreItemCPF/>}/> {/* parametros dinâmicos */}

@@ -1,7 +1,14 @@
 import '../../style/style.css';
 import HeaderMenu from '../header/HeaderMenu';
+import {useNavigate } from 'react-router-dom';
 
-function CadastroReceita(){
+function CadastroReceita() {
+    const navegacao = useNavigate();
+
+    function handleClickCadGrupoReceita() {
+        navegacao('/cadastroGrupoReceita');
+    }
+
     return(
         <div className="container-cadReceita">
             <HeaderMenu exibe={true}></HeaderMenu>
@@ -17,16 +24,14 @@ function CadastroReceita(){
                     <div className='divCadReceita'>  
                         <form action="" method="post" className="cadReceita">
                             
-                            <input type="text" name="" id="" placeholder='Descrição da Receita'/>
                             <div className='adiciona-receita'>
                                 <select name="Receita" id="">
                                     <option value="">Grupo de Receita</option>
                                 </select>
-                                <button type='button'> + </button> {/* Botão servirá para direcionar a tela de cadastro da conta bancária. */}
+                                <button type='button' onClick={handleClickCadGrupoReceita}> + </button> {/* Botão servirá para direcionar a tela de cadastro da conta bancária. */}
                             </div>
                             
-                            <label>Data:</label><input type="date" name="" id="" />
-                            <label>Data de lançamento:</label><input type="date" name="" id="" />                           
+                            <input type="text" name="" id="" placeholder='Descrição da Receita' />
                             
                             <input type="submit" id='salvar' value="salvar" />
                         </form>
