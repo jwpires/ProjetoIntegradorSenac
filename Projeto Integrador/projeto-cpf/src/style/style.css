@@ -133,7 +133,7 @@ da imagem do logo
 }
 
 /* ******************* Layout do cadastro do Banco ***************** */
-.container-cadBanco{
+.container-cadBanco, .container-cadReceita{
     display: flex;
     flex-direction: column;
     /* align-items: center; */
@@ -141,14 +141,14 @@ da imagem do logo
     /* width: 100%; */
 }
 
-.divCadBanco{
+.divCadBanco, .divCadReceita{
     width: 90%;
     height: 80vh;
     margin: auto 5%; 
     align-items: center;
 }
 
-.cadBanco{
+.cadBanco, .cadReceita{
     display: flex;
     flex-direction: column;
     /* border: #4D3EFC solid 1px; */
@@ -159,27 +159,27 @@ da imagem do logo
 
 }
 
-.adiciona-banco {
+.adiciona-banco, .adiciona-receita {
     width: 61%;
     height: auto;
     margin-top: 30px;
     /* border: #000 solid 1px; */
 }
 
-.adiciona-banco select{
+.adiciona-banco select, .adiciona-receita select{
     width: 90%;
     height: 30px;    
 }
 
 
-.adiciona-banco button{
+.adiciona-banco button, .adiciona-receita button{
     width: 10%;
     height: 30px;
     /* font-size: 18px; */
 }
 
 
-.cadBanco input{
+.cadBanco input, .cadReceita input{
     width: 60%;
     height: 5%;
     margin-top: 10px;
@@ -187,6 +187,7 @@ da imagem do logo
    
 .raio_group{
     border: #4D3EFC solid 1px;
+    background-color: #e2d4ee;
     width: 60%;
     height: 30%;
     margin: 5px auto;
@@ -197,6 +198,11 @@ da imagem do logo
     font-family: 'Exo 2', sans-serif;
     font-size: 15px;
     
+}
+
+.raio_group label input:checked{
+    width: 50px;
+    transition: .5s;
 }
 
 .raio_group label input{

@@ -11,6 +11,8 @@ import CadastroBanco from './components/pages/cadastroBanco';
 import Sobre from './components/pages/sobre';
 import NotFound from './components/pages/notfound';
 import SobreItemCPF from './components/pages/sobreItemCPF';
+import Contador from './components/pages/contador';
+import CadastroReceita from './components/pages/cadastroReceita';
 
 
 function App() {
@@ -20,12 +22,18 @@ function App() {
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/cadastroBanco' element={<CadastroBanco/>}/>
+        <Route path='/cadastroReceita' element={<CadastroReceita/>}/>
+        
         <Route path='/sobre' element={<Sobre/>}/>
           <Route path='/sobre/:parametro' element={<SobreItemCPF/>}/> {/* parametros dinâmicos */}
+        
         <Route path='/login' element={<Login/>}/>
           <Route path='/cadastroUsuario' element={<CadastroUsuario/>}/>
           <Route path='/cadastroNovaSenha' element={<CadastroNovaSenha/>}/> {/* */}
+        
         <Route path='*' element={<NotFound/>}/>
+
+        <Route path='/contador' element={<Contador/>}/>
       </Routes>
     </div>
   );
