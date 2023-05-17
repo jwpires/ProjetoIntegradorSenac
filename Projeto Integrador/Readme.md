@@ -15,4 +15,8 @@ O sistema conterá as seguintes tabelas:
 ![MRE](img/MER_Projeto.png)
 
 Autores:  
-José Pires.  
+José Pires
+Guilherme Henrique
+Andreza dos Santos
+Diele Gomes
+
