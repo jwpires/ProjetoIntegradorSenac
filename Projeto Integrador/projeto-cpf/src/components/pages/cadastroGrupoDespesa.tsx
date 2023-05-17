@@ -2,22 +2,23 @@ import '../../style/style.css';
 import HeaderMenu from '../header/HeaderMenu';
 import { useNavigate } from 'react-router-dom';
 
-function CadastroBanco() {
+function CadastroGrupoDespesa() {
 
     const navegacao = useNavigate();
+
     function handleClickVoltar(){
         navegacao(-1);
     }
-
+    
     return (
-        <div className="container-cadBanco">
+        <div className="container-cadDespesa">
             <HeaderMenu exibe={true}></HeaderMenu>
             <div className="container_main_padrao">
                         
                 <div className="container_padrao">
                     
                     <header>
-                        <h1 className='descricao'>Cadastro do Banco!</h1>
+                        <h1 className='descricao'>Cadastro de Grupo de Despesa!</h1>
                     </header>
 
                     <input type="text" className='input-padrao' placeholder='Nome:' /> 
@@ -35,4 +36,4 @@ function CadastroBanco() {
     );
 }
 
-export default CadastroBanco;
+export default CadastroGrupoDespesa;

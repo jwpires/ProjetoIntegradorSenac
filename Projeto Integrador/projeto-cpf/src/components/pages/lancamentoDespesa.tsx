@@ -1,8 +1,18 @@
 import '../../style/style.css';
 import HeaderMenu from '../header/HeaderMenu';
-
+import { useNavigate } from 'react-router-dom';
 
 function LancamentoDespesa(){
+    const navegacao = useNavigate();
+
+    function handleClickGrupoDespesa(){
+        navegacao('/cadastroGrupoDespesa');
+    }
+
+    function handleClickConfirmaPagamento(){
+        navegacao('/confirmacaoPagamento');
+    }
+
     return(
         <div className="container-cadDespesa">
             <HeaderMenu exibe={true}></HeaderMenu>
@@ -23,7 +33,7 @@ function LancamentoDespesa(){
                                 <select name="GrupoDespesa" id="">
                                     <option value="">Grupo de Despesa</option>
                                 </select>
-                                <button type='button' > + </button> {/* Botão servirá para direcionar a tela de cadastro da conta bancária. */}
+                                <button type='button' onClick={handleClickGrupoDespesa}> + </button> {/* Botão servirá para direcionar a tela de cadastro da conta bancária. */}
                             </div>
                             <label>Data de Lançamento:</label>
                             <input type="date" name="" id="" />
@@ -39,7 +49,7 @@ function LancamentoDespesa(){
                             </div>                                                      */}
                             
                             <input type="submit" id='salvar' value="salvar" />
-                            <button type="submit" className='botao-padrao'>Pagar</button>
+                            <button type="submit" className='botao-padrao' onClick={handleClickConfirmaPagamento}>Pagar</button>
                         </form>
                     </div>
 

@@ -16,6 +16,8 @@ import CadastroReceita from './components/pages/cadastroReceita';
 import CadastroGrupoReceita from './components/pages/cadastroGrupoReceita';
 import CadastroBanco from './components/pages/cadastroBanco';
 import LancamentoDespesa from './components/pages/lancamentoDespesa';
+import CadastroGrupoDespesa from './components/pages/cadastroGrupoDespesa';
+import ConfirmacaoPagamento from './components/pages/confirmacaoPagamento';
 
 
 function App() {
@@ -29,6 +31,8 @@ function App() {
         <Route path='/cadastroReceita' element={<CadastroReceita />} />
           <Route path='/cadastroGrupoReceita' element={<CadastroGrupoReceita/>}/>
         <Route path='/lancamentoDespesa' element={<LancamentoDespesa/>}/>
+          <Route path='/cadastroGrupoDespesa' element={<CadastroGrupoDespesa/>}/>
+          <Route path='/confirmacaoPagamento' element={<ConfirmacaoPagamento/>}/>
         
         <Route path='/sobre' element={<Sobre/>}/>
           <Route path='/sobre/:parametro' element={<SobreItemCPF/>}/> {/* parametros dinâmicos */}
