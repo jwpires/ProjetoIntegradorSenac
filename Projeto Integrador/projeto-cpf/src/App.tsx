@@ -15,6 +15,7 @@ import Contador from './components/pages/contador';
 import CadastroReceita from './components/pages/cadastroReceita';
 import CadastroGrupoReceita from './components/pages/cadastroGrupoReceita';
 import CadastroBanco from './components/pages/cadastroBanco';
+import LancamentoDespesa from './components/pages/lancamentoDespesa';
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
         <Route path='/cadastroBanco' element={<CadastroBanco/>}/>
         <Route path='/cadastroReceita' element={<CadastroReceita />} />
           <Route path='/cadastroGrupoReceita' element={<CadastroGrupoReceita/>}/>
+        <Route path='/lancamentoDespesa' element={<LancamentoDespesa/>}/>
         
         <Route path='/sobre' element={<Sobre/>}/>
           <Route path='/sobre/:parametro' element={<SobreItemCPF/>}/> {/* parametros dinâmicos */}
