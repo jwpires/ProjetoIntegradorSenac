@@ -1,8 +1,7 @@
 import React from 'react';
 import { isPropertySignature } from 'typescript';
 import '../../style/style.css';
-import Login from '../pages/login';
-import { Link, Route, Routes } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 type Props = {
@@ -22,7 +21,7 @@ function Menu(props: Props) {
             <Link to={"/"}><li>{props.home}</li></Link>
             <Link to={"/cadastroContaBanco"}><li>{props.contaBancaria}</li></Link>
             <Link to={"/cadastroReceita"}><li>{props.receita}</li></Link>
-            <Link to={"/lacamentoDespesa"}><li>{props.lancamentoDespesa}</li></Link>
+            <Link to={"/lancamentoDespesa"}><li>{props.lancamentoDespesa}</li></Link>
             <Link to={"/"}><li>{props.movBancaria}</li></Link>
             <Link to={"/"}><li>{props.relatorios}</li></Link>
             <Link to={"/login"}><li>{props.sair}</li></Link>
