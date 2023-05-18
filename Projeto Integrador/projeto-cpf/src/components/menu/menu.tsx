@@ -19,9 +19,9 @@ function Menu(props: Props) {
     return(
         <div className="flex-container-menu">
             <Link to={"/"}><li>{props.home}</li></Link>
-            <Link to={"/cadastroContaBanco"}><li>{props.contaBancaria}</li></Link>
-            <Link to={"/cadastroReceita"}><li>{props.receita}</li></Link>
-            <Link to={"/lancamentoDespesa"}><li>{props.lancamentoDespesa}</li></Link>
+            <Link to={"/cadastro/ContaBanco"}><li>{props.contaBancaria}</li></Link>
+            <Link to={"/cadastro/Receita"}><li>{props.receita}</li></Link>
+            <Link to={"/lancamento/Despesa"}><li>{props.lancamentoDespesa}</li></Link>
             <Link to={"/"}><li>{props.movBancaria}</li></Link>
             <Link to={"/"}><li>{props.relatorios}</li></Link>
             <Link to={"/login"}><li>{props.sair}</li></Link>

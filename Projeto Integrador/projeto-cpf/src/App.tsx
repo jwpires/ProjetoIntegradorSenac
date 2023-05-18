@@ -26,20 +26,20 @@ function App() {
     <div className="App">
       <Routes>
         <Route path='/' element={<Home/>}/>
-        <Route path='/cadastroContaBanco' element={<CadastroContaBanco/>}/>
-        <Route path='/cadastroBanco' element={<CadastroBanco/>}/>
-        <Route path='/cadastroReceita' element={<CadastroReceita />} />
-          <Route path='/cadastroGrupoReceita' element={<CadastroGrupoReceita/>}/>
-        <Route path='/lancamentoDespesa' element={<LancamentoDespesa/>}/>
-          <Route path='/cadastroGrupoDespesa' element={<CadastroGrupoDespesa/>}/>
+        <Route path='/cadastro/ContaBanco' element={<CadastroContaBanco/>}/>
+        <Route path='/cadastro/Banco' element={<CadastroBanco/>}/>
+        <Route path='/cadastro/Receita' element={<CadastroReceita />} />
+          <Route path='/cadastro/GrupoReceita' element={<CadastroGrupoReceita/>}/>
+        <Route path='/lancamento/Despesa' element={<LancamentoDespesa/>}/>
+          <Route path='/cadastro/GrupoDespesa' element={<CadastroGrupoDespesa/>}/>
           <Route path='/confirmacaoPagamento' element={<ConfirmacaoPagamento/>}/>
         
         <Route path='/sobre' element={<Sobre/>}/>
           <Route path='/sobre/:parametro' element={<SobreItemCPF/>}/> {/* parametros dinâmicos */}
         
         <Route path='/login' element={<Login/>}/>
-          <Route path='/cadastroUsuario' element={<CadastroUsuario/>}/>
-          <Route path='/cadastroNovaSenha' element={<CadastroNovaSenha/>}/> {/* */}
+          <Route path='/cadastro/Usuario' element={<CadastroUsuario/>}/>
+          <Route path='/cadastro/NovaSenha' element={<CadastroNovaSenha/>}/> {/* */}
         
         <Route path='*' element={<NotFound/>}/>
 

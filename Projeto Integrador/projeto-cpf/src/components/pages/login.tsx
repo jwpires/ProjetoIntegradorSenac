@@ -16,7 +16,7 @@ function Login() {
             <div className="container_padrao">
 
                 <header>
-                    <h1 className='descricao'><Link to={'/cadastroUsuario'} className='link'>Cadastre-se aqui!</Link></h1>
+                    <h1 className='descricao'><Link to={'/cadastro/Usuario'} className='link'>Cadastre-se aqui!</Link></h1>
                 
                 </header>
 
@@ -24,7 +24,7 @@ function Login() {
                     <input type="text" className='input-padrao' placeholder='Login' /> 
                     <input type="password" className='input-padrao' placeholder='Senha' />
                     <input type="submit" className='botao-padrao' value="Acessar" />
-                    <label><Link to={'/cadastroNovaSenha'} className='link'>Esqueci minha senha.</Link></label>
+                    <label><Link to={'/cadastro/NovaSenha'} className='link'>Esqueci minha senha.</Link></label>
                 </div> 
 
             </div>

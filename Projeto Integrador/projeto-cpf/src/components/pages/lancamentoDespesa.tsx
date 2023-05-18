@@ -6,7 +6,7 @@ function LancamentoDespesa(){
     const navegacao = useNavigate();
 
     function handleClickGrupoDespesa(){
-        navegacao('/cadastroGrupoDespesa');
+        navegacao('/cadastro/GrupoDespesa');
     }
 
     function handleClickConfirmaPagamento(){

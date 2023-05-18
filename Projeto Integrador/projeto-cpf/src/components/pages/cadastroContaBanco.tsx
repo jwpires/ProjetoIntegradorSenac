@@ -6,7 +6,7 @@ function CadastroContaBanco() {
     const navegacao = useNavigate();
 
     function handleClickCadBanco(){
-        navegacao('/cadastroBanco');    
+        navegacao('/cadastro/Banco');    
     }
 
     return (

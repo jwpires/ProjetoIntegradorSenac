@@ -10,7 +10,7 @@ function ConfirmacaoPagamento(){
     }
 
     function handleClickCadBanco(){
-        navegacao('/cadastroBanco');    
+        navegacao('/cadastro/Banco');    
     }
 
     return(
