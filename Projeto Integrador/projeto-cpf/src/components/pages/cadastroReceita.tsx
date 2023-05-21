@@ -13,9 +13,9 @@ function CadastroReceita() {
         <div className="container-cadReceita">
             <HeaderMenu exibe={true}></HeaderMenu>
 
-            <div className="container_main_padrao">
+            <div className="container_main_padrao-tela">
 
-                <div className="container_padrao">
+                <div className="container_padrao-tela">
                     
                     <header>
                         <h1 className='descricao'>Cadastro de Receita!</h1>
@@ -33,16 +33,16 @@ function CadastroReceita() {
                             
                             <input type="text" name="" id="" placeholder='Descrição da Receita' />
                             
-                            <input type="submit" id='salvar' value="salvar" />
+                            <button className='botao-padrao' type='submit'>Salvar</button>
                         </form>
                     </div>
 
                 </div>
 
-                <div className="container_imagem">
+                {/* <div className="container_imagem">
                     <img src={require("../../images/logo.png")} alt="exibe imagem do login" />
                     <h1 className='descricao'>Controle Pessoal de Finanças</h1>
-                </div>
+                </div> */}
             </div>
 
         </div>

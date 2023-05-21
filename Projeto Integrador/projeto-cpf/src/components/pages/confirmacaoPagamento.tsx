@@ -17,15 +17,15 @@ function ConfirmacaoPagamento(){
         <div className="container-cadDespesa">
             <HeaderMenu exibe={true}></HeaderMenu>
         
-            <div className="container_main_padrao">
+            <div className="container_main_padrao-tela">
 
-                <div className="container_padrao">
+                <div className="container_padrao-tela">
                     
                     <header>
                         <h1 className='descricao'>Confirmação de pagamento!</h1>
                     </header>
 
-                    <div className='divCadBanco'>
+                    <div className='divCadDespesa'>
                         
                         <form action="" method="post" className="cadBanco">
                             <input type="text" name="" id="" placeholder='Descrição da Despesa:' />
@@ -56,11 +56,6 @@ function ConfirmacaoPagamento(){
                         </form>
                     </div>
 
-                </div>
-
-                <div className="container_imagem">
-                    <img src={require("../../images/logo.png")} alt="exibe imagem do login" />
-                    <h1 className='descricao'>Controle Pessoal de Finanças</h1>
                 </div>
             </div>
         </div>

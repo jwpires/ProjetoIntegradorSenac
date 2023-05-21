@@ -13,9 +13,9 @@ function CadastroContaBanco() {
         <div className="container-cadBanco">
             <HeaderMenu exibe={true}></HeaderMenu>
         
-            <div className="container_main_padrao">
+            <div className="container_main_padrao-tela">
 
-                <div className="container_padrao">
+                <div className="container_padrao-tela">
                     
                     <header>
                         <h1 className='descricao'>Cadastro de Conta Bancária!</h1>
@@ -49,10 +49,10 @@ function CadastroContaBanco() {
 
                 </div>
 
-                <div className="container_imagem">
+                {/* <div className="container_imagem-teste">
                     <img src={require("../../images/logo.png")} alt="exibe imagem do login" />
                     <h1 className='descricao'>Controle Pessoal de Finanças</h1>
-                </div>
+                </div> */}
             </div>
         </div>
     );

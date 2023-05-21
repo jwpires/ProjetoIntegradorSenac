@@ -17,9 +17,9 @@ function LancamentoDespesa(){
         <div className="container-cadDespesa">
             <HeaderMenu exibe={true}></HeaderMenu>
         
-            <div className="container_main_padrao">
+            <div className="container_main_padrao-tela">
 
-                <div className="container_padrao">
+                <div className="container_padrao-tela">
                     
                     <header>
                         <h1 className='descricao'>Lançamento de Despesa!</h1>
@@ -53,11 +53,6 @@ function LancamentoDespesa(){
                         </form>
                     </div>
 
-                </div>
-
-                <div className="container_imagem">
-                    <img src={require("../../images/logo.png")} alt="exibe imagem do login" />
-                    <h1 className='descricao'>Controle Pessoal de Finanças</h1>
                 </div>
             </div>
         </div>

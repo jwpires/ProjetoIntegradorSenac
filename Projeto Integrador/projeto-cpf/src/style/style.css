@@ -18,6 +18,7 @@ dos inputs do login
     width: 100%;   
 }
 
+
 /*
 Div principal dos componentes
 da imagem do logo
@@ -28,7 +29,62 @@ da imagem do logo
     align-items: center;
     width: 35%;    
 }
+/* **********************************COnfiguração Padrão das Telas**************** */
+.container_main_padrao-tela{
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    width: 100%;  
+    background-color: #4D3EFC; 
+}
 
+.container_padrao-tela{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    background-color: #FFF;
+    width: 50%;   
+}
+
+.container_padrao header, .container_padrao-tela header{
+    top: 0px;
+    width: 100%;
+    height: 15%;
+    background-color: #e2d4ee;
+}
+
+.container_padrao label, .container_padrao-tela label{
+    font-size: 1vmax;
+    font-weight: bolder;
+    font-family: 'Exo 2', sans-serif;
+    margin-top: 10px;
+}
+
+.container_padrao h3, .container_padrao-tela h3{
+    text-align: center;
+}
+
+.container_padrao h1:hover, .container_padrao-tela h1:hover{
+    font-size: 30px;
+    transition: .4s;
+}
+
+.container_padrao header h1, .container_padrao header h3, .container_padrao-tela header h1, .container_padrao-tela header h3{
+    color: #4D3EFC;
+    font-family: 'Exo 2', sans-serif;
+}
+
+.container_padrao .input-padrao, .container_padrao-tela .input-padrao{
+    width: 60%;
+    height: 5%;
+    border-radius: 10px 10px 10px 10px;
+    margin-bottom: 3%;
+    font-size: 16px;
+    font-family: 'Exo 2', sans-serif;
+    text-align: center;
+    
+}
+/* ********************************* Campos ***************** */
 .campos{
     display: flex;
     flex-direction: column;
@@ -39,13 +95,6 @@ da imagem do logo
 
 }
 
-.container_padrao header{
-    top: 0px;
-    width: 100%;
-    height: 15%;
-    background-color: #e2d4ee;
-}
-
 .descricao{
     font-size: 2vmax;
     font-family: 'Exo 2', sans-serif;
@@ -53,41 +102,9 @@ da imagem do logo
     
 }
 
-.container_padrao label{
-    font-size: 1vmax;
-    font-weight: bolder;
-    font-family: 'Exo 2', sans-serif;
-    margin-top: 10px;
-}
-
-.container_padrao h3{
-    text-align: center;
-}
-
 .link{
     text-decoration: none;
     color: #4D3EFC;
-}
-
-.container_padrao h1:hover{
-    font-size: 30px;
-    transition: .4s;
-}
-
-.container_padrao header h1, .container_padrao header h3{
-    color: #4D3EFC;
-    font-family: 'Exo 2', sans-serif;
-}
-
-.container_padrao .input-padrao{
-    width: 60%;
-    height: 5%;
-    border-radius: 10px 10px 10px 10px;
-    margin-bottom: 3%;
-    font-size: 16px;
-    font-family: 'Exo 2', sans-serif;
-    text-align: center;
-    
 }
 
 .botao-padrao, #salvar{
@@ -140,14 +157,14 @@ da imagem do logo
     /* width: 100%; */
 }
 
-.divCadBanco, .divCadReceita{
+.divCadBanco, .divCadReceita, .divCadDespesa{
     width: 90%;
     height: 80vh;
     margin: auto 5%; 
     align-items: center;
 }
 
-.cadBanco, .cadReceita{
+.cadBanco, .cadReceita, .cadDespesa{
     display: flex;
     flex-direction: column;
     /* border: #4D3EFC solid 1px; */

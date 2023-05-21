@@ -22,7 +22,7 @@ function Menu(props: Props) {
             <Link to={"/cadastro/ContaBanco"}><li>{props.contaBancaria}</li></Link>
             <Link to={"/cadastro/Receita"}><li>{props.receita}</li></Link>
             <Link to={"/lancamento/Despesa"}><li>{props.lancamentoDespesa}</li></Link>
-            <Link to={"/"}><li>{props.movBancaria}</li></Link>
+            <Link to={"/movimentacaoBancaria"}><li>{props.movBancaria}</li></Link>
             <Link to={"/"}><li>{props.relatorios}</li></Link>
             <Link to={"/login"}><li>{props.sair}</li></Link>
             
