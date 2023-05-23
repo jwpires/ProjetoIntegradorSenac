@@ -6,7 +6,7 @@ function ConfirmacaoPagamento(){
     const navegacao = useNavigate();
 
     function handleClickGrupoVoltar(){
-        navegacao(-1);
+        navegacao('/lancamento/Despesa');
     }
 
     function handleClickCadBanco(){
@@ -27,7 +27,7 @@ function ConfirmacaoPagamento(){
 
                     <div className='divCadDespesa'>
                         
-                        <form action="" method="post" className="cadBanco">
+                        <form action="" className="cadBanco">
                             <input type="text" name="" id="" placeholder='Descrição da Despesa:' />
                             
                             <label>Data de Vencimento:</label>
@@ -52,7 +52,7 @@ function ConfirmacaoPagamento(){
                                                                                
                             
                             <input type="submit" id='salvar' value="Confirmar" />
-                            <button type="submit" className='botao-padrao' onClick={handleClickGrupoVoltar}>Voltar</button>
+                            <button className='botao-padrao' onClick={handleClickGrupoVoltar}>Voltar</button>
                         </form>
                     </div>
 

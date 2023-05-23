@@ -5,8 +5,9 @@ import { useNavigate } from 'react-router-dom';
 function CadastroBanco() {
 
     const navegacao = useNavigate();
+
     function handleClickVoltar(){
-        navegacao(-1);
+        navegacao('/cadastro/contaBanco'); 
     }
 
     return (

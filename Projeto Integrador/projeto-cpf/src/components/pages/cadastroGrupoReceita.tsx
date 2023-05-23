@@ -6,7 +6,7 @@ function CadastroGrupoReceita() {
 
     const navegacao = useNavigate();
     function handleClickVoltar(){
-        navegacao(-1);
+        navegacao('/cadastro/Receita');
     }
     
     return (

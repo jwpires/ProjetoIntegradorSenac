@@ -7,7 +7,7 @@ function CadastroGrupoDespesa() {
     const navegacao = useNavigate();
 
     function handleClickVoltar(){
-        navegacao(-1);
+        navegacao('/lancamento/Despesa');
     }
     
     return (

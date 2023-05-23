@@ -19,6 +19,7 @@ import LancamentoDespesa from './components/pages/lancamentoDespesa';
 import CadastroGrupoDespesa from './components/pages/cadastroGrupoDespesa';
 import ConfirmacaoPagamento from './components/pages/confirmacaoPagamento';
 import MovimentacaoBancaria from './components/pages/movimentacaoBancaria';
+import Pai from './components/pages/Exemplos/pai';
 
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
         <Route path='*' element={<NotFound/>}/>
 
         <Route path='/contador' element={<Contador/>}/>
+        <Route path='/paifilho' element={<Pai/>}/>
       </Routes>
     </div>
   );
