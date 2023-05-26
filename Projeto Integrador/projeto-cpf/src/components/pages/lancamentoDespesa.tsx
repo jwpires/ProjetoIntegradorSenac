@@ -6,7 +6,11 @@ import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 function LancamentoDespesa(){
-/**--------------------------------------------*/
+    // Variavel de manipulação de exibição de campos
+    const[show, setShow] = useState(false);
+
+
+/**------------Manipulação Modal---------------------*/
     const [modal, setModal] = useState(false);
 
     const toggle = () => setModal(!modal);
@@ -19,6 +23,19 @@ function LancamentoDespesa(){
 
     function handleClickConfirmaPagamento(){
         navegacao('/confirmacaoPagamento');
+    }
+
+    function handleClickExibeBanco() {
+        setShow(true);
+    }
+
+    function handleClickEscondeBanco() {
+        setShow(false);
+    }
+
+    function exibeModal(){
+        toggle();
+        handleClickEscondeBanco();
     }
 
     return(
@@ -60,15 +77,11 @@ function LancamentoDespesa(){
                             <button className="botao-padrao">Salvar</button>
                             
                             
-                            <input type="button" id='botao-pagar'  onClick={toggle} value="Pagar" />
+                            <input type="button" id='botao-pagar'  onClick={exibeModal} value="Pagar" />
                             
                         
                             <div className="teste" >
-                                
-                                <br />
-                                {/* <button className='botao-pagar' onClick={toggle}>Pagar</button> */}
-                                
-                                {/* <Button onClick={toggle} >Pagar</Button> */}
+                           {/********************** * Exibe a Modal ao clicar em Pagar****************** */}
                                 <Modal isOpen={modal} toggle={toggle}>
                                     <ModalHeader toggle={toggle}>Confirmação de pagamento!</ModalHeader>
                                     <ModalBody>
@@ -85,16 +98,18 @@ function LancamentoDespesa(){
                                                     <label>Forma de Pagamento:</label>
                                                     <div className="raio_group">
 
-                                                        <label><input type="radio" name="tipo_pagamento" id="" />Conta Bancária</label><br />
-                                                        <label><input type="radio" name="tipo_pagamento" id="" />Carteira</label><br />
+                                                        <label><input type="radio" name="tipo_pagamento" id="" onClick={handleClickExibeBanco}/>Conta Bancária</label><br />
+                                                        <label><input type="radio" name="tipo_pagamento" id="" onClick={handleClickEscondeBanco}/>Carteira</label><br />
                                                         
                                                     </div>
-                                                    <div className='adiciona-banco'>
-                                                            <select name="Banco" id="">
-                                                                <option value="">Informe o Banco</option>
-                                                            </select>
-                                                            <button type='button' > + </button> {/* Botão servirá para direcionar a tela de cadastro da conta bancária. */}
-                                                    </div>
+                                                    {show === true &&
+                                                        <div className='adiciona-banco'>
+                                                                <select name="Banco" id="">
+                                                                    <option value="">Informe o Banco</option>
+                                                                </select>
+                                                                <button type='button' > + </button> {/* Botão servirá para direcionar a tela de cadastro da conta bancária. */}
+                                                        </div>
+                                                    }
 
                                                 </form>
                                     </ModalBody>
