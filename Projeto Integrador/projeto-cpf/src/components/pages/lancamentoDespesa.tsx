@@ -60,13 +60,13 @@ function LancamentoDespesa(){
                             <button className="botao-padrao">Salvar</button>
                             
                             
-                            <input type="button" className='botao-pagar'  onClick={toggle} value="salvar" />
+                            <input type="button" id='botao-pagar'  onClick={toggle} value="Pagar" />
                             
                         
                             <div className="teste" >
                                 
                                 <br />
-                                <button className='botao-pagar' onClick={toggle}>Pagar</button>
+                                {/* <button className='botao-pagar' onClick={toggle}>Pagar</button> */}
                                 
                                 {/* <Button onClick={toggle} >Pagar</Button> */}
                                 <Modal isOpen={modal} toggle={toggle}>

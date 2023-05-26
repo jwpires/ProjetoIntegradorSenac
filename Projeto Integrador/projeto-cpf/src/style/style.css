@@ -125,7 +125,7 @@ da imagem do logo
     transition: .5s;
 }
 
-.botao-pagar{
+#botao-pagar{
     width: 35%;
     background-color: #198754;
     height: 7%;
@@ -137,7 +137,7 @@ da imagem do logo
     margin: 5px 0;
 }
 
-.botao-pagar:hover{
+#botao-pagar:hover{
     width: 40%;
     font-size: 20px;
     transition: .5s;
