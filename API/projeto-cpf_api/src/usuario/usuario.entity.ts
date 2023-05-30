@@ -1,5 +1,6 @@
 
-export class Usuario{
+export class UsuarioEntity{
+    id: string;
     nome: String;
     idade: BigInteger;
     cidade: String;

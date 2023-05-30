@@ -1,6 +1,10 @@
-import { ValidationArguments, ValidatorConstraintInterface } from "class-validator";
+import { Injectable } from "@nestjs/common";
+import { ValidationOptions, registerDecorator, ValidationArguments, ValidatorConstraint, ValidatorConstraintInterface } from "class-validator";
+import { async } from "rxjs";
 import { UsuarioArmazenados } from "../usuario.dm";
 
+@Injectable()
+@ValidatorConstraint({async: true})
 export class EmailUnicoValidator implements ValidatorConstraintInterface{
     constructor(private clsUsuarioArmazenados: UsuarioArmazenados){
 
@@ -8,10 +12,20 @@ export class EmailUnicoValidator implements ValidatorConstraintInterface{
 
 
     async validate(value: any, validationArguments?: ValidationArguments): Promise<boolean> {
-        throw new Error("Method not implemented.");
-    }
-    defaultMessage?(validationArguments?: ValidationArguments): string {
-        throw new Error("Method not implemented.");
+        const validarEmail = await this.clsUsuarioArmazenados.validaEmail(value);
+        return !validarEmail;
     }
 
+}
+
+export const EmailUnico = (opcoesValidacao: ValidationOptions) => {
+    return(objeto: Object, propriedade: string)=>{
+        registerDecorator({
+            target: objeto.constructor,
+            propertyName: propriedade,
+            options: opcoesValidacao,
+            constraints: [],
+            validator: EmailUnicoValidator
+        })
+    }
 }

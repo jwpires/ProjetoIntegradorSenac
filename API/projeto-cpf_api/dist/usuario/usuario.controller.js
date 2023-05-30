@@ -16,7 +16,7 @@ exports.UsuarioController = void 0;
 const common_1 = require("@nestjs/common");
 const request_mapping_decorator_1 = require("@nestjs/common/decorators/http/request-mapping.decorator");
 const usuario_dto_1 = require("./dto/usuario.dto");
-const usuario_class_1 = require("./usuario.class");
+const usuario_entity_1 = require("./usuario.entity");
 const usuario_dm_1 = require("./usuario.dm");
 let UsuarioController = class UsuarioController {
     constructor(clsUsuariosArmazenados) {
@@ -26,7 +26,7 @@ let UsuarioController = class UsuarioController {
         return this.clsUsuariosArmazenados.Usuarios;
     }
     async criaUsuario(dadosUsuario) {
-        var usuario = new usuario_class_1.Usuario(dadosUsuario.nome, dadosUsuario.idade, dadosUsuario.cidade, dadosUsuario.email, dadosUsuario.telefone, dadosUsuario.senha);
+        var usuario = new usuario_entity_1.UsuarioEntity(dadosUsuario.nome, dadosUsuario.idade, dadosUsuario.cidade, dadosUsuario.email, dadosUsuario.telefone, dadosUsuario.senha);
         var retornoUsuario;
         this.clsUsuariosArmazenados.AdicionarUsuario(usuario);
         retornoUsuario = {

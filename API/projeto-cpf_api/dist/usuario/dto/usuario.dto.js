@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CriaUsuarioDIO = void 0;
 const class_validator_1 = require("class-validator");
+const email_unico_validator_1 = require("../validacao/email-unico.validator");
 class CriaUsuarioDIO {
 }
 __decorate([
@@ -20,6 +21,7 @@ __decorate([
 ], CriaUsuarioDIO.prototype, "nome", void 0);
 __decorate([
     (0, class_validator_1.IsEmail)(undefined, { message: "Email inválido" }),
+    (0, email_unico_validator_1.EmailUnico)({ message: "Já existe usuário cadastrado com esse email." }),
     __metadata("design:type", String)
 ], CriaUsuarioDIO.prototype, "email", void 0);
 __decorate([

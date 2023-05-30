@@ -24,6 +24,10 @@ let UsuarioArmazenados = class UsuarioArmazenados {
     get Usuarios() {
         return __classPrivateFieldGet(this, _UsuarioArmazenados_usuarios, "f");
     }
+    async validaEmail(email) {
+        const possivelUsuario = __classPrivateFieldGet(this, _UsuarioArmazenados_usuarios, "f").find(usuario => usuario.email === email);
+        return (possivelUsuario !== undefined);
+    }
 };
 _UsuarioArmazenados_usuarios = new WeakMap();
 UsuarioArmazenados = __decorate([

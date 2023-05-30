@@ -1,5 +1,7 @@
 import { ValidationPipe } from '@nestjs/common';
+import { Module } from '@nestjs/common/decorators';
 import { NestFactory } from '@nestjs/core';
+import { useContainer } from 'class-validator';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
@@ -11,6 +13,9 @@ async function bootstrap() {
       forbidNonWhitelisted: true, //Retornará o erro ao usuário, caso não tenha sido respeitada a configuração dos tipos de inserção via API
     })
   );
+
+  useContainer(app.select(AppModule),{fallbackOnErrors:true});
+  
   await app.listen(3000);
 }
 bootstrap();

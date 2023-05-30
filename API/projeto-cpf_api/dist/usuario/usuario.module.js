@@ -10,12 +10,13 @@ exports.UsuarioModule = void 0;
 const common_1 = require("@nestjs/common");
 const usuario_controller_1 = require("./usuario.controller");
 const usuario_dm_1 = require("./usuario.dm");
+const email_unico_validator_1 = require("./validacao/email-unico.validator");
 let UsuarioModule = class UsuarioModule {
 };
 UsuarioModule = __decorate([
     (0, common_1.Module)({
         controllers: [usuario_controller_1.UsuarioController],
-        providers: [usuario_dm_1.UsuarioArmazenados]
+        providers: [usuario_dm_1.UsuarioArmazenados, email_unico_validator_1.EmailUnicoValidator]
     })
 ], UsuarioModule);
 exports.UsuarioModule = UsuarioModule;

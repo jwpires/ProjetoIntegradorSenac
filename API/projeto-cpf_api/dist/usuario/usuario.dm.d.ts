@@ -1,6 +1,7 @@
-import { Usuario } from "./usuario.class";
+import { UsuarioEntity } from "./usuario.entity";
 export declare class UsuarioArmazenados {
     #private;
-    AdicionarUsuario(usuario: Usuario): void;
-    get Usuarios(): any[];
+    AdicionarUsuario(usuario: UsuarioEntity): void;
+    get Usuarios(): UsuarioEntity[];
+    validaEmail(email: string): Promise<boolean>;
 }
