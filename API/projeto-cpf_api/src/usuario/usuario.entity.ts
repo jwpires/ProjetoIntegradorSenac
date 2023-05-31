@@ -1,14 +1,15 @@
 
 export class UsuarioEntity{
     id: string;
-    nome: String;
+    nome: string;
     idade: BigInteger;
-    cidade: String;
-    email: String;
-    telefone: String;
-    #senha: String;
+    cidade: string;
+    email: string;
+    telefone: string;
+    #senha: string;
 
-    constructor(nome: String, idade: BigInteger, cidade: String, email: String, telefone: String, senha: String){
+    constructor(id: string, nome: string, idade: BigInteger, cidade: string, email: string, telefone: string, senha: string){
+        this.id = id;
         this.nome = nome;
         this.idade = idade;
         this.cidade = cidade;

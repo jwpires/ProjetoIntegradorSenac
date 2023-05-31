@@ -18,15 +18,19 @@ const request_mapping_decorator_1 = require("@nestjs/common/decorators/http/requ
 const usuario_dto_1 = require("./dto/usuario.dto");
 const usuario_entity_1 = require("./usuario.entity");
 const usuario_dm_1 = require("./usuario.dm");
+const uuid_1 = require("uuid");
+const listaUsuario_dto_1 = require("./dto/listaUsuario.dto");
 let UsuarioController = class UsuarioController {
     constructor(clsUsuariosArmazenados) {
         this.clsUsuariosArmazenados = clsUsuariosArmazenados;
     }
     async RetornoUsuarios() {
-        return this.clsUsuariosArmazenados.Usuarios;
+        const usuariosListados = await this.clsUsuariosArmazenados.Usuarios;
+        const listaRetorno = usuariosListados.map(usuario => new listaUsuario_dto_1.ListaUsuarioDTO(usuario.id, usuario.nome));
+        return listaRetorno;
     }
     async criaUsuario(dadosUsuario) {
-        var usuario = new usuario_entity_1.UsuarioEntity(dadosUsuario.nome, dadosUsuario.idade, dadosUsuario.cidade, dadosUsuario.email, dadosUsuario.telefone, dadosUsuario.senha);
+        var usuario = new usuario_entity_1.UsuarioEntity((0, uuid_1.v4)(), dadosUsuario.nome, dadosUsuario.idade, dadosUsuario.cidade, dadosUsuario.email, dadosUsuario.telefone, dadosUsuario.senha);
         var retornoUsuario;
         this.clsUsuariosArmazenados.AdicionarUsuario(usuario);
         retornoUsuario = {

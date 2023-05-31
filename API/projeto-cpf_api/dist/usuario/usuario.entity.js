@@ -9,8 +9,9 @@ var _UsuarioEntity_senha;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsuarioEntity = void 0;
 class UsuarioEntity {
-    constructor(nome, idade, cidade, email, telefone, senha) {
+    constructor(id, nome, idade, cidade, email, telefone, senha) {
         _UsuarioEntity_senha.set(this, void 0);
+        this.id = id;
         this.nome = nome;
         this.idade = idade;
         this.cidade = cidade;
