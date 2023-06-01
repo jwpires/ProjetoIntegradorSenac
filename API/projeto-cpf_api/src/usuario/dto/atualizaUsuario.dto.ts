@@ -20,7 +20,6 @@ export class AlteraUsuarioDTO{
     @IsString({message:"Cidade inválida."})
     cidade: string;
 
-    @IsString({message:"Telefone inválido"})
+    @IsString({message:"Telefone inválido "})
     telefone: string;
-
 }
