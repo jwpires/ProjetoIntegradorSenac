@@ -9,42 +9,36 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CriaUsuarioDIO = void 0;
+exports.AlteraUsuarioDTO = void 0;
 const class_validator_1 = require("class-validator");
 const email_unico_validator_1 = require("../validacao/email-unico.validator");
-class CriaUsuarioDIO {
+class AlteraUsuarioDTO {
 }
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)({ message: "Nome não pode ser vazio" }),
-    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], CriaUsuarioDIO.prototype, "nome", void 0);
+], AlteraUsuarioDTO.prototype, "nome", void 0);
 __decorate([
     (0, class_validator_1.IsEmail)(undefined, { message: "Email inválido" }),
     (0, email_unico_validator_1.EmailUnico)({ message: "Já existe usuário cadastrado com esse email." }),
-    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], CriaUsuarioDIO.prototype, "email", void 0);
+], AlteraUsuarioDTO.prototype, "email", void 0);
 __decorate([
     (0, class_validator_1.MinLength)(6, { message: "O tamano da senha dever conter no mínimo 6 caracteres" }),
-    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], CriaUsuarioDIO.prototype, "senha", void 0);
+], AlteraUsuarioDTO.prototype, "senha", void 0);
 __decorate([
     (0, class_validator_1.IsInt)({ message: "Idade inválida" }),
-    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Object)
-], CriaUsuarioDIO.prototype, "idade", void 0);
+], AlteraUsuarioDTO.prototype, "idade", void 0);
 __decorate([
     (0, class_validator_1.IsString)({ message: "Cidade inválida." }),
-    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], CriaUsuarioDIO.prototype, "cidade", void 0);
+], AlteraUsuarioDTO.prototype, "cidade", void 0);
 __decorate([
     (0, class_validator_1.IsString)({ message: "Telefone inválido" }),
-    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], CriaUsuarioDIO.prototype, "telefone", void 0);
-exports.CriaUsuarioDIO = CriaUsuarioDIO;
-//# sourceMappingURL=usuario.dto.js.map
+], AlteraUsuarioDTO.prototype, "telefone", void 0);
+exports.AlteraUsuarioDTO = AlteraUsuarioDTO;
+//# sourceMappingURL=atualizaUsuario.dto.js.map
