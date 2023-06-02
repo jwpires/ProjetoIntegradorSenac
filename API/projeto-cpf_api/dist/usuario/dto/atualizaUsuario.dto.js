@@ -17,27 +17,33 @@ class AlteraUsuarioDTO {
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)({ message: "Nome não pode ser vazio" }),
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], AlteraUsuarioDTO.prototype, "nome", void 0);
 __decorate([
     (0, class_validator_1.IsEmail)(undefined, { message: "Email inválido" }),
     (0, email_unico_validator_1.EmailUnico)({ message: "Já existe usuário cadastrado com esse email." }),
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], AlteraUsuarioDTO.prototype, "email", void 0);
 __decorate([
     (0, class_validator_1.MinLength)(6, { message: "O tamano da senha dever conter no mínimo 6 caracteres" }),
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], AlteraUsuarioDTO.prototype, "senha", void 0);
 __decorate([
     (0, class_validator_1.IsInt)({ message: "Idade inválida" }),
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Object)
 ], AlteraUsuarioDTO.prototype, "idade", void 0);
 __decorate([
     (0, class_validator_1.IsString)({ message: "Cidade inválida." }),
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], AlteraUsuarioDTO.prototype, "cidade", void 0);
 __decorate([
-    (0, class_validator_1.IsString)({ message: "Telefone inválido" }),
+    (0, class_validator_1.IsString)({ message: "Telefone inválido " }),
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], AlteraUsuarioDTO.prototype, "telefone", void 0);
 exports.AlteraUsuarioDTO = AlteraUsuarioDTO;

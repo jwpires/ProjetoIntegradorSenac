@@ -10,6 +10,12 @@ var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (
     if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
     return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
 };
+var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (receiver, state, value, kind, f) {
+    if (kind === "m") throw new TypeError("Private method is not writable");
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
+    return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
+};
 var _UsuarioArmazenados_usuarios;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsuarioArmazenados = void 0;
@@ -27,6 +33,28 @@ let UsuarioArmazenados = class UsuarioArmazenados {
     async validaEmail(email) {
         const possivelUsuario = __classPrivateFieldGet(this, _UsuarioArmazenados_usuarios, "f").find(usuario => usuario.email === email);
         return (possivelUsuario !== undefined);
+    }
+    buscarPorID(id) {
+        const possivelUsuario = __classPrivateFieldGet(this, _UsuarioArmazenados_usuarios, "f").find(usuarioSalvo => usuarioSalvo.id === id);
+        if (!possivelUsuario) {
+            throw new Error('Usuário não encontrado');
+        }
+        return possivelUsuario;
+    }
+    async atualizaUsuario(id, dadosAtualizacao) {
+        const usuario = this.buscarPorID(id);
+        Object.entries(dadosAtualizacao).forEach(([chave, valor]) => {
+            if (chave === 'id') {
+                return;
+            }
+            usuario[chave] = valor;
+        });
+        return usuario;
+    }
+    async removeUsuario(id) {
+        const usuario = this.buscarPorID(id);
+        __classPrivateFieldSet(this, _UsuarioArmazenados_usuarios, this.Usuarios.filter(usuarioSalvo => usuarioSalvo.id !== id), "f");
+        return usuario;
     }
 };
 _UsuarioArmazenados_usuarios = new WeakMap();

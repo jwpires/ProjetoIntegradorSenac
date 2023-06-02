@@ -20,6 +20,8 @@ const usuario_entity_1 = require("./usuario.entity");
 const usuario_dm_1 = require("./usuario.dm");
 const uuid_1 = require("uuid");
 const listaUsuario_dto_1 = require("./dto/listaUsuario.dto");
+const atualizaUsuario_dto_1 = require("./dto/atualizaUsuario.dto");
+const decorators_1 = require("@nestjs/common/decorators");
 let UsuarioController = class UsuarioController {
     constructor(clsUsuariosArmazenados) {
         this.clsUsuariosArmazenados = clsUsuariosArmazenados;
@@ -39,6 +41,20 @@ let UsuarioController = class UsuarioController {
         };
         return retornoUsuario;
     }
+    async atualizaUsuario(id, novosDados) {
+        const usuarioAtualizado = await this.clsUsuariosArmazenados.atualizaUsuario(id, novosDados);
+        return ({
+            usuario: usuarioAtualizado,
+            message: 'Usuário Atualizado'
+        });
+    }
+    async removeUsuario(id) {
+        const usuarioRemovido = await this.clsUsuariosArmazenados.removeUsuario(id);
+        return ({
+            usuario: usuarioRemovido,
+            message: 'Usuario removido'
+        });
+    }
 };
 __decorate([
     (0, request_mapping_decorator_1.Get)(),
@@ -53,6 +69,21 @@ __decorate([
     __metadata("design:paramtypes", [usuario_dto_1.CriaUsuarioDIO]),
     __metadata("design:returntype", Promise)
 ], UsuarioController.prototype, "criaUsuario", null);
+__decorate([
+    (0, request_mapping_decorator_1.Put)('/:id'),
+    __param(0, (0, decorators_1.Param)('id')),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, atualizaUsuario_dto_1.AlteraUsuarioDTO]),
+    __metadata("design:returntype", Promise)
+], UsuarioController.prototype, "atualizaUsuario", null);
+__decorate([
+    (0, request_mapping_decorator_1.Delete)('/:id'),
+    __param(0, (0, decorators_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], UsuarioController.prototype, "removeUsuario", null);
 UsuarioController = __decorate([
     (0, common_1.Controller)('/usuarios'),
     __metadata("design:paramtypes", [usuario_dm_1.UsuarioArmazenados])
