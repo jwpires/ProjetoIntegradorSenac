@@ -1,14 +1,14 @@
 import '../../style/style.css';
 import HeaderMenu from '../header/HeaderMenu';
 import { useNavigate } from 'react-router-dom';
-
 import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+
+
 
 function LancamentoDespesa(){
     // Variavel de manipulação de exibição de campos
     const[show, setShow] = useState(false);
-
 
 /**------------Manipulação Modal---------------------*/
     const [modal, setModal] = useState(false);
@@ -53,7 +53,7 @@ function LancamentoDespesa(){
                     <div className='divCadBanco'>
                         
                         <form action=""  className="cadBanco">
-                            <input type="text" name="" id="" placeholder='Descrição da Despesa:' />
+                            <input type="text" name="" id="" placeholder='Descrição da Despesa:'   />
                             <div className='adiciona-banco'>
                                 <select name="GrupoDespesa" id="">
                                     <option value="">Grupo de Despesa</option>

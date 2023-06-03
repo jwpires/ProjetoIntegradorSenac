@@ -1,39 +1,51 @@
 import '../../style/style.css';
+import HeaderMenu from '../header/HeaderMenu';
+import ItemLista from './Exemplos/itemLista';
 
 import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 
 function Sobre() {
-    const [modal, setModal] = useState(false);
 
-    const toggle = () => setModal(!modal);
+    let list = [
+        'Acerola',
+        'Laranjinha',
+        'Dadinho',
+        'Zé Pequeno'
+    ]
+
+    let listObjeto = [
+        {name: 'Nome 1', age: '30'},
+        {name: 'Nome 2', age: '54'},
+        {name: 'Nome 3', age: '85'},
+        {name: 'Nome 4', age: '14'},
+        {name: 'Nome 5', age: '24'}
+    ]
+
 
     return(
         <div>
-            <Button color="danger" onClick={toggle}>
-            Click Me
-            </Button>
-            <Modal isOpen={modal} toggle={toggle}>
-                <ModalHeader toggle={toggle}>Modal title</ModalHeader>
-                <ModalBody>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                    minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat. Duis aute irure dolor in
-                    reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                    culpa qui officia deserunt mollit anim id est laborum.
-                </ModalBody>
-                <ModalFooter>
-                    <Button color="primary" onClick={toggle}>
-                        Do Something
-                    </Button>{' '}
-                    <Button color="secondary" onClick={toggle}>
-                        Cancel
-                    </Button>
-                </ModalFooter>
-            </Modal>
+            <HeaderMenu exibe></HeaderMenu>
+            <h2> Lista de Nomes:</h2>
+
+            <ul>
+                {
+                    list.map(
+                        (item, index) => <li key={index}>{item }</li>
+                    )
+                }
+            </ul>
+
+            <h2>Lista Objeto</h2>
+
+            <ul>
+                {
+                    listObjeto.map(
+                        (item, index) => <ItemLista key={index} dados={item}/>
+                    )
+                }
+            </ul>
       </div>
     );
 }
