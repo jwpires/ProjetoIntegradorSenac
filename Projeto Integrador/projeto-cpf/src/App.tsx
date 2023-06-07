@@ -20,6 +20,8 @@ import CadastroGrupoDespesa from './components/pages/cadastroGrupoDespesa';
 import ConfirmacaoPagamento from './components/pages/confirmacaoPagamento';
 import MovimentacaoBancaria from './components/pages/movimentacaoBancaria';
 import Pai from './components/pages/Exemplos/pai';
+import relatorio from './components/pages/relatorio';
+import Relatorio from './components/pages/relatorio';
 
 
 function App() {
@@ -36,7 +38,8 @@ function App() {
           <Route path='/cadastro/GrupoDespesa' element={<CadastroGrupoDespesa/>}/>
             <Route path='/confirmacaoPagamento' element={<ConfirmacaoPagamento />} />
         <Route path='/movimentacaoBancaria' element={<MovimentacaoBancaria/>}/>
-        
+        <Route path='/relatorio' element={<Relatorio/>} />
+
         <Route path='/sobre' element={<Sobre/>}/>
           <Route path='/sobre/:parametro' element={<SobreItemCPF/>}/> {/* parametros dinâmicos */}
         

@@ -277,3 +277,27 @@ da imagem do logo
 @media (max-width:600px){
 	
 }
+/* *************************** Home **************************** */
+.nomeUsuario{
+    background-color: aquamarine;
+    
+}
+.Saldo{
+    background-color: burlywood;
+}
+.Gasto{
+    background-color: turquoise;
+}
+.Evolucao{
+    background-color: coral;
+}
+
+/* *************************** Relatorios **************************** */
+
+.Personal{
+    text-align: center;
+    background-color: azure;
+}
+.Grafico{
+    background-color: yellow;
+}

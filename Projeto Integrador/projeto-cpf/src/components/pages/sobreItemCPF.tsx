@@ -7,7 +7,6 @@ function SobreItemCPF(){
     const params = useParams();
     const navegacao = useNavigate();
 
-
     function handleClickVoltar(){
         navegacao(-1); //volta uma página
     }
