@@ -274,6 +274,13 @@ da imagem do logo
     font-weight: bolder;
 }
 
+/* Movimentação bancária */
+
+.transferenciaEntreContas{
+    width: 100%;
+    height: 30%;
+}
+
 @media (max-width:600px){
 	
 }
