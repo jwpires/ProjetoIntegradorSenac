@@ -7,6 +7,7 @@ export declare class ProdutoController {
     private clsArmazenaProduto;
     constructor(clsArmazenaProduto: ProdutosArmazenados);
     RetornoProdutos(): Promise<ListarProdutosDTO[]>;
+    ConsultaPorNome(nome: string): Promise<ProdutoEntity>;
     criarProduto(dadosProduto: CriarProdutoDTO): Promise<any>;
     atualizaProduto(id: string, novosDados: AlterarProdutoDTO): Promise<{
         usuario: void;

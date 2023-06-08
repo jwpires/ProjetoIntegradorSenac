@@ -23,6 +23,14 @@ export class ProdutoController{
         return produtosRetornados;
     }
 
+    @Get('/:nome')
+    async ConsultaPorNome(@Param('nome') nome: string) {
+
+        const retornoProdutos = await this.clsArmazenaProduto.buscarPorNome(nome);
+
+        return retornoProdutos;
+    }
+
     @Post()
     async criarProduto(@Body() dadosProduto:CriarProdutoDTO){
         var produto = new ProdutoEntity(uuid(), dadosProduto.nome, dadosProduto.ativo, dadosProduto.estoque, 

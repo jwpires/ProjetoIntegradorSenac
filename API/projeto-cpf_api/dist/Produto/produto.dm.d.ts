@@ -4,7 +4,7 @@ export declare class ProdutosArmazenados {
     get Produto(): ProdutoEntity[];
     inserirProduto(produto: ProdutoEntity): void;
     private buscarPorID;
-    private buscarPorNome;
+    buscarPorNome(nome: string): ProdutoEntity;
     alterarProduto(id: string, dadosParaAtualizar: Partial<ProdutoEntity>): Promise<void>;
     excluirProduto(id: string): Promise<ProdutoEntity>;
 }

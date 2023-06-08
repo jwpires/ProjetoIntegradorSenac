@@ -5,7 +5,7 @@ export class ProdutoEntity{
     nome    :   string;
     ativo   :   boolean;
     estoque :   BigInteger;
-    medidas :   string[];
+    medida :   string[];
     cor     :   string[];
     marca   :   string;
 
@@ -14,7 +14,7 @@ export class ProdutoEntity{
         nome:string,
         ativo:boolean,
         estoque:BigInteger,
-        medidas:string[],
+        medida:string[],
         cor:string[],
         marca:string
     )
@@ -23,7 +23,7 @@ export class ProdutoEntity{
         this.nome   = nome;
         this.ativo  = ativo;
         this.estoque= estoque;
-        this.medidas= medidas;
+        this.medida= medida;
         this.cor    = cor;
         this.marca = marca;
 

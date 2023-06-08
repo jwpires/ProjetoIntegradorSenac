@@ -29,6 +29,10 @@ let ProdutoController = class ProdutoController {
         const produtosRetornados = listarProdutos.map(produto => new listarProdutos_dto_1.ListarProdutosDTO(produto.id, produto.nome));
         return produtosRetornados;
     }
+    async ConsultaPorNome(nome) {
+        const retornoProdutos = await this.clsArmazenaProduto.buscarPorNome(nome);
+        return retornoProdutos;
+    }
     async criarProduto(dadosProduto) {
         var produto = new produto_entity_1.ProdutoEntity((0, uuid_1.v4)(), dadosProduto.nome, dadosProduto.ativo, dadosProduto.estoque, dadosProduto.medida, dadosProduto.cor, dadosProduto.marca);
         var retornoProduto;
@@ -60,6 +64,13 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], ProdutoController.prototype, "RetornoProdutos", null);
+__decorate([
+    (0, decorators_1.Get)('/:nome'),
+    __param(0, (0, decorators_1.Param)('nome')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], ProdutoController.prototype, "ConsultaPorNome", null);
 __decorate([
     (0, decorators_1.Post)(),
     __param(0, (0, decorators_1.Body)()),

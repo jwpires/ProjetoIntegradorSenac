@@ -2,12 +2,12 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProdutoEntity = void 0;
 class ProdutoEntity {
-    constructor(id, nome, ativo, estoque, medidas, cor, marca) {
+    constructor(id, nome, ativo, estoque, medida, cor, marca) {
         this.id = id;
         this.nome = nome;
         this.ativo = ativo;
         this.estoque = estoque;
-        this.medidas = medidas;
+        this.medida = medida;
         this.cor = cor;
         this.marca = marca;
     }

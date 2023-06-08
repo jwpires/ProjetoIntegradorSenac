@@ -32,7 +32,7 @@ export class ProdutosArmazenados{
         return possivelProduto;
     }
 
-    private buscarPorNome(nome:string){
+    buscarPorNome(nome:string){
         /* Pesquisa o produto que foi passado pelo ID*/
         const possivelProduto = this.#produtos.find(
             produtoSalvo => produtoSalvo.nome === nome

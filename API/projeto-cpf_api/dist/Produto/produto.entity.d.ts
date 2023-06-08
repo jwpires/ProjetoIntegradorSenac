@@ -3,8 +3,8 @@ export declare class ProdutoEntity {
     nome: string;
     ativo: boolean;
     estoque: BigInteger;
-    medidas: string[];
+    medida: string[];
     cor: string[];
     marca: string;
-    constructor(id: string, nome: string, ativo: boolean, estoque: BigInteger, medidas: string[], cor: string[], marca: string);
+    constructor(id: string, nome: string, ativo: boolean, estoque: BigInteger, medida: string[], cor: string[], marca: string);
 }
