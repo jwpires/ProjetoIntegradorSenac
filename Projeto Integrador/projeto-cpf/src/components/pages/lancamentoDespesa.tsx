@@ -95,11 +95,9 @@ function LancamentoDespesa(){
                     <div className='divCadBanco'>
                         
                         <form action=""  className="cadBanco">
-<<<<<<< HEAD
+
                             <input type="text" name="" id="" placeholder='Descrição da Despesa:'  onChange={(e) => setInputDespesa(e.target.value)}   />
-=======
-                            <input type="text" name="" id="" placeholder='Descrição da Despesa:' />
->>>>>>> a74c032804dc93097cbb365891c76d5ad1c12436
+
                             <div className='adiciona-banco'>
                                 <select name="GrupoDespesa" id="" onChange={(e) => setInputGrupo(e.target.value)}  >
                                     <option value="" >Grupo de Despesa</option >
@@ -146,12 +144,12 @@ function LancamentoDespesa(){
                                             <input type="text" name="" id="" placeholder='Valor da Despesa:' value={valorDespesa} disabled/>
                                                     
                                             <label>Forma de Pagamento:</label>
-                                                <div className="raio_group">
+                                            <div className="raio_group">
 
                                                 <label><input type="radio" name="tipo_pagamento" id="" onClick={handleClickExibeBanco}/>Conta Bancária</label><br />
                                                 <label><input type="radio" name="tipo_pagamento" id="" onClick={handleClickEscondeBanco}/>Carteira</label><br />
                                                         
-                                                </div>
+                                            </div>
                                                     {show === true &&
                                                         <div className='adiciona-banco'>
                                                                 <select name="Banco" id="">
@@ -160,6 +158,7 @@ function LancamentoDespesa(){
                                                                 <button type='button' > + </button> {/* Botão servirá para direcionar a tela de cadastro da conta bancária. */}
                                                         </div>
                                                     }
+
 
                                         </form>
                                     </ModalBody>

@@ -9,32 +9,25 @@ function Home() {
         <div>
               <HeaderMenu exibe={true}/>
             <div className="container_main_padrao-tela">
-            <div className="container_padrao-tela">
-                <div className="nomeUsuario">
-                    <p>nome de usuario</p>
+                <div className="container_padrao-tela">
+                    <div className="nomeUsuario">
+                        <p>Usuario: Nome</p>
+                    </div>
+                    <div className="Saldo">
+                        <p>saldo Banco do Brasil: 152.574,74 </p>
+                        <p>saldo Banco Itau: 7.012,92 </p>
+                        
+                    </div>
+                    <div className="Gasto">
+                        <p>Projeção despesas do mês: 4.571,23</p>
+                        <p>Despesas em aberto: 2.031,87</p>
+                        <p>Próximo vencimento: Conta de Luz, Vencimento: 12/06/2023, Valor: 114,74</p>
+                    </div>
+                    <div className="Evolucao">
+                        <p>Gráfico Dispesas X Receitas</p>
+                    </div>
+    
                 </div>
-                <div className="Saldo">
-                    <p>saldo em conta / saldo no cartão</p>
-                    <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                        Repellat quis quibusdam, eos nam assumenda possimus alias iste distinctio ab sint? Earum, porro autem! 
-                        Corrupti nihil pariatur praesentium voluptatum? Magni, enim!</h5>
-                </div>
-                <div className="Gasto">
-                    <p>Gastos</p>
-                    <h5>Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
-                        Ut quisquam, distinctio asperiores vel tempora qui, exercitationem minima expedita 
-                        molestiae sequi reprehenderit eaque dolores, quis repellat voluptate neque totam! Dolore, fugit.</h5>
-                </div>
-                <div className="Evolucao">
-                    <p>Evolução de Gastos</p>
-                    <h6>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                        Neque perferendis incidunt qui laboriosam mollitia, consequuntur 
-                        velit cum doloribus beatae, a, eum sint reprehenderit accusantium maiores consequatur 
-                        illo illum modi dolore.</h6>
-                </div>
-              
-                <button onClick={Clicou}>Clique aqui!</button>    
-            </div>
             </div>
         </div>
     );

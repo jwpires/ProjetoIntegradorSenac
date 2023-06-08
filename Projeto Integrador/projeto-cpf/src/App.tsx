@@ -29,7 +29,8 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path='/' element={<Home/>}/>
+        <Route path='/home' element={<Home/>}/>
+        
         <Route path='/cadastro/ContaBanco' element={<CadastroContaBanco/>}/>
         <Route path='/cadastro/Banco' element={<CadastroBanco/>}/>
         <Route path='/cadastro/Receita' element={<CadastroReceita />} />
@@ -43,7 +44,7 @@ function App() {
         <Route path='/sobre' element={<Sobre/>}/>
           <Route path='/sobre/:parametro' element={<SobreItemCPF/>}/> {/* parametros dinâmicos */}
         
-        <Route path='/login' element={<Login/>}/>
+        <Route path='/' element={<Login/>}/>
           <Route path='/cadastro/Usuario' element={<CadastroUsuario/>}/>
           <Route path='/cadastro/NovaSenha' element={<CadastroNovaSenha/>}/> {/* */}
         
