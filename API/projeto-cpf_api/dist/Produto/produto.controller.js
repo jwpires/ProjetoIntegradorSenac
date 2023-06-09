@@ -20,6 +20,7 @@ const produto_entity_1 = require("./produto.entity");
 const uuid_1 = require("uuid");
 const listarProdutos_dto_1 = require("./dto/listarProdutos.dto");
 const alterarProduto_dto_1 = require("./dto/alterarProduto.dto");
+const listarMenuVenda_dto_1 = require("./dto/listarMenuVenda.dto");
 let ProdutoController = class ProdutoController {
     constructor(clsArmazenaProduto) {
         this.clsArmazenaProduto = clsArmazenaProduto;
@@ -29,12 +30,24 @@ let ProdutoController = class ProdutoController {
         const produtosRetornados = listarProdutos.map(produto => new listarProdutos_dto_1.ListarProdutosDTO(produto.id, produto.nome));
         return produtosRetornados;
     }
+    async ExibeMenu(menu) {
+        if (menu === 'Menu') {
+            const produtosAtivos = await this.clsArmazenaProduto.buscarProdutoAtivo();
+            const retornoMenu = produtosAtivos.map(produto => new listarMenuVenda_dto_1.ListarMenuVendaDTO(produto.nome, produto.medida, produto.cor, produto.marca, produto.valor));
+            return retornoMenu;
+        }
+        return ["Escreva 'http://localhost:3000/produtos/menu/Menu' para visualizar o cardápio disponível."];
+    }
     async ConsultaPorNome(nome) {
         const retornoProdutos = await this.clsArmazenaProduto.buscarPorNome(nome);
         return retornoProdutos;
     }
+    async ConsultaPorMarca(marca) {
+        const retornoProdutos = await this.clsArmazenaProduto.buscarPorMarca(marca);
+        return retornoProdutos;
+    }
     async criarProduto(dadosProduto) {
-        var produto = new produto_entity_1.ProdutoEntity((0, uuid_1.v4)(), dadosProduto.nome, dadosProduto.ativo, dadosProduto.estoque, dadosProduto.medida, dadosProduto.cor, dadosProduto.marca);
+        var produto = new produto_entity_1.ProdutoEntity((0, uuid_1.v4)(), dadosProduto.nome, dadosProduto.ativo, dadosProduto.valor, dadosProduto.estoque, dadosProduto.medida, dadosProduto.cor, dadosProduto.marca);
         var retornoProduto;
         this.clsArmazenaProduto.inserirProduto(produto);
         retornoProduto = {
@@ -65,12 +78,26 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ProdutoController.prototype, "RetornoProdutos", null);
 __decorate([
+    (0, decorators_1.Get)('/menu/:menu'),
+    __param(0, (0, decorators_1.Param)('menu')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], ProdutoController.prototype, "ExibeMenu", null);
+__decorate([
     (0, decorators_1.Get)('/:nome'),
     __param(0, (0, decorators_1.Param)('nome')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], ProdutoController.prototype, "ConsultaPorNome", null);
+__decorate([
+    (0, decorators_1.Get)('/marca/:marca'),
+    __param(0, (0, decorators_1.Param)('marca')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], ProdutoController.prototype, "ConsultaPorMarca", null);
 __decorate([
     (0, decorators_1.Post)(),
     __param(0, (0, decorators_1.Body)()),

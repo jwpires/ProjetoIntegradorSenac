@@ -1,4 +1,5 @@
-import { IsArray, IsBoolean, IsInt, IsNotEmpty, IsOptional, IsString } from "class-validator";
+import { IsArray, IsBoolean, IsDecimal, IsInt, IsNotEmpty, IsNumber, IsOptional, IsString } from "class-validator";
+import { isFloat32Array } from "util/types";
 
 
 export class AlterarProdutoDTO{
@@ -10,11 +11,15 @@ export class AlterarProdutoDTO{
     
     @IsBoolean({message:"Informe se está ativo: true (Sim), false (Não)"})
     @IsOptional()
-    ativo:boolean;
+    ativo: boolean;
+    
+    @IsNumber()
+    @IsOptional({message:"Informe o valor do produto"})
+    valor: number;
     
     @IsInt({message:"Informe a quantidade em estoque"})
     @IsOptional()
-    estoque:BigInteger;
+    estoque:number;
     
     @IsArray({message:"informe a unidade ou unidades de medidas exemplo: ['UN', 'KG', 'FD',....]"})
     @IsOptional()

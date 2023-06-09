@@ -5,6 +5,7 @@ import { ProdutoEntity } from "./produto.entity";
 import {v4 as uuid} from 'uuid';
 import { ListarProdutosDTO } from "./dto/listarProdutos.dto";
 import { AlterarProdutoDTO } from "./dto/alterarProduto.dto";
+import { ListarMenuVendaDTO } from "./dto/listarMenuVenda.dto";
 
 
 @Controller('/produtos')
@@ -23,6 +24,27 @@ export class ProdutoController{
         return produtosRetornados;
     }
 
+    @Get('/menu/:menu')
+    async ExibeMenu(@Param('menu') menu: string) {
+        if (menu === 'Menu') {
+            const produtosAtivos = await this.clsArmazenaProduto.buscarProdutoAtivo();
+            const retornoMenu = produtosAtivos.map(
+                produto => new ListarMenuVendaDTO(
+                    produto.nome,
+                    produto.medida,
+                    produto.cor,
+                    produto.marca,
+                    produto.valor
+                )
+            );
+            return retornoMenu;      
+        }
+        return ["Escreva 'http://localhost:3000/produtos/menu/Menu' para visualizar o cardápio disponível."];
+    }
+
+
+
+        
     @Get('/:nome')
     async ConsultaPorNome(@Param('nome') nome: string) {
 
@@ -31,9 +53,17 @@ export class ProdutoController{
         return retornoProdutos;
     }
 
+    @Get('/marca/:marca')
+    async ConsultaPorMarca(@Param('marca') marca: string) {
+
+        const retornoProdutos = await this.clsArmazenaProduto.buscarPorMarca(marca);
+
+        return retornoProdutos;
+    }
+
     @Post()
     async criarProduto(@Body() dadosProduto:CriarProdutoDTO){
-        var produto = new ProdutoEntity(uuid(), dadosProduto.nome, dadosProduto.ativo, dadosProduto.estoque, 
+        var produto = new ProdutoEntity(uuid(), dadosProduto.nome, dadosProduto.ativo, dadosProduto.valor ,dadosProduto.estoque, 
             dadosProduto.medida, dadosProduto.cor, dadosProduto.marca);
 
         

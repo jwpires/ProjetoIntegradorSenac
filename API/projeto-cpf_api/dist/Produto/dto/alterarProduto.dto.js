@@ -25,9 +25,14 @@ __decorate([
     __metadata("design:type", Boolean)
 ], AlterarProdutoDTO.prototype, "ativo", void 0);
 __decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_validator_1.IsOptional)({ message: "Informe o valor do produto" }),
+    __metadata("design:type", Number)
+], AlterarProdutoDTO.prototype, "valor", void 0);
+__decorate([
     (0, class_validator_1.IsInt)({ message: "Informe a quantidade em estoque" }),
     (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", Object)
+    __metadata("design:type", Number)
 ], AlterarProdutoDTO.prototype, "estoque", void 0);
 __decorate([
     (0, class_validator_1.IsArray)({ message: "informe a unidade ou unidades de medidas exemplo: ['UN', 'KG', 'FD',....]" }),

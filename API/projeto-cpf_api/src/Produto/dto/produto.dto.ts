@@ -1,4 +1,5 @@
-import { IsArray, IsBoolean, IsInt, IsNotEmpty, IsString } from "class-validator";
+import { IsArray, IsBoolean, IsDecimal, IsInt, IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { isFloat64Array } from "util/types";
 
 
 export class CriarProdutoDTO{
@@ -8,10 +9,13 @@ export class CriarProdutoDTO{
     nome:string;
     
     @IsBoolean({message:"Informe se está ativo: true (Sim), false (Não)"})
-    ativo:boolean;
+    ativo: boolean;
+    
+    @IsNumber()
+    valor: number;
     
     @IsInt({message:"Informe a quantidade em estoque"})
-    estoque:BigInteger;
+    estoque:number;
     
     @IsArray({message:"informe a unidade ou unidades de medidas exemplo: ['UN', 'KG', 'FD',....]"})
     medida:string[];

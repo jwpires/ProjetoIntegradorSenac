@@ -1,7 +1,8 @@
 export declare class AlterarProdutoDTO {
     nome: string;
     ativo: boolean;
-    estoque: BigInteger;
+    valor: number;
+    estoque: number;
     medida: string[];
     cor: string[];
     marca: string;

@@ -23,8 +23,12 @@ __decorate([
     __metadata("design:type", Boolean)
 ], CriarProdutoDTO.prototype, "ativo", void 0);
 __decorate([
+    (0, class_validator_1.IsNumber)(),
+    __metadata("design:type", Number)
+], CriarProdutoDTO.prototype, "valor", void 0);
+__decorate([
     (0, class_validator_1.IsInt)({ message: "Informe a quantidade em estoque" }),
-    __metadata("design:type", Object)
+    __metadata("design:type", Number)
 ], CriarProdutoDTO.prototype, "estoque", void 0);
 __decorate([
     (0, class_validator_1.IsArray)({ message: "informe a unidade ou unidades de medidas exemplo: ['UN', 'KG', 'FD',....]" }),

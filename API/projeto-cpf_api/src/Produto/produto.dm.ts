@@ -32,6 +32,30 @@ export class ProdutosArmazenados{
         return possivelProduto;
     }
 
+    buscarProdutoAtivo() {
+        const produtoAtivos = this.#produtos.filter(
+            produto => produto.ativo === true
+        );
+
+        if(!produtoAtivos){
+            throw new Error('Produto não encontrado');
+        }
+        return produtoAtivos;
+    }
+
+    buscarPorMarca(marca:string){
+        /* Pesquisa o produto que foi passado pelo ID*/
+        const possivelProduto = this.#produtos.find(
+            produtoSalvo => produtoSalvo.marca === marca
+        );
+
+        if(!possivelProduto){
+            throw new Error('Produto não encontrado');
+        }
+        return possivelProduto;
+    }
+
+
     buscarPorNome(nome:string){
         /* Pesquisa o produto que foi passado pelo ID*/
         const possivelProduto = this.#produtos.find(

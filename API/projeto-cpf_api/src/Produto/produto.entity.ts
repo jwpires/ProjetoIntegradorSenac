@@ -4,7 +4,8 @@ export class ProdutoEntity{
     id      :   string;
     nome    :   string;
     ativo   :   boolean;
-    estoque :   BigInteger;
+    valor   :   number;
+    estoque :   number;
     medida :   string[];
     cor     :   string[];
     marca   :   string;
@@ -12,8 +13,9 @@ export class ProdutoEntity{
     constructor(
         id:string,
         nome:string,
-        ativo:boolean,
-        estoque:BigInteger,
+        ativo: boolean,
+        valor: number,
+        estoque:number,
         medida:string[],
         cor:string[],
         marca:string
@@ -21,7 +23,8 @@ export class ProdutoEntity{
     {
         this.id     = id;
         this.nome   = nome;
-        this.ativo  = ativo;
+        this.ativo = ativo;
+        this.valor = valor;
         this.estoque= estoque;
         this.medida= medida;
         this.cor    = cor;
