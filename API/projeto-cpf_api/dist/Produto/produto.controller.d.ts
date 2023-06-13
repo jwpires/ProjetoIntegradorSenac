@@ -9,8 +9,8 @@ export declare class ProdutoController {
     constructor(clsArmazenaProduto: ProdutosArmazenados);
     RetornoProdutos(): Promise<ListarProdutosDTO[]>;
     ExibeMenu(): Promise<string[] | ListarMenuVendaDTO[]>;
-    ConsultaPorNome(nome: string): Promise<ProdutoEntity>;
-    ConsultaPorMarca(marca: string): Promise<ProdutoEntity>;
+    ConsultaPorNome(nome: string): Promise<ListarProdutosDTO[]>;
+    ConsultaPorMarca(marca: string): Promise<ListarProdutosDTO[]>;
     consultaPorTamanho(tamanho: string): Promise<ListarProdutosDTO[]>;
     consultaPorCor(cor: string): Promise<ListarProdutosDTO[]>;
     criarProduto(dadosProduto: CriarProdutoDTO): Promise<any>;

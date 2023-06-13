@@ -48,16 +48,27 @@ export class ProdutoController{
     @Get('/:nome')
     async ConsultaPorNome(@Param('nome') nome: string) {
 
-        const retornoProdutos = await this.clsArmazenaProduto.buscarPorNome(nome);
-
+        const listarProdutos = await this.clsArmazenaProduto.buscarPorNome(nome);
+        const retornoProdutos = listarProdutos.map(
+            produto => new ListarProdutosDTO(
+                produto.id,
+                produto.nome
+            )
+        );
         return retornoProdutos;
     }
 
     @Get('/marca/:marca')
     async ConsultaPorMarca(@Param('marca') marca: string) {
 
-        const retornoProdutos = await this.clsArmazenaProduto.buscarPorMarca(marca);
+        const listarProdutos = await this.clsArmazenaProduto.buscarPorMarca(marca);
 
+        const retornoProdutos = listarProdutos.map(
+            produto => new ListarProdutosDTO(
+                produto.id,
+                produto.nome
+            )
+        )
         return retornoProdutos;
     }
 

@@ -45,14 +45,14 @@ let ProdutosArmazenados = class ProdutosArmazenados {
         return produtoAtivos;
     }
     buscarPorMarca(marca) {
-        const possivelProduto = __classPrivateFieldGet(this, _ProdutosArmazenados_produtos, "f").find(produtoSalvo => produtoSalvo.marca === marca);
+        const possivelProduto = __classPrivateFieldGet(this, _ProdutosArmazenados_produtos, "f").filter(produtoSalvo => produtoSalvo.marca === marca);
         if (!possivelProduto) {
             throw new Error('Marca não encontrado');
         }
         return possivelProduto;
     }
     buscarPorNome(nome) {
-        const possivelProduto = __classPrivateFieldGet(this, _ProdutosArmazenados_produtos, "f").find(produtoSalvo => produtoSalvo.nome === nome);
+        const possivelProduto = __classPrivateFieldGet(this, _ProdutosArmazenados_produtos, "f").filter(produtoSalvo => produtoSalvo.nome === nome);
         if (!possivelProduto) {
             throw new Error('Produto não encontrado');
         }

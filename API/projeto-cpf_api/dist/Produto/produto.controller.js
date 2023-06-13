@@ -37,11 +37,13 @@ let ProdutoController = class ProdutoController {
         return ["Escreva 'http://localhost:3000/produtos/menu/Menu' para visualizar o cardápio disponível."];
     }
     async ConsultaPorNome(nome) {
-        const retornoProdutos = await this.clsArmazenaProduto.buscarPorNome(nome);
+        const listarProdutos = await this.clsArmazenaProduto.buscarPorNome(nome);
+        const retornoProdutos = listarProdutos.map(produto => new listarProdutos_dto_1.ListarProdutosDTO(produto.id, produto.nome));
         return retornoProdutos;
     }
     async ConsultaPorMarca(marca) {
-        const retornoProdutos = await this.clsArmazenaProduto.buscarPorMarca(marca);
+        const listarProdutos = await this.clsArmazenaProduto.buscarPorMarca(marca);
+        const retornoProdutos = listarProdutos.map(produto => new listarProdutos_dto_1.ListarProdutosDTO(produto.id, produto.nome));
         return retornoProdutos;
     }
     async consultaPorTamanho(tamanho) {

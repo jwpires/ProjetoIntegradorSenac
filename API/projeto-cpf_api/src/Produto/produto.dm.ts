@@ -45,7 +45,7 @@ export class ProdutosArmazenados{
 
     buscarPorMarca(marca:string){
         /* Pesquisa o produto que foi passado pelo ID*/
-        const possivelProduto = this.#produtos.find(
+        const possivelProduto = this.#produtos.filter(
             produtoSalvo => produtoSalvo.marca === marca
         );
 
@@ -59,7 +59,7 @@ export class ProdutosArmazenados{
 
     buscarPorNome(nome:string){
         /* Pesquisa o produto que foi passado pelo ID*/
-        const possivelProduto = this.#produtos.find(
+        const possivelProduto = this.#produtos.filter(
             produtoSalvo => produtoSalvo.nome === nome
         );
 
