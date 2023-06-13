@@ -24,9 +24,9 @@ export class ProdutoController{
         return produtosRetornados;
     }
 
-    @Get('/menu/:menu')
-    async ExibeMenu(@Param('menu') menu: string) {
-        if (menu === 'Menu') {
+    @Get('/menu/') /** Função para retornar dados suficientes para uma tela de venda */
+    async ExibeMenu(/*@Param('menu') menu: string*/) {
+        /*if (menu === 'Menu') {*/
             const produtosAtivos = await this.clsArmazenaProduto.buscarProdutoAtivo();
             const retornoMenu = produtosAtivos.map(
                 produto => new ListarMenuVendaDTO(
@@ -38,7 +38,7 @@ export class ProdutoController{
                 )
             );
             return retornoMenu;      
-        }
+    //    }
         return ["Escreva 'http://localhost:3000/produtos/menu/Menu' para visualizar o cardápio disponível."];
     }
 
@@ -59,6 +59,36 @@ export class ProdutoController{
         const retornoProdutos = await this.clsArmazenaProduto.buscarPorMarca(marca);
 
         return retornoProdutos;
+    }
+
+    @Get('/tamanho/:tamanho')
+    async consultaPorTamanho(@Param('tamanho') tamanho: string) {
+        const listarProdutos = await this.clsArmazenaProduto.Produto;
+        const produtosRetornados = listarProdutos.filter(
+            element => (element.medida.find( e => e ===tamanho))
+        ).map(
+                produto => new ListarProdutosDTO(
+                    produto.id,
+                    produto.nome
+            )
+        );
+
+        return produtosRetornados; 
+    }
+
+    @Get('/cor/:cor')
+    async consultaPorCor(@Param('cor') cor: string) {
+        const listarProdutos = await this.clsArmazenaProduto.Produto;
+        const produtosRetornados = listarProdutos.filter(
+            element => (element.cor.find( e => e ===cor))
+        ).map(
+                produto => new ListarProdutosDTO( 
+                    produto.id,
+                    produto.nome
+            )
+        );
+
+        return produtosRetornados; 
     }
 
     @Post()

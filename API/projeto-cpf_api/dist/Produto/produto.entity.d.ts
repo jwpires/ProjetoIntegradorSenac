@@ -1,4 +1,5 @@
 export declare class ProdutoEntity {
+    [x: string]: any;
     id: string;
     nome: string;
     ativo: boolean;

@@ -47,7 +47,7 @@ let ProdutosArmazenados = class ProdutosArmazenados {
     buscarPorMarca(marca) {
         const possivelProduto = __classPrivateFieldGet(this, _ProdutosArmazenados_produtos, "f").find(produtoSalvo => produtoSalvo.marca === marca);
         if (!possivelProduto) {
-            throw new Error('Produto não encontrado');
+            throw new Error('Marca não encontrado');
         }
         return possivelProduto;
     }

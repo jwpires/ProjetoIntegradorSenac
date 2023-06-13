@@ -30,12 +30,10 @@ let ProdutoController = class ProdutoController {
         const produtosRetornados = listarProdutos.map(produto => new listarProdutos_dto_1.ListarProdutosDTO(produto.id, produto.nome));
         return produtosRetornados;
     }
-    async ExibeMenu(menu) {
-        if (menu === 'Menu') {
-            const produtosAtivos = await this.clsArmazenaProduto.buscarProdutoAtivo();
-            const retornoMenu = produtosAtivos.map(produto => new listarMenuVenda_dto_1.ListarMenuVendaDTO(produto.nome, produto.medida, produto.cor, produto.marca, produto.valor));
-            return retornoMenu;
-        }
+    async ExibeMenu() {
+        const produtosAtivos = await this.clsArmazenaProduto.buscarProdutoAtivo();
+        const retornoMenu = produtosAtivos.map(produto => new listarMenuVenda_dto_1.ListarMenuVendaDTO(produto.nome, produto.medida, produto.cor, produto.marca, produto.valor));
+        return retornoMenu;
         return ["Escreva 'http://localhost:3000/produtos/menu/Menu' para visualizar o cardápio disponível."];
     }
     async ConsultaPorNome(nome) {
@@ -45,6 +43,16 @@ let ProdutoController = class ProdutoController {
     async ConsultaPorMarca(marca) {
         const retornoProdutos = await this.clsArmazenaProduto.buscarPorMarca(marca);
         return retornoProdutos;
+    }
+    async consultaPorTamanho(tamanho) {
+        const listarProdutos = await this.clsArmazenaProduto.Produto;
+        const produtosRetornados = listarProdutos.filter(element => (element.medida.find(e => e === tamanho))).map(produto => new listarProdutos_dto_1.ListarProdutosDTO(produto.id, produto.nome));
+        return produtosRetornados;
+    }
+    async consultaPorCor(cor) {
+        const listarProdutos = await this.clsArmazenaProduto.Produto;
+        const produtosRetornados = listarProdutos.filter(element => (element.cor.find(e => e === cor))).map(produto => new listarProdutos_dto_1.ListarProdutosDTO(produto.id, produto.nome));
+        return produtosRetornados;
     }
     async criarProduto(dadosProduto) {
         var produto = new produto_entity_1.ProdutoEntity((0, uuid_1.v4)(), dadosProduto.nome, dadosProduto.ativo, dadosProduto.valor, dadosProduto.estoque, dadosProduto.medida, dadosProduto.cor, dadosProduto.marca);
@@ -78,10 +86,9 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ProdutoController.prototype, "RetornoProdutos", null);
 __decorate([
-    (0, decorators_1.Get)('/menu/:menu'),
-    __param(0, (0, decorators_1.Param)('menu')),
+    (0, decorators_1.Get)('/menu/'),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], ProdutoController.prototype, "ExibeMenu", null);
 __decorate([
@@ -98,6 +105,20 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], ProdutoController.prototype, "ConsultaPorMarca", null);
+__decorate([
+    (0, decorators_1.Get)('/tamanho/:tamanho'),
+    __param(0, (0, decorators_1.Param)('tamanho')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], ProdutoController.prototype, "consultaPorTamanho", null);
+__decorate([
+    (0, decorators_1.Get)('/cor/:cor'),
+    __param(0, (0, decorators_1.Param)('cor')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], ProdutoController.prototype, "consultaPorCor", null);
 __decorate([
     (0, decorators_1.Post)(),
     __param(0, (0, decorators_1.Body)()),

@@ -50,10 +50,11 @@ export class ProdutosArmazenados{
         );
 
         if(!possivelProduto){
-            throw new Error('Produto não encontrado');
+            throw new Error('Marca não encontrado');
         }
         return possivelProduto;
     }
+
 
 
     buscarPorNome(nome:string){
