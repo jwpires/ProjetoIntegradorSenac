@@ -1,4 +1,5 @@
 import { Injectable } from "@nestjs/common";
+import { RemoverEstoqueDTO } from "./dto/removerEstoque.dto";
 import { ProdutoEntity } from "./produto.entity";
 
 
@@ -35,6 +36,10 @@ export class ProdutosArmazenados{
     buscarProdutoAtivo() {
         const produtoAtivos = this.#produtos.filter(
             produto => produto.ativo === true
+        );
+
+        const estoque = produtoAtivos.filter(
+            produto => produto.estoque > 0
         );
 
         if(!produtoAtivos){
@@ -80,6 +85,20 @@ export class ProdutosArmazenados{
                 produto[chave] = valor;
             }
         )
+    }
+
+    async removeEstoque( id: string, quantidade: RemoverEstoqueDTO){
+        const produtoEstoqueAtualizado = this.buscarPorID(id);
+        produtoEstoqueAtualizado.estoque = produtoEstoqueAtualizado.estoque - quantidade.estoque;
+        
+       // return produtoEstoqueAtualizado;
+    }
+
+    async adicionaEstoque( id: string, quantidade: RemoverEstoqueDTO){
+        const produtoEstoqueAtualizado = this.buscarPorID(id);
+        produtoEstoqueAtualizado.estoque = produtoEstoqueAtualizado.estoque + quantidade.estoque;
+        
+       // return produtoEstoqueAtualizado;
     }
 
     async excluirProduto (id: string){

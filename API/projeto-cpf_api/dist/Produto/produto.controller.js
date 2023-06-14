@@ -21,6 +21,7 @@ const uuid_1 = require("uuid");
 const listarProdutos_dto_1 = require("./dto/listarProdutos.dto");
 const alterarProduto_dto_1 = require("./dto/alterarProduto.dto");
 const listarMenuVenda_dto_1 = require("./dto/listarMenuVenda.dto");
+const removerEstoque_dto_1 = require("./dto/removerEstoque.dto");
 let ProdutoController = class ProdutoController {
     constructor(clsArmazenaProduto) {
         this.clsArmazenaProduto = clsArmazenaProduto;
@@ -32,7 +33,7 @@ let ProdutoController = class ProdutoController {
     }
     async ExibeMenu() {
         const produtosAtivos = await this.clsArmazenaProduto.buscarProdutoAtivo();
-        const retornoMenu = produtosAtivos.map(produto => new listarMenuVenda_dto_1.ListarMenuVendaDTO(produto.nome, produto.medida, produto.cor, produto.marca, produto.valor));
+        const retornoMenu = produtosAtivos.map(produto => new listarMenuVenda_dto_1.ListarMenuVendaDTO(produto.nome, produto.medida, produto.estoque, produto.cor, produto.marca, produto.valor));
         return retornoMenu;
         return ["Escreva 'http://localhost:3000/produtos/menu/Menu' para visualizar o cardápio disponível."];
     }
@@ -71,6 +72,20 @@ let ProdutoController = class ProdutoController {
         return ({
             usuario: produtosAtualizado,
             message: 'Produto Atualizado'
+        });
+    }
+    async removerEstoque(id, quantidade) {
+        const produtoAtualizado = await this.clsArmazenaProduto.removeEstoque(id, quantidade);
+        return ({
+            produto: produtoAtualizado,
+            message: 'Valor de estoque foi retirado'
+        });
+    }
+    async adicionarEstoque(id, quantidade) {
+        const produtoAtualizado = await this.clsArmazenaProduto.adicionaEstoque(id, quantidade);
+        return ({
+            produto: produtoAtualizado,
+            message: 'Valor de estoque foi adicionado'
         });
     }
     async removeProduto(id) {
@@ -136,6 +151,22 @@ __decorate([
     __metadata("design:paramtypes", [String, alterarProduto_dto_1.AlterarProdutoDTO]),
     __metadata("design:returntype", Promise)
 ], ProdutoController.prototype, "atualizaProduto", null);
+__decorate([
+    (0, decorators_1.Put)('/removerEstoque/:id'),
+    __param(0, (0, decorators_1.Param)('id')),
+    __param(1, (0, decorators_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, removerEstoque_dto_1.RemoverEstoqueDTO]),
+    __metadata("design:returntype", Promise)
+], ProdutoController.prototype, "removerEstoque", null);
+__decorate([
+    (0, decorators_1.Put)('/adicionarEstoque/:id'),
+    __param(0, (0, decorators_1.Param)('id')),
+    __param(1, (0, decorators_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, removerEstoque_dto_1.RemoverEstoqueDTO]),
+    __metadata("design:returntype", Promise)
+], ProdutoController.prototype, "adicionarEstoque", null);
 __decorate([
     (0, decorators_1.Delete)('/:id'),
     __param(0, (0, decorators_1.Param)('id')),

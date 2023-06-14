@@ -39,6 +39,7 @@ let ProdutosArmazenados = class ProdutosArmazenados {
     }
     buscarProdutoAtivo() {
         const produtoAtivos = __classPrivateFieldGet(this, _ProdutosArmazenados_produtos, "f").filter(produto => produto.ativo === true);
+        const estoque = produtoAtivos.filter(produto => produto.estoque > 0);
         if (!produtoAtivos) {
             throw new Error('Produto não encontrado');
         }
@@ -66,6 +67,14 @@ let ProdutosArmazenados = class ProdutosArmazenados {
             }
             produto[chave] = valor;
         });
+    }
+    async removeEstoque(id, quantidade) {
+        const produtoEstoqueAtualizado = this.buscarPorID(id);
+        produtoEstoqueAtualizado.estoque = produtoEstoqueAtualizado.estoque - quantidade.estoque;
+    }
+    async adicionaEstoque(id, quantidade) {
+        const produtoEstoqueAtualizado = this.buscarPorID(id);
+        produtoEstoqueAtualizado.estoque = produtoEstoqueAtualizado.estoque + quantidade.estoque;
     }
     async excluirProduto(id) {
         const produto = this.buscarPorID(id);

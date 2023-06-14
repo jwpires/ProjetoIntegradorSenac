@@ -6,6 +6,7 @@ import {v4 as uuid} from 'uuid';
 import { ListarProdutosDTO } from "./dto/listarProdutos.dto";
 import { AlterarProdutoDTO } from "./dto/alterarProduto.dto";
 import { ListarMenuVendaDTO } from "./dto/listarMenuVenda.dto";
+import { RemoverEstoqueDTO } from "./dto/removerEstoque.dto";
 
 
 @Controller('/produtos')
@@ -32,6 +33,7 @@ export class ProdutoController{
                 produto => new ListarMenuVendaDTO(
                     produto.nome,
                     produto.medida,
+                    produto.estoque,
                     produto.cor,
                     produto.marca,
                     produto.valor
@@ -125,6 +127,26 @@ export class ProdutoController{
             message:'Produto Atualizado'
         });
     }
+
+    @Put('/removerEstoque/:id')
+   async removerEstoque(@Param('id') id:string, @Body() quantidade: RemoverEstoqueDTO ){
+    const  produtoAtualizado = await this.clsArmazenaProduto.removeEstoque(id,quantidade);
+
+    return ({
+        produto: produtoAtualizado,
+        message:'Valor de estoque foi retirado'
+    });
+   }
+
+   @Put('/adicionarEstoque/:id')
+   async adicionarEstoque(@Param('id') id:string, @Body() quantidade: RemoverEstoqueDTO ){
+    const  produtoAtualizado = await this.clsArmazenaProduto.adicionaEstoque(id,quantidade);
+
+    return ({
+        produto: produtoAtualizado,
+        message:'Valor de estoque foi adicionado'
+    });
+   }
 
     @Delete('/:id')
     async removeProduto(@Param('id') id:string){
