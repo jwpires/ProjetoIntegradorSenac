@@ -12,7 +12,7 @@ O Sistema conterá as seguintes tabelas e telas para que o Usuário possa elabor
 * Gráficos e relatórios. 
 
 ### *MER*
-![MRE](img/MER_Projeto.png)
+![image](https://github.com/jwpires/ProjetoIntegradorSenac/assets/129558769/03fe7217-8b83-4cf1-8366-5de099b4f27a)
 
 *Autores:*  
 José Pires,
