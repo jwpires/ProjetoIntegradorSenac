@@ -20,8 +20,10 @@ import CadastroGrupoDespesa from './components/pages/cadastroGrupoDespesa';
 import ConfirmacaoPagamento from './components/pages/confirmacaoPagamento';
 import MovimentacaoBancaria from './components/pages/movimentacaoBancaria';
 import Pai from './components/pages/Exemplos/pai';
-import relatorio from './components/pages/relatorio';
 import Relatorio from './components/pages/relatorio';
+import RequisicoesTypesAsync from './components/pages/Exemplos/requisicoesTypesAsync';
+import DogImageAPI from './components/pages/Exemplos/dogImageApi';
+
 
 
 function App() {
@@ -52,6 +54,8 @@ function App() {
 
         <Route path='/contador' element={<Contador/>}/>
         <Route path='/paifilho' element={<Pai/>}/>
+        <Route path='/requisicao' element={<RequisicoesTypesAsync/>} />
+        <Route path='/dog' element={<DogImageAPI/>}/>
       </Routes>
     </div>
   );
