@@ -18,11 +18,11 @@ function DogImageAPI(){
         <div>
             <button onClick={carregaDogs}>Mudar Foto</button>
             <div>
-                {dog.map((item,index) =>(
-                    <div>
-                        {/* <img src={item.message} alt={item.status} /> */}
+                { dog.map((item,idex) =>(
+                    <div key={idex}>
+                         <a href={item.message}>foto {item.message}</a>
                     </div>
-                ))}
+                )) }
             </div>
         </div>
 

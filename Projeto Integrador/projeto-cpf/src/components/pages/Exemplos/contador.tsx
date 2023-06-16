@@ -1,5 +1,5 @@
 import Estado from "./estado";
-import HeaderMenu from "../header/HeaderMenu";
+import HeaderMenu from "../../header/HeaderMenu";
 
 function Contador(){
     

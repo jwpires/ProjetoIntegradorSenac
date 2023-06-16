@@ -1,4 +1,4 @@
-import '../../style/style.css';
+import '../../../style/style.css'
 import { Form, FormGroup, Label, Input } from 'reactstrap';
 
 import React, { useState } from 'react';

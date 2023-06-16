@@ -1,37 +1,56 @@
 import HeaderMenu from "../header/HeaderMenu";
+import LancamentoDespesa from "./lancamentoDespesa";
 
-function Clicou(){
+function Clicou() {
     alert("clicou no botão!");
 }
 
 function Home() {
-    return(
+    return (
         <div>
-              <HeaderMenu exibe={true}/>
+            <HeaderMenu exibe={true} />
             <div className="container_main_padrao-tela">
                 <div className="container_padrao-tela">
+
+
                     <div className="nomeUsuario">
-                        <p>Usuario: Nome</p>
+                        <label id="nomeUsuario">Usuário: </label>
                     </div>
+
+                    {/* Deverá constar um map para apresentar os valores de saldo dentro de cada div */}
                     <div className="Saldo">
-                        <p>saldo Banco do Brasil: 152.574,74 </p>
+                        <p>{"banco.nome"} : {"banco.saldo"} </p>
                         <p>saldo Banco Itau: 7.012,92 </p>
-                        
+
                     </div>
-                    <div className="Gasto">
-                        <p>Projeção despesas do mês: 4.571,23</p>
-                        <p>Despesas em aberto: 2.031,87</p>
-                        <p>Próximo vencimento: Conta de Luz, Vencimento: 12/06/2023, Valor: 114,74</p>
+                    <p>Total de despesa no mês : {"despesa.totalMesAtual"}</p>
+                    <p><strong>Próximos vencimentos:</strong></p>
+                    <p><strong>Despesas em aberto :</strong> {"depesa.emAberto"}</p>
+                    <div className="gastos">
+                        <div className="despesaVencendo">
+                            <div>
+                                <p><strong>Despesa:</strong> {"despesa.nome"}</p>
+                                <p><strong>Vencimento:</strong> {"depesa.dataVencimento"}</p>
+                                <p><strong>Valor:</strong> {"despesa.valor"}</p> 
+                            </div>
+                        </div>
+                        <div className="despesaVencendo">
+                            <div>
+                                <p><strong>Despesa:</strong> {"despesa.nome"}</p>
+                                <p><strong>Vencimento:</strong> {"depesa.dataVencimento"}</p>
+                                <p><strong>Valor:</strong> {"despesa.valor"}</p> 
+                            </div>
+                        </div>
                     </div>
                     <div className="Evolucao">
                         <p>Gráfico Dispesas X Receitas</p>
                     </div>
-    
+
                 </div>
             </div>
         </div>
     );
-    
+
 }
 
 export default Home;

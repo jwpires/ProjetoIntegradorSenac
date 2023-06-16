@@ -6,7 +6,6 @@ export class RemoverEstoqueDTO{
     
         
     @IsInt({message:"Informe a quantidade em estoque"})
-    @IsOptional()
     estoque:number;
     
     

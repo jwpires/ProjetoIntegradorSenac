@@ -285,6 +285,19 @@ da imagem do logo
 	
 }
 /* *************************** Home **************************** */
+
+.gastos{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.despesaVencendo{
+    border: #4D3EFC solid 1px;
+    width: 45%;
+    margin: 2px auto 0 auto;
+}
+
 .nomeUsuario{
     background-color: aquamarine;
     

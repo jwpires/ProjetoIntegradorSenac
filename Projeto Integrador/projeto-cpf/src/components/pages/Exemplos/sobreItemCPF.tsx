@@ -1,4 +1,4 @@
-import '../../style/style.css';
+import '../../../style/style.css'
 import { useParams, useNavigate } from 'react-router-dom';
 
 
