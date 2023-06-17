@@ -299,11 +299,18 @@ da imagem do logo
 }
 
 .nomeUsuario{
-    background-color: aquamarine;
+    background-color: #e2d4ee;
     
 }
-.Saldo{
-    background-color: burlywood;
+.saldos{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+.saldo{
+    width: 33%;
+    border: #4D3EFC solid 1px;
 }
 .Gasto{
     background-color: turquoise;
@@ -314,10 +321,15 @@ da imagem do logo
 
 /* *************************** Relatorios **************************** */
 
-.Personal{
-    text-align: center;
-    background-color: azure;
+.menu-relatorios{
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    justify-content: space-around;
 }
-.Grafico{
-    background-color: yellow;
+
+.menu-relatorios li{
+    border: #000 solid 1px;
+    width: auto;
+    
 }

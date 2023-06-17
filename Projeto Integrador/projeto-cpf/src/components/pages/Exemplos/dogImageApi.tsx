@@ -4,11 +4,11 @@ import { Dog } from "./dogImage";
 
 function DogImageAPI(){
 
-    const [dog, setDog] = useState<Dog[]>([]);
+    const [dogs, setDog] = useState<Dog[]>([]);
 
     const carregaDogs = async () => {
         
-        let response = await fetch("https://dog.ceo/api/breeds/image/random");
+        let response = await fetch("https://jsonplaceholder.typicode.com/photos");
         let json = await response.json();
 
         setDog(json);
@@ -17,10 +17,11 @@ function DogImageAPI(){
     return(
         <div>
             <button onClick={carregaDogs}>Mudar Foto</button>
+    
             <div>
-                { dog.map((item,idex) =>(
+                { dogs.map((item, idex) => (
                     <div key={idex}>
-                         <a href={item.message}>foto {item.message}</a>
+                         <img src={item.url} />
                     </div>
                 )) }
             </div>
