@@ -10,7 +10,6 @@ var validaConfiguracao = {
 }
 
 function Relatorio() {
-    const [open, setOpen] = useState('');
 
     const ExibeDespesasPagas = () => {
         setMenu([true, false, false]);
@@ -57,7 +56,6 @@ function Relatorio() {
                                 <UncontrolledAccordion
                                     defaultOpen={[
                                         '1',
-                                        '2'
                                     ]}
                                     stayOpen
                                 >
@@ -108,26 +106,123 @@ function Relatorio() {
                                     </AccordionItem>
                                 </UncontrolledAccordion>
 
-                                <div>
-
-                                </div>
-
-                                <div>
-
-                                </div>
-
                             </div>
 
                         }
                         {exibeMenu[1] === true &&
                             <div className="body-relatorio">
-                                Texte 2
+                            <div className="filtros">
+                                <p>Data entre: <input type="date" name="" id="" /> à <input type="date" name="" id="" /> </p>
+                                <input className="pesquisar" type="text" name="" placeholder="Pesquisar por Descrição" id="" />
+                                <img className="imgPesquisa" src={require("../../images/botao-pesquisar.png")} alt="exibe imagem do padrao" />
                             </div>
+
+                            <UncontrolledAccordion
+                                defaultOpen={[
+                                    '1',
+                                ]}
+                                stayOpen
+                            >
+                                <AccordionItem>
+                                    <AccordionHeader targetId="1">
+                                        Conta de Água
+                                    </AccordionHeader>
+                                    <AccordionBody accordionId="1">
+                                        
+                                            <p><strong>Data de lançamento:</strong> 12/07/2023, </p>
+                                            <p><strong>Data de vencimento:</strong> 21/10/2023, </p>
+                                            <p><strong>Grupo de despesa:</strong> Depesas fixas, </p>
+                                            <p><strong>Valor:</strong> 24.63</p>
+                                            <Button color="danger">Excluir</Button>
+                                            <Button color="warning">Editar</Button>
+                                            <Button color="success">Pagar</Button>
+                                        
+                                    </AccordionBody>
+                                </AccordionItem>
+                                <AccordionItem>
+                                    <AccordionHeader targetId="2">
+                                        Financiamento Casa
+                                    </AccordionHeader>
+                                    <AccordionBody accordionId="2">
+                                        
+                                            <p><strong>Data de lançamento:</strong> 27/12/2022, </p>
+                                            <p><strong>Data de vencimento:</strong> 03/01/2023, </p>
+                                            <p><strong>Grupo de despesa:</strong> Depesas fixas, </p>
+                                            <p><strong>Valor:</strong> 1010.67</p>
+                                            <Button color="danger">Excluir</Button>
+                                            <Button color="warning">Editar</Button>
+                                            <Button color="success">Pagar</Button>
+                                        
+                                    </AccordionBody>
+                                </AccordionItem>
+                                <AccordionItem>
+                                    <AccordionHeader targetId="3">
+                                        Cartão Alimentação
+                                    </AccordionHeader>
+                                    <AccordionBody accordionId="3">
+                                        
+                                            <p><strong>Data de lançamento:</strong> 27/01/2023, </p>
+                                            <p><strong>Data de vencimento:</strong> 09/02/2023, </p>
+                                            <p><strong>Grupo de despesa:</strong> Depesas Variáveis, </p>
+                                            <p><strong>Valor:</strong> 124.74</p>
+                                            <Button color="danger">Excluir</Button>
+                                            <Button color="warning">Editar</Button>
+                                            <Button color="success">Pagar</Button>
+                                        
+                                    </AccordionBody>
+                                </AccordionItem>
+                            </UncontrolledAccordion>
+
+                        </div>
                         }
                         {exibeMenu[2] === true &&
                             <div className="body-relatorio">
-                                Texte 3
+                            <div className="filtros">
+                                <p>Data entre: <input type="date" name="" id="" /> à <input type="date" name="" id="" /> </p>
+                                <input className="pesquisar" type="text" name="" placeholder="Pesquisar por Descrição" id="" />
+                                <img className="imgPesquisa" src={require("../../images/botao-pesquisar.png")} alt="exibe imagem do padrao" />
+                                <Button color="danger">Efetuar Saque</Button>
+                                <Button color="success">Efetuar Depósito</Button>
                             </div>
+
+                            <UncontrolledAccordion
+                                defaultOpen={[
+                                    '1',
+                                ]}
+                                stayOpen
+                            >
+                                <AccordionItem>
+                                    <AccordionHeader targetId="1">
+                                        Banco Itau : 66547
+                                    </AccordionHeader>
+                                    <AccordionBody accordionId="1">
+                                        
+                                            <p><strong>Data de lançamento:</strong> 21/10/2022, </p>
+                                            <p><strong>Operação:</strong> Depósito </p>
+                                            <p><strong>Valor:</strong> 254.63</p>
+                                            <Button color="danger">Excluir</Button>
+                                            <Button color="warning">Editar</Button>
+                                        
+                                    </AccordionBody>
+                                </AccordionItem>
+                                <AccordionItem>
+                                    <AccordionHeader targetId="2">
+                                        Banco Brasil : 303007
+                                    </AccordionHeader>
+                                    <AccordionBody accordionId="2">
+                                        
+                                            <p><strong>Data de lançamento:</strong> 27/12/2023, </p>
+                                            <p><strong>Operação:</strong> Saque </p>
+                                            <p><strong>Valor:</strong> 184.63</p>
+                                            <Button color="danger">Excluir</Button>
+                                            <Button color="warning">Editar</Button>
+                                        
+                                    </AccordionBody>
+                                </AccordionItem>
+                                
+                            </UncontrolledAccordion>
+
+                        </div>
                         }
                     </div>
 

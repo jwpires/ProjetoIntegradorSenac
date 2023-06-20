@@ -8,10 +8,12 @@ function DogImageAPI(){
 
     const carregaDogs = async () => {
         
-        let response = await fetch("https://jsonplaceholder.typicode.com/photos");
+        let response = await fetch("https://dog.ceo/api/breeds/image/random");
         let json = await response.json();
 
-        setDog(json);
+        const dataArray = Array.isArray(json) ? json : [json];
+
+        setDog(dataArray);
     }
 
     return(
@@ -21,7 +23,7 @@ function DogImageAPI(){
             <div>
                 { dogs.map((item, idex) => (
                     <div key={idex}>
-                         <img src={item.url} />
+                         <img src={item.message} />
                     </div>
                 )) }
             </div>

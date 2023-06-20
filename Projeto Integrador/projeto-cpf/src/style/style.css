@@ -366,4 +366,5 @@ da imagem do logo
 .imgPesquisa{
     height: 28px;
     margin-left: 10px;
+    cursor: pointer;
 }
