@@ -1,5 +1,5 @@
 import '../../style/style.css';
-import HeaderMenu from '../header/HeaderMenu';
+import HeaderMenu from '../../header/HeaderMenu';
 import { useNavigate } from 'react-router-dom';
 
 function ConfirmacaoPagamento(){

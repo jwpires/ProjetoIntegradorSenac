@@ -1,5 +1,5 @@
 
-import HeaderMenu from "../header/HeaderMenu";
+import HeaderMenu from "../../header/HeaderMenu";
 import { Form, FormGroup, Label, Input } from 'reactstrap';
 import { useState } from "react";
 
