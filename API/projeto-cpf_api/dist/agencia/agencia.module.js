@@ -6,18 +6,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AppModule = void 0;
+exports.BancoModule = void 0;
 const common_1 = require("@nestjs/common");
-const banco_module_1 = require("./Banco/banco.module");
-const produto_module_1 = require("./Produto/produto.module");
-const usuario_module_1 = require("./usuario/usuario.module");
-let AppModule = class AppModule {
+const agencia_controller_1 = require("./agencia.controller");
+const agencia_dm_1 = require("./agencia.dm");
+let BancoModule = class BancoModule {
 };
-AppModule = __decorate([
+BancoModule = __decorate([
     (0, common_1.Module)({
-        imports: [usuario_module_1.UsuarioModule, produto_module_1.ProdutoModule, banco_module_1.BancoModule],
-        controllers: []
+        controllers: [agencia_controller_1.BancoController],
+        providers: [agencia_dm_1.BancosArmazenados]
     })
-], AppModule);
-exports.AppModule = AppModule;
-//# sourceMappingURL=app.module.js.map
+], BancoModule);
+exports.BancoModule = BancoModule;
+//# sourceMappingURL=agencia.module.js.map

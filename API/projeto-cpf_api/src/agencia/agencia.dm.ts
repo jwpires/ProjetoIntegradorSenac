@@ -1,5 +1,5 @@
 import {  Injectable } from "@nestjs/common";
-import { BancoEntity } from "./banco.entity";
+import { BancoEntity } from "./agencia.entity";
 import { InserirBancoDTO } from "./dto/inserirBanco.dto";
 
 @Injectable()

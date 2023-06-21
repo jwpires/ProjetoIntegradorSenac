@@ -1,4 +1,4 @@
-import { BancoEntity } from "./banco.entity";
+import { BancoEntity } from "./agencia.entity";
 export declare class BancosArmazenados {
     #private;
     get banco(): BancoEntity[];

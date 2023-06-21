@@ -15,8 +15,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.BancoController = void 0;
 const common_1 = require("@nestjs/common");
 const decorators_1 = require("@nestjs/common/decorators");
-const banco_dm_1 = require("./banco.dm");
-const banco_entity_1 = require("./banco.entity");
+const agencia_dm_1 = require("./agencia.dm");
+const agencia_entity_1 = require("./agencia.entity");
 const inserirBanco_dto_1 = require("./dto/inserirBanco.dto");
 const listarBancos_dto_1 = require("./dto/listarBancos.dto");
 const uuid_1 = require("uuid");
@@ -30,7 +30,7 @@ let BancoController = class BancoController {
         return retorno;
     }
     async CriarBanco(novoBanco) {
-        var banco = new banco_entity_1.BancoEntity((0, uuid_1.v4)(), novoBanco.nome);
+        var banco = new agencia_entity_1.BancoEntity((0, uuid_1.v4)(), novoBanco.nome);
         this.armanezaBanco.inserirBanco(banco);
         var retornoBanco = {
             novoBanco,
@@ -54,7 +54,7 @@ __decorate([
 ], BancoController.prototype, "CriarBanco", null);
 BancoController = __decorate([
     (0, common_1.Controller)('/bancos'),
-    __metadata("design:paramtypes", [banco_dm_1.BancosArmazenados])
+    __metadata("design:paramtypes", [agencia_dm_1.BancosArmazenados])
 ], BancoController);
 exports.BancoController = BancoController;
-//# sourceMappingURL=banco.controller.js.map
+//# sourceMappingURL=agencia.controller.js.map

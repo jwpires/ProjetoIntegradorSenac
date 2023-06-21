@@ -1,4 +1,4 @@
-import { BancosArmazenados } from "./banco.dm";
+import { BancosArmazenados } from "./agencia.dm";
 import { InserirBancoDTO } from "./dto/inserirBanco.dto";
 import { ListarBancos } from "./dto/listarBancos.dto";
 export declare class BancoController {

@@ -1,0 +1,10 @@
+O link de acesso a API é o http://localhost:3000/bancos
+A API do banco irá apenas inserir e consultar as informações no banco.
+Será passado o parâmetro nome para inserção.
+Ex:
+{
+    "nome":"Brasil"
+}
+
+Para consultar todos os Bancos cadatrados basta apenas consultar o link: http://localhost:3000/bancos
+

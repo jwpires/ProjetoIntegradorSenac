@@ -1,7 +1,7 @@
 import { Controller, Get } from "@nestjs/common";
 import { Body, Post,} from "@nestjs/common/decorators";
-import { BancosArmazenados } from "./banco.dm";
-import { BancoEntity } from "./banco.entity";
+import { BancosArmazenados } from "./agencia.dm";
+import { BancoEntity } from "./agencia.entity";
 import { InserirBancoDTO } from "./dto/inserirBanco.dto";
 import { ListarBancos } from "./dto/listarBancos.dto";
 import {v4 as uuid} from 'uuid';

@@ -44,4 +44,4 @@ BancosArmazenados = __decorate([
     (0, common_1.Injectable)()
 ], BancosArmazenados);
 exports.BancosArmazenados = BancosArmazenados;
-//# sourceMappingURL=banco.dm.js.map
+//# sourceMappingURL=agencia.dm.js.map

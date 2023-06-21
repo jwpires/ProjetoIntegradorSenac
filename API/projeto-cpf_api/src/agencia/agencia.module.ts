@@ -1,6 +1,6 @@
 import { Module } from "@nestjs/common";
-import { BancoController } from "./banco.controller";
-import { BancosArmazenados } from "./banco.dm";
+import { BancoController } from "./agencia.controller";
+import { BancosArmazenados } from "./agencia.dm";
 
 
 @Module({
