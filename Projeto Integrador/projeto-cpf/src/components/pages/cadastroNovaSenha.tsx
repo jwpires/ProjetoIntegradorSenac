@@ -13,7 +13,7 @@ function CadastroNovaSenha() {
                 
                 <header>
                     <h1 className='descricao'>Esqueceu sua senha?</h1>
-                    <h3 className='descricao-cad-usuario-h3'>Redefina aqui ou volte para a tela de <Link to={'/login'}>Login</Link></h3>
+                    <h3 className='descricao-cad-usuario-h3'>Redefina aqui ou volte para a tela de <Link to={'/'}>Login</Link></h3>
                 </header>
 
                 <input type='email' className='input-padrao' placeholder='Informe o Email' /> 

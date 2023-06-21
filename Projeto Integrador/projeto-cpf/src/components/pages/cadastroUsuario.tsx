@@ -13,7 +13,7 @@ function CadastroUsuario() {
                 
                 <header>
                     <h1 className='descricao'>Cadastre sua conta!</h1>
-                    <h3 className='descricao-cad-usuario-h3'>Já está cadastrado? Então faça o <Link to={'/login'}>Login</Link></h3>
+                    <h3 className='descricao-cad-usuario-h3'>Já está cadastrado? Então faça o <Link to={'/'}>Login</Link></h3>
                 </header>
 
                 <input type="text" className='input-padrao' placeholder='Nome:' /> 

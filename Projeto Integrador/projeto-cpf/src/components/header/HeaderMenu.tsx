@@ -5,7 +5,7 @@ function HeaderMenu(props:{exibe:boolean}) {
     if(props.exibe==true){
         return (
             <div className="flex-container">
-                <Menu home={'Home'} contaBancaria={'Conta Bancária'} receita={'Receita'} lancamentoDespesa={'Lançamento de Despesa'} 
+                <Menu home={'Home'} contaBancaria={'Conta Bancária'} /*receita={'Receita'}*/ lancamentoDespesa={'Lançamento de Despesa'} 
                 /*movBancaria={'Mov. Bancária'}*/ relatorios={'Relatórios'} sair={'Sair'}/>
             </div>
         );

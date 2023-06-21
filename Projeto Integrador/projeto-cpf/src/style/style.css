@@ -35,8 +35,8 @@ da imagem do logo
     flex-direction: row;
     height: 100vh;
     width: 100%;  
-    /* background-color: #4D3EFC;  */
-    background-color: #FFF; 
+    background-color: #4D3EFC;  
+    /* background-color: #FFF;  */
 }
 
 .container_padrao-tela{
@@ -258,15 +258,16 @@ da imagem do logo
     list-style: none;
     flex-direction: row;
     justify-content: center;
-    background-color: #4D3EFC;
+    /* background-color: #4D3EFC; */
+    background-color: #FFF;
 }
 
 .flex-container-menu a{
     width: 200px; 
     text-align: center;
     text-decoration: none;
-    /* color: #000; */
-    color: #FFF;
+    color: #000; 
+    /* color: #FFF; */
     margin: 5px 0 5px 0;
 }
 

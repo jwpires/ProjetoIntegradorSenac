@@ -51,10 +51,6 @@ function Home() {
                             </div>
                         </div>
                     </div>
-                    <div className="Evolucao">
-                        <p>Gráfico Dispesas X Receitas</p>
-                    </div>
-
                 </div>
             </div>
         </div>
