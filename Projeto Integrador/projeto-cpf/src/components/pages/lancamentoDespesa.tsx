@@ -143,8 +143,9 @@ function LancamentoDespesa() {
                                             <label> Valor da despesa:</label>
                                             <input type="text" name="" id="" placeholder='Valor da Despesa:' value={valorDespesa} disabled />
 
-                                            <label>Forma de Pagamento:</label>
-                                            <div className="raio_group">
+                                            {/* <label>Forma de Pagamento:</label> */}
+                                            {/*******************  Será usado em um projeto futuro ***************/}
+                                            {/* <div className="raio_group">
 
                                                 <label><input type="radio" name="tipo_pagamento" id="" onClick={handleClickExibeBanco} />Conta Bancária</label><br />
                                                 <label><input type="radio" name="tipo_pagamento" id="" onClick={handleClickEscondeBanco} />Carteira</label><br />
@@ -156,17 +157,14 @@ function LancamentoDespesa() {
                                                     <select name="Banco" id="">
                                                         <option value="">Informe o Banco</option>
                                                     </select>
-                                                    <button type='button' > + </button> {/* Botão servirá para direcionar a tela de cadastro da conta bancária. */}
+                                                    <button type='button' > + </button> {/* Botão servirá para direcionar a tela de cadastro da conta bancária. /}
 
                                                     <select name="Banco" id="">
                                                         <option value="">Informe a Agência</option>
                                                     </select>
-                                                    <button type='button' > + </button> {/* Botão servirá para direcionar a tela de cadastro da conta bancária. */}
+                                                    <button type='button' > + </button> {/* Botão servirá para direcionar a tela de cadastro da conta bancária. /}
                                                 </div>
-
-
-
-                                            }
+                                            } */}
 
 
                                         </form>

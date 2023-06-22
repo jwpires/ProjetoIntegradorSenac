@@ -40,9 +40,6 @@ function MovimentacaoBancaria() {
                                 <input type="checkbox" checked = {state} onClick={() => {setState(!state);}} />
                             </div>
                                 
-                            
-                            
-
                             <input type="text" name="" id="" placeholder='Descrição da Despesa:' />
                             <div className='adiciona-banco'>
                                 <select name="GrupoDespesa" id="">

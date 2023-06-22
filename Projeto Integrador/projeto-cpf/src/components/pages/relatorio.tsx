@@ -49,6 +49,12 @@ function Relatorio() {
                             <div className="body-relatorio">
                                 <div className="filtros">
                                     <p>Data entre: <input type="date" name="" id="" /> à <input type="date" name="" id="" /> </p>
+                                    <div className="raio_group">
+
+                                        <label><input type="radio" name="tipo_pagamento" id="" />Conta Bancária</label><br />
+                                        <label><input type="radio" name="tipo_pagamento" id="" />Carteira</label><br />
+
+                                    </div>
                                     <input className="pesquisar" type="text" name="" placeholder="Pesquisar por Descrição" id="" />
                                     <img className="imgPesquisa" src={require("../../images/botao-pesquisar.png")} alt="exibe imagem do padrao" />
                                 </div>
@@ -64,14 +70,14 @@ function Relatorio() {
                                             Conta de Luz
                                         </AccordionHeader>
                                         <AccordionBody accordionId="1">
-                                            
-                                                <p><strong>Data de lançamento:</strong> 21/10/2022, </p>
-                                                <p><strong>Data de vencimento:</strong> 03/11/2022, </p>
-                                                <p><strong>Grupo de despesa:</strong> Depesas fixas, </p>
-                                                <p><strong>Valor:</strong> 254.63</p>
-                                                <Button color="warning">Estornar</Button>
-                                                <Button color="danger">Excluir</Button>
-                                            
+
+                                            <p><strong>Data de lançamento:</strong> 21/10/2022, </p>
+                                            <p><strong>Data de vencimento:</strong> 03/11/2022, </p>
+                                            <p><strong>Grupo de despesa:</strong> Depesas fixas, </p>
+                                            <p><strong>Valor:</strong> 254.63</p>
+                                            <Button color="warning">Estornar</Button>
+                                            <Button color="danger">Excluir</Button>
+
                                         </AccordionBody>
                                     </AccordionItem>
                                     <AccordionItem>
@@ -79,14 +85,14 @@ function Relatorio() {
                                             Financiamento Carro
                                         </AccordionHeader>
                                         <AccordionBody accordionId="2">
-                                            
-                                                <p><strong>Data de lançamento:</strong> 27/12/2022, </p>
-                                                <p><strong>Data de vencimento:</strong> 03/01/2023, </p>
-                                                <p><strong>Grupo de despesa:</strong> Depesas fixas, </p>
-                                                <p><strong>Valor:</strong> 784.63</p>
-                                                <Button color="warning">Estornar</Button>
-                                                <Button color="danger">Excluir</Button>
-                                            
+
+                                            <p><strong>Data de lançamento:</strong> 27/12/2022, </p>
+                                            <p><strong>Data de vencimento:</strong> 03/01/2023, </p>
+                                            <p><strong>Grupo de despesa:</strong> Depesas fixas, </p>
+                                            <p><strong>Valor:</strong> 784.63</p>
+                                            <Button color="warning">Estornar</Button>
+                                            <Button color="danger">Excluir</Button>
+
                                         </AccordionBody>
                                     </AccordionItem>
                                     <AccordionItem>
@@ -94,14 +100,14 @@ function Relatorio() {
                                             Cartão de Crédito
                                         </AccordionHeader>
                                         <AccordionBody accordionId="3">
-                                            
-                                                <p><strong>Data de lançamento:</strong> 27/01/2023, </p>
-                                                <p><strong>Data de vencimento:</strong> 09/02/2023, </p>
-                                                <p><strong>Grupo de despesa:</strong> Depesas fixas, </p>
-                                                <p><strong>Valor:</strong> 254.63</p>
-                                                <Button color="warning">Estornar</Button>
-                                                <Button color="danger">Excluir</Button>
-                                            
+
+                                            <p><strong>Data de lançamento:</strong> 27/01/2023, </p>
+                                            <p><strong>Data de vencimento:</strong> 09/02/2023, </p>
+                                            <p><strong>Grupo de despesa:</strong> Depesas fixas, </p>
+                                            <p><strong>Valor:</strong> 254.63</p>
+                                            <Button color="warning">Estornar</Button>
+                                            <Button color="danger">Excluir</Button>
+
                                         </AccordionBody>
                                     </AccordionItem>
                                 </UncontrolledAccordion>
@@ -111,24 +117,24 @@ function Relatorio() {
                         }
                         {exibeMenu[1] === true &&
                             <div className="body-relatorio">
-                            <div className="filtros">
-                                <p>Data entre: <input type="date" name="" id="" /> à <input type="date" name="" id="" /> </p>
-                                <input className="pesquisar" type="text" name="" placeholder="Pesquisar por Descrição" id="" />
-                                <img className="imgPesquisa" src={require("../../images/botao-pesquisar.png")} alt="exibe imagem do padrao" />
-                            </div>
+                                <div className="filtros">
+                                    <p>Data entre: <input type="date" name="" id="" /> à <input type="date" name="" id="" /> </p>
+                                    <input className="pesquisar" type="text" name="" placeholder="Pesquisar por Descrição" id="" />
+                                    <img className="imgPesquisa" src={require("../../images/botao-pesquisar.png")} alt="exibe imagem do padrao" />
+                                </div>
 
-                            <UncontrolledAccordion
-                                defaultOpen={[
-                                    '1',
-                                ]}
-                                stayOpen
-                            >
-                                <AccordionItem>
-                                    <AccordionHeader targetId="1">
-                                        Conta de Água
-                                    </AccordionHeader>
-                                    <AccordionBody accordionId="1">
-                                        
+                                <UncontrolledAccordion
+                                    defaultOpen={[
+                                        '1',
+                                    ]}
+                                    stayOpen
+                                >
+                                    <AccordionItem>
+                                        <AccordionHeader targetId="1">
+                                            Conta de Água
+                                        </AccordionHeader>
+                                        <AccordionBody accordionId="1">
+
                                             <p><strong>Data de lançamento:</strong> 12/07/2023, </p>
                                             <p><strong>Data de vencimento:</strong> 21/10/2023, </p>
                                             <p><strong>Grupo de despesa:</strong> Depesas fixas, </p>
@@ -136,15 +142,15 @@ function Relatorio() {
                                             <Button color="danger">Excluir</Button>
                                             <Button color="warning">Editar</Button>
                                             <Button color="success">Pagar</Button>
-                                        
-                                    </AccordionBody>
-                                </AccordionItem>
-                                <AccordionItem>
-                                    <AccordionHeader targetId="2">
-                                        Financiamento Casa
-                                    </AccordionHeader>
-                                    <AccordionBody accordionId="2">
-                                        
+
+                                        </AccordionBody>
+                                    </AccordionItem>
+                                    <AccordionItem>
+                                        <AccordionHeader targetId="2">
+                                            Financiamento Casa
+                                        </AccordionHeader>
+                                        <AccordionBody accordionId="2">
+
                                             <p><strong>Data de lançamento:</strong> 27/12/2022, </p>
                                             <p><strong>Data de vencimento:</strong> 03/01/2023, </p>
                                             <p><strong>Grupo de despesa:</strong> Depesas fixas, </p>
@@ -152,15 +158,15 @@ function Relatorio() {
                                             <Button color="danger">Excluir</Button>
                                             <Button color="warning">Editar</Button>
                                             <Button color="success">Pagar</Button>
-                                        
-                                    </AccordionBody>
-                                </AccordionItem>
-                                <AccordionItem>
-                                    <AccordionHeader targetId="3">
-                                        Cartão Alimentação
-                                    </AccordionHeader>
-                                    <AccordionBody accordionId="3">
-                                        
+
+                                        </AccordionBody>
+                                    </AccordionItem>
+                                    <AccordionItem>
+                                        <AccordionHeader targetId="3">
+                                            Cartão Alimentação
+                                        </AccordionHeader>
+                                        <AccordionBody accordionId="3">
+
                                             <p><strong>Data de lançamento:</strong> 27/01/2023, </p>
                                             <p><strong>Data de vencimento:</strong> 09/02/2023, </p>
                                             <p><strong>Grupo de despesa:</strong> Depesas Variáveis, </p>
@@ -168,61 +174,61 @@ function Relatorio() {
                                             <Button color="danger">Excluir</Button>
                                             <Button color="warning">Editar</Button>
                                             <Button color="success">Pagar</Button>
-                                        
-                                    </AccordionBody>
-                                </AccordionItem>
-                            </UncontrolledAccordion>
 
-                        </div>
+                                        </AccordionBody>
+                                    </AccordionItem>
+                                </UncontrolledAccordion>
+
+                            </div>
                         }
                         {exibeMenu[2] === true &&
                             <div className="body-relatorio">
-                            <div className="filtros">
-                                <p>Data entre: <input type="date" name="" id="" /> à <input type="date" name="" id="" /> </p>
-                                <input className="pesquisar" type="text" name="" placeholder="Pesquisar por Descrição" id="" />
-                                <img className="imgPesquisa" src={require("../../images/botao-pesquisar.png")} alt="exibe imagem do padrao" />
-                                <Button color="danger">Efetuar Saque</Button>
-                                <Button color="success">Efetuar Depósito</Button>
-                            </div>
+                                <div className="filtros">
+                                    <p>Data entre: <input type="date" name="" id="" /> à <input type="date" name="" id="" /> </p>
+                                    <input className="pesquisar" type="text" name="" placeholder="Pesquisar por Descrição" id="" />
+                                    <img className="imgPesquisa" src={require("../../images/botao-pesquisar.png")} alt="exibe imagem do padrao" />
+                                    <Button color="danger">Efetuar Saque</Button>
+                                    <Button color="success">Efetuar Depósito</Button>
+                                </div>
 
-                            <UncontrolledAccordion
-                                defaultOpen={[
-                                    '1',
-                                ]}
-                                stayOpen
-                            >
-                                <AccordionItem>
-                                    <AccordionHeader targetId="1">
-                                        Banco Itau : 66547
-                                    </AccordionHeader>
-                                    <AccordionBody accordionId="1">
-                                        
+                                <UncontrolledAccordion
+                                    defaultOpen={[
+                                        '1',
+                                    ]}
+                                    stayOpen
+                                >
+                                    <AccordionItem>
+                                        <AccordionHeader targetId="1">
+                                            Banco Itau : 66547
+                                        </AccordionHeader>
+                                        <AccordionBody accordionId="1">
+
                                             <p><strong>Data de lançamento:</strong> 21/10/2022, </p>
                                             <p><strong>Operação:</strong> Depósito </p>
                                             <p><strong>Valor:</strong> 254.63</p>
                                             <Button color="danger">Excluir</Button>
                                             <Button color="warning">Editar</Button>
-                                        
-                                    </AccordionBody>
-                                </AccordionItem>
-                                <AccordionItem>
-                                    <AccordionHeader targetId="2">
-                                        Banco Brasil : 303007
-                                    </AccordionHeader>
-                                    <AccordionBody accordionId="2">
-                                        
+
+                                        </AccordionBody>
+                                    </AccordionItem>
+                                    <AccordionItem>
+                                        <AccordionHeader targetId="2">
+                                            Banco Brasil : 303007
+                                        </AccordionHeader>
+                                        <AccordionBody accordionId="2">
+
                                             <p><strong>Data de lançamento:</strong> 27/12/2023, </p>
                                             <p><strong>Operação:</strong> Saque </p>
                                             <p><strong>Valor:</strong> 184.63</p>
                                             <Button color="danger">Excluir</Button>
                                             <Button color="warning">Editar</Button>
-                                        
-                                    </AccordionBody>
-                                </AccordionItem>
-                                
-                            </UncontrolledAccordion>
 
-                        </div>
+                                        </AccordionBody>
+                                    </AccordionItem>
+
+                                </UncontrolledAccordion>
+
+                            </div>
                         }
                     </div>
 

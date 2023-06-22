@@ -232,16 +232,15 @@ da imagem do logo
 
 }
 
-.raio_group label{
+/* .raio_group label{
     font-family: 'Exo 2', sans-serif;
     font-size: 15px;
-    
-}
+} */
 
-.raio_group label input:checked{
+/* .raio_group label input:checked{
     width: 50px;
     transition: .5s;
-}
+} */
 
 .raio_group label input{
     width: 20px;
