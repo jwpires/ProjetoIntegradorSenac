@@ -1,11 +1,11 @@
 import { Module } from "@nestjs/common";
-import { BancoController } from "./agencia.controller";
-import { BancosArmazenados } from "./agencia.dm";
+import { AgenciaController } from "./agencia.controller";
+import { AgenciaArmazenados } from "./agencia.dm";
 
 
 @Module({
-    controllers:[BancoController],
-    providers:[BancosArmazenados]
+    controllers:[AgenciaController],
+    providers:[AgenciaArmazenados]
 })
 
-export class BancoModule{}
+export class AgenciaModule{}

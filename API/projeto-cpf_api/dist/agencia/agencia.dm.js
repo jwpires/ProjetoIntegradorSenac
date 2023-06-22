@@ -10,38 +10,38 @@ var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (
     if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
     return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
 };
-var _BancosArmazenados_bancos;
+var _AgenciaArmazenados_agencias;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.BancosArmazenados = void 0;
+exports.AgenciaArmazenados = void 0;
 const common_1 = require("@nestjs/common");
-let BancosArmazenados = class BancosArmazenados {
+let AgenciaArmazenados = class AgenciaArmazenados {
     constructor() {
-        _BancosArmazenados_bancos.set(this, []);
+        _AgenciaArmazenados_agencias.set(this, []);
     }
-    get banco() {
-        return __classPrivateFieldGet(this, _BancosArmazenados_bancos, "f");
+    get agencia() {
+        return __classPrivateFieldGet(this, _AgenciaArmazenados_agencias, "f");
     }
-    inserirBanco(banco) {
-        __classPrivateFieldGet(this, _BancosArmazenados_bancos, "f").push(banco);
+    inserirAgencia(agencia) {
+        __classPrivateFieldGet(this, _AgenciaArmazenados_agencias, "f").push(agencia);
     }
-    buscaPorId(id) {
-        const consulta = this.banco.find(banco => banco.id === id);
+    buscaPorNumeroConta(numeroConta) {
+        const consulta = this.agencia.find(agencia => agencia.numeroConta === numeroConta);
         if (!consulta) {
-            throw new Error('Banco não encontrado.');
+            throw new Error('Agência não encontrado.');
         }
         return consulta;
     }
-    consultarBancoPorNome(nome) {
-        const consulta = __classPrivateFieldGet(this, _BancosArmazenados_bancos, "f").find(banco => banco.nome === nome);
+    consultarAgenciaPorProprietario(proprietario) {
+        const consulta = __classPrivateFieldGet(this, _AgenciaArmazenados_agencias, "f").find(agencia => agencia.nomeProprietario === proprietario);
         if (!consulta) {
-            throw new Error("Banco não encontrado.");
+            throw new Error("Proprietario não encontrado.");
         }
         return consulta;
     }
 };
-_BancosArmazenados_bancos = new WeakMap();
-BancosArmazenados = __decorate([
+_AgenciaArmazenados_agencias = new WeakMap();
+AgenciaArmazenados = __decorate([
     (0, common_1.Injectable)()
-], BancosArmazenados);
-exports.BancosArmazenados = BancosArmazenados;
+], AgenciaArmazenados);
+exports.AgenciaArmazenados = AgenciaArmazenados;
 //# sourceMappingURL=agencia.dm.js.map

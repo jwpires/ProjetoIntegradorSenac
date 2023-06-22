@@ -1,38 +1,43 @@
 import { Controller, Get } from "@nestjs/common";
 import { Body, Post,} from "@nestjs/common/decorators";
-import { BancosArmazenados } from "./agencia.dm";
-import { BancoEntity } from "./agencia.entity";
-import { InserirBancoDTO } from "./dto/inserirBanco.dto";
-import { ListarBancos } from "./dto/listarBancos.dto";
+import { AgenciaArmazenados } from "./agencia.dm";
+import { AgenciaEntity } from "./agencia.entity";
+import { InserirAgenciaDTO } from "./dto/inserirAgencia.dto";
+import { ListarAgencia } from "./dto/listarAgencia.dto";
 import {v4 as uuid} from 'uuid';
 
-@Controller('/bancos')
-export class BancoController{
-    constructor( private armanezaBanco: BancosArmazenados){}
+@Controller('/agencia')
+export class AgenciaController{
+    constructor( private armanezaAgencia: AgenciaArmazenados){}
 
     @Get()
-    async RetornaTodosBancos(){
-        const consulta = this.armanezaBanco.banco;
+    async RetornaTodasAgencias(){
+        const consulta = this.armanezaAgencia.agencia;
         const retorno = consulta.map(
-            banco => new ListarBancos(
-                banco.id,
-                banco.nome
+            agencia => new ListarAgencia(
+                agencia.id,
+                agencia.id_banco,
+                agencia.nomeProprietario,
+                agencia.numeroConta,
+                agencia.tipoDeConta,
+                agencia.saldo
             )
         )
         return retorno;
     }
 
     @Post()
-    async CriarBanco(@Body() novoBanco:InserirBancoDTO) {
-        var banco = new BancoEntity(uuid(), novoBanco.nome)
+    async CriarAgencia(@Body() novaAgencia:InserirAgenciaDTO) {
+        var agencia = new AgenciaEntity(uuid(), novaAgencia.id_banco, novaAgencia.nomeProprietario, novaAgencia.numeroConta,
+                                        novaAgencia.tipoDeConta, novaAgencia.saldo)
 
-        this.armanezaBanco.inserirBanco(banco);
+        this.armanezaAgencia.inserirAgencia(agencia);
 
-        var retornoBanco={
-            novoBanco,
-            status:'Banco Inserido'
+        var retornoAgencia={
+            novaAgencia,
+            status:'Agencia InseridaS'
         }
 
-        return retornoBanco;
+        return retornoAgencia;
     }
 }

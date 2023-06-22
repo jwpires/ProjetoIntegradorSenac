@@ -1,2 +1,2 @@
-export declare class BancoModule {
+export declare class AgenciaModule {
 }

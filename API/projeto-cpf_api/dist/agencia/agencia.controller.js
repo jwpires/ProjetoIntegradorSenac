@@ -12,31 +12,31 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.BancoController = void 0;
+exports.AgenciaController = void 0;
 const common_1 = require("@nestjs/common");
 const decorators_1 = require("@nestjs/common/decorators");
 const agencia_dm_1 = require("./agencia.dm");
 const agencia_entity_1 = require("./agencia.entity");
-const inserirBanco_dto_1 = require("./dto/inserirBanco.dto");
-const listarBancos_dto_1 = require("./dto/listarBancos.dto");
+const inserirAgencia_dto_1 = require("./dto/inserirAgencia.dto");
+const listarAgencia_dto_1 = require("./dto/listarAgencia.dto");
 const uuid_1 = require("uuid");
-let BancoController = class BancoController {
-    constructor(armanezaBanco) {
-        this.armanezaBanco = armanezaBanco;
+let AgenciaController = class AgenciaController {
+    constructor(armanezaAgencia) {
+        this.armanezaAgencia = armanezaAgencia;
     }
-    async RetornaTodosBancos() {
-        const consulta = this.armanezaBanco.banco;
-        const retorno = consulta.map(banco => new listarBancos_dto_1.ListarBancos(banco.id, banco.nome));
+    async RetornaTodasAgencias() {
+        const consulta = this.armanezaAgencia.agencia;
+        const retorno = consulta.map(agencia => new listarAgencia_dto_1.ListarAgencia(agencia.id, agencia.id_banco, agencia.nomeProprietario, agencia.numeroConta, agencia.tipoDeConta, agencia.saldo));
         return retorno;
     }
-    async CriarBanco(novoBanco) {
-        var banco = new agencia_entity_1.BancoEntity((0, uuid_1.v4)(), novoBanco.nome);
-        this.armanezaBanco.inserirBanco(banco);
-        var retornoBanco = {
-            novoBanco,
-            status: 'Banco Inserido'
+    async CriarAgencia(novaAgencia) {
+        var agencia = new agencia_entity_1.AgenciaEntity((0, uuid_1.v4)(), novaAgencia.id_banco, novaAgencia.nomeProprietario, novaAgencia.numeroConta, novaAgencia.tipoDeConta, novaAgencia.saldo);
+        this.armanezaAgencia.inserirAgencia(agencia);
+        var retornoAgencia = {
+            novaAgencia,
+            status: 'Agencia InseridaS'
         };
-        return retornoBanco;
+        return retornoAgencia;
     }
 };
 __decorate([
@@ -44,17 +44,17 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
-], BancoController.prototype, "RetornaTodosBancos", null);
+], AgenciaController.prototype, "RetornaTodasAgencias", null);
 __decorate([
     (0, decorators_1.Post)(),
     __param(0, (0, decorators_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [inserirBanco_dto_1.InserirBancoDTO]),
+    __metadata("design:paramtypes", [inserirAgencia_dto_1.InserirAgenciaDTO]),
     __metadata("design:returntype", Promise)
-], BancoController.prototype, "CriarBanco", null);
-BancoController = __decorate([
-    (0, common_1.Controller)('/bancos'),
-    __metadata("design:paramtypes", [agencia_dm_1.BancosArmazenados])
-], BancoController);
-exports.BancoController = BancoController;
+], AgenciaController.prototype, "CriarAgencia", null);
+AgenciaController = __decorate([
+    (0, common_1.Controller)('/agencia'),
+    __metadata("design:paramtypes", [agencia_dm_1.AgenciaArmazenados])
+], AgenciaController);
+exports.AgenciaController = AgenciaController;
 //# sourceMappingURL=agencia.controller.js.map

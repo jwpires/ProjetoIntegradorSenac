@@ -1,8 +1,8 @@
-import { BancoEntity } from "./agencia.entity";
-export declare class BancosArmazenados {
+import { AgenciaEntity } from "./agencia.entity";
+export declare class AgenciaArmazenados {
     #private;
-    get banco(): BancoEntity[];
-    inserirBanco(banco: BancoEntity): void;
-    private buscaPorId;
-    consultarBancoPorNome(nome: string): BancoEntity;
+    get agencia(): AgenciaEntity[];
+    inserirAgencia(agencia: AgenciaEntity): void;
+    buscaPorNumeroConta(numeroConta: string): AgenciaEntity;
+    consultarAgenciaPorProprietario(proprietario: string): AgenciaEntity;
 }

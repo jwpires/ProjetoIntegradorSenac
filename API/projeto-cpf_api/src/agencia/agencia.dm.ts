@@ -1,38 +1,38 @@
 import {  Injectable } from "@nestjs/common";
-import { BancoEntity } from "./agencia.entity";
-import { InserirBancoDTO } from "./dto/inserirBanco.dto";
+import { AgenciaEntity } from "./agencia.entity";
+import { InserirAgenciaDTO } from "./dto/inserirAgencia.dto";
 
 @Injectable()
-export class BancosArmazenados{
-    #bancos : BancoEntity[] = [];
+export class AgenciaArmazenados{
+    #agencias : AgenciaEntity[] = [];
 
-    get banco(){
-        return this.#bancos;
+    get agencia(){
+        return this.#agencias;
     }
     /* função que cadastra um ou mais bancos */
-    inserirBanco(banco: BancoEntity){
-        this.#bancos.push(banco);
+    inserirAgencia(agencia: AgenciaEntity){
+        this.#agencias.push(agencia);
     }
 
-    private buscaPorId(id:string){
-        const consulta = this.banco.find(
-            banco => banco.id === id
+    buscaPorNumeroConta(numeroConta:string){
+        const consulta = this.agencia.find(
+            agencia => agencia.numeroConta === numeroConta
         )
 
         if (!consulta) {
-            throw new Error ('Banco não encontrado.')
+            throw new Error ('Agência não encontrado.')
         }
 
         return consulta;
     }
 
-    consultarBancoPorNome(nome: string){
-        const consulta = this.#bancos.find(
-            banco => banco.nome === nome
+    consultarAgenciaPorProprietario(proprietario: string){
+        const consulta = this.#agencias.find(
+            agencia => agencia.nomeProprietario === proprietario
         )
 
         if(!consulta){
-            throw new Error("Banco não encontrado.");
+            throw new Error("Proprietario não encontrado.");
         }
 
         return consulta;

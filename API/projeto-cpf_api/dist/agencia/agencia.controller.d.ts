@@ -1,12 +1,12 @@
-import { BancosArmazenados } from "./agencia.dm";
-import { InserirBancoDTO } from "./dto/inserirBanco.dto";
-import { ListarBancos } from "./dto/listarBancos.dto";
-export declare class BancoController {
-    private armanezaBanco;
-    constructor(armanezaBanco: BancosArmazenados);
-    RetornaTodosBancos(): Promise<ListarBancos[]>;
-    CriarBanco(novoBanco: InserirBancoDTO): Promise<{
-        novoBanco: InserirBancoDTO;
+import { AgenciaArmazenados } from "./agencia.dm";
+import { InserirAgenciaDTO } from "./dto/inserirAgencia.dto";
+import { ListarAgencia } from "./dto/listarAgencia.dto";
+export declare class AgenciaController {
+    private armanezaAgencia;
+    constructor(armanezaAgencia: AgenciaArmazenados);
+    RetornaTodasAgencias(): Promise<ListarAgencia[]>;
+    CriarAgencia(novaAgencia: InserirAgenciaDTO): Promise<{
+        novaAgencia: InserirAgenciaDTO;
         status: string;
     }>;
 }
