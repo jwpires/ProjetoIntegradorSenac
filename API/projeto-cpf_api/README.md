@@ -34,16 +34,19 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-## Support
+# Modulos Existentes no Projeto
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+- Modulo de Bancos:  O link de acesso a API é o http://localhost:3000/bancos
+A API do banco irá apenas inserir e consultar as informações no banco.
+Será passado o parâmetro nome para inserção.
+Ex:
+{
+    "nome":"Brasil"
+}
+Para consultar todos os Bancos cadatrados basta apenas consultar o link: http://localhost:3000/bancos
+
 
 ## Stay in touch
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+- Author - José Pires
+- Author - Guilherme Henrique Capelli
