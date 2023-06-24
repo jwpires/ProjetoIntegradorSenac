@@ -21,23 +21,6 @@ let AgenciaArmazenados = class AgenciaArmazenados {
     get agencia() {
         return __classPrivateFieldGet(this, _AgenciaArmazenados_agencias, "f");
     }
-    inserirAgencia(agencia) {
-        __classPrivateFieldGet(this, _AgenciaArmazenados_agencias, "f").push(agencia);
-    }
-    buscaPorNumeroConta(numeroConta) {
-        const consulta = this.agencia.find(agencia => agencia.numeroConta === numeroConta);
-        if (!consulta) {
-            throw new Error('Agência não encontrado.');
-        }
-        return consulta;
-    }
-    consultarAgenciaPorProprietario(proprietario) {
-        const consulta = __classPrivateFieldGet(this, _AgenciaArmazenados_agencias, "f").find(agencia => agencia.nomeProprietario === proprietario);
-        if (!consulta) {
-            throw new Error("Proprietario não encontrado.");
-        }
-        return consulta;
-    }
 };
 _AgenciaArmazenados_agencias = new WeakMap();
 AgenciaArmazenados = __decorate([

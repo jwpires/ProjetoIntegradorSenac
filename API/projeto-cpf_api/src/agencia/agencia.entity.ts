@@ -4,27 +4,15 @@ export class AgenciaEntity{
     nomeProprietario    :   string;
     numeroConta         :   string;
     tipoDeConta         :   string;
-    #saldo               :   number; 
+    saldo               :   number; 
 
     constructor(id: string, id_banco: string, nomeProprietario: string, numeroConta: string, tipoDeConta: string, saldo: number){
         this.id     =   id;
+        this.id_banco     =   id_banco;
         this.nomeProprietario   =   nomeProprietario;
         this.numeroConta = numeroConta;
         this.tipoDeConta = tipoDeConta;
-        this.#saldo = saldo;
-    }
-
-    
-    set deposito(valor : number) {
-        this.#saldo += valor;
-    }
-
-    set saque(valor : number) {
-        this.#saldo -= valor;
-    }
-
-    get saldo() {
-        return this.#saldo;
+        this.saldo = saldo;
     }
     
 
