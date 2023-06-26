@@ -18,8 +18,11 @@ let AgenciaArmazenados = class AgenciaArmazenados {
     constructor() {
         _AgenciaArmazenados_agencias.set(this, []);
     }
-    get agencia() {
+    get Agencia() {
         return __classPrivateFieldGet(this, _AgenciaArmazenados_agencias, "f");
+    }
+    inserirAgencia(agencia) {
+        __classPrivateFieldGet(this, _AgenciaArmazenados_agencias, "f").push(agencia);
     }
 };
 _AgenciaArmazenados_agencias = new WeakMap();

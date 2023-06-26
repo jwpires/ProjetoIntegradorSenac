@@ -1,4 +1,4 @@
-export declare class ListarAgencia {
+export declare class ListarAgenciaDTO {
     readonly id: string;
     readonly id_banco: string;
     readonly nomeProprietario: string;

@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ListarAgencia = void 0;
-class ListarAgencia {
+exports.ListarAgenciaDTO = void 0;
+class ListarAgenciaDTO {
     constructor(id, id_banco, nomeProprietario, numeroConta, tipoDeConta, saldo) {
         this.id = id;
         this.id_banco = id_banco;
@@ -12,5 +12,5 @@ class ListarAgencia {
     }
     ;
 }
-exports.ListarAgencia = ListarAgencia;
+exports.ListarAgenciaDTO = ListarAgenciaDTO;
 //# sourceMappingURL=listarAgencia.dto.js.map

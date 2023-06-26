@@ -1,4 +1,4 @@
-export class ListarAgencia{
+export class ListarAgenciaDTO{
     constructor( 
     readonly id                  :   string,
     readonly id_banco            :   string,

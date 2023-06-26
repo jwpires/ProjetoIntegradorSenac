@@ -1,13 +1,16 @@
 import {  Injectable } from "@nestjs/common";
 import { AgenciaEntity } from "./agencia.entity";
-import { InserirAgenciaDTO } from "./dto/inserirAgencia.dto";
 
 @Injectable()
 export class AgenciaArmazenados{
     #agencias : AgenciaEntity[] = [];
 
-    get agencia(){
+    get Agencia(){
         return this.#agencias;
+    }
+
+    inserirAgencia(agencia: AgenciaEntity) {
+        this.#agencias.push(agencia);
     }
     
 }
