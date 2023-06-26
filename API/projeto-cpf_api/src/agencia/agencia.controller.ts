@@ -39,8 +39,12 @@ export class AgenciaController{
 
         var retornoAgencia: any;
         this.armanezaAgencia.inserirAgencia(agencia);
-
-        return 
+        
+        retornoAgencia = {
+            dadosAgencia,
+            status : "Agencia Criada."
+        }
+        return retornoAgencia;
     }
  
 

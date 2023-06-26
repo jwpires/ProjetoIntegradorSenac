@@ -5,5 +5,5 @@ export declare class AgenciaController {
     private armanezaAgencia;
     constructor(armanezaAgencia: AgenciaArmazenados);
     retornoAgencias(): Promise<ListarAgenciaDTO[]>;
-    criarAgencia(dadosAgencia: InserirAgenciaDTO): Promise<void>;
+    criarAgencia(dadosAgencia: InserirAgenciaDTO): Promise<any>;
 }

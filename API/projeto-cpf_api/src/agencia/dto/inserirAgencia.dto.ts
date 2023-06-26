@@ -7,15 +7,19 @@ export class InserirAgenciaDTO{
     id_banco: string;
 
     @IsString()
+    @IsNotEmpty()
     nomeProprietario: string;
 
     @IsString()
+    @IsNotEmpty()
     numeroConta: string;
 
     @IsString()
+    @IsNotEmpty()
     tipoDeConta: string;
 
     @IsNumber()
+    @IsNotEmpty()
     saldo: number;
 
 }

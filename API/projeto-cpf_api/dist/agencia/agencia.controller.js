@@ -33,7 +33,11 @@ let AgenciaController = class AgenciaController {
         var agencia = new agencia_entity_1.AgenciaEntity((0, uuid_1.v4)(), dadosAgencia.id_banco, dadosAgencia.nomeProprietario, dadosAgencia.numeroConta, dadosAgencia.tipoDeConta, dadosAgencia.saldo);
         var retornoAgencia;
         this.armanezaAgencia.inserirAgencia(agencia);
-        return;
+        retornoAgencia = {
+            dadosAgencia,
+            status: "Agencia Criada."
+        };
+        return retornoAgencia;
     }
 };
 __decorate([
