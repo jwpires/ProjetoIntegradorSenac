@@ -1,27 +1,17 @@
 import { useState, useEffect, ChangeEvent } from "react";
 import HeaderMenu from "../../header/HeaderMenu";
 import { Usuario } from "./usuarios";
+import FormularioPost from "../../formpost/formularioPost";
 
 
 
 function RequisicoesTypesAsyncPost () {
 
     //Criação das constatntes apara armazenar o valorr a ser postado
-    const [usuarios , setUsuarios] = useState<Usuario[]>([]);
-    const [addTitleText, setAddTitleText] = useState('');
-    const [addBodyText, setAddBodyText] = useState('');
+    const [usuarios , setUsuarios] = useState<Usuario[]>([]);    
 
-    // Funções paa alterar os campos criados na tela
-     const handleAddTitleChange = (e: ChangeEvent<HTMLInputElement>) =>{
-        setAddTitleText(e.target.value)
-     }
-
-     const handleAddBodyChange = (e: ChangeEvent<HTMLTextAreaElement>) =>{
-        setAddBodyText(e.target.value)
-     }
-
-     const handleAddClick = async() => {
-        if(addBodyText && addBodyText){
+     const handleAddClick = async(title: string, body: string) => {
+        // if(addBodyText && addBodyText){
             let response = await fetch('https://jsonplaceholder.typicode.com/posts',
             {
                 // por padrão o method do fetch, é o get, por isso não precisamos especificar.
@@ -29,8 +19,8 @@ function RequisicoesTypesAsyncPost () {
                 body: JSON.stringify
                 ({
                     //campos requisitados pela API
-                    title: addTitleText,
-                    body:addBodyText,
+                    title: title,
+                    body:body,
                     userID: 1
                 }),
                 headers:{
@@ -53,9 +43,9 @@ function RequisicoesTypesAsyncPost () {
             }
 
 
-        }else{
-            alert('Preencha as informações.')
-        }
+        // else{
+        // alert('Preencha as informações.')
+        // }
      }
 
 
@@ -66,25 +56,22 @@ function RequisicoesTypesAsyncPost () {
     <div>
         <HeaderMenu exibe></HeaderMenu>      
 
-        <h2>Adiciona Post</h2>
-        <br />
-        <input 
-             value={addTitleText}
-             type="text"
-             placeholder="Digite um Titulo" 
-             onChange={handleAddTitleChange}
-        />
-        <br />
-        <br />
+       <FormularioPost onAdd={handleAddClick }></FormularioPost>
+       <div>
+            {usuarios.map((item, index) => (
+                <div key={index} >                    
+                    <br />
+                    {item.id}
+                    <br />
+                    {item.title}
+                    <br />
+                    {item.userId}
+                    <br />                    
+                    <hr />
+                </div>
 
-        <textarea 
-            name=""
-            id=""
-            value={addTitleText}
-            onChange={handleAddBodyChange}>
-        </textarea>
-
-        <button onClick={handleAddClick}>Adicionar</button>
+            ) )}
+        </div>
      
     </div>
     )

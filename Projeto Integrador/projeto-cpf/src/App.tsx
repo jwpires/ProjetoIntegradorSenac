@@ -23,6 +23,9 @@ import Pai from './components/pages/Exemplos/pai';
 import Relatorio from './components/pages/relatorio';
 import RequisicoesTypesAsync from './components/pages/Exemplos/requisicoesTypesAsync';
 import DogImageAPI from './components/pages/Exemplos/dogImageApi';
+import RequisicoesTypesAsyncPost from './components/pages/Exemplos/requisicoesTypesAsyncPost';
+import FormularioPost from './components/formpost/formularioPost';
+
 
 
 
@@ -55,6 +58,7 @@ function App() {
         <Route path='/contador' element={<Contador/>}/>
         <Route path='/paifilho' element={<Pai/>}/>
         <Route path='/requisicao' element={<RequisicoesTypesAsync/>} />
+        <Route path='/requisicao2' element={<RequisicoesTypesAsyncPost/>}/>
         <Route path='/dog' element={<DogImageAPI/>}/>
       </Routes>
     </div>
