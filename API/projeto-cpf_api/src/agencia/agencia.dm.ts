@@ -10,13 +10,12 @@ export class AgenciaArmazenados{
     }
 
     agenciaJaCadastrada(numConta:string, codBanco:string){
-        if(
-        this.#agencias.find(
+       const validaConta = this.#agencias.find(
             conta => (conta.numeroConta === numConta && conta.id_banco === codBanco)
-        ) )
-             return true;
+        ) 
+          
         
-        return false
+      
     
     }
 
