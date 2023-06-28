@@ -4,7 +4,7 @@ export class ListarAgenciaDTO{
     readonly id_banco            :   string,
     readonly nomeProprietario    :   string,
     readonly numeroConta         :   string,
-    readonly tipoDeConta         :   string,
+    readonly tipoConta           :   string,
     readonly saldo               :   number
     ){};
 }

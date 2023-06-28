@@ -1,14 +1,14 @@
 import { Controller, Get } from "@nestjs/common";
-import { Body, Post,} from "@nestjs/common/decorators";
+import { Body, Post, } from "@nestjs/common/decorators";
 import { AgenciaArmazenados } from "./agencia.dm";
 import { AgenciaEntity } from "./agencia.entity";
 import { InserirAgenciaDTO } from "./dto/inserirAgencia.dto";
-import {v4 as uuid} from 'uuid';
+import { v4 as uuid } from 'uuid';
 import { ListarAgenciaDTO } from "./dto/listarAgencia.dto";
 
 @Controller('/agencia')
-export class AgenciaController{
-    constructor( private armanezaAgencia: AgenciaArmazenados){}
+export class AgenciaController {
+    constructor(private armanezaAgencia: AgenciaArmazenados) { }
 
     @Get()
     async retornoAgencias() {
@@ -28,24 +28,36 @@ export class AgenciaController{
 
     @Post()
     async criarAgencia(@Body() dadosAgencia: InserirAgenciaDTO) {
-        var agencia = new AgenciaEntity(
-            uuid(),
-            dadosAgencia.id_banco,
-            dadosAgencia.nomeProprietario,
-            dadosAgencia.numeroConta,
-            dadosAgencia.tipoDeConta,
-            dadosAgencia.saldo
-        )
+
+
+        // let agencia = new AgenciaEntity(
+        //     uuid(),
+        //     dadosAgencia.id_banco,
+        //     dadosAgencia.nomeProprietario,
+        //     dadosAgencia.numeroConta,
+        //     dadosAgencia.tipoConta,
+        //     dadosAgencia.saldo
+        // )
 
         var retornoAgencia: any;
-        this.armanezaAgencia.inserirAgencia(agencia);
-        
-        retornoAgencia = {
-            dadosAgencia,
-            status : "Agencia Criada."
-        }
+
+        this.armanezaAgencia.agenciaJaCadastrada(dadosAgencia.numeroConta, dadosAgencia.id_banco)
+            let agencia = new AgenciaEntity(
+                uuid(),
+                dadosAgencia.id_banco,
+                dadosAgencia.nomeProprietario,
+                dadosAgencia.numeroConta,
+                dadosAgencia.tipoConta,
+                dadosAgencia.saldo
+            )
+            this.armanezaAgencia.inserirAgencia(agencia);
+            retornoAgencia = {
+                dadosAgencia,
+                status: "Agencia Criada."
+            }        
+
         return retornoAgencia;
     }
- 
+
 
 }

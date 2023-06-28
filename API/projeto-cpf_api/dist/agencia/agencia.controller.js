@@ -30,8 +30,9 @@ let AgenciaController = class AgenciaController {
         return retornaAgencias;
     }
     async criarAgencia(dadosAgencia) {
-        var agencia = new agencia_entity_1.AgenciaEntity((0, uuid_1.v4)(), dadosAgencia.id_banco, dadosAgencia.nomeProprietario, dadosAgencia.numeroConta, dadosAgencia.tipoDeConta, dadosAgencia.saldo);
         var retornoAgencia;
+        this.armanezaAgencia.agenciaJaCadastrada(dadosAgencia.numeroConta, dadosAgencia.id_banco);
+        let agencia = new agencia_entity_1.AgenciaEntity((0, uuid_1.v4)(), dadosAgencia.id_banco, dadosAgencia.nomeProprietario, dadosAgencia.numeroConta, dadosAgencia.tipoConta, dadosAgencia.saldo);
         this.armanezaAgencia.inserirAgencia(agencia);
         retornoAgencia = {
             dadosAgencia,

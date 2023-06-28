@@ -21,6 +21,11 @@ let AgenciaArmazenados = class AgenciaArmazenados {
     get Agencia() {
         return __classPrivateFieldGet(this, _AgenciaArmazenados_agencias, "f");
     }
+    agenciaJaCadastrada(numConta, codBanco) {
+        if (__classPrivateFieldGet(this, _AgenciaArmazenados_agencias, "f").find(conta => (conta.numeroConta === numConta && conta.id_banco === codBanco)))
+            return true;
+        return false;
+    }
     inserirAgencia(agencia) {
         __classPrivateFieldGet(this, _AgenciaArmazenados_agencias, "f").push(agencia);
     }

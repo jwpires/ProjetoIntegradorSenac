@@ -16,7 +16,7 @@ export class InserirAgenciaDTO{
 
     @IsString()
     @IsNotEmpty()
-    tipoDeConta: string;
+    tipoConta: string;
 
     @IsNumber()
     @IsNotEmpty()

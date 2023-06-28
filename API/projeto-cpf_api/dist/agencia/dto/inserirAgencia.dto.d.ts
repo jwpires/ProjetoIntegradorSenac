@@ -2,6 +2,6 @@ export declare class InserirAgenciaDTO {
     id_banco: string;
     nomeProprietario: string;
     numeroConta: string;
-    tipoDeConta: string;
+    tipoConta: string;
     saldo: number;
 }
