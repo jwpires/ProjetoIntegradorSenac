@@ -1,9 +1,22 @@
 import '../../style/style.css';
 import HeaderMenu from '../header/HeaderMenu';
 import { useNavigate } from 'react-router-dom';
+import { api } from './api';
+import { Banco } from './banco';
+import { useState } from 'react';
 
 function CadastroContaBanco() {
     const navegacao = useNavigate();
+    const [banco, setBanco] = useState<Banco[]>([]);
+
+    const carregaBancos = async () => {
+        
+        let json = api.listarBancos();
+
+        const dataArray = Array.isArray(json) ? json : [json];
+
+        setBanco(dataArray);
+    }
 
     function handleClickCadBanco(){
         navegacao('/cadastro/Banco');    

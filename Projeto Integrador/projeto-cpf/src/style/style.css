@@ -364,10 +364,19 @@ da imagem do logo
 }
 
 .filtros .pesquisar{
-    width: 38%
+    width: 38%;
+    height: 15%;
+    margin-right: 1%;
 }
 .imgPesquisa{
     height: 28px;
     margin-left: 10px;
     cursor: pointer;
 }
+
+.filtros Button{
+    margin-right: 1%;
+}
+
+
+

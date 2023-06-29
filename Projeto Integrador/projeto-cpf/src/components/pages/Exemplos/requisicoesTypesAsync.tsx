@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
 import HeaderMenu from "../../header/HeaderMenu";
 import { Usuario } from "./usuarios";
+import { api } from "./apiExemplo";
 
+//interagi com arquivo:
+//api.ts
 
 
 function RequisicoesTypesAsync () {
@@ -19,16 +22,19 @@ function RequisicoesTypesAsync () {
 
     const carregarUsuarios = async () => {        
         setLoading(true);
+        try{
+            let json = await api.CarregarTodosUsuarios();
+            const dataArray = Array.isArray(json) ? json : [json];
+            setUsuarios(dataArray);
+            setLoading(false);
+        }catch{
+            alert('Erro!');
+            setLoading(false);
+        }
 
-        // Declara a var response separadamente para que possa aguardar o resultado de sua consulta
-        let response = await fetch("https://jsonplaceholder.typicode.com/todos/");
-        // Declara a var json separadamente para que possa aguardar o json da requisição anterior ser preenchido
-        let json = await response.json(); 
-
-        setLoading(false);
-        setUsuarios(json);
     
-    }   
+    }  
+
     return (
     <div>
         <HeaderMenu exibe></HeaderMenu>      

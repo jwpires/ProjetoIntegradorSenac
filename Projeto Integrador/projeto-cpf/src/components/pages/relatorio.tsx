@@ -2,6 +2,7 @@ import HeaderMenu from "../header/HeaderMenu";
 import '../../style/style.css';
 import { useState } from "react";
 import { AccordionBody, AccordionHeader, AccordionItem, Button, UncontrolledAccordion } from "reactstrap";
+import FiltroRelatorio from "../types/filtroRelatorios";
 
 var validaConfiguracao = {
     despesasPagas: 'menu-guia',
@@ -47,17 +48,9 @@ function Relatorio() {
                         </ul>
                         {exibeMenu[0] === true &&
                             <div className="body-relatorio">
-                                <div className="filtros">
-                                    <p>Data entre: <input type="date" name="" id="" /> à <input type="date" name="" id="" /> </p>
-                                    <div className="raio_group">
-
-                                        <label><input type="radio" name="tipo_pagamento" id="" />Conta Bancária</label><br />
-                                        <label><input type="radio" name="tipo_pagamento" id="" />Carteira</label><br />
-
-                                    </div>
-                                    <input className="pesquisar" type="text" name="" placeholder="Pesquisar por Descrição" id="" />
-                                    <img className="imgPesquisa" src={require("../../images/botao-pesquisar.png")} alt="exibe imagem do padrao" />
-                                </div>
+                                
+                                <FiltroRelatorio/>
+                            
 
                                 <UncontrolledAccordion
                                     defaultOpen={[
@@ -117,11 +110,7 @@ function Relatorio() {
                         }
                         {exibeMenu[1] === true &&
                             <div className="body-relatorio">
-                                <div className="filtros">
-                                    <p>Data entre: <input type="date" name="" id="" /> à <input type="date" name="" id="" /> </p>
-                                    <input className="pesquisar" type="text" name="" placeholder="Pesquisar por Descrição" id="" />
-                                    <img className="imgPesquisa" src={require("../../images/botao-pesquisar.png")} alt="exibe imagem do padrao" />
-                                </div>
+                               <FiltroRelatorio/>
 
                                 <UncontrolledAccordion
                                     defaultOpen={[
@@ -183,14 +172,13 @@ function Relatorio() {
                         }
                         {exibeMenu[2] === true &&
                             <div className="body-relatorio">
+                                
+                                <FiltroRelatorio/>
                                 <div className="filtros">
-                                    <p>Data entre: <input type="date" name="" id="" /> à <input type="date" name="" id="" /> </p>
-                                    <input className="pesquisar" type="text" name="" placeholder="Pesquisar por Descrição" id="" />
-                                    <img className="imgPesquisa" src={require("../../images/botao-pesquisar.png")} alt="exibe imagem do padrao" />
                                     <Button color="danger">Efetuar Saque</Button>
                                     <Button color="success">Efetuar Depósito</Button>
                                 </div>
-
+                            
                                 <UncontrolledAccordion
                                     defaultOpen={[
                                         '1',
