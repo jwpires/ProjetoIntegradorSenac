@@ -11,21 +11,25 @@ function CadastroContaBanco() {
 
     const carregaBancos = async () => {
         
-        let json = api.listarBancos();
-
-        const dataArray = Array.isArray(json) ? json : [json];
-
-        setBanco(dataArray);
+         try{
+            var json = api.listarBancos();
+            const dataArray = Array.isArray(json) ? json : [json];
+            // setBanco(dataArray);
+        }catch{
+            alert('Erro!');
+        }
     }
 
     function handleClickCadBanco(){
         navegacao('/cadastro/Banco');    
     }
 
+    console.log(api.listarBancos()); 
+
     return (
         <div className="container-cadBanco">
             <HeaderMenu exibe={true}></HeaderMenu>
-        
+            
             <div className="container_main_padrao-tela">
 
                 <div className="container_padrao-tela">
@@ -58,14 +62,16 @@ function CadastroContaBanco() {
                             <input type="text" name="" id="" placeholder='Saldo inicial:'/>
                             <input type="submit" id='salvar' value="salvar" />
                         </form>
+
+                        <button type='button' onClick={carregaBancos}>Teste</button>
+                        {
+                            banco.map(
+                                (item,index) => <p>id: {item.id}, Banco: {item.nome}</p>
+                            )
+                        }
                     </div>
 
                 </div>
-
-                {/* <div className="container_imagem-teste">
-                    <img src={require("../../images/logo.png")} alt="exibe imagem do login" />
-                    <h1 className='descricao'>Controle Pessoal de Finanças</h1>
-                </div> */}
             </div>
         </div>
     );
