@@ -12,9 +12,14 @@ function CadastroContaBanco() {
     const carregaBancos = async () => {
         
          try{
-            var json = api.listarBancos();
+            //var json = api.listarBancos();
+            let response = await fetch("http://localhost:3000/bancos");
+            let json = await response.json(); 
             const dataArray = Array.isArray(json) ? json : [json];
-            // setBanco(dataArray);
+             setBanco(dataArray);
+             console.log(json);
+             console.log("Array");
+             console.log(dataArray);
         }catch{
             alert('Erro!');
         }
