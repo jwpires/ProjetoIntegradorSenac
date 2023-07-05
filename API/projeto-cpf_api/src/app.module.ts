@@ -1,3 +1,4 @@
+import { HttpModule } from '@nestjs/axios';
 import { Module } from '@nestjs/common';
 import { AgenciaModule } from './agencia/agencia.module';
 import { BancoModule } from './Banco/banco.module';
@@ -7,7 +8,8 @@ import { UsuarioModule } from './usuario/usuario.module';
 
 
 @Module({
-  imports: [UsuarioModule,ProdutoModule,BancoModule,AgenciaModule],
-  controllers:[]
+  imports: [UsuarioModule,ProdutoModule,BancoModule,AgenciaModule, HttpModule],
+  controllers:[],
+  
 })
 export class AppModule {}
