@@ -2,24 +2,26 @@ import '../../style/style.css';
 import HeaderMenu from '../header/HeaderMenu';
 import { useNavigate } from 'react-router-dom';
 import { api } from './api';
-import { Banco } from './banco';
-import { useState } from 'react';
+import { Banco } from '../types/banco';
+import { ChangeEvent, useState } from 'react';
 
 function CadastroContaBanco() {
     const navegacao = useNavigate();
     const [banco, setBanco] = useState<Banco[]>([]);
+    const [agencia, setAgencia] = useState({
+        id_banco: '',
+        nomeProprietario: '',
+        numeroConta: '',
+        tipoConta: '',
+        saldo: ''
+    })
 
     const carregaBancos = async () => {
 
         try {
-            //var json = api.listarBancos();
-            let response = await fetch("http://localhost:3000/bancos");
-            let json = await response.json();
+            const json = await api.listarBancos();
             const dataArray = Array.isArray(json) ? json : [json];
             setBanco(dataArray);
-            console.log(json);
-            console.log("Array");
-            console.log(dataArray);
         } catch {
             alert('Erro!');
         }
@@ -27,6 +29,14 @@ function CadastroContaBanco() {
 
     function handleClickCadBanco() {
         navegacao('/cadastro/Banco');
+    }
+
+    const handleParamCampos = (e: ChangeEvent<HTMLInputElement>) =>{
+        //criar função
+    }
+
+    const handleSalvar = () =>{
+
     }
 
     console.log(api.listarBancos());
@@ -70,7 +80,7 @@ function CadastroContaBanco() {
 
 
                             <input type="text" name="" id="" placeholder='Saldo inicial:' />
-                            <input type="submit" id='salvar' value="salvar" />
+                            <input type="submit" id='salvar' value="salvar" onClick={handleSalvar}/>
                         </form>
                     </div>
                 </div>

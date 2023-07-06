@@ -2,6 +2,7 @@ import '../../style/style.css';
 import HeaderMenu from '../header/HeaderMenu';
 import { useNavigate } from 'react-router-dom';
 import { ChangeEvent, useState } from 'react';
+import { api } from './api';
 
 function CadastroBanco() {
     const [nomeBanco, setNomeBanco] = useState('');
@@ -17,29 +18,13 @@ function CadastroBanco() {
 
     const handleSalvar = async () => {
 
+        if(!nomeBanco){
+            return alert('Campo Nome precisa ser preenchido.')
+        }
+
         try {
-            let response = await fetch("http://localhost:3000/bancos",
-                {
-                    // por padrão o method do fetch, é o get, por isso não precisamos especificar.
-                    method: 'POST',
-                    body: JSON.stringify
-                        ({
-                            //campos requisitados pela API
-                            nome: nomeBanco
-                        }),
-                    headers: {
-                        //caso seja necessário o envio de algum
-                        //parametro no cabeçalho da requisição, se faz aqui;
-                        'Content-Type': 'application/json'
-                    }
-                });
-            // coleta o reotrno do meu metodo post
-            let json = await response.json();
-
-            console.log(json);
-
-            alert('Cadastro realizado com sucesso.');
-
+            let json = api.InserirBanco(nomeBanco);
+            alert('Cadastro realizado com sucesso.')
             return json;
 
         } catch (error) {
