@@ -7,15 +7,17 @@ import { ChangeEvent, useState } from 'react';
 
 function CadastroContaBanco() {
     const navegacao = useNavigate();
-    const [banco, setBanco] = useState<Banco[]>([]);
-    const [agencia, setAgencia] = useState({
-        id_banco: '',
-        nomeProprietario: '',
-        numeroConta: '',
-        tipoConta: '',
-        saldo: ''
-    })
+    const [banco, setBanco] = useState<Banco[]>([]); // constante Banco utilizada para armazenar as informações com o mesmo tipoe de dados solicitado pela API
+    
+    /*Constantes utilizadas capturar as informações de cadastro da agência digita pelo usuário
+    para inserir via API.*/
+    const [IdBanco, setSelectValueIdBanco] = useState(''); 
+    const [nomeProprietario, setNomeProprietario] = useState('');
+    const [numeroConta, setNumeroConta] = useState('');
+    const [tipoConta, setTipoConta] = useState('');
+    const [saldo, setSaldo] = useState('');
 
+    /*Função que puxa os dados do banco via API.*/
     const carregaBancos = async () => {
 
         try {
@@ -27,15 +29,25 @@ function CadastroContaBanco() {
         }
     }
 
+    /** Função que guiará o usuário a tela de cadastro do Banco */
     function handleClickCadBanco() {
         navegacao('/cadastro/Banco');
     }
 
-    const handleParamCampos = (e: ChangeEvent<HTMLInputElement>) =>{
-        //criar função
-    }
+    /** Funções para capturar informações para cadastrar agência no banco.*/
+    const handleSalvar = (idBanco: string, nomeProprietario: string, numeroConta: string, tipoConta: string, saldo: number) => {
 
-    const handleSalvar = () =>{
+        if (idBanco && nomeProprietario && numeroConta && tipoConta && saldo) {
+            alert("deu certo")
+            console.log('idBanco: ', idBanco)
+            console.log('nomeProprietario: ', nomeProprietario)
+            console.log('numeroConta: ', numeroConta)
+            console.log('tipoConta: ', tipoConta)
+            console.log('saldo: ', saldo)
+
+        } else {
+            alert("É preciso preencher todos os campos antes de salvar")
+        }
 
     }
 
@@ -54,10 +66,10 @@ function CadastroContaBanco() {
                     </header>
 
                     <div className='divCadBanco'>
-                        <form action="" method="post" className="cadBanco">
+                        <form action="" method="" className="cadBanco">
                             <div className='adiciona-banco'>
-                                <select name="Banco" id="" onClick={carregaBancos}>
-                                    <option value="">Informe o Banco</option>
+                                <select name="Banco" id="" onClick={carregaBancos} onChange={(e) => { setSelectValueIdBanco(e.target.value) }}>
+                                    <option value="" >Informe o Banco</option>
                                     {
                                         banco.map(
                                             (item) => <option value={item.id}>{item.nome}</option>
@@ -67,20 +79,20 @@ function CadastroContaBanco() {
                                 <button type='button' onClick={handleClickCadBanco}> + </button> {/* Botão servirá para direcionar a tela de cadastro da conta bancária. */}
                             </div>
 
-                            <input type="text" name="" id="" placeholder='Nome do proprietário da conta:' />
-                            <input type="text" name="" id="" placeholder='Informe número da conta' />
+                            <input type="text" name="" placeholder='Nome do proprietário da conta:' onChange={(e) => { setNomeProprietario(e.target.value) }} />
+                            <input type="text" name="" id="" placeholder='Informe número da conta' onChange={(e) => { setNumeroConta(e.target.value) }} />
 
                             <label>Tipo de Conta:</label>
                             <div className="raio_group">
 
-                                <label><input type="radio" name="tipo_conta" id="" />Conta Corrente</label><br />
-                                <label><input type="radio" name="tipo_conta" id="" />Conta Salário</label><br />
-                                <label><input type="radio" name="tipo_conta" id="" />Conta Poupança</label>
+                                <label><input type="radio" name="tipo_conta" id="" onChange={(e) => { setTipoConta('C') }} />Conta Corrente</label><br />
+                                <label><input type="radio" name="tipo_conta" id="" onChange={(e) => { setTipoConta('S') }} />Conta Salário</label><br />
+                                <label><input type="radio" name="tipo_conta" id="" onChange={(e) => { setTipoConta('P') }} />Conta Poupança</label>
                             </div>
 
 
-                            <input type="text" name="" id="" placeholder='Saldo inicial:' />
-                            <input type="submit" id='salvar' value="salvar" onClick={handleSalvar}/>
+                            <input type="number" step=".01" name="" placeholder='Saldo inicial:' onChange={(e) => { setSaldo(e.target.value) }} />
+                            <button type='button' id='salvar' onClick={e => handleSalvar(IdBanco, nomeProprietario, numeroConta, tipoConta, parseFloat(saldo))}>Salvar</button>
                         </form>
                     </div>
                 </div>

@@ -33,5 +33,29 @@ export const api = {
         let json = await response.json();
 
         return json;
+    },
+
+    InserirContaCorrente: async (idBanco: string, nomeProprietario: string, numeroConta: string, tipoConta: string, saldo: number) => {
+        let response = await fetch("http://localhost:3000/agencia",
+            {
+                // por padrão o method do fetch, é o get, por isso não precisamos especificar.
+                method: 'POST',
+                body: JSON.stringify
+                    ({
+                        //campos requisitados pela API
+                        id_banco: idBanco,
+                        nomeProprietario: nomeProprietario,
+                        numeroConta: numeroConta,
+                        tipoConta: tipoConta,
+                        saldo: saldo
+                    }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+        let json = await response.json();
+
+        return json
     }
 }
