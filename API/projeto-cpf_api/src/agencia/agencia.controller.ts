@@ -29,16 +29,6 @@ export class AgenciaController {
     @Post()
     async criarAgencia(@Body() dadosAgencia: InserirAgenciaDTO) {
 
-
-        // let agencia = new AgenciaEntity(
-        //     uuid(),
-        //     dadosAgencia.id_banco,
-        //     dadosAgencia.nomeProprietario,
-        //     dadosAgencia.numeroConta,
-        //     dadosAgencia.tipoConta,
-        //     dadosAgencia.saldo
-        // )
-
         var retornoAgencia: any;
 
         this.armanezaAgencia.agenciaJaCadastrada(dadosAgencia.numeroConta, dadosAgencia.id_banco)

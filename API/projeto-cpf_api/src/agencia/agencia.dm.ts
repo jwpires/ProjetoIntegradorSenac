@@ -13,10 +13,6 @@ export class AgenciaArmazenados{
        const validaConta = this.#agencias.find(
             conta => (conta.numeroConta === numConta && conta.id_banco === codBanco)
         ) 
-          
-        
-      
-    
     }
 
     inserirAgencia(agencia: AgenciaEntity) {

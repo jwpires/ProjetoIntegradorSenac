@@ -4,11 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import { api } from './api';
 import { Banco } from '../types/banco';
 import { ChangeEvent, useState } from 'react';
+import { Agencia } from '../types/agencia';
 
 function CadastroContaBanco() {
     const navegacao = useNavigate();
     const [banco, setBanco] = useState<Banco[]>([]); // constante Banco utilizada para armazenar as informações com o mesmo tipoe de dados solicitado pela API
-    
+    const [agencia,setAgencia] = useState<Agencia[]>([]);
+
     /*Constantes utilizadas capturar as informações de cadastro da agência digita pelo usuário
     para inserir via API.*/
     const [IdBanco, setSelectValueIdBanco] = useState(''); 
@@ -35,7 +37,7 @@ function CadastroContaBanco() {
     }
 
     /** Funções para capturar informações para cadastrar agência no banco.*/
-    const handleSalvar = (idBanco: string, nomeProprietario: string, numeroConta: string, tipoConta: string, saldo: number) => {
+    const handleSalvar = async(idBanco: string, nomeProprietario: string, numeroConta: string, tipoConta: string, saldo: number) => {
 
         if (idBanco && nomeProprietario && numeroConta && tipoConta && saldo) {
             alert("deu certo")
@@ -44,7 +46,13 @@ function CadastroContaBanco() {
             console.log('numeroConta: ', numeroConta)
             console.log('tipoConta: ', tipoConta)
             console.log('saldo: ', saldo)
-
+            try {
+                const json = await api.InserirContaCorrente(idBanco, nomeProprietario, numeroConta, tipoConta, saldo);
+                const dataArray = Array.isArray(json) ? json : [json];
+                setAgencia(dataArray);
+            } catch {
+                alert('Erro!');
+            }
         } else {
             alert("É preciso preencher todos os campos antes de salvar")
         }
@@ -84,7 +92,6 @@ function CadastroContaBanco() {
 
                             <label>Tipo de Conta:</label>
                             <div className="raio_group">
-
                                 <label><input type="radio" name="tipo_conta" id="" onChange={(e) => { setTipoConta('C') }} />Conta Corrente</label><br />
                                 <label><input type="radio" name="tipo_conta" id="" onChange={(e) => { setTipoConta('S') }} />Conta Salário</label><br />
                                 <label><input type="radio" name="tipo_conta" id="" onChange={(e) => { setTipoConta('P') }} />Conta Poupança</label>
