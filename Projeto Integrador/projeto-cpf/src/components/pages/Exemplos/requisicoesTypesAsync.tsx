@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, ChangeEvent } from "react";
 import HeaderMenu from "../../header/HeaderMenu";
 import { Usuario } from "./usuarios";
 import { api } from "./apiExemplo";
@@ -10,6 +10,7 @@ import { api } from "./apiExemplo";
 function RequisicoesTypesAsync () {
 
         const [usuarios , setUsuarios] = useState<Usuario[]>([]);
+        const[paramBusca, setparamBusca] = useState('');
 
         const [loading, setLoading] = useState(false);
 
@@ -23,7 +24,19 @@ function RequisicoesTypesAsync () {
     const carregarUsuarios = async () => {        
         setLoading(true);
         try{
-            let json = await api.CarregarTodosUsuarios();
+
+            if (paramBusca) {
+                setLoading(true);
+                var json = await api.CarregarUsuarioUnico(paramBusca);
+                const dataArray = Array.isArray(json) ? json : [json];
+                setUsuarios(dataArray);
+                setLoading(false);
+            }else{
+                var json = await api.CarregarTodosUsuarios();
+                const dataArray = Array.isArray(json) ? json : [json];
+                setUsuarios(dataArray);
+                setLoading(false);
+            }
             const dataArray = Array.isArray(json) ? json : [json];
             setUsuarios(dataArray);
             setLoading(false);
@@ -35,11 +48,16 @@ function RequisicoesTypesAsync () {
     
     }  
 
+    const handleParamBuscaChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setparamBusca(e.target.value)
+    }
+
     return (
     <div>
         <HeaderMenu exibe></HeaderMenu>      
 
-        <hr /><br />        
+        <hr /><br />     
+        <input value={paramBusca} placeholder='' onChange={handleParamBuscaChange} type="text" />   
 
         {/* No carregamento dos elementos de tela, fazemos o tratamento para exibir ou não o conteúdo condicionalmente */}
         {loading && 

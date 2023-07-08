@@ -1,10 +1,11 @@
 import { Controller, Get } from "@nestjs/common";
-import { Body, Post,} from "@nestjs/common/decorators";
+import { Body, Post, UseInterceptors,} from "@nestjs/common/decorators";
 import { BancosArmazenados } from "./banco.dm";
 import { BancoEntity } from "./banco.entity";
 import { InserirBancoDTO } from "./dto/inserirBanco.dto";
 import { ListarBancos } from "./dto/listarBancos.dto";
 import {v4 as uuid} from 'uuid';
+
 
 @Controller('/bancos')
 export class BancoController{
