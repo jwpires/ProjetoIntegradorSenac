@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { Body, Controller, Get, Post } from "@nestjs/common";
 import { DespesasArmazenadas } from "./despesa.dm";
 import { DespesaEntity } from "./despesa.entity";
@@ -36,13 +35,4 @@ export class DespesaController{
 
         return retornoDespesa;
     }
-=======
-import { Controller } from "@nestjs/common";
-import { DespesasArmazenadas } from "./despesa.dm";
-import { DespesaEntity } from "./despesa.entity";
-
-@Controller('/despesa');
-export class DespesaController{
-    constructor(private armazenaDespesa:DespesasArmazenadas){}
->>>>>>> 09402edd8a19c6c5309fa8db0f3f5617d4c40984
 }

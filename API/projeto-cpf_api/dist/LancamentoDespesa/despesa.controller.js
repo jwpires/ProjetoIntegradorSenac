@@ -1,4 +1,5 @@
 "use strict";
+<<<<<<< HEAD
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -55,5 +56,15 @@ DespesaController = __decorate([
     (0, common_1.Controller)('/despesa'),
     __metadata("design:paramtypes", [despesa_dm_1.DespesasArmazenadas])
 ], DespesaController);
+=======
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.DespesaController = void 0;
+;
+class DespesaController {
+    constructor(armazenaDespesa) {
+        this.armazenaDespesa = armazenaDespesa;
+    }
+}
+>>>>>>> 09402edd8a19c6c5309fa8db0f3f5617d4c40984
 exports.DespesaController = DespesaController;
 //# sourceMappingURL=despesa.controller.js.map
