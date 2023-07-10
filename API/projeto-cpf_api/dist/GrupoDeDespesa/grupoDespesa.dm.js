@@ -10,28 +10,28 @@ var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (
     if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
     return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
 };
-var _DespesasArmazenadas_despesas;
+var _ArmazenaGrupoDespesa_grupoDespesa;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DespesasArmazenadas = void 0;
+exports.ArmazenaGrupoDespesa = void 0;
 const common_1 = require("@nestjs/common");
-let DespesasArmazenadas = class DespesasArmazenadas {
+let ArmazenaGrupoDespesa = class ArmazenaGrupoDespesa {
     constructor() {
-        _DespesasArmazenadas_despesas.set(this, []);
+        _ArmazenaGrupoDespesa_grupoDespesa.set(this, []);
     }
-    get Despesa() {
-        return __classPrivateFieldGet(this, _DespesasArmazenadas_despesas, "f");
+    get GrupoDespesa() {
+        return __classPrivateFieldGet(this, _ArmazenaGrupoDespesa_grupoDespesa, "f");
     }
-    inserirDespesa(despesa) {
-        __classPrivateFieldGet(this, _DespesasArmazenadas_despesas, "f").push(despesa);
+    inserirGrupoDespesa(grupoDespesa_) {
+        __classPrivateFieldGet(this, _ArmazenaGrupoDespesa_grupoDespesa, "f").push(grupoDespesa_);
     }
-    exibeDespesasDashboard() {
-        const despesas = this.Despesa;
-        return despesas;
+    exibeGrupoDespesa() {
+        const exibeGrupDespesa = this.GrupoDespesa;
+        return exibeGrupDespesa;
     }
 };
-_DespesasArmazenadas_despesas = new WeakMap();
-DespesasArmazenadas = __decorate([
+_ArmazenaGrupoDespesa_grupoDespesa = new WeakMap();
+ArmazenaGrupoDespesa = __decorate([
     (0, common_1.Injectable)()
-], DespesasArmazenadas);
-exports.DespesasArmazenadas = DespesasArmazenadas;
-//# sourceMappingURL=despesa.dm.js.map
+], ArmazenaGrupoDespesa);
+exports.ArmazenaGrupoDespesa = ArmazenaGrupoDespesa;
+//# sourceMappingURL=grupoDespesa.dm.js.map

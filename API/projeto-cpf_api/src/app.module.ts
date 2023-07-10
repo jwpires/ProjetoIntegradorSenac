@@ -9,12 +9,7 @@ import { UsuarioModule } from './usuario/usuario.module';
 
 
 @Module({
-<<<<<<< HEAD
   imports: [UsuarioModule,ProdutoModule,BancoModule,AgenciaModule, DespesaModule, HttpModule], 
-=======
-  imports: [UsuarioModule,ProdutoModule,BancoModule,AgenciaModule, HttpModule],
->>>>>>> 09402edd8a19c6c5309fa8db0f3f5617d4c40984
   controllers:[],
-  
 })
 export class AppModule {}

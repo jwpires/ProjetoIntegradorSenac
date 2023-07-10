@@ -1,13 +1,31 @@
 import '../../style/style.css';
 import HeaderMenu from '../header/HeaderMenu';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { api } from './api';
 
 function CadastroGrupoDespesa() {
 
     const navegacao = useNavigate();
+    const[nomeGrupoDespesa, setNomeGrupoDespesa] = useState('');
 
     function handleClickVoltar(){
         navegacao('/lancamento/Despesa');
+    }
+
+    const handleClickSalvar = async () => {
+        if(!nomeGrupoDespesa){
+            alert("O campo Nome não pode estar vazio.");
+        }else{
+            try {
+                let json = await api.InserirGrupoDespesa(nomeGrupoDespesa);
+                alert('Cadastro Inserido com sucesso.');
+                return json;
+            } catch (error) {
+                return alert('Ocorreu algum erro e o cadastro não pode ser inserido.')
+            }
+        }
+        console.log(nomeGrupoDespesa);
     }
     
     return (
@@ -23,12 +41,13 @@ function CadastroGrupoDespesa() {
 
                     <div className="divCadDespesa">
                         <form action="" className="cadDespesa">
-                            <input type="text" className='input-padrao' placeholder='Nome:' /> 
-                            <input type="submit" className='botao-padrao' value="Salvar" />
-                            <input type="submit" className='botao-padrao' onClick={handleClickVoltar} value="Voltar" />
+                            <input type="text" className='input-padrao' value={nomeGrupoDespesa} placeholder='Nome:' 
+                            onChange={(e)=> setNomeGrupoDespesa(e.target.value)}/> 
+
+                            <button type='button'className='botao-padrao' onClick={handleClickSalvar}>Salvar</button>
+                            <button type='button' className='botao-padrao' onClick={handleClickVoltar}>Voltar</button>
                         </form>
                     </div>
-                    
 
                 </div>
 

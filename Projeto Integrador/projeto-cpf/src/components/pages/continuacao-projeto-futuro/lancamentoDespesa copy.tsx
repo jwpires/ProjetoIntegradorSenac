@@ -1,10 +1,9 @@
-import '../../style/style.css';
-import HeaderMenu from '../header/HeaderMenu';
+
+import HeaderMenu from '../../header/HeaderMenu';
 import { useNavigate } from 'react-router-dom';
 
 import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import { isConstructorDeclaration } from 'typescript';
 // import { func } from 'prop-types';
 
 function LancamentoDespesa() {
@@ -14,7 +13,7 @@ function LancamentoDespesa() {
     const [descricaoDespesa, setInputDespesa] = useState('');
     const [grupoDespesa, setInputGrupo] = useState('');
     const [dataLancamento, setInputLancamento] = useState('');
-    const [dataVencimento, setInputData] = useState('');
+    const [dataDespesa, setInputData] = useState('');
     const [valorDespesa, setInputValor] = useState('');
 
 
@@ -30,8 +29,21 @@ function LancamentoDespesa() {
         navegacao('/cadastro/GrupoDespesa');
     }
 
+    // function handleClickConfirmaPagamento() {
+    //     navegacao('/confirmacaoPagamento');
+    // }
+
+    function handleClickExibeBanco() {
+        setShow(true);
+    }
+
+    function handleClickEscondeBanco() {
+        setShow(false);
+    }
+
     function exibeModal() {
         toggle();
+        handleClickEscondeBanco();
     }
 
     function confirmaPagamento() {
@@ -49,33 +61,21 @@ function LancamentoDespesa() {
     function validaCamposPreenchidos() {
         let campos = [];
 
-        if (descricaoDespesa !== '' && grupoDespesa !== '' && dataLancamento !== ''
-        && dataVencimento !== '' && valorDespesa !== ''){
-                if (descricaoDespesa === '') {
-                    campos.push('Descrição da Despesa');
-                }
-                if (grupoDespesa === '') {
-                    campos.push('Grupo de Despesa');
-                }
-                if (dataLancamento === '') {
-                    campos.push('Data de Lançamento');
-                }
-                if (dataVencimento === '') {
-                    campos.push('Data de Despesa');
-                }
-                if (valorDespesa === '') {
-                    campos.push('Valor da Despesa');
-                }
+        if (descricaoDespesa === '') {
+            campos.push('Descrição da Despesa');
         }
-        console.log("campos penderes de preenchimentos:");
-        console.log("--------------------------------")
-        console.log("Despesa: "+descricaoDespesa);
-        console.log("Grupo despesa: "+grupoDespesa);
-        console.log("Data Lançamento: "+dataLancamento);
-        console.log("Data Vencimento: "+dataVencimento);
-        console.log("valor: "+valorDespesa);
-
-        
+        if (grupoDespesa === '') {
+            campos.push('Grupo de Despesa');
+        }
+        if (dataLancamento === '') {
+            campos.push('Data de Lançamento');
+        }
+        if (dataDespesa === '') {
+            campos.push('Data de Despesa');
+        }
+        if (valorDespesa === '') {
+            campos.push('Valor da Despesa');
+        }
 
         return campos;
     }
@@ -96,10 +96,10 @@ function LancamentoDespesa() {
 
                         <form action="" className="cadBanco">
 
-                            <input type="text" value={descricaoDespesa} id="" placeholder='Descrição da Despesa:' onChange={(e) => setInputDespesa(e.target.value)} />
+                            <input type="text" name="" id="" placeholder='Descrição da Despesa:' onChange={(e) => setInputDespesa(e.target.value)} />
 
                             <div className='adiciona-banco'>
-                                <select name="GrupoDespesa" id="" value={grupoDespesa} onChange={(e) => setInputGrupo(e.target.value)}  >
+                                <select name="GrupoDespesa" id="" onChange={(e) => setInputGrupo(e.target.value)}  >
                                     <option value="" >Grupo de Despesa</option >
                                     <option value="TESTE1">TESTE1</option>
                                     <option value="TESTE2">TESTE2</option>
@@ -107,18 +107,26 @@ function LancamentoDespesa() {
                                 <button type='button' onClick={handleClickGrupoDespesa}> + </button> {/* Botão servirá para direcionar a tela de cadastro da conta bancária. */}
                             </div>
                             <label>Data de Lançamento:</label>
-                            <input type="date" name="" value={dataLancamento} onChange={(e) => setInputLancamento(e.target.value)} />
+                            <input type="date" name="" id="" onChange={(e) => setInputLancamento(e.target.value)} />
                             <label>Data de Vencimento:</label>
-                            <input type="date" name="" value={dataVencimento} onChange={(e) => setInputData(e.target.value)} />
-                            <input type="number" step=".01" name="" value={valorDespesa} placeholder='Valor da Despesa:' onChange={(e) => setInputValor(e.target.value)} />
+                            <input type="date" name="" id="" onChange={(e) => setInputData(e.target.value)} />
+                            <input type="text" name="" id="" placeholder='Valor da Despesa:' onChange={(e) => setInputValor(e.target.value)} />
 
-                            <button className="botao-padrao" type='button' onClick={validaCamposPreenchidos}>Salvar</button>
+                            {/* <div className='adiciona-banco'>
+                                <select name="Banco" id="">
+                                    <option value="">Informe o Banco</option>
+                                </select>
+                                <button type='button' > + </button> {}
+                            </div>                                                      */}
+
+
+                            <button className="botao-padrao">Salvar</button>
+
 
                             <input type="button" id='botao-pagar' onClick={exibeModal} value="Pagar" />
 
 
                             <div className="teste" >
-
                                 {/********************** * Exibe a Modal ao clicar em Pagar****************** */}
                                 <Modal isOpen={modal} toggle={toggle}>
                                     <ModalHeader toggle={toggle}>Confirmação de pagamento!</ModalHeader>
@@ -130,10 +138,35 @@ function LancamentoDespesa() {
                                             <input type="text" name="" id="" placeholder='Descrição da Despesa:' disabled value={descricaoDespesa} />
 
                                             <label>Data de Vencimento:</label>
-                                            <input type="date" name="" id="" value={dataVencimento} disabled />
+                                            <input type="date" name="" id="" value={dataDespesa} disabled />
 
                                             <label> Valor da despesa:</label>
                                             <input type="text" name="" id="" placeholder='Valor da Despesa:' value={valorDespesa} disabled />
+
+                                            {/* <label>Forma de Pagamento:</label> */}
+                                            {/*******************  Será usado em um projeto futuro ***************/}
+                                            {/* <div className="raio_group">
+
+                                                <label><input type="radio" name="tipo_pagamento" id="" onClick={handleClickExibeBanco} />Conta Bancária</label><br />
+                                                <label><input type="radio" name="tipo_pagamento" id="" onClick={handleClickEscondeBanco} />Carteira</label><br />
+
+                                            </div>
+                                            {show === true &&
+
+                                                <div className='adiciona-banco'>
+                                                    <select name="Banco" id="">
+                                                        <option value="">Informe o Banco</option>
+                                                    </select>
+                                                    <button type='button' > + </button> {/* Botão servirá para direcionar a tela de cadastro da conta bancária. /}
+
+                                                    <select name="Banco" id="">
+                                                        <option value="">Informe a Agência</option>
+                                                    </select>
+                                                    <button type='button' > + </button> {/* Botão servirá para direcionar a tela de cadastro da conta bancária. /}
+                                                </div>
+                                            } */}
+
+
                                         </form>
                                     </ModalBody>
                                     <ModalFooter>

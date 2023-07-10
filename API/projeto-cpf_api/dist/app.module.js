@@ -18,11 +18,7 @@ let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
-<<<<<<< HEAD
         imports: [usuario_module_1.UsuarioModule, produto_module_1.ProdutoModule, banco_module_1.BancoModule, agencia_module_1.AgenciaModule, despesa_module_1.DespesaModule, axios_1.HttpModule],
-=======
-        imports: [usuario_module_1.UsuarioModule, produto_module_1.ProdutoModule, banco_module_1.BancoModule, agencia_module_1.AgenciaModule, axios_1.HttpModule],
->>>>>>> 09402edd8a19c6c5309fa8db0f3f5617d4c40984
         controllers: [],
     })
 ], AppModule);

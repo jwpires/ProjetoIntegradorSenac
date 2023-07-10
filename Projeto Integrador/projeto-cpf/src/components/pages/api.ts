@@ -57,5 +57,26 @@ export const api = {
         let json = await response.json();
 
         return json
+    },
+
+    /** POST ao que se refere as informações de cadastro de Grupo de Despesa */
+    InserirGrupoDespesa: async (nome_:string) => {
+        let response = await fetch("http://localhost:3000/grupoDespesa",
+            {
+                // por padrão o method do fetch, é o get, por isso não precisamos especificar.
+                method: 'POST',
+                body: JSON.stringify
+                    ({
+                        //campos requisitados pela API
+                        nome: nome_
+                    }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+        let json = await response.json();
+
+        return json
     }
 }
