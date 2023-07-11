@@ -26,6 +26,7 @@ let GrupoDespesaController = class GrupoDespesaController {
     RetornoGrupoDespesa(grupoDespesa) {
         let listaGrupoDespesa = this.armazenaGrupoDespesa.GrupoDespesa;
         let retornoGrupoDespesa = listaGrupoDespesa.map(gDespesa => new listarGrupoDespesa_dto_1.ListarGrupoDespesasDTO(gDespesa.id, gDespesa.descricao));
+        return retornoGrupoDespesa;
     }
     CriarGrupoDespesa(dadosGrupoDespesa) {
         const grupoDespesa = new grupoDespesa_entity_1.GrupoDespesaEntity((0, uuid_1.v4)(), dadosGrupoDespesa.descricao);

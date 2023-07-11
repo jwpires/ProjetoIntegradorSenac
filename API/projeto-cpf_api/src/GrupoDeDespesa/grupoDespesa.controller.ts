@@ -18,6 +18,8 @@ export class GrupoDespesaController{
                 gDespesa.descricao
             )
         );
+
+        return retornoGrupoDespesa;
     }
 
     @Post()
@@ -29,7 +31,7 @@ export class GrupoDespesaController{
             dadosGrupoDespesa,
             message: 'Grupo de Despesa Cadastrado.'
         }
-        
+
         return retornoGrupoDespesa
     }
 
