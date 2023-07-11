@@ -14,6 +14,7 @@ function CadastroGrupoDespesa() {
     }
 
     const handleClickSalvar = async () => {
+        console.log(nomeGrupoDespesa);
         if(!nomeGrupoDespesa){
             alert("O campo Nome não pode estar vazio.");
         }else{
@@ -22,10 +23,10 @@ function CadastroGrupoDespesa() {
                 alert('Cadastro Inserido com sucesso.');
                 return json;
             } catch (error) {
-                return alert('Ocorreu algum erro e o cadastro não pode ser inserido.')
+                alert('Ocorreu algum erro e o cadastro não pode ser inserido.')
             }
         }
-        console.log(nomeGrupoDespesa);
+        
     }
     
     return (

@@ -68,7 +68,7 @@ export const api = {
                 body: JSON.stringify
                     ({
                         //campos requisitados pela API
-                        nome: nome_
+                        descricao: nome_
                     }),
                 headers: {
                     'Content-Type': 'application/json'
@@ -77,6 +77,6 @@ export const api = {
 
         let json = await response.json();
 
-        return json
+        return json;
     }
 }

@@ -18,18 +18,19 @@ function CadastroBanco() {
 
     const handleSalvar = async () => {
 
-        if(!nomeBanco){
+        if (!nomeBanco) {
             return alert('Campo Nome precisa ser preenchido.')
-        }
+        } else {
 
-        try {
-            let json = api.InserirBanco(nomeBanco);
-            alert('Cadastro realizado com sucesso.')
-            return json;
+            try {
+                let json = await api.InserirBanco(nomeBanco);
+                alert('Cadastro realizado com sucesso.')
+                return json;
 
-        } catch (error) {
-            console.log(error);
-            alert('Ops, algo deu errado e não foi relizado o registro.')
+            } catch (error) {
+                console.log(error);
+                alert('Ops, algo deu errado e não foi relizado o registro.')
+            }
         }
 
     }
