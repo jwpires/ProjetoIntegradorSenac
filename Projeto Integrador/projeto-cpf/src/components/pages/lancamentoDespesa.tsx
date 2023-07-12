@@ -19,7 +19,6 @@ function LancamentoDespesa() {
     const [valorDespesa, setInputValor] = useState('');
 
 
-
     /**------------Manipulação Modal---------------------*/
     const [modal, setModal] = useState(false);
 
@@ -34,16 +33,6 @@ function LancamentoDespesa() {
     function exibeModal() {
         if (validaCamposPreenchidos())
             toggle();
-    }
-
-    function confirmaPagamento() {
-
-        setInputDespesa('');
-        setInputData('');
-        setInputValor('');
-        toggle();
-        alert('Despesa confirmada com sucesso!');
-        window.location.reload();
     }
 
     function validaCamposPreenchidos() {
@@ -65,6 +54,22 @@ function LancamentoDespesa() {
         } catch {
             alert('Erro!');
         }
+    }
+/**Continuar aqui****************************************************************************************************************** */
+    function confirmaPagamento() {
+
+        try {
+            const json = api.InserirLancamentoDespesa(descricaoDespesa,idGrupoDespesa,new Date(dataLancamento),new Date(dataVencimento),parseFloat(valorDespesa), true)
+        } catch (error) {
+            
+        }
+
+        setInputDespesa('');
+        setInputData('');
+        setInputValor('');
+        toggle();
+        alert('Despesa confirmada com sucesso!');
+        window.location.reload();
     }
 
     return (

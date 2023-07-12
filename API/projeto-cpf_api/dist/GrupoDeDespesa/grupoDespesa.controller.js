@@ -16,8 +16,8 @@ exports.GrupoDespesaController = void 0;
 const decorators_1 = require("@nestjs/common/decorators");
 const grupoDespesa_dm_1 = require("./grupoDespesa.dm");
 const grupoDespesa_entity_1 = require("./grupoDespesa.entity");
-const inseriGrupoDespesa_dto_1 = require("./validacao/dto/inseriGrupoDespesa.dto");
-const listarGrupoDespesa_dto_1 = require("./validacao/dto/listarGrupoDespesa.dto");
+const inseriGrupoDespesa_dto_1 = require("./dto/inseriGrupoDespesa.dto");
+const listarGrupoDespesa_dto_1 = require("./dto/listarGrupoDespesa.dto");
 const uuid_1 = require("uuid");
 let GrupoDespesaController = class GrupoDespesaController {
     constructor(armazenaGrupoDespesa) {
