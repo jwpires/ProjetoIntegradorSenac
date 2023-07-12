@@ -25,11 +25,11 @@ let DespesaController = class DespesaController {
     }
     async RetornoDespesasDash() {
         const listarDespesas = await this.armazenaDespesa.Despesa;
-        const retornoDespesas = listarDespesas.map(despesa => new exibeDespesasDashboard_dto_1.ListarDespesasDashboardDTO(despesa.descricao, despesa.grupoDespesa, despesa.dataVencimento, despesa.valor));
+        const retornoDespesas = listarDespesas.map(despesa => new exibeDespesasDashboard_dto_1.ListarDespesasDashboardDTO(despesa.descricao, despesa.grupoDespesa, despesa.dataVencimento, despesa.valor, despesa.pago));
         return retornoDespesas;
     }
     async CriarDespesa(dadosDespesa) {
-        const despesa = new despesa_entity_1.DespesaEntity((0, uuid_1.v4)(), dadosDespesa.descricao, dadosDespesa.grupoDespesa, dadosDespesa.dataLancamento, dadosDespesa.dataVencimento, dadosDespesa.valor);
+        const despesa = new despesa_entity_1.DespesaEntity((0, uuid_1.v4)(), dadosDespesa.descricao, dadosDespesa.grupoDespesa, dadosDespesa.dataLancamento, dadosDespesa.dataVencimento, dadosDespesa.valor, dadosDespesa.pago);
         this.armazenaDespesa.inserirDespesa(despesa);
         let retornoDespesa = {
             dadosDespesa,
@@ -52,7 +52,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], DespesaController.prototype, "CriarDespesa", null);
 DespesaController = __decorate([
-    (0, common_1.Controller)('/despesa'),
+    (0, common_1.Controller)('/lancamentoDespesa'),
     __metadata("design:paramtypes", [despesa_dm_1.DespesasArmazenadas])
 ], DespesaController);
 exports.DespesaController = DespesaController;

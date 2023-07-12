@@ -5,5 +5,6 @@ export declare class DespesaEntity {
     dataLancamento: Date;
     dataVencimento: Date;
     valor: number;
-    constructor(id: string, descricao: string, grupoDespesa: string, dataLancamento: Date, dataVencimento: Date, valor: number);
+    pago: boolean;
+    constructor(id: string, descricao: string, grupoDespesa: string, dataLancamento: Date, dataVencimento: Date, valor: number, pago: boolean);
 }

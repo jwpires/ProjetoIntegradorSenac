@@ -4,4 +4,5 @@ export declare class InserirDespesaDTO {
     dataLancamento: Date;
     dataVencimento: Date;
     valor: number;
+    pago: boolean;
 }

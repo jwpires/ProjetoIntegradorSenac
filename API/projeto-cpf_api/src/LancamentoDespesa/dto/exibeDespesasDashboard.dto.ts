@@ -5,6 +5,7 @@ export class ListarDespesasDashboardDTO{
         readonly descricao:string,
         readonly grupoDespesa:string,
         readonly dataVencimento:Date,
-        readonly valor: number
+        readonly valor: number,
+        readonly pago: boolean
     ){}
 }

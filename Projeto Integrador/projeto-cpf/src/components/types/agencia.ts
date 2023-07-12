@@ -4,5 +4,6 @@ export type Agencia = {
     nomeProprietario    :   string;
     numeroConta         :   string;
     tipoDeConta         :   string;
-    saldo               :   number; 
+    saldo               :   number;
+    pago                :   boolean; 
 }

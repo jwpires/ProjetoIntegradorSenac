@@ -1,3 +1,5 @@
+
+
 export class DespesaEntity{
     id: string;
     descricao:string;
@@ -5,6 +7,7 @@ export class DespesaEntity{
     dataLancamento:Date;
     dataVencimento:Date;
     valor: number;
+    pago: boolean;
 
     constructor(
         id:string,
@@ -12,7 +15,8 @@ export class DespesaEntity{
         grupoDespesa:string,
         dataLancamento:Date,
         dataVencimento:Date,
-        valor: number
+        valor: number,
+        pago: boolean
     )
     {
         this.id = id;
@@ -21,6 +25,7 @@ export class DespesaEntity{
         this.dataLancamento = dataLancamento;
         this.dataVencimento = dataVencimento;
         this.valor = valor;
+        this.pago = pago;
     }
 
 }

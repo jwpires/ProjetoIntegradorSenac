@@ -1,4 +1,4 @@
-import { IsDateString, IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsBoolean, IsDateString, IsNotEmpty, IsNumber, IsString } from "class-validator";
 
 export class InserirDespesaDTO{
 
@@ -21,5 +21,9 @@ export class InserirDespesaDTO{
     @IsNumber()
     @IsNotEmpty()
     valor: number;
+
+    @IsBoolean()
+    @IsNotEmpty()
+    pago: boolean;
 
 }

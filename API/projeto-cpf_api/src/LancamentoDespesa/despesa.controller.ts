@@ -5,7 +5,7 @@ import { ListarDespesasDashboardDTO } from "./dto/exibeDespesasDashboard.dto";
 import { InserirDespesaDTO } from "./dto/inserirDespesa.dto";
 import {v4 as uuid} from 'uuid';
 
-@Controller('/despesa')
+@Controller('/lancamentoDespesa')
 export class DespesaController{
     constructor(private armazenaDespesa: DespesasArmazenadas) { }
     
@@ -17,7 +17,8 @@ export class DespesaController{
                 despesa.descricao,
                 despesa.grupoDespesa,
                 despesa.dataVencimento,
-                despesa.valor
+                despesa.valor,
+                despesa.pago
             )
         );
         return retornoDespesas;
@@ -25,7 +26,8 @@ export class DespesaController{
 
     @Post()
     async CriarDespesa(@Body() dadosDespesa: InserirDespesaDTO) {
-        const despesa = new DespesaEntity(uuid(), dadosDespesa.descricao, dadosDespesa.grupoDespesa, dadosDespesa.dataLancamento, dadosDespesa.dataVencimento, dadosDespesa.valor)
+        const despesa = new DespesaEntity(uuid(), dadosDespesa.descricao, dadosDespesa.grupoDespesa, 
+        dadosDespesa.dataLancamento, dadosDespesa.dataVencimento, dadosDespesa.valor, dadosDespesa.pago)
 
         this.armazenaDespesa.inserirDespesa(despesa);
         let retornoDespesa = {

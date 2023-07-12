@@ -40,7 +40,6 @@ function CadastroContaBanco() {
     const handleSalvar = async(idBanco: string, nomeProprietario: string, numeroConta: string, tipoConta: string, saldo: number) => {
 
         if (idBanco && nomeProprietario && numeroConta && tipoConta && saldo) {
-            alert("deu certo")
             console.log('idBanco: ', idBanco)
             console.log('nomeProprietario: ', nomeProprietario)
             console.log('numeroConta: ', numeroConta)
@@ -50,6 +49,7 @@ function CadastroContaBanco() {
                 const json = await api.InserirContaCorrente(idBanco, nomeProprietario, numeroConta, tipoConta, saldo);
                 const dataArray = Array.isArray(json) ? json : [json];
                 setAgencia(dataArray);
+                alert("Cadastro efetuado com sucesso");
             } catch {
                 alert('Erro!');
             }

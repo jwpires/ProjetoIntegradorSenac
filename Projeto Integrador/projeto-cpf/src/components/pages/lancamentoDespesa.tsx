@@ -1,18 +1,19 @@
 import '../../style/style.css';
 import HeaderMenu from '../header/HeaderMenu';
 import { useNavigate } from 'react-router-dom';
-
 import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import { isConstructorDeclaration } from 'typescript';
+import { GrupoDespesa } from '../types/grupoDespesa';
+import { api } from './api';
+
 // import { func } from 'prop-types';
 
 function LancamentoDespesa() {
-    // Variavel de manipulação de exibição de campos
-    const [show, setShow] = useState(false);
+    const [grupoDespesa, setGrupoDespesa] = useState<GrupoDespesa[]>([]);
 
+    // Variavel de manipulação de exibição de campos
     const [descricaoDespesa, setInputDespesa] = useState('');
-    const [grupoDespesa, setInputGrupo] = useState('');
+    const [idGrupoDespesa, setInputIdGrupoDespesa] = useState('');
     const [dataLancamento, setInputLancamento] = useState('');
     const [dataVencimento, setInputData] = useState('');
     const [valorDespesa, setInputValor] = useState('');
@@ -31,12 +32,11 @@ function LancamentoDespesa() {
     }
 
     function exibeModal() {
-        toggle();
+        if (validaCamposPreenchidos())
+            toggle();
     }
 
     function confirmaPagamento() {
-
-
 
         setInputDespesa('');
         setInputData('');
@@ -47,37 +47,24 @@ function LancamentoDespesa() {
     }
 
     function validaCamposPreenchidos() {
-        let campos = [];
-
-        if (descricaoDespesa !== '' && grupoDespesa !== '' && dataLancamento !== ''
-        && dataVencimento !== '' && valorDespesa !== ''){
-                if (descricaoDespesa === '') {
-                    campos.push('Descrição da Despesa');
-                }
-                if (grupoDespesa === '') {
-                    campos.push('Grupo de Despesa');
-                }
-                if (dataLancamento === '') {
-                    campos.push('Data de Lançamento');
-                }
-                if (dataVencimento === '') {
-                    campos.push('Data de Despesa');
-                }
-                if (valorDespesa === '') {
-                    campos.push('Valor da Despesa');
-                }
+        if (descricaoDespesa == '' || idGrupoDespesa == '' || dataLancamento == '' || dataVencimento == '' || valorDespesa == '') {
+            alert('Preencha todos os campos para que o sistema efetue o cadastro.');
+            return false;
         }
-        console.log("campos penderes de preenchimentos:");
-        console.log("--------------------------------")
-        console.log("Despesa: "+descricaoDespesa);
-        console.log("Grupo despesa: "+grupoDespesa);
-        console.log("Data Lançamento: "+dataLancamento);
-        console.log("Data Vencimento: "+dataVencimento);
-        console.log("valor: "+valorDespesa);
 
-        
+        return true;
+    }
 
-        return campos;
+    /*Função que puxa os dados do grupo de despesa via API.*/
+    const carregaGrupoDespesa = async () => {
+
+        try {
+            const json = await api.listarGrupoDespesa();
+            const dataArray = Array.isArray(json) ? json : [json];
+            setGrupoDespesa(dataArray);
+        } catch {
+            alert('Erro!');
+        }
     }
 
     return (
@@ -99,10 +86,13 @@ function LancamentoDespesa() {
                             <input type="text" value={descricaoDespesa} id="" placeholder='Descrição da Despesa:' onChange={(e) => setInputDespesa(e.target.value)} />
 
                             <div className='adiciona-banco'>
-                                <select name="GrupoDespesa" id="" value={grupoDespesa} onChange={(e) => setInputGrupo(e.target.value)}  >
+                                <select name="GrupoDespesa" id="" value={idGrupoDespesa} onClick={carregaGrupoDespesa} onChange={(e) => setInputIdGrupoDespesa(e.target.value)}  >
                                     <option value="" >Grupo de Despesa</option >
-                                    <option value="TESTE1">TESTE1</option>
-                                    <option value="TESTE2">TESTE2</option>
+                                    {
+                                        grupoDespesa.map(
+                                            (valor, index) => <option value={valor.id}>{valor.descricao}</option>
+                                        )
+                                    }
                                 </select>
                                 <button type='button' onClick={handleClickGrupoDespesa}> + </button> {/* Botão servirá para direcionar a tela de cadastro da conta bancária. */}
                             </div>
@@ -113,8 +103,7 @@ function LancamentoDespesa() {
                             <input type="number" step=".01" name="" value={valorDespesa} placeholder='Valor da Despesa:' onChange={(e) => setInputValor(e.target.value)} />
 
                             <button className="botao-padrao" type='button' onClick={validaCamposPreenchidos}>Salvar</button>
-
-                            <input type="button" id='botao-pagar' onClick={exibeModal} value="Pagar" />
+                            <button type='button' id='botao-pagar' onClick={exibeModal}>Pagar</button>
 
 
                             <div className="teste" >

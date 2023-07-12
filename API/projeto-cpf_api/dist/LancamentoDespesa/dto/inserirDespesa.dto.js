@@ -38,5 +38,10 @@ __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", Number)
 ], InserirDespesaDTO.prototype, "valor", void 0);
+__decorate([
+    (0, class_validator_1.IsBoolean)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Boolean)
+], InserirDespesaDTO.prototype, "pago", void 0);
 exports.InserirDespesaDTO = InserirDespesaDTO;
 //# sourceMappingURL=inserirDespesa.dto.js.map

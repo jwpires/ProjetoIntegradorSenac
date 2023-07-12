@@ -21,6 +21,7 @@ function CadastroGrupoDespesa() {
             try {
                 let json = await api.InserirGrupoDespesa(nomeGrupoDespesa);
                 alert('Cadastro Inserido com sucesso.');
+                setNomeGrupoDespesa('');
                 return json;
             } catch (error) {
                 alert('Ocorreu algum erro e o cadastro não pode ser inserido.')
