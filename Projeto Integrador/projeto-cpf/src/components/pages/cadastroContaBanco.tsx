@@ -50,6 +50,7 @@ function CadastroContaBanco() {
                 const dataArray = Array.isArray(json) ? json : [json];
                 setAgencia(dataArray);
                 alert("Cadastro efetuado com sucesso");
+                window.location.reload();
             } catch {
                 alert('Erro!');
             }

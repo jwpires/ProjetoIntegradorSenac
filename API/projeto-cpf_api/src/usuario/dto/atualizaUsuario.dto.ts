@@ -16,7 +16,7 @@ export class AlteraUsuarioDTO{
     @MinLength(6,{message:"O tamano da senha dever conter no mínimo 6 caracteres"})
     @IsOptional()
     senha: string;
-
+ 
     @IsInt({message:"Idade inválida"})
     @IsOptional()
     idade:BigInteger;

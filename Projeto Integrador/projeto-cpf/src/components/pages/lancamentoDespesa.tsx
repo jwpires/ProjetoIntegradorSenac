@@ -44,7 +44,7 @@ function LancamentoDespesa() {
         return true;
     }
 
-    /*Função que puxa os dados do grupo de despesa via API.*/
+    /*Função GET que puxa os dados do grupo de despesa via API.*/
     const carregaGrupoDespesa = async () => {
 
         try {
@@ -55,13 +55,13 @@ function LancamentoDespesa() {
             alert('Erro!');
         }
     }
-/**Continuar aqui****************************************************************************************************************** */
+    /**Continuar aqui****************************************************************************************************************** */
     function confirmaPagamento() {
 
         try {
-            const json = api.InserirLancamentoDespesa(descricaoDespesa,idGrupoDespesa,new Date(dataLancamento),new Date(dataVencimento),parseFloat(valorDespesa), true)
+            const json = api.InserirLancamentoDespesa(descricaoDespesa, idGrupoDespesa, new Date(dataLancamento), new Date(dataVencimento), parseFloat(valorDespesa), true)
         } catch (error) {
-            
+
         }
 
         setInputDespesa('');
@@ -69,6 +69,24 @@ function LancamentoDespesa() {
         setInputValor('');
         toggle();
         alert('Despesa confirmada com sucesso!');
+        window.location.reload();
+    }
+
+    function handleClickSalvar() {
+
+        if (validaCamposPreenchidos()) {
+
+            try {
+                const json = api.InserirLancamentoDespesa(descricaoDespesa, idGrupoDespesa, new Date(dataLancamento), new Date(dataVencimento), parseFloat(valorDespesa), false)
+                alert('Despesa Salva com sucesso!');
+            } catch (error) {
+
+            }
+        }
+
+        setInputDespesa('');
+        setInputData('');
+        setInputValor('');
         window.location.reload();
     }
 
@@ -107,7 +125,7 @@ function LancamentoDespesa() {
                             <input type="date" name="" value={dataVencimento} onChange={(e) => setInputData(e.target.value)} />
                             <input type="number" step=".01" name="" value={valorDespesa} placeholder='Valor da Despesa:' onChange={(e) => setInputValor(e.target.value)} />
 
-                            <button className="botao-padrao" type='button' onClick={validaCamposPreenchidos}>Salvar</button>
+                            <button className="botao-padrao" type='button' onClick={handleClickSalvar}>Salvar</button>
                             <button type='button' id='botao-pagar' onClick={exibeModal}>Pagar</button>
 
 
