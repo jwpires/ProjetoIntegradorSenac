@@ -3,7 +3,7 @@ import { Delete, Param } from "@nestjs/common/decorators";
 import { Marca } from "./marca.entity";
 import { MarcaService } from "./marca.service";
 
-@Controller('/marca');
+@Controller('/marca')
 export class MarcaController{
     constructor(private readonly marcaService: MarcaService){
         
