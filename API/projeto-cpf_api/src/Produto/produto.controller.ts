@@ -41,7 +41,7 @@ export class ProdutoController{
             );
             return retornoMenu;      
     //    }
-        return ["Escreva 'http://localhost:3000/produtos/menu/Menu' para visualizar o cardápio disponível."];
+        // return ["Escreva 'http://localhost:3000/produtos/menu/Menu' para visualizar o cardápio disponível."];
     }
 
 

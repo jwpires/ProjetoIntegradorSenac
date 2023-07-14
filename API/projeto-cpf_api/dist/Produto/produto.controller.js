@@ -35,7 +35,6 @@ let ProdutoController = class ProdutoController {
         const produtosAtivos = await this.clsArmazenaProduto.buscarProdutoAtivo();
         const retornoMenu = produtosAtivos.map(produto => new listarMenuVenda_dto_1.ListarMenuVendaDTO(produto.nome, produto.medida, produto.estoque, produto.cor, produto.marca, produto.valor));
         return retornoMenu;
-        return ["Escreva 'http://localhost:3000/produtos/menu/Menu' para visualizar o cardápio disponível."];
     }
     async ConsultaPorNome(nome) {
         const listarProdutos = await this.clsArmazenaProduto.buscarPorNome(nome);

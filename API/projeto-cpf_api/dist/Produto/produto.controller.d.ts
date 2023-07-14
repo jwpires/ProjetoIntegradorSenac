@@ -9,7 +9,7 @@ export declare class ProdutoController {
     private clsArmazenaProduto;
     constructor(clsArmazenaProduto: ProdutosArmazenados);
     RetornoProdutos(): Promise<ListarProdutosDTO[]>;
-    ExibeMenu(): Promise<string[] | ListarMenuVendaDTO[]>;
+    ExibeMenu(): Promise<ListarMenuVendaDTO[]>;
     ConsultaPorNome(nome: string): Promise<ListarProdutosDTO[]>;
     ConsultaPorMarca(marca: string): Promise<ListarProdutosDTO[]>;
     consultaPorTamanho(tamanho: string): Promise<ListarProdutosDTO[]>;
