@@ -1,17 +1,35 @@
+import { useEffect, useState } from "react";
 import HeaderMenu from "../header/HeaderMenu";
-import LancamentoDespesa from "./lancamentoDespesa";
+import { DespesaDash } from "../types/despesaDash";
+import { api } from "./api";
+import moment from 'moment';
 
-function Clicou() {
-    alert("clicou no botão!");
-}
+
 
 function Home() {
+
+    const carregaDash = async () => {
+
+        try {
+            const json = await api.listarDespesasDash();
+            const dataArray = Array.isArray(json) ? json : [json];
+            setDashDespesa(dataArray);
+        } catch {
+            alert('Erro!');
+        }
+    }
+
+
+    useEffect(() => {
+        carregaDash();
+    }, []);
+
+    const [dashDespesa, setDashDespesa] = useState<DespesaDash[]>([]);
     return (
         <div>
             <HeaderMenu exibe={true} />
             <div className="container_main_padrao-tela">
                 <div className="container_padrao-tela">
-
 
                     <div className="nomeUsuario">
                         <label id="nomeUsuario">Usuário: </label>
@@ -36,20 +54,25 @@ function Home() {
                     <p><strong>Próximos vencimentos:</strong></p>
                     <p><strong>Despesas em aberto :</strong> {"depesa.emAberto"}</p>
                     <div className="gastos">
-                        <div className="despesaVencendo">
-                            <div>
-                                <p><strong>Despesa:</strong> {"despesa.nome"}</p>
-                                <p><strong>Vencimento:</strong> {"depesa.dataVencimento"}</p>
-                                <p><strong>Valor:</strong> {"despesa.valor"}</p>
-                            </div>
-                        </div>
-                        <div className="despesaVencendo">
-                            <div>
-                                <p><strong>Despesa:</strong> {"despesa.nome"}</p>
-                                <p><strong>Vencimento:</strong> {"depesa.dataVencimento"}</p>
-                                <p><strong>Valor:</strong> {"despesa.valor"}</p>
-                            </div>
-                        </div>
+                        {/* <div className="despesaVencendo">
+                            <div> */}
+                        {
+                            dashDespesa.map(
+
+                                dash => <>
+                                    <div className="despesaVencendo">
+                                        <div>
+                                            <p><strong>Despesa:</strong> {dash.descricao}</p>
+                                            <p><strong>Vencimento:</strong> {moment(dash.dataVencimento).format('DD-MM-YYYY')}</p>
+                                            <p><strong>Valor:</strong> {dash.valor}</p>
+                                        </div>
+                                    </div>
+                                </>
+
+                            )
+                        }
+                        {/* </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

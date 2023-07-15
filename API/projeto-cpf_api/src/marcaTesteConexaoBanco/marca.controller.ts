@@ -6,7 +6,6 @@ import { MarcaService } from "./marca.service";
 @Controller('/marca')
 export class MarcaController{
     constructor(private readonly marcaService: MarcaService){
-        
     }
 
     @Get('listar')

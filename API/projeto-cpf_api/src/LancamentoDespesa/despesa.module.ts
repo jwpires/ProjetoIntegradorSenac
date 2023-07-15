@@ -8,6 +8,4 @@ import { DespesasArmazenadas } from "./despesa.dm";
 })
 
 
-export class DespesaModule{
-
-}
+export class DespesaModule{}

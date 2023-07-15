@@ -290,7 +290,8 @@ da imagem do logo
 
 .gastos{
     display: flex;
-    flex-direction: row;
+    /* flex-direction: row; */
+    flex-wrap: wrap;
     width: 100%;
 }
 

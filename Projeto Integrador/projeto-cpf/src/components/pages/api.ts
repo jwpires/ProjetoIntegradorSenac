@@ -1,5 +1,14 @@
 export const api = {
 
+
+    listarDespesasDash: async() => {
+        let response =await fetch("http://localhost:3000/lancamentoDespesa");
+        let json = await response.json();
+        return json;
+    },
+
+
+ /* Interação de GET, POST com a tela de Cadastro de Banco */
     listarBancos: async () => {
 
         let response = await fetch("http://localhost:3000/bancos");
@@ -7,8 +16,6 @@ export const api = {
         return json;
     },
 
-
-    /* Interação de GET, POST com a tela de Cadastro de Banco */
 
     InserirBanco: async (nomeBanco: string) => {
 
