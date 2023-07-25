@@ -1,10 +1,17 @@
 export const api = {
 
+/* Interação da API na pagina HOME com depesas em abertas e saldos de contas bancárias */
 
     listarDespesasDash: async() => {
         let response =await fetch("http://localhost:3000/lancamentoDespesa");
         let json = await response.json();
         return json;
+    },
+
+    listarSaldosBancarios: async () => {
+        let response =  await fetch("http://localhost:3000/agencia/dash");
+        let json = await response.json();
+        return json; 
     },
 
 

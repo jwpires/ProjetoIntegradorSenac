@@ -3,17 +3,35 @@ import HeaderMenu from "../header/HeaderMenu";
 import { DespesaDash } from "../types/despesaDash";
 import { api } from "./api";
 import moment from 'moment';
+import { AgenciaDash } from "../types/agenciaDash";
 
 
 
 function Home() {
+    const [dashDespesa, setDashDespesa] = useState<DespesaDash[]>([]);
+    const [dashSaldoBanco, setSaldoBanco] = useState<AgenciaDash[]>([])
 
-    const carregaDash = async () => {
+
+    const carregaDespesasDash = async () => {
 
         try {
             const json = await api.listarDespesasDash();
             const dataArray = Array.isArray(json) ? json : [json];
             setDashDespesa(dataArray);
+
+        } catch {
+            alert('Erro!');
+        }
+    }
+
+    const carregaSaldosBancariosDash = async () => {
+
+        try {
+            const json = await api.listarSaldosBancarios();
+            const dataArray = Array.isArray(json) ? json : [json];
+            setSaldoBanco(dataArray);
+            console.log(dataArray);
+
         } catch {
             alert('Erro!');
         }
@@ -21,10 +39,11 @@ function Home() {
 
 
     useEffect(() => {
-        carregaDash();
+        carregaDespesasDash();
+        carregaSaldosBancariosDash();
     }, []);
 
-    const [dashDespesa, setDashDespesa] = useState<DespesaDash[]>([]);
+
     return (
         <div>
             <HeaderMenu exibe={true} />
@@ -37,25 +56,20 @@ function Home() {
 
                     {/* Deverá constar um map para apresentar os valores de saldo dentro de cada div */}
                     <div className="saldos">
-                        <div className="saldo">
-                            <p><strong>{"banco.nome"}</strong> : {"banco.saldo"} </p>
-                        </div>
-                        <div className="saldo">
-                            <p>saldo Banco Itau: 7.012,92 </p>
-                        </div>
-
-                        <div className="saldo">
-                            <p>saldo Banco do Brasil: 1.967.784,47 </p>
-                        </div>
-
+                        {
+                            dashSaldoBanco.map(
+                                dash => <>
+                                    <div className="saldo">
+                                        <p><strong>{dash.numeroConta}</strong> : {dash.saldo} </p>
+                                    </div>
+                                </>
+                            )
+                        }
                     </div>
 
                     <p>Total de despesa no mês : {"despesa.totalMesAtual"}</p>
                     <p><strong>Próximos vencimentos:</strong></p>
-                    <p><strong>Despesas em aberto :</strong> {"depesa.emAberto"}</p>
                     <div className="gastos">
-                        {/* <div className="despesaVencendo">
-                            <div> */}
                         {
                             dashDespesa.map(
 
@@ -64,15 +78,13 @@ function Home() {
                                         <div>
                                             <p><strong>Despesa:</strong> {dash.descricao}</p>
                                             <p><strong>Vencimento:</strong> {moment(dash.dataVencimento).format('DD-MM-YYYY')}</p>
-                                            <p><strong>Valor:</strong> {dash.valor}</p>
+                                            <p><strong>Valor:</strong> {dash.valor.toFixed(2)}</p>
                                         </div>
                                     </div>
                                 </>
 
                             )
                         }
-                        {/* </div>
-                        </div> */}
                     </div>
                 </div>
             </div>

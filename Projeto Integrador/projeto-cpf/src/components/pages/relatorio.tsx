@@ -174,11 +174,7 @@ function Relatorio() {
                             <div className="body-relatorio">
                                 
                                 <FiltroRelatorio/>
-                                <div className="filtros">
-                                    <Button color="danger">Efetuar Saque</Button>
-                                    <Button color="success">Efetuar Depósito</Button>
-                                </div>
-                            
+                                                            
                                 <UncontrolledAccordion
                                     defaultOpen={[
                                         '1',
@@ -196,20 +192,8 @@ function Relatorio() {
                                             <p><strong>Valor:</strong> 254.63</p>
                                             <Button color="danger">Excluir</Button>
                                             <Button color="warning">Editar</Button>
-
-                                        </AccordionBody>
-                                    </AccordionItem>
-                                    <AccordionItem>
-                                        <AccordionHeader targetId="2">
-                                            Banco Brasil : 303007
-                                        </AccordionHeader>
-                                        <AccordionBody accordionId="2">
-
-                                            <p><strong>Data de lançamento:</strong> 27/12/2023, </p>
-                                            <p><strong>Operação:</strong> Saque </p>
-                                            <p><strong>Valor:</strong> 184.63</p>
-                                            <Button color="danger">Excluir</Button>
-                                            <Button color="warning">Editar</Button>
+                                            <Button color="danger">Efetuar Saque</Button>
+                                            <Button color="success">Efetuar Depósito</Button>
 
                                         </AccordionBody>
                                     </AccordionItem>

@@ -20,6 +20,7 @@ const agencia_entity_1 = require("./agencia.entity");
 const inserirAgencia_dto_1 = require("./dto/inserirAgencia.dto");
 const uuid_1 = require("uuid");
 const listarAgencia_dto_1 = require("./dto/listarAgencia.dto");
+const listaAgenciaDashboard_dto_1 = require("./dto/listaAgenciaDashboard.dto");
 let AgenciaController = class AgenciaController {
     constructor(armanezaAgencia) {
         this.armanezaAgencia = armanezaAgencia;
@@ -27,6 +28,11 @@ let AgenciaController = class AgenciaController {
     async retornoAgencias() {
         const listarAgencias = await this.armanezaAgencia.Agencia;
         const retornaAgencias = listarAgencias.map(agencia => new listarAgencia_dto_1.ListarAgenciaDTO(agencia.id, agencia.id_banco, agencia.nomeProprietario, agencia.numeroConta, agencia.tipoDeConta, agencia.saldo));
+        return retornaAgencias;
+    }
+    async retornoAgenciaDash() {
+        const listarAgenciaDash = await this.armanezaAgencia.Agencia;
+        const retornaAgencias = listarAgenciaDash.map(agencia => new listaAgenciaDashboard_dto_1.ListarAgenciaDashboardDTO(agencia.numeroConta, agencia.saldo));
         return retornaAgencias;
     }
     async criarAgencia(dadosAgencia) {
@@ -47,6 +53,12 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], AgenciaController.prototype, "retornoAgencias", null);
+__decorate([
+    (0, common_1.Get)('/dash'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], AgenciaController.prototype, "retornoAgenciaDash", null);
 __decorate([
     (0, decorators_1.Post)(),
     __param(0, (0, decorators_1.Body)()),
