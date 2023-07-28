@@ -1,8 +1,8 @@
-import { BancoEntity } from "./banco.entity";
+import { Banco } from "./banco.entity";
 export declare class BancosArmazenados {
     #private;
-    get banco(): BancoEntity[];
-    inserirBanco(banco: BancoEntity): void;
+    get banco(): Banco[];
+    inserirBanco(banco: Banco): void;
     private buscaPorId;
-    consultarBancoPorNome(nome: string): BancoEntity;
+    consultarBancoPorNome(nome: string): Banco;
 }

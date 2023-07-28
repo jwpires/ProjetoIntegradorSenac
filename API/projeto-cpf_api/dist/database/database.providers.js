@@ -11,12 +11,12 @@ exports.databaseProviders = [
                 host: 'localhost',
                 port: 3306,
                 username: 'root',
-                password: 'admin',
-                database: 'projetoapi',
+                password: '',
+                database: 'integrador_cpf',
                 entities: [
                     __dirname + '/../**/*.entity{.ts,.js}',
                 ],
-                synchronize: true,
+                synchronize: false,
             });
             return dataSource.initialize();
         }

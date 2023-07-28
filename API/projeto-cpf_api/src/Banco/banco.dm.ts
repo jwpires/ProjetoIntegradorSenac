@@ -1,16 +1,16 @@
 import {  Injectable } from "@nestjs/common";
-import { BancoEntity } from "./banco.entity";
+import { Banco } from "./banco.entity";
 import { InserirBancoDTO } from "./dto/inserirBanco.dto";
 
 @Injectable()
 export class BancosArmazenados{
-    #bancos : BancoEntity[] = [];
+    #bancos : Banco[] = [];
 
     get banco(){
         return this.#bancos;
     }
     /* função que cadastra um ou mais bancos */
-    inserirBanco(banco: BancoEntity){
+    inserirBanco(banco: Banco){
         this.#bancos.push(banco);
     }
 

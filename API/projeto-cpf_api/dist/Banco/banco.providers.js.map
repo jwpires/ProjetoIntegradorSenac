@@ -1,0 +1,1 @@
+{"version":3,"file":"banco.providers.js","sourceRoot":"","sources":["../../src/Banco/banco.providers.ts"],"names":[],"mappings":";;;AACA,iDAAuC;AAG1B,QAAA,cAAc,GAAG;IAC1B;QACI,OAAO,EAAE,kBAAkB;QAC3B,UAAU,EAAE,CAAC,UAAsB,EAAE,EAAE,CAAC,UAAU,CAAC,aAAa,CAAC,oBAAK,CAAC;QACvE,MAAM,EAAE,CAAC,aAAa,CAAC;KAC1B;CACJ,CAAC"}

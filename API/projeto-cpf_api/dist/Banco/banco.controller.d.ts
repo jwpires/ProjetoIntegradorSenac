@@ -1,10 +1,10 @@
-import { BancosArmazenados } from "./banco.dm";
+import { Banco } from "./banco.entity";
 import { InserirBancoDTO } from "./dto/inserirBanco.dto";
-import { ListarBancos } from "./dto/listarBancos.dto";
+import { BancoService } from "./banco.service";
 export declare class BancoController {
-    private armanezaBanco;
-    constructor(armanezaBanco: BancosArmazenados);
-    RetornaTodosBancos(): Promise<ListarBancos[]>;
+    private readonly bancoService;
+    constructor(bancoService: BancoService);
+    RetornaTodosBancos(): Promise<Banco[]>;
     CriarBanco(novoBanco: InserirBancoDTO): Promise<{
         novoBanco: InserirBancoDTO;
         status: string;

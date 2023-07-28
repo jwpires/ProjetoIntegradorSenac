@@ -15,23 +15,20 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.BancoController = void 0;
 const common_1 = require("@nestjs/common");
 const decorators_1 = require("@nestjs/common/decorators");
-const banco_dm_1 = require("./banco.dm");
 const banco_entity_1 = require("./banco.entity");
 const inserirBanco_dto_1 = require("./dto/inserirBanco.dto");
-const listarBancos_dto_1 = require("./dto/listarBancos.dto");
 const uuid_1 = require("uuid");
+const banco_service_1 = require("./banco.service");
 let BancoController = class BancoController {
-    constructor(armanezaBanco) {
-        this.armanezaBanco = armanezaBanco;
+    constructor(bancoService) {
+        this.bancoService = bancoService;
     }
     async RetornaTodosBancos() {
-        const consulta = this.armanezaBanco.banco;
-        const retorno = consulta.map(banco => new listarBancos_dto_1.ListarBancos(banco.id, banco.nome));
-        return retorno;
+        return this.bancoService.listar();
     }
     async CriarBanco(novoBanco) {
-        var banco = new banco_entity_1.BancoEntity((0, uuid_1.v4)(), novoBanco.nome);
-        this.armanezaBanco.inserirBanco(banco);
+        var banco = new banco_entity_1.Banco((0, uuid_1.v4)(), novoBanco.nome);
+        this.bancoService.inserirBanco(banco);
         var retornoBanco = {
             novoBanco,
             status: 'Banco Inserido'
@@ -54,7 +51,7 @@ __decorate([
 ], BancoController.prototype, "CriarBanco", null);
 BancoController = __decorate([
     (0, common_1.Controller)('/bancos'),
-    __metadata("design:paramtypes", [banco_dm_1.BancosArmazenados])
+    __metadata("design:paramtypes", [banco_service_1.BancoService])
 ], BancoController);
 exports.BancoController = BancoController;
 //# sourceMappingURL=banco.controller.js.map

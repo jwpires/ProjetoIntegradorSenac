@@ -1,9 +1,16 @@
-export class BancoEntity{
-    id      : string;
-    nome    : string;
+import { Column, Entity, PrimaryColumn } from "typeorm";
 
-    constructor(id: string, nome: string){
-        this.id     =   id;
-        this.nome   =   nome;
-    }
+@Entity()
+export class Banco{
+    @PrimaryColumn()
+    id: string;
+
+    @Column()
+    nome: string;
+    
+
+     constructor(id: string, nome: string){
+         this.id     =   id;
+         this.nome   =   nome;
+     }
 }

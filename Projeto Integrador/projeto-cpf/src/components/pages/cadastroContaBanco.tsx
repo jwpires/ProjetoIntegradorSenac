@@ -3,12 +3,12 @@ import HeaderMenu from '../header/HeaderMenu';
 import { useNavigate } from 'react-router-dom';
 import { api } from './api';
 import { Banco } from '../types/banco';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { Agencia } from '../types/agencia';
 
 function CadastroContaBanco() {
     const navegacao = useNavigate();
-    const [banco, setBanco] = useState<Banco[]>([]); // constante Banco utilizada para armazenar as informações com o mesmo tipoe de dados solicitado pela API
+    const [banco, setBanco] = useState<Banco[]>([]); // constante Banco utilizada para armazenar as informações com o mesmo tipo de dados solicitado pela API
     const [agencia,setAgencia] = useState<Agencia[]>([]);
 
     /*Constantes utilizadas capturar as informações de cadastro da agência digita pelo usuário
@@ -60,7 +60,11 @@ function CadastroContaBanco() {
 
     }
 
-    console.log(api.listarBancos());
+    useEffect(() => {
+        carregaBancos();
+    }, []);
+
+    //console.log(api.listarBancos());
 
     return (
         <div className="container-cadBanco">
@@ -77,11 +81,11 @@ function CadastroContaBanco() {
                     <div className='divCadBanco'>
                         <form action="" method="" className="cadBanco">
                             <div className='adiciona-banco'>
-                                <select name="Banco" id="" onClick={carregaBancos} onChange={(e) => { setSelectValueIdBanco(e.target.value) }}>
+                                <select name="Banco" id="" /*onClick={carregaBancos}*/ onChange={(e) => { setSelectValueIdBanco(e.target.value) }}>
                                     <option value="" >Informe o Banco</option>
                                     {
                                         banco.map(
-                                            (item) => <option value={item.id}>{item.nome}</option>
+                                            (item, chave) => <option value={item.id}>{item.nome}</option>
                                         )
                                     }
                                 </select>

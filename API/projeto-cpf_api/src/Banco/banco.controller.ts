@@ -1,37 +1,29 @@
 import { Controller, Get } from "@nestjs/common";
 import { Body, Post, UseInterceptors,} from "@nestjs/common/decorators";
-import { BancosArmazenados } from "./banco.dm";
-import { BancoEntity } from "./banco.entity";
+import { Banco } from "./banco.entity";
 import { InserirBancoDTO } from "./dto/inserirBanco.dto";
-import { ListarBancos } from "./dto/listarBancos.dto";
 import {v4 as uuid} from 'uuid';
+import { BancoService } from "./banco.service";
 
 
 @Controller('/bancos')
 export class BancoController{
-    constructor( private armanezaBanco: BancosArmazenados){}
+    constructor( private  readonly bancoService: BancoService){}
 
     @Get()
-    async RetornaTodosBancos(){
-        const consulta = this.armanezaBanco.banco;
-        const retorno = consulta.map(
-            banco => new ListarBancos(
-                banco.id,
-                banco.nome
-            )
-        )
-        return retorno;
+    async RetornaTodosBancos():Promise<Banco[]>{
+        return this.bancoService.listar();
     }
 
     @Post()
     async CriarBanco(@Body() novoBanco:InserirBancoDTO) {
-        var banco = new BancoEntity(uuid(), novoBanco.nome)
+        var banco = new Banco(uuid(), novoBanco.nome)
 
-        this.armanezaBanco.inserirBanco(banco);
+        this.bancoService.inserirBanco(banco);
 
         var retornoBanco={
             novoBanco,
-            status:'Banco Inserido'
+            status:'Banco Inserido' 
         }
 
         return retornoBanco;
