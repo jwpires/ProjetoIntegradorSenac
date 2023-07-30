@@ -1,11 +1,11 @@
-import { AgenciaArmazenados } from "./agencia.dm";
+import { Agencia } from "./agencia.entity";
 import { InserirAgenciaDTO } from "./dto/inserirAgencia.dto";
-import { ListarAgenciaDTO } from "./dto/listarAgencia.dto";
-import { ListarAgenciaDashboardDTO } from "./dto/listaAgenciaDashboard.dto";
+import { AgenciaService } from "./agencia.service";
+import { BancoService } from "src/Banco/banco.service";
 export declare class AgenciaController {
-    private armanezaAgencia;
-    constructor(armanezaAgencia: AgenciaArmazenados);
-    retornoAgencias(): Promise<ListarAgenciaDTO[]>;
-    retornoAgenciaDash(): Promise<ListarAgenciaDashboardDTO[]>;
+    private readonly agenciaService;
+    private readonly bancoService;
+    constructor(agenciaService: AgenciaService, bancoService: BancoService);
+    retornoAgencias(): Promise<Agencia[]>;
     criarAgencia(dadosAgencia: InserirAgenciaDTO): Promise<any>;
 }

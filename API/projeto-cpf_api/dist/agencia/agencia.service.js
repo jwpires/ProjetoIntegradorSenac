@@ -12,44 +12,45 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.BancoService = void 0;
+exports.AgenciaService = void 0;
 const common_1 = require("@nestjs/common");
 const common_2 = require("@nestjs/common");
 const typeorm_1 = require("typeorm");
-let BancoService = class BancoService {
-    constructor(bancoRepository) {
-        this.bancoRepository = bancoRepository;
+let AgenciaService = class AgenciaService {
+    constructor(agenciaRepository) {
+        this.agenciaRepository = agenciaRepository;
     }
     async listar() {
-        return this.bancoRepository.find();
+        return this.agenciaRepository.find();
     }
-    async inserirBanco(banco) {
-        const id = banco.id;
-        const nome = banco.nome;
+    async inserirAgencia(agencia) {
+        const id = agencia.id;
+        const id_banco = agencia.id_banco;
+        const nomeProprietario = agencia.nomeProprietario;
+        const numeroConta = agencia.numeroConta;
+        const saldo = agencia.saldo;
+        const tipoDeConta = agencia.tipoDeConta;
         try {
-            const novoBanco = this.bancoRepository.create({
+            const novaAgencia = this.agenciaRepository.create({
                 id,
-                nome
+                id_banco,
+                nomeProprietario,
+                numeroConta,
+                tipoDeConta,
+                saldo
             });
-            await this.bancoRepository.insert(novoBanco);
-            console.log('Banco cadastrado com sucesso.');
+            await this.agenciaRepository.insert(novaAgencia);
+            console.log('Agencia cadastrado com sucesso.');
         }
         catch (error) {
-            console.log('Erro ao cadastrar Banco: ', error.message);
+            console.log('Erro ao cadastrar Agencia: ', error.message);
         }
     }
-    async buscarBancoPorId(id) {
-        return this.bancoRepository.findOne({
-            where: {
-                id,
-            }
-        });
-    }
 };
-BancoService = __decorate([
+AgenciaService = __decorate([
     (0, common_2.Injectable)(),
-    __param(0, (0, common_1.Inject)('BANCO_REPOSITORY')),
+    __param(0, (0, common_1.Inject)('AGENCIA_REPOSITORY')),
     __metadata("design:paramtypes", [typeorm_1.Repository])
-], BancoService);
-exports.BancoService = BancoService;
-//# sourceMappingURL=banco.service.js.map
+], AgenciaService);
+exports.AgenciaService = AgenciaService;
+//# sourceMappingURL=agencia.service.js.map

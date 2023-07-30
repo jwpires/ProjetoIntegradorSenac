@@ -10,14 +10,14 @@ import { BancoService } from "./banco.service";
 export class BancoController{
     constructor( private  readonly bancoService: BancoService){}
 
-    @Get()
+    @Get() /** Retorna os Bancos cadastrados via API */
     async RetornaTodosBancos():Promise<Banco[]>{
         return this.bancoService.listar();
     }
 
-    @Post()
+    @Post() /** Cadastro novo Banco via API */
     async CriarBanco(@Body() novoBanco:InserirBancoDTO) {
-        var banco = new Banco(uuid(), novoBanco.nome)
+        let banco = new Banco(uuid(), novoBanco.nome)
 
         this.bancoService.inserirBanco(banco);
 

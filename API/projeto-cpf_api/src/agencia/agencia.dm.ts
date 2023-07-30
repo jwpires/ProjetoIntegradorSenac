@@ -1,22 +1,22 @@
 import {  Injectable } from "@nestjs/common";
-import { AgenciaEntity } from "./agencia.entity";
+import { Agencia } from "./agencia.entity";
 
 @Injectable()
 export class AgenciaArmazenados{
-    #agencias : AgenciaEntity[] = [];
+    // #agencias : Agencia[] = [];
 
-    get Agencia(){
-        return this.#agencias;
-    }
+    // get Agencia(){
+    //     return this.#agencias;
+    // }
 
-    agenciaJaCadastrada(numConta:string, codBanco:string){
-       const validaConta = this.#agencias.find(
-            conta => (conta.numeroConta === numConta && conta.id_banco === codBanco)
-        ) 
-    }
+    // agenciaJaCadastrada(numConta:string, codBanco:string){
+    //    const validaConta = this.#agencias.find(
+    //         conta => (conta.numeroConta === numConta && conta.id_banco === codBanco)
+    //     ) 
+    // }
 
-    inserirAgencia(agencia: AgenciaEntity) {
-        this.#agencias.push(agencia);
-    }
+    // inserirAgencia(agencia: Agencia) {
+    //     this.#agencias.push(agencia);
+    // }
     
 }

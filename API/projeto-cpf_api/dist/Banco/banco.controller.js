@@ -27,7 +27,7 @@ let BancoController = class BancoController {
         return this.bancoService.listar();
     }
     async CriarBanco(novoBanco) {
-        var banco = new banco_entity_1.Banco((0, uuid_1.v4)(), novoBanco.nome);
+        let banco = new banco_entity_1.Banco((0, uuid_1.v4)(), novoBanco.nome);
         this.bancoService.inserirBanco(banco);
         var retornoBanco = {
             novoBanco,

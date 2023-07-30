@@ -5,5 +5,5 @@ export declare class BancoService {
     constructor(bancoRepository: Repository<Banco>);
     listar(): Promise<Banco[]>;
     inserirBanco(banco: Banco): Promise<void>;
-    buscaPorId(id: string): Promise<Banco>;
+    buscarBancoPorId(id: string): Promise<Banco>;
 }

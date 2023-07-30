@@ -21,27 +21,28 @@ export class BancoService{
     async inserirBanco(banco: Banco): Promise<void>{
         const id = banco.id;
         const nome = banco.nome;
-        const novoBanco = this.bancoRepository.create({
-            id,
-            nome
-        });
-        await this.bancoRepository.insert(novoBanco);
-    }
 
-    buscaPorId(id:string):Promise<Banco>{
+        try {
+            const novoBanco = this.bancoRepository.create({
+                id,
+                nome
+            });
+            await this.bancoRepository.insert(novoBanco);
+            console.log('Banco cadastrado com sucesso.');
+
+        } catch (error) {
+            console.log('Erro ao cadastrar Banco: ', error.message);
+        }
+
+        
+    }
+ 
+    async buscarBancoPorId(id: string): Promise<Banco> { // Renomeado para buscarBancoPorId
         return this.bancoRepository.findOne({
             where: {
                 id,
             }
-        })
+        });
     }
 
-    
-    // consultarBancoPorNome(nome: string){
-    //     return this.bancoRepository.findOne({
-    //         where: {
-    //             nome,
-    //         }
-    //     })
-    // }
 }

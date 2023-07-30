@@ -8,14 +8,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AgenciaModule = void 0;
 const common_1 = require("@nestjs/common");
+const banco_providers_1 = require("../Banco/banco.providers");
+const banco_service_1 = require("../Banco/banco.service");
+const database_module_1 = require("../database/database.module");
 const agencia_controller_1 = require("./agencia.controller");
-const agencia_dm_1 = require("./agencia.dm");
+const agencia_providers_1 = require("./agencia.providers");
+const agencia_service_1 = require("./agencia.service");
 let AgenciaModule = class AgenciaModule {
 };
 AgenciaModule = __decorate([
     (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
         controllers: [agencia_controller_1.AgenciaController],
-        providers: [agencia_dm_1.AgenciaArmazenados]
+        providers: [
+            ...agencia_providers_1.agenciaProviders,
+            ...banco_providers_1.bancoProviders,
+            agencia_service_1.AgenciaService, banco_service_1.BancoService
+        ]
     })
 ], AgenciaModule);
 exports.AgenciaModule = AgenciaModule;
