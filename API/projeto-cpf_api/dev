@@ -1,0 +1,47 @@
+
+> projeto-cpf_api@0.0.1 start
+> nest start
+
+[32m[Nest] 12876  - [39m02/08/2023, 20:28:08 [32m    LOG[39m [38;5;3m[NestFactory] [39m[32mStarting Nest application...[39m
+[32m[Nest] 12876  - [39m02/08/2023, 20:28:09 [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mAppModule dependencies initialized[39m[38;5;3m +728ms[39m
+[32m[Nest] 12876  - [39m02/08/2023, 20:28:09 [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mHttpModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 12876  - [39m02/08/2023, 20:28:09 [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mProdutoModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 12876  - [39m02/08/2023, 20:28:09 [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mDespesaModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 12876  - [39m02/08/2023, 20:28:09 [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mGrupoDespesaModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 12876  - [39m02/08/2023, 20:28:09 [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mRelatorioDespesaModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 12876  - [39m02/08/2023, 20:28:09 [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mUsuarioModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 12876  - [39m02/08/2023, 20:28:09 [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mDatabaseModule dependencies initialized[39m[38;5;3m +260ms[39m
+[32m[Nest] 12876  - [39m02/08/2023, 20:28:09 [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mAgenciaModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 12876  - [39m02/08/2023, 20:28:09 [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mBancoModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 12876  - [39m02/08/2023, 20:28:10 [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mUsuarioController {/usuarios}:[39m[38;5;3m +449ms[39m
+[32m[Nest] 12876  - [39m02/08/2023, 20:28:10 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/usuarios, GET} route[39m[38;5;3m +3ms[39m
+[32m[Nest] 12876  - [39m02/08/2023, 20:28:10 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/usuarios, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 12876  - [39m02/08/2023, 20:28:10 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/usuarios/:id, PUT} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 12876  - [39m02/08/2023, 20:28:10 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/usuarios/:id, DELETE} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 12876  - [39m02/08/2023, 20:28:10 [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mProdutoController {/produtos}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 12876  - [39m02/08/2023, 20:28:10 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/produtos, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 12876  - [39m02/08/2023, 20:28:10 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/produtos/menu, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 12876  - [39m02/08/2023, 20:28:10 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/produtos/:nome, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 12876  - [39m02/08/2023, 20:28:10 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/produtos/marca/:marca, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 12876  - [39m02/08/2023, 20:28:10 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/produtos/tamanho/:tamanho, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 12876  - [39m02/08/2023, 20:28:10 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/produtos/cor/:cor, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 12876  - [39m02/08/2023, 20:28:10 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/produtos, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 12876  - [39m02/08/2023, 20:28:10 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/produtos/:id, PUT} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 12876  - [39m02/08/2023, 20:28:10 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/produtos/removerEstoque/:id, PUT} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 12876  - [39m02/08/2023, 20:28:10 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/produtos/adicionarEstoque/:id, PUT} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 12876  - [39m02/08/2023, 20:28:10 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/produtos/:id, DELETE} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 12876  - [39m02/08/2023, 20:28:10 [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mBancoController {/bancos}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 12876  - [39m02/08/2023, 20:28:10 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/bancos, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 12876  - [39m02/08/2023, 20:28:10 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/bancos, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 12876  - [39m02/08/2023, 20:28:10 [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mAgenciaController {/agencia}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 12876  - [39m02/08/2023, 20:28:10 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/agencia, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 12876  - [39m02/08/2023, 20:28:10 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/agencia, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 12876  - [39m02/08/2023, 20:28:10 [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mDespesaController {/lancamentoDespesa}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 12876  - [39m02/08/2023, 20:28:10 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/lancamentoDespesa, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 12876  - [39m02/08/2023, 20:28:10 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/lancamentoDespesa, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 12876  - [39m02/08/2023, 20:28:10 [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mGrupoDespesaController {/grupoDespesa}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 12876  - [39m02/08/2023, 20:28:10 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/grupoDespesa, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 12876  - [39m02/08/2023, 20:28:10 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/grupoDespesa, POST} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 12876  - [39m02/08/2023, 20:28:10 [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mRelatorioDespesaController {/relatorioDespesa}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 12876  - [39m02/08/2023, 20:28:10 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/relatorioDespesa, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 12876  - [39m02/08/2023, 20:28:10 [32m    LOG[39m [38;5;3m[NestApplication] [39m[32mNest application successfully started[39m[38;5;3m +2ms[39m
