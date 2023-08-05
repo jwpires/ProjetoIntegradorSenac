@@ -10,24 +10,24 @@ var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (
     if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
     return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
 };
-var _RelatorioDespesa_relatorio;
+var _RelatorioDespesaService_relatorio;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RelatorioDespesa = void 0;
+exports.RelatorioDespesaService = void 0;
 const common_1 = require("@nestjs/common");
-let RelatorioDespesa = class RelatorioDespesa {
+let RelatorioDespesaService = class RelatorioDespesaService {
     constructor() {
-        _RelatorioDespesa_relatorio.set(this, []);
+        _RelatorioDespesaService_relatorio.set(this, []);
     }
     get Despesas() {
-        return __classPrivateFieldGet(this, _RelatorioDespesa_relatorio, "f");
+        return __classPrivateFieldGet(this, _RelatorioDespesaService_relatorio, "f");
     }
     exibeTodasDespesas() {
         return this.Despesas;
     }
 };
-_RelatorioDespesa_relatorio = new WeakMap();
-RelatorioDespesa = __decorate([
+_RelatorioDespesaService_relatorio = new WeakMap();
+RelatorioDespesaService = __decorate([
     (0, common_1.Injectable)()
-], RelatorioDespesa);
-exports.RelatorioDespesa = RelatorioDespesa;
+], RelatorioDespesaService);
+exports.RelatorioDespesaService = RelatorioDespesaService;
 //# sourceMappingURL=relatorioDepesa.dm.js.map

@@ -34,7 +34,7 @@ export class Agencia{
         this.nomeProprietario   =   nomeProprietario;
         this.numeroConta = numeroConta;
         this.tipoDeConta = tipoDeConta;
-        this.saldo = saldo;
+        this.saldo = saldo; 
     }
     
 

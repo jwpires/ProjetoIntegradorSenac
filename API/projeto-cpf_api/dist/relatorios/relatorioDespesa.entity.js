@@ -1,13 +1,18 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RelatorioDespesaEntity = void 0;
-class RelatorioDespesaEntity {
-    constructor(dataLancamento, dataVencimento, nomeGrupoDespesa, valor) {
-        this.dataLancamento = dataLancamento;
-        this.dataVencimento = dataVencimento;
-        this.nomeGrupoDespesa = nomeGrupoDespesa;
-        this.valor = valor;
-    }
+exports.RelatorioDespesa = void 0;
+class RelatorioDespesa {
 }
-exports.RelatorioDespesaEntity = RelatorioDespesaEntity;
+exports.RelatorioDespesa = RelatorioDespesa;
+dataLancamento: Date;
+dataVencimento: Date;
+nomeGrupoDespesa: string;
+valor: number;
+constructor(dataLancamento, Date, dataVencimento, Date, nomeGrupoDespesa, string, valor, number);
+{
+    this.dataLancamento = dataLancamento;
+    this.dataVencimento = dataVencimento;
+    this.nomeGrupoDespesa = nomeGrupoDespesa;
+    this.valor = valor;
+}
 //# sourceMappingURL=relatorioDespesa.entity.js.map

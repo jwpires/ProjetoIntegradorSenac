@@ -1,15 +1,15 @@
 import { Injectable } from "@nestjs/common";
-import { DespesaEntity } from "./despesa.entity";
+import { Despesa } from "./despesa.entity";
 
 @Injectable()
 export class DespesasArmazenadas{
-    #despesas: DespesaEntity[] = [];
+    #despesas: Despesa[] = [];
     
     get Despesa() {
         return this.#despesas;
     }
 
-    inserirDespesa(despesa: DespesaEntity) {
+    inserirDespesa(despesa: Despesa) {
         this.#despesas.push(despesa);
     }
 

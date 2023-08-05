@@ -1,7 +1,7 @@
-import { DespesaEntity } from "./despesa.entity";
+import { Despesa } from "./despesa.entity";
 export declare class DespesasArmazenadas {
     #private;
-    get Despesa(): DespesaEntity[];
-    inserirDespesa(despesa: DespesaEntity): void;
-    exibeDespesasDashboard(): DespesaEntity[];
+    get Despesa(): Despesa[];
+    inserirDespesa(despesa: Despesa): void;
+    exibeDespesasDashboard(): Despesa[];
 }

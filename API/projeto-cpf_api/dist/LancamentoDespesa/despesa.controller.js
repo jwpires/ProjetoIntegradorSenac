@@ -25,11 +25,11 @@ let DespesaController = class DespesaController {
     }
     async RetornoDespesasDash() {
         const listarDespesas = await this.armazenaDespesa.Despesa;
-        const retornoDespesas = listarDespesas.map(despesa => new exibeDespesasDashboard_dto_1.ListarDespesasDashboardDTO(despesa.descricao, despesa.grupoDespesa, despesa.dataVencimento, despesa.valor, despesa.pago));
+        const retornoDespesas = listarDespesas.map(despesa => new exibeDespesasDashboard_dto_1.ListarDespesasDashboardDTO(despesa.descricao, despesa.id_grupoDespesa, despesa.dataVencimento, despesa.valor, despesa.pago));
         return retornoDespesas;
     }
     async CriarDespesa(dadosDespesa) {
-        const despesa = new despesa_entity_1.DespesaEntity((0, uuid_1.v4)(), dadosDespesa.descricao, dadosDespesa.grupoDespesa, dadosDespesa.dataLancamento, dadosDespesa.dataVencimento, dadosDespesa.valor, dadosDespesa.pago);
+        const despesa = new despesa_entity_1.Despesa((0, uuid_1.v4)(), dadosDespesa.descricao, dadosDespesa.grupoDespesa, dadosDespesa.dataLancamento, dadosDespesa.dataVencimento, dadosDespesa.valor, dadosDespesa.pago);
         this.armazenaDespesa.inserirDespesa(despesa);
         let retornoDespesa = {
             dadosDespesa,

@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Post } from "@nestjs/common";
 import { DespesasArmazenadas } from "./despesa.dm";
-import { DespesaEntity } from "./despesa.entity";
+import { Despesa } from "./despesa.entity";
 import { ListarDespesasDashboardDTO } from "./dto/exibeDespesasDashboard.dto";
 import { InserirDespesaDTO } from "./dto/inserirDespesa.dto";
 import {v4 as uuid} from 'uuid';
@@ -15,7 +15,7 @@ export class DespesaController{
         const retornoDespesas = listarDespesas.map(
             despesa => new ListarDespesasDashboardDTO(
                 despesa.descricao,
-                despesa.grupoDespesa,
+                despesa.id_grupoDespesa,
                 despesa.dataVencimento,
                 despesa.valor,
                 despesa.pago
@@ -26,7 +26,7 @@ export class DespesaController{
 
     @Post()
     async CriarDespesa(@Body() dadosDespesa: InserirDespesaDTO) {
-        const despesa = new DespesaEntity(uuid(), dadosDespesa.descricao, dadosDespesa.grupoDespesa, 
+        const despesa = new Despesa(uuid(), dadosDespesa.descricao, dadosDespesa.grupoDespesa, 
         dadosDespesa.dataLancamento, dadosDespesa.dataVencimento, dadosDespesa.valor, dadosDespesa.pago)
 
         this.armazenaDespesa.inserirDespesa(despesa);

@@ -1,18 +1,32 @@
+import { GrupoDespesa } from "src/GrupoDeDespesa/grupoDespesa.entity";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
 
 
-export class DespesaEntity{
+@Entity()
+export class Despesa{
+    @PrimaryColumn()
     id: string;
+
+    @Column()
     descricao:string;
-    grupoDespesa:string;
+
+    @ManyToOne(() => GrupoDespesa, {cascade: true})
+    @JoinColumn({name: "id_grupoDespesa", referencedColumnName: "id"})
+
+    id_grupoDespesa:string;
+    @Column()
     dataLancamento:Date;
+    @Column()
     dataVencimento:Date;
+    @Column()
     valor: number;
+    @Column()
     pago: boolean;
 
     constructor(
         id:string,
         descricao:string,
-        grupoDespesa:string,
+        id_grupoDespesa:string,
         dataLancamento:Date,
         dataVencimento:Date,
         valor: number,
@@ -21,7 +35,7 @@ export class DespesaEntity{
     {
         this.id = id;
         this.descricao = descricao;
-        this.grupoDespesa = grupoDespesa;
+        this.id_grupoDespesa = id_grupoDespesa;
         this.dataLancamento = dataLancamento;
         this.dataVencimento = dataVencimento;
         this.valor = valor;

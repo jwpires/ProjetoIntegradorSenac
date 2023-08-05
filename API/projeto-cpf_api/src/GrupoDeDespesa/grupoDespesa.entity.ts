@@ -1,5 +1,11 @@
-export class GrupoDespesaEntity{
+import { Column, Entity, PrimaryColumn } from "typeorm";
+
+@Entity()
+export class GrupoDespesa{
+    @PrimaryColumn()
     id: string;
+    
+    @Column()
     descricao: string;
 
     constructor(

@@ -14,23 +14,20 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GrupoDespesaController = void 0;
 const decorators_1 = require("@nestjs/common/decorators");
-const grupoDespesa_dm_1 = require("./grupoDespesa.dm");
+const grupoDespesa_service_1 = require("./grupoDespesa.service");
 const grupoDespesa_entity_1 = require("./grupoDespesa.entity");
 const inseriGrupoDespesa_dto_1 = require("./dto/inseriGrupoDespesa.dto");
-const listarGrupoDespesa_dto_1 = require("./dto/listarGrupoDespesa.dto");
 const uuid_1 = require("uuid");
 let GrupoDespesaController = class GrupoDespesaController {
-    constructor(armazenaGrupoDespesa) {
-        this.armazenaGrupoDespesa = armazenaGrupoDespesa;
+    constructor(grupoDespesaService) {
+        this.grupoDespesaService = grupoDespesaService;
     }
-    RetornoGrupoDespesa(grupoDespesa) {
-        let listaGrupoDespesa = this.armazenaGrupoDespesa.GrupoDespesa;
-        let retornoGrupoDespesa = listaGrupoDespesa.map(gDespesa => new listarGrupoDespesa_dto_1.ListarGrupoDespesasDTO(gDespesa.id, gDespesa.descricao));
-        return retornoGrupoDespesa;
+    async RetornoTodosGrupoDespesa() {
+        return this.grupoDespesaService.listar();
     }
-    CriarGrupoDespesa(dadosGrupoDespesa) {
-        const grupoDespesa = new grupoDespesa_entity_1.GrupoDespesaEntity((0, uuid_1.v4)(), dadosGrupoDespesa.descricao);
-        this.armazenaGrupoDespesa.inserirGrupoDespesa(grupoDespesa);
+    async CriarGrupoDespesa(dadosGrupoDespesa) {
+        let grupoDespesa = new grupoDespesa_entity_1.GrupoDespesa((0, uuid_1.v4)(), dadosGrupoDespesa.descricao);
+        this.grupoDespesaService.inserirGrupoDespesa(grupoDespesa);
         let retornoGrupoDespesa = {
             dadosGrupoDespesa,
             message: 'Grupo de Despesa Cadastrado.'
@@ -41,19 +38,19 @@ let GrupoDespesaController = class GrupoDespesaController {
 __decorate([
     (0, decorators_1.Get)(),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [grupoDespesa_entity_1.GrupoDespesaEntity]),
-    __metadata("design:returntype", void 0)
-], GrupoDespesaController.prototype, "RetornoGrupoDespesa", null);
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], GrupoDespesaController.prototype, "RetornoTodosGrupoDespesa", null);
 __decorate([
     (0, decorators_1.Post)(),
     __param(0, (0, decorators_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [inseriGrupoDespesa_dto_1.InserirGrupoDespesaDTO]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], GrupoDespesaController.prototype, "CriarGrupoDespesa", null);
 GrupoDespesaController = __decorate([
     (0, decorators_1.Controller)('/grupoDespesa'),
-    __metadata("design:paramtypes", [grupoDespesa_dm_1.ArmazenaGrupoDespesa])
+    __metadata("design:paramtypes", [grupoDespesa_service_1.GrupoDespesaService])
 ], GrupoDespesaController);
 exports.GrupoDespesaController = GrupoDespesaController;
 //# sourceMappingURL=grupoDespesa.controller.js.map

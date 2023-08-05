@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RelatorioDespesaController = void 0;
 const common_1 = require("@nestjs/common");
@@ -28,7 +29,7 @@ __decorate([
 ], RelatorioDespesaController.prototype, "ExibirRelatorio", null);
 RelatorioDespesaController = __decorate([
     (0, common_2.Controller)('/relatorioDespesa'),
-    __metadata("design:paramtypes", [relatorioDepesa_dm_1.RelatorioDespesa])
+    __metadata("design:paramtypes", [typeof (_a = typeof relatorioDepesa_dm_1.RelatorioDespesa !== "undefined" && relatorioDepesa_dm_1.RelatorioDespesa) === "function" ? _a : Object])
 ], RelatorioDespesaController);
 exports.RelatorioDespesaController = RelatorioDespesaController;
 //# sourceMappingURL=relatorioDespesa.controller.js.map

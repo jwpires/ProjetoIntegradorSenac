@@ -8,14 +8,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GrupoDespesaModule = void 0;
 const common_1 = require("@nestjs/common");
+const database_module_1 = require("../database/database.module");
 const grupoDespesa_controller_1 = require("./grupoDespesa.controller");
-const grupoDespesa_dm_1 = require("./grupoDespesa.dm");
+const grupoDespesa_providers_1 = require("./grupoDespesa.providers");
+const grupoDespesa_service_1 = require("./grupoDespesa.service");
 let GrupoDespesaModule = class GrupoDespesaModule {
 };
 GrupoDespesaModule = __decorate([
     (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
         controllers: [grupoDespesa_controller_1.GrupoDespesaController],
-        providers: [grupoDespesa_dm_1.ArmazenaGrupoDespesa]
+        providers: [
+            ...grupoDespesa_providers_1.grupoDespesaProviders,
+            grupoDespesa_service_1.GrupoDespesaService
+        ]
     })
 ], GrupoDespesaModule);
 exports.GrupoDespesaModule = GrupoDespesaModule;

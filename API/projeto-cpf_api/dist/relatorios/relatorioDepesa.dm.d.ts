@@ -1,6 +1,6 @@
-import { RelatorioDespesaEntity } from "./relatorioDespesa.entity";
-export declare class RelatorioDespesa {
+import { RelatorioDespesa } from "./relatorioDespesa.entity";
+export declare class RelatorioDespesaService {
     #private;
-    get Despesas(): RelatorioDespesaEntity[];
-    exibeTodasDespesas(): RelatorioDespesaEntity[];
+    get Despesas(): RelatorioDespesa[];
+    exibeTodasDespesas(): RelatorioDespesa[];
 }

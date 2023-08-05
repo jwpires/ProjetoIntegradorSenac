@@ -21,16 +21,6 @@ export class AgenciaService{
         const saldo = agencia.saldo;
         const tipoDeConta = agencia.tipoDeConta;
         
-        
-        const novaAgencia = this.agenciaRepository.create({
-            id,
-            id_banco,
-            nomeProprietario,
-            numeroConta,
-            tipoDeConta,
-            saldo
-            
-        });
 
         try {
             const novaAgencia = this.agenciaRepository.create({
