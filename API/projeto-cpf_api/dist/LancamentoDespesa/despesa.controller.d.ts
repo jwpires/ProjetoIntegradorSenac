@@ -1,12 +1,11 @@
-import { DespesasArmazenadas } from "./despesa.dm";
-import { ListarDespesasDashboardDTO } from "./dto/exibeDespesasDashboard.dto";
+import { Despesa } from "./despesa.entity";
 import { InserirDespesaDTO } from "./dto/inserirDespesa.dto";
+import { DespesasService } from "./despesa.service";
+import { GrupoDespesaService } from "src/GrupoDeDespesa/grupoDespesa.service";
 export declare class DespesaController {
-    private armazenaDespesa;
-    constructor(armazenaDespesa: DespesasArmazenadas);
-    RetornoDespesasDash(): Promise<ListarDespesasDashboardDTO[]>;
-    CriarDespesa(dadosDespesa: InserirDespesaDTO): Promise<{
-        dadosDespesa: InserirDespesaDTO;
-        message: string;
-    }>;
+    private readonly despesaService;
+    private readonly grupoDespesaService;
+    constructor(despesaService: DespesasService, grupoDespesaService: GrupoDespesaService);
+    RetornoDespesas(): Promise<Despesa[]>;
+    CriarDespesa(dadosDespesa: InserirDespesaDTO): Promise<any>;
 }

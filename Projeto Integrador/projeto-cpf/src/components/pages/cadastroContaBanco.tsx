@@ -22,13 +22,9 @@ function CadastroContaBanco() {
     /*Função que puxa os dados do banco via API.*/
     const carregaBancos = async () => {
 
-        try {
             const json = await api.listarBancos();
             const dataArray = Array.isArray(json) ? json : [json];
             setBanco(dataArray);
-        } catch {
-            alert('Erro!');
-        }
     }
 
     /** Função que guiará o usuário a tela de cadastro do Banco */
@@ -52,7 +48,7 @@ function CadastroContaBanco() {
                 alert("Cadastro efetuado com sucesso");
                 window.location.reload();
             } catch {
-                alert('Erro!');
+                alert('Erro ao cadastrar!');
             }
         } else {
             alert("É preciso preencher todos os campos antes de salvar")
@@ -82,10 +78,10 @@ function CadastroContaBanco() {
                         <form action="" method="" className="cadBanco">
                             <div className='adiciona-banco'>
                                 <select name="Banco" id="" /*onClick={carregaBancos}*/ onChange={(e) => { setSelectValueIdBanco(e.target.value) }}>
-                                    <option value="" >Informe o Banco</option>
+                                    <option key={0} value="" >Informe o Banco</option>
                                     {
                                         banco.map(
-                                            (item, chave) => <option value={item.id}>{item.nome}</option>
+                                            (item, chave) => <option key={item.id} value={item.id}>{item.nome}</option>
                                         )
                                     }
                                 </select>

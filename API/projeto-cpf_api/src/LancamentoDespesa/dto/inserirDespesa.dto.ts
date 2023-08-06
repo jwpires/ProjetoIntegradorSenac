@@ -8,7 +8,7 @@ export class InserirDespesaDTO{
 
     @IsString()
     @IsNotEmpty()
-    grupoDespesa:string;
+    id_GrupoDespesa:string;
 
     @IsDateString()
     @IsNotEmpty()

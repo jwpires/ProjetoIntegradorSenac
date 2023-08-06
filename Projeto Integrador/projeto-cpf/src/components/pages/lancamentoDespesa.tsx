@@ -1,7 +1,7 @@
 import '../../style/style.css';
 import HeaderMenu from '../header/HeaderMenu';
 import { useNavigate } from 'react-router-dom';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { GrupoDespesa } from '../types/grupoDespesa';
 import { api } from './api';
@@ -47,48 +47,51 @@ function LancamentoDespesa() {
     /*Função GET que puxa os dados do grupo de despesa via API.*/
     const carregaGrupoDespesa = async () => {
 
-        try {
             const json = await api.listarGrupoDespesa();
             const dataArray = Array.isArray(json) ? json : [json];
             setGrupoDespesa(dataArray);
-        } catch {
-            alert('Erro!');
-        }
+
     }
     /**Continuar aqui****************************************************************************************************************** */
-    function confirmaPagamento() {
+    const confirmaPagamento = async () => {
 
         try {
-            const json = api.InserirLancamentoDespesa(descricaoDespesa, idGrupoDespesa, new Date(dataLancamento), new Date(dataVencimento), parseFloat(valorDespesa), true)
+            const json = await api.InserirLancamentoDespesa(descricaoDespesa, idGrupoDespesa, new Date(dataLancamento), new Date(dataVencimento), parseFloat(valorDespesa), true)
+            const dataArray = Array.isArray(json) ? json : [json];
+            setGrupoDespesa(dataArray);
+            alert('Despesa Paga com sucesso!')
         } catch (error) {
-
+            alert('Erro ao cadastrar despesa');
         }
-
         setInputDespesa('');
         setInputData('');
         setInputValor('');
         toggle();
-        alert('Despesa confirmada com sucesso!');
         window.location.reload();
     }
 
-    function handleClickSalvar() {
+    const handleClickSalvar = async () => {
 
         if (validaCamposPreenchidos()) {
 
             try {
-                const json = api.InserirLancamentoDespesa(descricaoDespesa, idGrupoDespesa, new Date(dataLancamento), new Date(dataVencimento), parseFloat(valorDespesa), false)
+                const json = await api.InserirLancamentoDespesa(descricaoDespesa, idGrupoDespesa, new Date(dataLancamento), new Date(dataVencimento), parseFloat(valorDespesa), false)
+                const dataArray = Array.isArray(json) ? json : [json];
+                setGrupoDespesa(dataArray);
                 alert('Despesa Salva com sucesso!');
+                setInputDespesa('');
+                setInputData('');
+                setInputValor('');
+                // window.location.reload();
             } catch (error) {
-
+                alert('Erro ao cadastrar despesa');
             }
-        }
-
-        setInputDespesa('');
-        setInputData('');
-        setInputValor('');
-        window.location.reload();
+        }        
     }
+
+    useEffect(() => {
+        carregaGrupoDespesa();
+    })
 
     return (
         <div className="container-cadDespesa">
@@ -109,11 +112,11 @@ function LancamentoDespesa() {
                             <input type="text" value={descricaoDespesa} id="" placeholder='Descrição da Despesa:' onChange={(e) => setInputDespesa(e.target.value)} />
 
                             <div className='adiciona-banco'>
-                                <select name="GrupoDespesa" id="" value={idGrupoDespesa} onClick={carregaGrupoDespesa} onChange={(e) => setInputIdGrupoDespesa(e.target.value)}  >
-                                    <option value="" >Grupo de Despesa</option >
+                                <select name="GrupoDespesa" id="" value={idGrupoDespesa} onChange={(e) => setInputIdGrupoDespesa(e.target.value)}  >
+                                    <option key={0} value="" >Grupo de Despesa</option >
                                     {
                                         grupoDespesa.map(
-                                            (valor, index) => <option value={valor.id}>{valor.descricao}</option>
+                                            (valor, index) => <option key={valor.id} value={valor.id}>{valor.descricao}</option>
                                         )
                                     }
                                 </select>

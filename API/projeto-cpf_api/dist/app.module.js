@@ -14,6 +14,7 @@ const banco_module_1 = require("./Banco/banco.module");
 const grupoDespesa_module_1 = require("./GrupoDeDespesa/grupoDespesa.module");
 const despesa_module_1 = require("./LancamentoDespesa/despesa.module");
 const produto_module_1 = require("./Produto/produto.module");
+const relatorios_module_1 = require("./relatorios/relatorios.module");
 const usuario_module_1 = require("./usuario/usuario.module");
 let AppModule = class AppModule {
 };
@@ -26,6 +27,7 @@ AppModule = __decorate([
             agencia_module_1.AgenciaModule,
             despesa_module_1.DespesaModule,
             grupoDespesa_module_1.GrupoDespesaModule,
+            relatorios_module_1.RelatorioModule,
             axios_1.HttpModule
         ],
         controllers: [],

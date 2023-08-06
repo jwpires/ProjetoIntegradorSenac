@@ -22,6 +22,13 @@ let GrupoDespesaService = class GrupoDespesaService {
     async listar() {
         return this.grupoDespesaRepository.find();
     }
+    async buscarGrupoDespesaPorId(id) {
+        return this.grupoDespesaRepository.findOne({
+            where: {
+                id,
+            }
+        });
+    }
     async inserirGrupoDespesa(grupoDespesa) {
         const id = grupoDespesa.id;
         const descricao = grupoDespesa.descricao;

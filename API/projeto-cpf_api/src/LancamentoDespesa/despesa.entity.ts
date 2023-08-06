@@ -12,8 +12,8 @@ export class Despesa{
 
     @ManyToOne(() => GrupoDespesa, {cascade: true})
     @JoinColumn({name: "id_grupoDespesa", referencedColumnName: "id"})
-
-    id_grupoDespesa:string;
+    id_grupoDespesa: GrupoDespesa;
+    
     @Column()
     dataLancamento:Date;
     @Column()
@@ -26,7 +26,7 @@ export class Despesa{
     constructor(
         id:string,
         descricao:string,
-        id_grupoDespesa:string,
+        id_grupoDespesa:GrupoDespesa,
         dataLancamento:Date,
         dataVencimento:Date,
         valor: number,

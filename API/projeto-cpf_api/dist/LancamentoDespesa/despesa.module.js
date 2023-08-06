@@ -9,11 +9,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.DespesaModule = void 0;
 const common_1 = require("@nestjs/common");
 const database_module_1 = require("../database/database.module");
-const grupoDespesa_entity_1 = require("../GrupoDeDespesa/grupoDespesa.entity");
 const grupoDespesa_providers_1 = require("../GrupoDeDespesa/grupoDespesa.providers");
+const grupoDespesa_service_1 = require("../GrupoDeDespesa/grupoDespesa.service");
 const despesa_controller_1 = require("./despesa.controller");
-const despesa_dm_1 = require("./despesa.dm");
 const despesa_providers_1 = require("./despesa.providers");
+const despesa_service_1 = require("./despesa.service");
 let DespesaModule = class DespesaModule {
 };
 DespesaModule = __decorate([
@@ -23,8 +23,8 @@ DespesaModule = __decorate([
         providers: [
             ...despesa_providers_1.despesaProviders,
             ...grupoDespesa_providers_1.grupoDespesaProviders,
-            despesa_dm_1.DespesasArmazenadas,
-            grupoDespesa_entity_1.GrupoDespesa
+            despesa_service_1.DespesasService,
+            grupoDespesa_service_1.GrupoDespesaService
         ]
     })
 ], DespesaModule);

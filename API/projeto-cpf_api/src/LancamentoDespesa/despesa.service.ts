@@ -7,7 +7,11 @@ export class DespesasService{
     constructor(
         @Inject('DESPESA_REPOSITORY')
         private despesaRepository: Repository<Despesa>
-    ){}
+    ) { }
+    
+    async listar(): Promise<Despesa[]>{
+        return this.despesaRepository.find();
+    }
     
     async inserirDespesa(despesa: Despesa): Promise<void> {
         const id = despesa.id;
@@ -31,7 +35,7 @@ export class DespesasService{
             await this.despesaRepository.insert(novaDespesa);
             console.log('Despesas cadastrada com sucesso.')
         } catch (error) {
-            console.log('Erro ao cadastrar Despesa')
+            console.log('Erro ao cadastrar Despesa'+ error.message)
         }
 
         

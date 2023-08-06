@@ -34,7 +34,7 @@ __decorate([
 __decorate([
     (0, typeorm_1.ManyToOne)(() => grupoDespesa_entity_1.GrupoDespesa, { cascade: true }),
     (0, typeorm_1.JoinColumn)({ name: "id_grupoDespesa", referencedColumnName: "id" }),
-    __metadata("design:type", String)
+    __metadata("design:type", grupoDespesa_entity_1.GrupoDespesa)
 ], Despesa.prototype, "id_grupoDespesa", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
@@ -54,7 +54,8 @@ __decorate([
 ], Despesa.prototype, "pago", void 0);
 Despesa = __decorate([
     (0, typeorm_1.Entity)(),
-    __metadata("design:paramtypes", [String, String, String, Date,
+    __metadata("design:paramtypes", [String, String, grupoDespesa_entity_1.GrupoDespesa,
+        Date,
         Date, Number, Boolean])
 ], Despesa);
 exports.Despesa = Despesa;

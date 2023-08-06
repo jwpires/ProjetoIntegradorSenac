@@ -19,6 +19,9 @@ let DespesasService = class DespesasService {
     constructor(despesaRepository) {
         this.despesaRepository = despesaRepository;
     }
+    async listar() {
+        return this.despesaRepository.find();
+    }
     async inserirDespesa(despesa) {
         const id = despesa.id;
         const descricao = despesa.descricao;
@@ -41,7 +44,7 @@ let DespesasService = class DespesasService {
             console.log('Despesas cadastrada com sucesso.');
         }
         catch (error) {
-            console.log('Erro ao cadastrar Despesa');
+            console.log('Erro ao cadastrar Despesa' + error.message);
         }
     }
 };

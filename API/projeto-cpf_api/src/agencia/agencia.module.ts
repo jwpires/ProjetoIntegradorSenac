@@ -13,7 +13,8 @@ import { AgenciaService } from "./agencia.service";
     providers: [
         ...agenciaProviders,
         ...bancoProviders,
-        AgenciaService, BancoService
+        AgenciaService,
+        BancoService
     ]
 })
 

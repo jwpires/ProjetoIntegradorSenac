@@ -1,6 +1,6 @@
 export declare class InserirDespesaDTO {
     descricao: string;
-    grupoDespesa: string;
+    id_GrupoDespesa: string;
     dataLancamento: Date;
     dataVencimento: Date;
     valor: number;

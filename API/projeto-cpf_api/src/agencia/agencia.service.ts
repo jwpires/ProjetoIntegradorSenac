@@ -9,6 +9,7 @@ export class AgenciaService{
         @Inject('AGENCIA_REPOSITORY')
         private agenciaRepository: Repository<Agencia>
     ) { }
+    
     async listar(): Promise<Agencia[]>{
         return this.agenciaRepository.find();
     }

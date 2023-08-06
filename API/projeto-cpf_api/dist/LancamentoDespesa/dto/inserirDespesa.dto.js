@@ -22,7 +22,7 @@ __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
-], InserirDespesaDTO.prototype, "grupoDespesa", void 0);
+], InserirDespesaDTO.prototype, "id_GrupoDespesa", void 0);
 __decorate([
     (0, class_validator_1.IsDateString)(),
     (0, class_validator_1.IsNotEmpty)(),

@@ -4,37 +4,48 @@ import { Despesa } from "./despesa.entity";
 import { ListarDespesasDashboardDTO } from "./dto/exibeDespesasDashboard.dto";
 import { InserirDespesaDTO } from "./dto/inserirDespesa.dto";
 import {v4 as uuid} from 'uuid';
+import { DespesasService } from "./despesa.service";
+import { GrupoDespesaService } from "src/GrupoDeDespesa/grupoDespesa.service";
 
 @Controller('/lancamentoDespesa')
 export class DespesaController{
-    constructor(private armazenaDespesa: DespesasArmazenadas) { }
+    constructor(
+        private readonly despesaService: DespesasService,
+        private readonly grupoDespesaService: GrupoDespesaService
+    ) { }
     
     @Get()
-    async RetornoDespesasDash() {
-        const listarDespesas = await this.armazenaDespesa.Despesa;
-        const retornoDespesas = listarDespesas.map(
-            despesa => new ListarDespesasDashboardDTO(
-                despesa.descricao,
-                despesa.id_grupoDespesa,
-                despesa.dataVencimento,
-                despesa.valor,
-                despesa.pago
-            )
-        );
-        return retornoDespesas;
+    async RetornoDespesas() {
+        return this.despesaService.listar();
     }
 
     @Post()
     async CriarDespesa(@Body() dadosDespesa: InserirDespesaDTO) {
-        const despesa = new Despesa(uuid(), dadosDespesa.descricao, dadosDespesa.grupoDespesa, 
-        dadosDespesa.dataLancamento, dadosDespesa.dataVencimento, dadosDespesa.valor, dadosDespesa.pago)
+       
+        let retornoDespesa: any;
 
-        this.armazenaDespesa.inserirDespesa(despesa);
-        let retornoDespesa = {
-            dadosDespesa,
-            message: "Despesa Cadastrada!"
+        try {
+            const grupoDespesa = await this.grupoDespesaService.buscarGrupoDespesaPorId(dadosDespesa.id_GrupoDespesa)
+
+            const despesa = new Despesa(
+                uuid(),
+                dadosDespesa.descricao,
+                grupoDespesa,
+                dadosDespesa.dataLancamento,
+                dadosDespesa.dataVencimento,
+                dadosDespesa.valor,
+                dadosDespesa.pago
+            );
+            await this.despesaService.inserirDespesa(despesa);
+            retornoDespesa = {
+                dadosDespesa,
+                message: "Despesa Cadastrada!"
+            }
+        } catch (error) {
+            retornoDespesa = {
+                error: "Erro ao cadastrar Despesa"
+            } 
         }
-
         return retornoDespesa;
     }
-}
+} 

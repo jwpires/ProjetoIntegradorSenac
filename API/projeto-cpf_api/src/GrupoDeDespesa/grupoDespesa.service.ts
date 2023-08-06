@@ -14,6 +14,14 @@ export class GrupoDespesaService{
         return this.grupoDespesaRepository.find();
     }
 
+    async buscarGrupoDespesaPorId(id: string): Promise<GrupoDespesa> { // Renomeado para buscarBancoPorId
+        return this.grupoDespesaRepository.findOne({
+            where: {
+                id,
+            }
+        });
+    }
+
     async inserirGrupoDespesa(grupoDespesa:GrupoDespesa):Promise<void>{
         const id = grupoDespesa.id;
         const descricao = grupoDespesa.descricao;

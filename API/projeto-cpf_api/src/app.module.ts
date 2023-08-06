@@ -5,6 +5,7 @@ import { BancoModule } from './Banco/banco.module';
 import { GrupoDespesaModule } from './GrupoDeDespesa/grupoDespesa.module';
 import { DespesaModule } from './LancamentoDespesa/despesa.module';
 import { ProdutoModule } from './Produto/produto.module';
+import { RelatorioModule } from './relatorios/relatorios.module';
 import { UsuarioModule } from './usuario/usuario.module';
 
 
@@ -15,7 +16,8 @@ import { UsuarioModule } from './usuario/usuario.module';
         BancoModule, 
         AgenciaModule, 
         DespesaModule, 
-        GrupoDespesaModule,  
+    GrupoDespesaModule,
+        RelatorioModule,
         HttpModule], 
   controllers:[],
 })

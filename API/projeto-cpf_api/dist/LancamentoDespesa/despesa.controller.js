@@ -14,27 +14,35 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DespesaController = void 0;
 const common_1 = require("@nestjs/common");
-const despesa_dm_1 = require("./despesa.dm");
 const despesa_entity_1 = require("./despesa.entity");
-const exibeDespesasDashboard_dto_1 = require("./dto/exibeDespesasDashboard.dto");
 const inserirDespesa_dto_1 = require("./dto/inserirDespesa.dto");
 const uuid_1 = require("uuid");
+const despesa_service_1 = require("./despesa.service");
+const grupoDespesa_service_1 = require("../GrupoDeDespesa/grupoDespesa.service");
 let DespesaController = class DespesaController {
-    constructor(armazenaDespesa) {
-        this.armazenaDespesa = armazenaDespesa;
+    constructor(despesaService, grupoDespesaService) {
+        this.despesaService = despesaService;
+        this.grupoDespesaService = grupoDespesaService;
     }
-    async RetornoDespesasDash() {
-        const listarDespesas = await this.armazenaDespesa.Despesa;
-        const retornoDespesas = listarDespesas.map(despesa => new exibeDespesasDashboard_dto_1.ListarDespesasDashboardDTO(despesa.descricao, despesa.id_grupoDespesa, despesa.dataVencimento, despesa.valor, despesa.pago));
-        return retornoDespesas;
+    async RetornoDespesas() {
+        return this.despesaService.listar();
     }
     async CriarDespesa(dadosDespesa) {
-        const despesa = new despesa_entity_1.Despesa((0, uuid_1.v4)(), dadosDespesa.descricao, dadosDespesa.grupoDespesa, dadosDespesa.dataLancamento, dadosDespesa.dataVencimento, dadosDespesa.valor, dadosDespesa.pago);
-        this.armazenaDespesa.inserirDespesa(despesa);
-        let retornoDespesa = {
-            dadosDespesa,
-            message: "Despesa Cadastrada!"
-        };
+        let retornoDespesa;
+        try {
+            const grupoDespesa = await this.grupoDespesaService.buscarGrupoDespesaPorId(dadosDespesa.id_GrupoDespesa);
+            const despesa = new despesa_entity_1.Despesa((0, uuid_1.v4)(), dadosDespesa.descricao, grupoDespesa, dadosDespesa.dataLancamento, dadosDespesa.dataVencimento, dadosDespesa.valor, dadosDespesa.pago);
+            await this.despesaService.inserirDespesa(despesa);
+            retornoDespesa = {
+                dadosDespesa,
+                message: "Despesa Cadastrada!"
+            };
+        }
+        catch (error) {
+            retornoDespesa = {
+                error: "Erro ao cadastrar Despesa"
+            };
+        }
         return retornoDespesa;
     }
 };
@@ -43,7 +51,7 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
-], DespesaController.prototype, "RetornoDespesasDash", null);
+], DespesaController.prototype, "RetornoDespesas", null);
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
@@ -53,7 +61,8 @@ __decorate([
 ], DespesaController.prototype, "CriarDespesa", null);
 DespesaController = __decorate([
     (0, common_1.Controller)('/lancamentoDespesa'),
-    __metadata("design:paramtypes", [despesa_dm_1.DespesasArmazenadas])
+    __metadata("design:paramtypes", [despesa_service_1.DespesasService,
+        grupoDespesa_service_1.GrupoDespesaService])
 ], DespesaController);
 exports.DespesaController = DespesaController;
 //# sourceMappingURL=despesa.controller.js.map
