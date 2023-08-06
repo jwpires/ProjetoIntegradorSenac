@@ -2,7 +2,7 @@ import { Module } from "@nestjs/common";
 import { agenciaProviders } from "src/agencia/agencia.providers";
 import { DatabaseModule } from "src/database/database.module";
 import { despesaProviders } from "src/LancamentoDespesa/despesa.providers";
-import { RelatorioDespesaDashService } from "./relatorioDespesaDash.service";
+import { RelatorioDespesaService } from "./relatorioDespesa.service";
 import { RelatoriosController } from "./relatorios.controller";
 import { RelatorioSaldoDashService } from "./relatorioSaldoDash.service";
 
@@ -12,7 +12,7 @@ import { RelatorioSaldoDashService } from "./relatorioSaldoDash.service";
     providers: [
         ...despesaProviders,
         ...agenciaProviders,
-        RelatorioDespesaDashService,
+        RelatorioDespesaService,
         RelatorioSaldoDashService,
     ]
 })

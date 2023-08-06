@@ -9,7 +9,7 @@ export const api = {
     },
 
     listarSaldosBancarios: async () => {
-        let response =  await fetch("http://localhost:3000/agencia/dash");
+        let response =  await fetch("http://localhost:3000/relatorios/saldo");
         let json = await response.json();
         return json; 
     },
@@ -93,6 +93,7 @@ export const api = {
         return json;
     },
 
+    /** POST E GET referente a tela de cadastro de lançamento de despesa */
     listarGrupoDespesa: async () => {
 
         let response = await fetch("http://localhost:3000/grupoDespesa");
@@ -102,10 +103,10 @@ export const api = {
         return json;
     },
 
-    /** POST E GET referente a tela de cadastro de lançamento de despesa */
+    
     InserirLancamentoDespesa: async (descricao_: string, grupoDespesa_: string, dataLancamento_: Date,
         dataVencimento_: Date, valor_: number, pago_: boolean) => {
-        console.log("valor:", valor_);
+        
         let response = await fetch("http://localhost:3000/lancamentoDespesa",
             {
                 // por padrão o method do fetch, é o get, por isso não precisamos especificar.
@@ -128,5 +129,20 @@ export const api = {
         let json = await response.json();
 
         return json;
-    }
+    },
+
+
+    /** GETs referente ao relatórios */
+    /** GET referente as depesas pagas. */
+    listarRelatorioDespesasPagas: async() => {
+        let response =await fetch("http://localhost:3000/relatorios/despesas-pagas");
+        let json = await response.json();
+        return json;
+    },
+
+    listarRelatorioDespesasEmAberto: async() => {
+        let response =await fetch("http://localhost:3000/relatorios/despesas-em-aberto");
+        let json = await response.json();
+        return json;
+    },
 }

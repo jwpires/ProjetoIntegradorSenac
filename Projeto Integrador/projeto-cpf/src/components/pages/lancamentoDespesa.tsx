@@ -5,10 +5,12 @@ import React, { useEffect, useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { GrupoDespesa } from '../types/grupoDespesa';
 import { api } from './api';
+import moment from 'moment';
 
 // import { func } from 'prop-types';
 
 function LancamentoDespesa() {
+    const currentDate = new Date().toLocaleDateString(); //captura data atual;
     const [grupoDespesa, setGrupoDespesa] = useState<GrupoDespesa[]>([]);
 
     // Variavel de manipulação de exibição de campos
@@ -54,7 +56,7 @@ function LancamentoDespesa() {
     }
     /**Continuar aqui****************************************************************************************************************** */
     const confirmaPagamento = async () => {
-
+        
         try {
             const json = await api.InserirLancamentoDespesa(descricaoDespesa, idGrupoDespesa, new Date(dataLancamento), new Date(dataVencimento), parseFloat(valorDespesa), true)
             const dataArray = Array.isArray(json) ? json : [json];
@@ -71,7 +73,7 @@ function LancamentoDespesa() {
     }
 
     const handleClickSalvar = async () => {
-
+        
         if (validaCamposPreenchidos()) {
 
             try {
@@ -92,7 +94,7 @@ function LancamentoDespesa() {
     useEffect(() => {
         carregaGrupoDespesa();
     })
-
+    
     return (
         <div className="container-cadDespesa">
             <HeaderMenu exibe={true}></HeaderMenu>
@@ -124,6 +126,7 @@ function LancamentoDespesa() {
                             </div>
                             <label>Data de Lançamento:</label>
                             <input type="date" name="" value={dataLancamento} onChange={(e) => setInputLancamento(e.target.value)} />
+                            {/* <input type="text" name="" disabled value={currentDate} /> */}
                             <label>Data de Vencimento:</label>
                             <input type="date" name="" value={dataVencimento} onChange={(e) => setInputData(e.target.value)} />
                             <input type="number" step=".01" name="" value={valorDespesa} placeholder='Valor da Despesa:' onChange={(e) => setInputValor(e.target.value)} />

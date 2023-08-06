@@ -12,11 +12,11 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RelatorioDespesaDashService = void 0;
+exports.RelatorioDespesaService = void 0;
 const common_1 = require("@nestjs/common");
 const common_2 = require("@nestjs/common");
 const typeorm_1 = require("typeorm");
-let RelatorioDespesaDashService = class RelatorioDespesaDashService {
+let RelatorioDespesaService = class RelatorioDespesaService {
     constructor(relatorioDespesaDash) {
         this.relatorioDespesaDash = relatorioDespesaDash;
     }
@@ -24,10 +24,10 @@ let RelatorioDespesaDashService = class RelatorioDespesaDashService {
         return this.relatorioDespesaDash.find();
     }
 };
-RelatorioDespesaDashService = __decorate([
+RelatorioDespesaService = __decorate([
     (0, common_2.Injectable)(),
     __param(0, (0, common_1.Inject)('DESPESA_REPOSITORY')),
     __metadata("design:paramtypes", [typeorm_1.Repository])
-], RelatorioDespesaDashService);
-exports.RelatorioDespesaDashService = RelatorioDespesaDashService;
-//# sourceMappingURL=relatorioDespesaDash.service%20copy.js.map
+], RelatorioDespesaService);
+exports.RelatorioDespesaService = RelatorioDespesaService;
+//# sourceMappingURL=relatorioDespesa.service.js.map

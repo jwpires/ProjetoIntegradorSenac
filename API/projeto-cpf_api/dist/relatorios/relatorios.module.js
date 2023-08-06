@@ -11,7 +11,7 @@ const common_1 = require("@nestjs/common");
 const agencia_providers_1 = require("../agencia/agencia.providers");
 const database_module_1 = require("../database/database.module");
 const despesa_providers_1 = require("../LancamentoDespesa/despesa.providers");
-const relatorioDespesaDash_service_1 = require("./relatorioDespesaDash.service");
+const relatorioDespesa_service_1 = require("./relatorioDespesa.service");
 const relatorios_controller_1 = require("./relatorios.controller");
 const relatorioSaldoDash_service_1 = require("./relatorioSaldoDash.service");
 let RelatorioModule = class RelatorioModule {
@@ -23,7 +23,7 @@ RelatorioModule = __decorate([
         providers: [
             ...despesa_providers_1.despesaProviders,
             ...agencia_providers_1.agenciaProviders,
-            relatorioDespesaDash_service_1.RelatorioDespesaDashService,
+            relatorioDespesa_service_1.RelatorioDespesaService,
             relatorioSaldoDash_service_1.RelatorioSaldoDashService,
         ]
     })

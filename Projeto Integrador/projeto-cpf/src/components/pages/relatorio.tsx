@@ -1,8 +1,11 @@
 import HeaderMenu from "../header/HeaderMenu";
 import '../../style/style.css';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AccordionBody, AccordionHeader, AccordionItem, Button, UncontrolledAccordion } from "reactstrap";
 import FiltroRelatorio from "../types/filtroRelatorios";
+import { RelatorioDespesa } from "../types/relatorioDespesa";
+import { api } from "./api";
+import moment from "moment";
 
 var validaConfiguracao = {
     despesasPagas: 'menu-guia',
@@ -34,6 +37,37 @@ function Relatorio() {
     }
 
     let [exibeMenu, setMenu] = useState([true, false, false]);
+    const [relatorioDespesaPaga, setDespesaPaga] = useState<RelatorioDespesa[]>([]);
+    const [relatorioDespesaEmAberto, setDespesaEmAberto] = useState<RelatorioDespesa[]>([]);
+
+    const carregaDespesasPagas = async () => {
+
+        try {
+            const json = await api.listarRelatorioDespesasPagas();
+            const dataArray = Array.isArray(json) ? json : [json];
+            setDespesaPaga(dataArray);
+
+        } catch {
+            alert('Erro!');
+        }
+    }
+
+    const carregaDespesasEmAberto = async () => {
+
+        try {
+            const json = await api.listarRelatorioDespesasEmAberto();
+            const dataArray = Array.isArray(json) ? json : [json];
+            setDespesaEmAberto(dataArray);
+
+        } catch {
+            alert('Erro!');
+        }
+    }
+
+    useEffect(() => {
+        carregaDespesasPagas();
+        carregaDespesasEmAberto();
+    }, []);
 
     return (
         <div>
@@ -46,160 +80,120 @@ function Relatorio() {
                             <li className={validaConfiguracao.despesasEmAberto} onClick={ExibeDespesasEmAberto}>Despesas em aberto</li>
                             <li className={validaConfiguracao.contasBancarias} onClick={ExibeContasBancarias}>Contas Bancárias</li>
                         </ul>
+                        {/* DESPESAS PAGAS  */}
                         {exibeMenu[0] === true &&
+
                             <div className="body-relatorio">
-                                
-                                <FiltroRelatorio/>
-                            
+
+                                <FiltroRelatorio />
+
 
                                 <UncontrolledAccordion
                                     defaultOpen={[
-                                        '1',
+                                        "1",
                                     ]}
                                     stayOpen
                                 >
-                                    <AccordionItem>
-                                        <AccordionHeader targetId="1">
-                                            Conta de Luz
-                                        </AccordionHeader>
-                                        <AccordionBody accordionId="1">
+                                    {
+                                        relatorioDespesaPaga.map(
+                                            item =>
+                                                <>
+                                                    <AccordionItem>
+                                                        <AccordionHeader targetId={item.id}>
+                                                            {item.descricao}
+                                                        </AccordionHeader>
+                                                        <AccordionBody accordionId={item.id}>
 
-                                            <p><strong>Data de lançamento:</strong> 21/10/2022, </p>
-                                            <p><strong>Data de vencimento:</strong> 03/11/2022, </p>
-                                            <p><strong>Grupo de despesa:</strong> Depesas fixas, </p>
-                                            <p><strong>Valor:</strong> 254.63</p>
-                                            <Button color="warning">Estornar</Button>
-                                            <Button color="danger">Excluir</Button>
+                                                            <p><strong>Data de lançamento:</strong> {moment(item.dataLancamento).format('DD-MM-YYYY')} </p>
+                                                            <p><strong>Data de vencimento:</strong> {moment(item.dataVencimento).format('DD-MM-YYYY')} </p>
+                                                            <p><strong>Grupo de despesa:</strong> {item.id_GrupoDespesa} </p>
+                                                            <p><strong>Valor:</strong> {item.valor.toFixed(2)}</p>
+                                                            <Button color="warning">Estornar</Button>
+                                                            <Button color="danger">Excluir</Button>
 
-                                        </AccordionBody>
-                                    </AccordionItem>
-                                    <AccordionItem>
-                                        <AccordionHeader targetId="2">
-                                            Financiamento Carro
-                                        </AccordionHeader>
-                                        <AccordionBody accordionId="2">
-
-                                            <p><strong>Data de lançamento:</strong> 27/12/2022, </p>
-                                            <p><strong>Data de vencimento:</strong> 03/01/2023, </p>
-                                            <p><strong>Grupo de despesa:</strong> Depesas fixas, </p>
-                                            <p><strong>Valor:</strong> 784.63</p>
-                                            <Button color="warning">Estornar</Button>
-                                            <Button color="danger">Excluir</Button>
-
-                                        </AccordionBody>
-                                    </AccordionItem>
-                                    <AccordionItem>
-                                        <AccordionHeader targetId="3">
-                                            Cartão de Crédito
-                                        </AccordionHeader>
-                                        <AccordionBody accordionId="3">
-
-                                            <p><strong>Data de lançamento:</strong> 27/01/2023, </p>
-                                            <p><strong>Data de vencimento:</strong> 09/02/2023, </p>
-                                            <p><strong>Grupo de despesa:</strong> Depesas fixas, </p>
-                                            <p><strong>Valor:</strong> 254.63</p>
-                                            <Button color="warning">Estornar</Button>
-                                            <Button color="danger">Excluir</Button>
-
-                                        </AccordionBody>
-                                    </AccordionItem>
+                                                        </AccordionBody>
+                                                    </AccordionItem>
+                                                </>
+                                        )
+                                    }
                                 </UncontrolledAccordion>
-
                             </div>
 
                         }
+                        {/* DESPESAS EM ABERTO */}
                         {exibeMenu[1] === true &&
                             <div className="body-relatorio">
-                               <FiltroRelatorio/>
+
+                                <FiltroRelatorio />
+
 
                                 <UncontrolledAccordion
                                     defaultOpen={[
-                                        '1',
+                                        "1",
                                     ]}
                                     stayOpen
                                 >
-                                    <AccordionItem>
-                                        <AccordionHeader targetId="1">
-                                            Conta de Água
-                                        </AccordionHeader>
-                                        <AccordionBody accordionId="1">
+                                    {
+                                        relatorioDespesaEmAberto.map(
+                                            item =>
+                                                <>
+                                                    <AccordionItem>
+                                                        <AccordionHeader targetId={item.id}>
+                                                            {item.descricao}
+                                                        </AccordionHeader>
+                                                        <AccordionBody accordionId={item.id}>
 
-                                            <p><strong>Data de lançamento:</strong> 12/07/2023, </p>
-                                            <p><strong>Data de vencimento:</strong> 21/10/2023, </p>
-                                            <p><strong>Grupo de despesa:</strong> Depesas fixas, </p>
-                                            <p><strong>Valor:</strong> 24.63</p>
-                                            <Button color="danger">Excluir</Button>
-                                            <Button color="warning">Editar</Button>
-                                            <Button color="success">Pagar</Button>
+                                                            <p><strong>Data de lançamento:</strong> {moment(item.dataLancamento).format('DD-MM-YYYY')} </p>
+                                                            <p><strong>Data de vencimento:</strong> {moment(item.dataVencimento).format('DD-MM-YYYY')} </p>
+                                                            <p><strong>Grupo de despesa:</strong> {item.id_GrupoDespesa} </p>
+                                                            <p><strong>Valor:</strong> {item.valor.toFixed(2)}</p>
+                                                            <Button color="success">Pagar</Button>
+                                                            <Button color="danger">Excluir</Button>
 
-                                        </AccordionBody>
-                                    </AccordionItem>
-                                    <AccordionItem>
-                                        <AccordionHeader targetId="2">
-                                            Financiamento Casa
-                                        </AccordionHeader>
-                                        <AccordionBody accordionId="2">
-
-                                            <p><strong>Data de lançamento:</strong> 27/12/2022, </p>
-                                            <p><strong>Data de vencimento:</strong> 03/01/2023, </p>
-                                            <p><strong>Grupo de despesa:</strong> Depesas fixas, </p>
-                                            <p><strong>Valor:</strong> 1010.67</p>
-                                            <Button color="danger">Excluir</Button>
-                                            <Button color="warning">Editar</Button>
-                                            <Button color="success">Pagar</Button>
-
-                                        </AccordionBody>
-                                    </AccordionItem>
-                                    <AccordionItem>
-                                        <AccordionHeader targetId="3">
-                                            Cartão Alimentação
-                                        </AccordionHeader>
-                                        <AccordionBody accordionId="3">
-
-                                            <p><strong>Data de lançamento:</strong> 27/01/2023, </p>
-                                            <p><strong>Data de vencimento:</strong> 09/02/2023, </p>
-                                            <p><strong>Grupo de despesa:</strong> Depesas Variáveis, </p>
-                                            <p><strong>Valor:</strong> 124.74</p>
-                                            <Button color="danger">Excluir</Button>
-                                            <Button color="warning">Editar</Button>
-                                            <Button color="success">Pagar</Button>
-
-                                        </AccordionBody>
-                                    </AccordionItem>
+                                                        </AccordionBody>
+                                                    </AccordionItem>
+                                                </>
+                                        )
+                                    }
                                 </UncontrolledAccordion>
-
                             </div>
                         }
+                        {/* CONTAS BANCÁRIAS  */}
                         {exibeMenu[2] === true &&
                             <div className="body-relatorio">
-                                
-                                <FiltroRelatorio/>
-                                                            
+
+                                <FiltroRelatorio />
+
+
                                 <UncontrolledAccordion
                                     defaultOpen={[
-                                        '1',
+                                        "1",
                                     ]}
                                     stayOpen
                                 >
-                                    <AccordionItem>
-                                        <AccordionHeader targetId="1">
-                                            Banco Itau : 66547
-                                        </AccordionHeader>
-                                        <AccordionBody accordionId="1">
+                                    {
+                                        relatorioDespesaPaga.map(
+                                            item =>
+                                                <>
+                                                    <AccordionItem>
+                                                        <AccordionHeader targetId={item.id}>
+                                                            {item.descricao}
+                                                        </AccordionHeader>
+                                                        <AccordionBody accordionId={item.id}>
 
-                                            <p><strong>Data de lançamento:</strong> 21/10/2022, </p>
-                                            <p><strong>Operação:</strong> Depósito </p>
-                                            <p><strong>Valor:</strong> 254.63</p>
-                                            <Button color="danger">Excluir</Button>
-                                            <Button color="warning">Editar</Button>
-                                            <Button color="danger">Efetuar Saque</Button>
-                                            <Button color="success">Efetuar Depósito</Button>
+                                                            <p><strong>Data de lançamento:</strong> {moment(item.dataLancamento).format('DD-MM-YYYY')} </p>
+                                                            <p><strong>Data de vencimento:</strong> {moment(item.dataVencimento).format('DD-MM-YYYY')} </p>
+                                                            <p><strong>Grupo de despesa:</strong> {item.id_GrupoDespesa} </p>
+                                                            <p><strong>Valor:</strong> {item.valor}</p>
+                                                            <Button color="warning">Estornar</Button>
+                                                            <Button color="danger">Excluir</Button>
 
-                                        </AccordionBody>
-                                    </AccordionItem>
-
+                                                        </AccordionBody>
+                                                    </AccordionItem>
+                                                </>
+                                        )
+                                    }
                                 </UncontrolledAccordion>
-
                             </div>
                         }
                     </div>

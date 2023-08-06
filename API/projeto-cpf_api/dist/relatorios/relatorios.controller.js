@@ -12,20 +12,30 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.RelatoriosController = void 0;
 const common_1 = require("@nestjs/common");
 const common_2 = require("@nestjs/common");
-const relatorioDespesaDash_service_1 = require("./relatorioDespesaDash.service");
+const relatorioDespesa_service_1 = require("./relatorioDespesa.service");
 const relatorioSaldoDash_service_1 = require("./relatorioSaldoDash.service");
 let RelatoriosController = class RelatoriosController {
-    constructor(relatorioDashService, relatorioSaldoServide) {
-        this.relatorioDashService = relatorioDashService;
+    constructor(relatorioService, relatorioSaldoServide) {
+        this.relatorioService = relatorioService;
         this.relatorioSaldoServide = relatorioSaldoServide;
     }
     async RetornaListaDespesaDash() {
-        const relatorios = this.relatorioDashService.listar();
+        const relatorios = this.relatorioService.listar();
         const retornoRelatorioDash = (await relatorios).filter(item => item.pago === false);
         return retornoRelatorioDash;
     }
     async RetornaSaldosDash() {
         return this.relatorioSaldoServide.listar();
+    }
+    async RetornaListaDespesaEmAberto() {
+        const relatorios = this.relatorioService.listar();
+        const retornoDespesaEmAberto = (await relatorios).filter(item => item.pago === false);
+        return retornoDespesaEmAberto;
+    }
+    async RetornaListaDespesaPagas() {
+        const relatorios = this.relatorioService.listar();
+        const retornoDespesaPaga = (await relatorios).filter(item => item.pago === true);
+        return retornoDespesaPaga;
     }
 };
 __decorate([
@@ -40,9 +50,21 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], RelatoriosController.prototype, "RetornaSaldosDash", null);
+__decorate([
+    (0, common_1.Get)('/despesas-em-aberto'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], RelatoriosController.prototype, "RetornaListaDespesaEmAberto", null);
+__decorate([
+    (0, common_1.Get)('/despesas-pagas'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], RelatoriosController.prototype, "RetornaListaDespesaPagas", null);
 RelatoriosController = __decorate([
     (0, common_2.Controller)('/relatorios'),
-    __metadata("design:paramtypes", [relatorioDespesaDash_service_1.RelatorioDespesaDashService,
+    __metadata("design:paramtypes", [relatorioDespesa_service_1.RelatorioDespesaService,
         relatorioSaldoDash_service_1.RelatorioSaldoDashService])
 ], RelatoriosController);
 exports.RelatoriosController = RelatoriosController;

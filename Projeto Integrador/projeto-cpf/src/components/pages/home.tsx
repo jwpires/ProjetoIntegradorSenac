@@ -60,7 +60,7 @@ function Home() {
                             dashSaldoBanco.map(
                                 dash => <>
                                     <div className="saldo">
-                                        <p><strong>{dash.numeroConta}</strong> : {dash.saldo} </p>
+                                        <p><strong>{dash.numeroConta}</strong> : {dash.saldo.toFixed(2)} </p>
                                     </div>
                                 </>
                             )
