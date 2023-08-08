@@ -1,14 +1,18 @@
-import { CardBody } from "reactstrap";
-import { AuthService } from "./auth.service";
+import { Test, TestingModule } from '@nestjs/testing';
+import { AuthController } from './auth.controller';
 
-// @Controller('/auth')
-export class AuthController{
-    constructor(
-        private readonly authService: AuthService
-    ){}
+describe('AuthController', () => {
+  let controller: AuthController;
 
-    // @HttpCode(HttpStatus.OK)
-    // @postMessage('/login')
-    // signIn(@Body() this.signInDto: Record<string, any>){
-    //     return this.authService.signIn(signInDto.username, signInDto.password);
-    }
+  beforeEach(async () => {
+    const module: TestingModule = await Test.createTestingModule({
+      controllers: [AuthController],
+    }).compile();
+
+    controller = module.get<AuthController>(AuthController);
+  });
+
+  it('should be defined', () => {
+    expect(controller).toBeDefined();
+  });
+});

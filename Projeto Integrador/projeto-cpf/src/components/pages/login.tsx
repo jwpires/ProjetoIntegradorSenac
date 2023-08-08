@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import '../../style/style.css';
 import { Link, Route, Routes, useNavigate } from 'react-router-dom';
 import CadastroUsuario from './cadastroUsuario';
 import CadastroNovaSenha from './cadastroNovaSenha';
+import { api } from './api';
 
 
 
@@ -10,11 +11,34 @@ import CadastroNovaSenha from './cadastroNovaSenha';
 
 function Login() {
 
+    const [fUser, setfUser] = useState('');
+    const [fSenha, setfSenha] = useState('');
+
     const navegacao = useNavigate();
 
     const acessaHome = () => {
         navegacao('/home');
     } 
+
+    const handlefUserChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setfUser(e.target.value);
+    }
+    
+    const handlefSenhaChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setfSenha(e.target.value);
+    }
+
+    const RealizarLogin = async () => {
+
+        let json = await api.Logar(fUser, fSenha);
+        if(json.userId){
+            alert ('Bem vindo,'+ fUser);
+            navegacao('/home');
+        }else{
+            alert('Usuario/Senha não encontrados.');
+        }
+
+    }
 
     return (
         
@@ -32,6 +56,13 @@ function Login() {
                     <input type="password" className='input-padrao' placeholder='Senha' />
                     <input type="submit" className='botao-padrao' value="Acessar" onClick={acessaHome}/>
                     <label><Link to={'/cadastro/NovaSenha'} className='link'>Esqueci minha senha.</Link></label>
+
+                    <label>TESTES:</label>
+                    <br />
+                    <input onChange={handlefUserChange} />
+                    <br />
+                    <input onChange={handlefSenhaChange} />
+                    <input type="submit" className='botao-padrao' value="Acessar" onClick={RealizarLogin}/>
                 </div> 
 
             </div>

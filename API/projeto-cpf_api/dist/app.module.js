@@ -10,11 +10,13 @@ exports.AppModule = void 0;
 const axios_1 = require("@nestjs/axios");
 const common_1 = require("@nestjs/common");
 const agencia_module_1 = require("./agencia/agencia.module");
+const auth_module_1 = require("./auth/auth.module");
 const banco_module_1 = require("./Banco/banco.module");
 const grupoDespesa_module_1 = require("./GrupoDeDespesa/grupoDespesa.module");
 const despesa_module_1 = require("./LancamentoDespesa/despesa.module");
 const produto_module_1 = require("./Produto/produto.module");
 const relatorios_module_1 = require("./relatorios/relatorios.module");
+const users_module_1 = require("./users/users.module");
 const usuario_module_1 = require("./usuario/usuario.module");
 let AppModule = class AppModule {
 };
@@ -28,6 +30,9 @@ AppModule = __decorate([
             despesa_module_1.DespesaModule,
             grupoDespesa_module_1.GrupoDespesaModule,
             relatorios_module_1.RelatorioModule,
+            auth_module_1.AuthModule,
+            usuario_module_1.UsuarioModule,
+            users_module_1.UsersModule,
             axios_1.HttpModule
         ],
         controllers: [],

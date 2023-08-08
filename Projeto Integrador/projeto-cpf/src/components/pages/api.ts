@@ -145,4 +145,23 @@ export const api = {
         let json = await response.json();
         return json;
     },
+
+    Logar: async(username: string, password: string) => {
+        {
+            let response = await fetch('http://localhost:3000/auth/login',
+            {
+                method: 'POST',
+                body: JSON.stringify
+                ({
+                    username, password
+                }),
+                headers:{
+                    'Content-Type' : 'applications/json; charset=utf-8'
+                }
+            });
+            let json = await response.json();
+            console.log(json);
+            return json;
+        }
+    }
 }
