@@ -57,12 +57,12 @@ function Login() {
                     <input type="submit" className='botao-padrao' value="Acessar" onClick={acessaHome}/>
                     <label><Link to={'/cadastro/NovaSenha'} className='link'>Esqueci minha senha.</Link></label>
 
-                    <label>TESTES:</label>
+                    {/* <label>TESTES:</label>
                     <br />
                     <input onChange={handlefUserChange} />
                     <br />
                     <input onChange={handlefSenhaChange} />
-                    <input type="submit" className='botao-padrao' value="Acessar" onClick={RealizarLogin}/>
+                    <input type="submit" className='botao-padrao' value="Acessar" onClick={RealizarLogin}/> */}
                 </div> 
 
             </div>
