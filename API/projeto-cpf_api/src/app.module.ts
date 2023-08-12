@@ -5,6 +5,7 @@ import { AuthModule } from './auth/auth.module';
 import { BancoModule } from './Banco/banco.module';
 import { GrupoDespesaModule } from './GrupoDeDespesa/grupoDespesa.module';
 import { DespesaModule } from './LancamentoDespesa/despesa.module';
+import { MarcaModule } from './marcaTesteConexaoBanco/marca.module';
 import { ProdutoModule } from './Produto/produto.module';
 import { RelatorioModule } from './relatorios/relatorios.module';
 import { UsersModule } from './users/users.module';

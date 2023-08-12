@@ -1,7 +1,7 @@
 import React from 'react';
 import './style/style.css';
 import HeaderMenu from './components/header/HeaderMenu';
-import {Route, Routes} from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import Baseboard from './components/baseboard/Baseboard';
 import Login from './components/pages/login';
 import CadastroUsuario from './components/pages/cadastroUsuario';
@@ -25,7 +25,7 @@ import RequisicoesTypesAsync from './components/pages/Exemplos/requisicoesTypesA
 import DogImageAPI from './components/pages/Exemplos/dogImageApi';
 import RequisicoesTypesAsyncPost from './components/pages/Exemplos/requisicoesTypesAsyncPost';
 import FormularioPost from './components/formpost/formularioPost';
-
+import { UsuarioLogadoProvider } from './components/contexts/contextAuth';
 
 
 
@@ -33,34 +33,37 @@ function App() {
 
   return (
     <div className="App">
-      <Routes>
-        <Route path='/home' element={<Home/>}/>
-        
-        <Route path='/cadastro/ContaBanco' element={<CadastroContaBanco/>}/>
-        <Route path='/cadastro/Banco' element={<CadastroBanco/>}/>
-        <Route path='/cadastro/Receita' element={<CadastroReceita />} />
-          <Route path='/cadastro/GrupoReceita' element={<CadastroGrupoReceita/>}/>
-        <Route path='/lancamento/Despesa' element={<LancamentoDespesa/>}/>
-          <Route path='/cadastro/GrupoDespesa' element={<CadastroGrupoDespesa/>}/>
-            <Route path='/confirmacaoPagamento' element={<ConfirmacaoPagamento />} />
-        <Route path='/movimentacaoBancaria' element={<MovimentacaoBancaria/>}/>
-        <Route path='/relatorio' element={<Relatorio/>} />
+      <UsuarioLogadoProvider>
 
-        <Route path='/sobre' element={<Sobre/>}/>
-          <Route path='/sobre/:parametro' element={<SobreItemCPF/>}/> {/* parametros dinâmicos */}
-        
-        <Route path='/' element={<Login/>}/>
-          <Route path='/cadastro/Usuario' element={<CadastroUsuario/>}/>
-          <Route path='/cadastro/NovaSenha' element={<CadastroNovaSenha/>}/> {/* */}
-        
-        <Route path='*' element={<NotFound/>}/>
+        <Routes>
+          <Route path='/' element={<Login />} />
+          <Route path='/cadastro/Usuario' element={<CadastroUsuario />} />
+          <Route path='/cadastro/NovaSenha' element={<CadastroNovaSenha />} /> {/* */}
 
-        <Route path='/contador' element={<Contador/>}/>
-        <Route path='/paifilho' element={<Pai/>}/>
-        <Route path='/requisicao' element={<RequisicoesTypesAsync/>} />
-        <Route path='/requisicao2' element={<RequisicoesTypesAsyncPost/>}/>
-        <Route path='/dog' element={<DogImageAPI/>}/>
-      </Routes>
+          <Route path='/home' element={<Home />} />
+          <Route path='/cadastro/ContaBanco' element={<CadastroContaBanco />} />
+          <Route path='/cadastro/Banco' element={<CadastroBanco />} />
+          <Route path='/cadastro/Receita' element={<CadastroReceita />} />
+          <Route path='/cadastro/GrupoReceita' element={<CadastroGrupoReceita />} />
+          <Route path='/lancamento/Despesa' element={<LancamentoDespesa />} />
+          <Route path='/cadastro/GrupoDespesa' element={<CadastroGrupoDespesa />} />
+          <Route path='/confirmacaoPagamento' element={<ConfirmacaoPagamento />} />
+          <Route path='/movimentacaoBancaria' element={<MovimentacaoBancaria />} />
+          <Route path='/relatorio' element={<Relatorio />} />
+
+          <Route path='/sobre' element={<Sobre />} />
+          <Route path='/sobre/:parametro' element={<SobreItemCPF />} /> {/* parametros dinâmicos */}
+
+          <Route path='*' element={<NotFound />} />
+
+          <Route path='/contador' element={<Contador />} />
+          <Route path='/paifilho' element={<Pai />} />
+          <Route path='/requisicao' element={<RequisicoesTypesAsync />} />
+          <Route path='/requisicao2' element={<RequisicoesTypesAsyncPost />} />
+          <Route path='/dog' element={<DogImageAPI />} />
+        </Routes>
+
+      </UsuarioLogadoProvider>
     </div>
   );
 }

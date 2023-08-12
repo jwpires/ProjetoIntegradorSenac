@@ -35,6 +35,28 @@ let MarcaService = class MarcaService {
         const user = await this.buscarPorID(id);
         await this.marcaRepository.remove(user);
     }
+    async alterar(id, dados) {
+        const marca = await this.buscarPorID(id);
+        Object.entries(dados).forEach(([chave, valor]) => {
+            if (chave === 'id') {
+                return;
+            }
+            marca[chave] = valor;
+        });
+        return this.marcaRepository.save(marca)
+            .then((result) => {
+            return {
+                id: marca.id,
+                message: "Marca alterada!"
+            };
+        })
+            .catch((error) => {
+            return {
+                id: "",
+                message: "Houve um erro ao alterar."
+            };
+        });
+    }
 };
 MarcaService = __decorate([
     (0, common_1.Injectable)(),
