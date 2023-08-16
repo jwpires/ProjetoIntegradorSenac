@@ -1,5 +1,4 @@
 import { Body, Controller, Get, Post } from "@nestjs/common";
-import { DespesasArmazenadas } from "./despesa.dm";
 import { Despesa } from "./despesa.entity";
 import { ListarDespesasDashboardDTO } from "./dto/exibeDespesasDashboard.dto";
 import { InserirDespesaDTO } from "./dto/inserirDespesa.dto";

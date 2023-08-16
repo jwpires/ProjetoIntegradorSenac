@@ -15,43 +15,61 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.DespesasService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("typeorm");
+const despesa_entity_1 = require("./despesa.entity");
+const grupoDespesa_service_1 = require("../GrupoDeDespesa/grupoDespesa.service");
+const uuid_1 = require("uuid");
 let DespesasService = class DespesasService {
-    constructor(despesaRepository) {
+    constructor(despesaRepository, grupoDespesaRepository, grupoDespesaService) {
         this.despesaRepository = despesaRepository;
+        this.grupoDespesaRepository = grupoDespesaRepository;
+        this.grupoDespesaService = grupoDespesaService;
     }
     async listar() {
         return this.despesaRepository.find();
     }
-    async inserirDespesa(despesa) {
-        const id = despesa.id;
-        const descricao = despesa.descricao;
-        const id_grupoDespesa = despesa.id_grupoDespesa;
-        const dataLancamento = despesa.dataLancamento;
-        const dataVencimento = despesa.dataVencimento;
-        const valor = despesa.valor;
-        const pago = despesa.pago;
-        try {
-            const novaDespesa = this.despesaRepository.create({
-                id,
-                descricao,
-                id_grupoDespesa,
-                dataLancamento,
-                dataVencimento,
-                valor,
-                pago
-            });
-            await this.despesaRepository.insert(novaDespesa);
-            console.log('Despesas cadastrada com sucesso.');
-        }
-        catch (error) {
-            console.log('Erro ao cadastrar Despesa' + error.message);
-        }
+    async inserirDespesa(dados) {
+        let despesa = new despesa_entity_1.Despesa();
+        despesa.id = (0, uuid_1.v4)();
+        despesa.descricao = dados.descricao;
+        despesa.grupoDespesa = await this.grupoDespesaService.buscarGrupoDespesaPorId(dados.id_GrupoDespesa);
+        despesa.dataLancamento = dados.dataLancamento;
+        despesa.dataVencimento = dados.dataVencimento;
+        despesa.valor = dados.valor;
+        despesa.pago = dados.pago;
+        return this.despesaRepository.save(despesa).
+            then((result) => {
+            return {
+                id: despesa.id,
+                descricao: despesa.descricao,
+                id_grupoDespesa: despesa.grupoDespesa,
+                dataLancamento: despesa.dataLancamento,
+                dataVencimento: despesa.dataVencimento,
+                valor: despesa.valor,
+                pago: despesa.pago,
+                message: "Despesa Cadastrada!"
+            };
+        })
+            .catch((error) => {
+            return {
+                id: despesa.id,
+                descricao: despesa.descricao,
+                id_grupoDespesa: despesa.grupoDespesa,
+                dataLancamento: despesa.dataLancamento,
+                dataVencimento: despesa.dataVencimento,
+                valor: despesa.valor,
+                pago: despesa.pago,
+                message: "Despesa Cadastrada!"
+            };
+        });
     }
 };
 DespesasService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, common_1.Inject)('DESPESA_REPOSITORY')),
-    __metadata("design:paramtypes", [typeorm_1.Repository])
+    __param(1, (0, common_1.Inject)('GRUPODESPESA_REPOSITORY')),
+    __metadata("design:paramtypes", [typeorm_1.Repository,
+        typeorm_1.Repository,
+        grupoDespesa_service_1.GrupoDespesaService])
 ], DespesasService);
 exports.DespesasService = DespesasService;
 //# sourceMappingURL=despesa.service.js.map

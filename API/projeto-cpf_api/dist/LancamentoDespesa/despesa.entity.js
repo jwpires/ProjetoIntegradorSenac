@@ -13,15 +13,6 @@ exports.Despesa = void 0;
 const grupoDespesa_entity_1 = require("../GrupoDeDespesa/grupoDespesa.entity");
 const typeorm_1 = require("typeorm");
 let Despesa = class Despesa {
-    constructor(id, descricao, id_grupoDespesa, dataLancamento, dataVencimento, valor, pago) {
-        this.id = id;
-        this.descricao = descricao;
-        this.id_grupoDespesa = id_grupoDespesa;
-        this.dataLancamento = dataLancamento;
-        this.dataVencimento = dataVencimento;
-        this.valor = valor;
-        this.pago = pago;
-    }
 };
 __decorate([
     (0, typeorm_1.PrimaryColumn)(),
@@ -35,7 +26,7 @@ __decorate([
     (0, typeorm_1.ManyToOne)(() => grupoDespesa_entity_1.GrupoDespesa, { cascade: true }),
     (0, typeorm_1.JoinColumn)({ name: "id_grupoDespesa", referencedColumnName: "id" }),
     __metadata("design:type", grupoDespesa_entity_1.GrupoDespesa)
-], Despesa.prototype, "id_grupoDespesa", void 0);
+], Despesa.prototype, "grupoDespesa", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Date)
@@ -53,10 +44,7 @@ __decorate([
     __metadata("design:type", Boolean)
 ], Despesa.prototype, "pago", void 0);
 Despesa = __decorate([
-    (0, typeorm_1.Entity)(),
-    __metadata("design:paramtypes", [String, String, grupoDespesa_entity_1.GrupoDespesa,
-        Date,
-        Date, Number, Boolean])
+    (0, typeorm_1.Entity)()
 ], Despesa);
 exports.Despesa = Despesa;
 //# sourceMappingURL=despesa.entity.js.map
