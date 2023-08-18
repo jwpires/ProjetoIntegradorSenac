@@ -36,16 +36,13 @@ let DespesasService = class DespesasService {
         despesa.dataVencimento = dados.dataVencimento;
         despesa.valor = dados.valor;
         despesa.pago = dados.pago;
+        let teste = despesa;
         return this.despesaRepository.save(despesa).
             then((result) => {
             return {
                 id: despesa.id,
                 descricao: despesa.descricao,
-                id_grupoDespesa: despesa.grupoDespesa,
-                dataLancamento: despesa.dataLancamento,
-                dataVencimento: despesa.dataVencimento,
                 valor: despesa.valor,
-                pago: despesa.pago,
                 message: "Despesa Cadastrada!"
             };
         })
@@ -53,12 +50,7 @@ let DespesasService = class DespesasService {
             return {
                 id: despesa.id,
                 descricao: despesa.descricao,
-                id_grupoDespesa: despesa.grupoDespesa,
-                dataLancamento: despesa.dataLancamento,
-                dataVencimento: despesa.dataVencimento,
-                valor: despesa.valor,
-                pago: despesa.pago,
-                message: "Despesa Cadastrada!"
+                message: "Despesa Não Cadastrada devido ao erro: " + error
             };
         });
     }

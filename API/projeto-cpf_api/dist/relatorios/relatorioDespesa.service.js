@@ -23,6 +23,33 @@ let RelatorioDespesaService = class RelatorioDespesaService {
     async listar() {
         return this.relatorioDespesaDash.find();
     }
+    async listaComFiltro(NOME_MARCA) {
+        if (NOME_MARCA != undefined) {
+            var retorno = await (this.relatorioDespesaDash
+                .createQueryBuilder('despesa')
+                .select('despesa.id', 'ID')
+                .addSelect('despesa.descricao', 'descricao')
+                .addSelect('pes_f.nome', 'nome_fornecedor')
+                .leftJoin('for_marca', 'fm', 'fm.idmarca = marca.id')
+                .leftJoin('fornecedor', 'for', 'for.id = fm.idfornecedor')
+                .leftJoin('pessoa', 'pes_f', 'for.idpessoa = pes_f.id')
+                .where('marca.nome like :nomemarca', { nomemarca: `%${NOME_MARCA}%` })
+                .getRawMany());
+        }
+        else {
+            var retorno = await (this.marcaRepository
+                .createQueryBuilder('marca')
+                .select('marca.id', 'ID')
+                .addSelect('marca.nome', 'nome_marca')
+                .addSelect('pes_f.nome', 'nome_fornecedor')
+                .leftJoin('for_marca', 'fm', 'fm.idmarca = marca.id')
+                .leftJoin('fornecedor', 'for', 'for.id = fm.idfornecedor')
+                .leftJoin('pessoa', 'pes_f', 'for.idpessoa = pes_f.id')
+                .getRawMany());
+        }
+        const listaRetorno = retorno.map(marca => new listaMarcaFornDTO(marca.ID, marca.nome_marca, marca.nome_fornecedor));
+        return listaRetorno;
+    }
 };
 RelatorioDespesaService = __decorate([
     (0, common_2.Injectable)(),

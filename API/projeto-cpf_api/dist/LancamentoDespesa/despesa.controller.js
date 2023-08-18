@@ -14,9 +14,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DespesaController = void 0;
 const common_1 = require("@nestjs/common");
-const despesa_entity_1 = require("./despesa.entity");
 const inserirDespesa_dto_1 = require("./dto/inserirDespesa.dto");
-const uuid_1 = require("uuid");
 const despesa_service_1 = require("./despesa.service");
 const grupoDespesa_service_1 = require("../GrupoDeDespesa/grupoDespesa.service");
 let DespesaController = class DespesaController {
@@ -24,26 +22,11 @@ let DespesaController = class DespesaController {
         this.despesaService = despesaService;
         this.grupoDespesaService = grupoDespesaService;
     }
-    async RetornoDespesas() {
+    async listarDespesas() {
         return this.despesaService.listar();
     }
     async CriarDespesa(dadosDespesa) {
-        let retornoDespesa;
-        try {
-            const grupoDespesa = await this.grupoDespesaService.buscarGrupoDespesaPorId(dadosDespesa.id_GrupoDespesa);
-            const despesa = new despesa_entity_1.Despesa((0, uuid_1.v4)(), dadosDespesa.descricao, grupoDespesa, dadosDespesa.dataLancamento, dadosDespesa.dataVencimento, dadosDespesa.valor, dadosDespesa.pago);
-            await this.despesaService.inserirDespesa(despesa);
-            retornoDespesa = {
-                dadosDespesa,
-                message: "Despesa Cadastrada!"
-            };
-        }
-        catch (error) {
-            retornoDespesa = {
-                error: "Erro ao cadastrar Despesa"
-            };
-        }
-        return retornoDespesa;
+        return this.despesaService.inserirDespesa(dadosDespesa);
     }
 };
 __decorate([
@@ -51,7 +34,7 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
-], DespesaController.prototype, "RetornoDespesas", null);
+], DespesaController.prototype, "listarDespesas", null);
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),

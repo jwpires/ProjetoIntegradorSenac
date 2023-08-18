@@ -6,6 +6,6 @@ export declare class DespesaController {
     private readonly despesaService;
     private readonly grupoDespesaService;
     constructor(despesaService: DespesasService, grupoDespesaService: GrupoDespesaService);
-    RetornoDespesas(): Promise<Despesa[]>;
-    CriarDespesa(dadosDespesa: InserirDespesaDTO): Promise<any>;
+    listarDespesas(): Promise<Despesa[]>;
+    CriarDespesa(dadosDespesa: InserirDespesaDTO): Promise<import("./dto/retornoDespesas.dto").RetornoDespesasDTO>;
 }

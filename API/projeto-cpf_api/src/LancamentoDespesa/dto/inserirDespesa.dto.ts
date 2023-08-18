@@ -1,4 +1,5 @@
 import { IsBoolean, IsDateString, IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { GrupoDespesa } from "src/GrupoDeDespesa/grupoDespesa.entity";
 
 export class InserirDespesaDTO{
 
@@ -8,7 +9,7 @@ export class InserirDespesaDTO{
 
     @IsString()
     @IsNotEmpty()
-    id_GrupoDespesa:string;
+    id_GrupoDespesa: string;
 
     @IsDateString()
     @IsNotEmpty()

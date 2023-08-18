@@ -36,7 +36,7 @@ __decorate([
     __metadata("design:type", Date)
 ], Despesa.prototype, "dataVencimento", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)('decimal', { precision: 11, scale: 2 }),
     __metadata("design:type", Number)
 ], Despesa.prototype, "valor", void 0);
 __decorate([

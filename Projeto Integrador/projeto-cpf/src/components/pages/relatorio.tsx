@@ -107,7 +107,7 @@ function Relatorio() {
                                                             <p><strong>Data de lançamento:</strong> {moment(item.dataLancamento).format('DD-MM-YYYY')} </p>
                                                             <p><strong>Data de vencimento:</strong> {moment(item.dataVencimento).format('DD-MM-YYYY')} </p>
                                                             <p><strong>Grupo de despesa:</strong> {item.id_GrupoDespesa} </p>
-                                                            <p><strong>Valor:</strong> {item.valor.toFixed(2)}</p>
+                                                            <p><strong>Valor:</strong> {item.valor}</p>
                                                             <Button color="warning">Estornar</Button>
                                                             <Button color="danger">Excluir</Button>
 
@@ -146,7 +146,7 @@ function Relatorio() {
                                                             <p><strong>Data de lançamento:</strong> {moment(item.dataLancamento).format('DD-MM-YYYY')} </p>
                                                             <p><strong>Data de vencimento:</strong> {moment(item.dataVencimento).format('DD-MM-YYYY')} </p>
                                                             <p><strong>Grupo de despesa:</strong> {item.id_GrupoDespesa} </p>
-                                                            <p><strong>Valor:</strong> {item.valor.toFixed(2)}</p>
+                                                            <p><strong>Valor:</strong> {item.valor}</p>
                                                             <Button color="success">Pagar</Button>
                                                             <Button color="danger">Excluir</Button>
 

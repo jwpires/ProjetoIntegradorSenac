@@ -2,6 +2,7 @@ import { Get } from "@nestjs/common";
 import { Controller } from "@nestjs/common";
 import { Agencia } from "src/agencia/agencia.entity";
 import { Despesa } from "src/LancamentoDespesa/despesa.entity";
+import { ListaRelatorioDespesaDTO } from "./dto/listarRelatorioDespesa.dto";
 import { RelatorioDespesaService } from "./relatorioDespesa.service";
 import { RelatorioSaldoDashService } from "./relatorioSaldoDash.service";
 
@@ -32,6 +33,17 @@ export class RelatoriosController{
 
     @Get('/despesas-em-aberto')
     async RetornaListaDespesaEmAberto(): Promise<Despesa[]>{
+        const relatorios = this.relatorioService.listar();
+        
+        const retornoDespesaEmAberto = (await relatorios).filter(
+            item => item.pago === false
+        )
+        
+        return retornoDespesaEmAberto;
+    }
+
+    @Get('/despesas-em-aberto2')
+    async RetornaListaDespesaEmAberto2(): Promise<ListaRelatorioDespesaDTO[]>{
         const relatorios = this.relatorioService.listar();
         
         const retornoDespesaEmAberto = (await relatorios).filter(

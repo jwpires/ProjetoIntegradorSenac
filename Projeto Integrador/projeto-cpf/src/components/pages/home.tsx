@@ -60,7 +60,7 @@ function Home() {
                             dashSaldoBanco.map(
                                 dash => <>
                                     <div className="saldo">
-                                        <p><strong>{dash.numeroConta}</strong> : {dash.saldo.toFixed(2)} </p>
+                                        <p><strong>{dash.numeroConta}</strong> : {dash.saldo} </p>
                                     </div>
                                 </>
                             )
@@ -78,7 +78,7 @@ function Home() {
                                         <div>
                                             <p><strong>Despesa:</strong> {dash.descricao}</p>
                                             <p><strong>Vencimento:</strong> {moment(dash.dataVencimento).format('DD-MM-YYYY')}</p>
-                                            <p><strong>Valor:</strong> {dash.valor.toFixed(2)}</p>
+                                            <p><strong>Valor:</strong> {dash.valor}</p>
                                         </div>
                                     </div>
                                 </>

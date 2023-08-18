@@ -20,7 +20,10 @@ export class DespesasService{
     ) { }
     
     async listar(): Promise<Despesa[]>{
+        
         return this.despesaRepository.find();
+       
+        
     }
     
     async inserirDespesa(dados: InserirDespesaDTO): Promise<RetornoDespesasDTO> { 
@@ -34,17 +37,15 @@ export class DespesasService{
             despesa.valor = dados.valor;
             despesa.pago = dados.pago;
 
+            let teste = despesa;
+
         return this.despesaRepository.save(despesa).
         then(
             (result) => {
                 return <RetornoDespesasDTO>{
                     id: despesa.id,
                     descricao: despesa.descricao,
-                    id_grupoDespesa: despesa.grupoDespesa, 
-                    dataLancamento: despesa.dataLancamento,
-                    dataVencimento: despesa.dataVencimento,
                     valor: despesa.valor,
-                    pago: despesa.pago,
                     message: "Despesa Cadastrada!" 
                 };
             }
@@ -54,12 +55,7 @@ export class DespesasService{
                 return <RetornoDespesasDTO>{
                     id: despesa.id,
                     descricao: despesa.descricao,
-                    id_grupoDespesa: despesa.grupoDespesa,
-                    dataLancamento: despesa.dataLancamento,
-                    dataVencimento: despesa.dataVencimento,
-                    valor: despesa.valor,
-                    pago: despesa.pago,
-                    message: "Despesa Cadastrada!"
+                    message: "Despesa Não Cadastrada devido ao erro: " + error
                 };
             }
         )

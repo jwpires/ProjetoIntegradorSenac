@@ -18,7 +18,7 @@ export class Despesa{
     dataLancamento:Date;
     @Column()
     dataVencimento:Date;
-    @Column()
+    @Column('decimal',{precision: 11, scale: 2})
     valor: number;
     @Column()
     pago: boolean;

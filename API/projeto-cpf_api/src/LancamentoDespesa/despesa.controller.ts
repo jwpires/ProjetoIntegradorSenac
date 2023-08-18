@@ -14,37 +14,39 @@ export class DespesaController{
     ) { }
     
     @Get()
-    async RetornoDespesas() {
+    async listarDespesas():Promise<Despesa[]> {
         return this.despesaService.listar();
     }
 
     @Post()
     async CriarDespesa(@Body() dadosDespesa: InserirDespesaDTO) {
        
-        let retornoDespesa: any;
+        return this.despesaService.inserirDespesa(dadosDespesa);
 
-        try {
-            const grupoDespesa = await this.grupoDespesaService.buscarGrupoDespesaPorId(dadosDespesa.id_GrupoDespesa)
+        // let retornoDespesa: any;
 
-            const despesa = new Despesa(
-                uuid(),
-                dadosDespesa.descricao,
-                grupoDespesa,
-                dadosDespesa.dataLancamento,
-                dadosDespesa.dataVencimento,
-                dadosDespesa.valor,
-                dadosDespesa.pago
-            );
-            await this.despesaService.inserirDespesa(despesa);
-            retornoDespesa = {
-                dadosDespesa,
-                message: "Despesa Cadastrada!"
-            }
-        } catch (error) {
-            retornoDespesa = {
-                error: "Erro ao cadastrar Despesa"
-            } 
-        }
-        return retornoDespesa;
+        // try {
+        //     const grupoDespesa = await this.grupoDespesaService.buscarGrupoDespesaPorId(dadosDespesa.id_GrupoDespesa)
+
+        //     const despesa = new Despesa(
+        //         uuid(),
+        //         dadosDespesa.descricao,
+        //         grupoDespesa,
+        //         dadosDespesa.dataLancamento,
+        //         dadosDespesa.dataVencimento,
+        //         dadosDespesa.valor,
+        //         dadosDespesa.pago
+        //     );
+        //     await this.despesaService.inserirDespesa(despesa);
+        //     retornoDespesa = {
+        //         dadosDespesa,
+        //         message: "Despesa Cadastrada!"
+        //     }
+        // } catch (error) {
+        //     retornoDespesa = {
+        //         error: "Erro ao cadastrar Despesa"
+        //     } 
+        // }
+        // return retornoDespesa;
     }
 } 
