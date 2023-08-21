@@ -6,5 +6,4 @@ export declare class Agencia {
     numeroConta: string;
     tipoDeConta: string;
     saldo: number;
-    constructor(id: string, id_banco: Banco, nomeProprietario: string, numeroConta: string, tipoDeConta: string, saldo: number);
 }

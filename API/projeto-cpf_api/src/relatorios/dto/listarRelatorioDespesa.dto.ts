@@ -6,6 +6,7 @@ export class ListaRelatorioDespesaDTO{
         readonly nomeGrupoDespesa: string,
         readonly dataLancamento: Date,
         readonly dataVencimento: Date,
-        readonly valor: number
+        readonly valor: number,
+        readonly pago: boolean
     ){}
 }

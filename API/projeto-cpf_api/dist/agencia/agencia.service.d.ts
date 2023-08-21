@@ -1,8 +1,12 @@
 import { Repository } from "typeorm";
 import { Agencia } from "./agencia.entity";
+import { BancoService } from "src/Banco/banco.service";
+import { InserirAgenciaDTO } from "./dto/inserirAgencia.dto";
+import { RetornoGeralDTO } from "./dto/retornoGeral.dto";
 export declare class AgenciaService {
     private agenciaRepository;
-    constructor(agenciaRepository: Repository<Agencia>);
+    private readonly bancoService;
+    constructor(agenciaRepository: Repository<Agencia>, bancoService: BancoService);
     listar(): Promise<Agencia[]>;
-    inserirAgencia(agencia: Agencia): Promise<void>;
+    inserirAgencia(dados: InserirAgenciaDTO): Promise<RetornoGeralDTO>;
 }

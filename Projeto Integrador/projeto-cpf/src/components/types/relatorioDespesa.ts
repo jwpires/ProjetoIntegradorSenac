@@ -1,7 +1,7 @@
 export type RelatorioDespesa = {
-    id: string;
+    id_despesa: string;
     descricao: string;
-    id_GrupoDespesa: string;
+    nomeGrupoDespesa: string;
     dataLancamento: string;
     dataVencimento  :   string;
     valor: number; 

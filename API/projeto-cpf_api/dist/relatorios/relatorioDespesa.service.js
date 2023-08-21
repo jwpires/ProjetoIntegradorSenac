@@ -16,6 +16,7 @@ exports.RelatorioDespesaService = void 0;
 const common_1 = require("@nestjs/common");
 const common_2 = require("@nestjs/common");
 const typeorm_1 = require("typeorm");
+const listarRelatorioDespesa_dto_1 = require("./dto/listarRelatorioDespesa.dto");
 let RelatorioDespesaService = class RelatorioDespesaService {
     constructor(relatorioDespesaDash) {
         this.relatorioDespesaDash = relatorioDespesaDash;
@@ -23,31 +24,19 @@ let RelatorioDespesaService = class RelatorioDespesaService {
     async listar() {
         return this.relatorioDespesaDash.find();
     }
-    async listaComFiltro(NOME_MARCA) {
-        if (NOME_MARCA != undefined) {
-            var retorno = await (this.relatorioDespesaDash
-                .createQueryBuilder('despesa')
-                .select('despesa.id', 'ID')
-                .addSelect('despesa.descricao', 'descricao')
-                .addSelect('pes_f.nome', 'nome_fornecedor')
-                .leftJoin('for_marca', 'fm', 'fm.idmarca = marca.id')
-                .leftJoin('fornecedor', 'for', 'for.id = fm.idfornecedor')
-                .leftJoin('pessoa', 'pes_f', 'for.idpessoa = pes_f.id')
-                .where('marca.nome like :nomemarca', { nomemarca: `%${NOME_MARCA}%` })
-                .getRawMany());
-        }
-        else {
-            var retorno = await (this.marcaRepository
-                .createQueryBuilder('marca')
-                .select('marca.id', 'ID')
-                .addSelect('marca.nome', 'nome_marca')
-                .addSelect('pes_f.nome', 'nome_fornecedor')
-                .leftJoin('for_marca', 'fm', 'fm.idmarca = marca.id')
-                .leftJoin('fornecedor', 'for', 'for.id = fm.idfornecedor')
-                .leftJoin('pessoa', 'pes_f', 'for.idpessoa = pes_f.id')
-                .getRawMany());
-        }
-        const listaRetorno = retorno.map(marca => new listaMarcaFornDTO(marca.ID, marca.nome_marca, marca.nome_fornecedor));
+    async listarRelatorioDespesa() {
+        var retorno = await (this.relatorioDespesaDash
+            .createQueryBuilder('despesa')
+            .select('despesa.id', 'ID')
+            .addSelect('despesa.descricao', 'DESCRICAO')
+            .addSelect('gd.descricao', 'GRUPODESPESA')
+            .addSelect('despesa.datalancamento', 'DATALANC')
+            .addSelect('despesa.datavencimento', 'DATAVENC')
+            .addSelect('despesa.valor', 'VALOR')
+            .addSelect('despesa.pago', 'PAGO')
+            .innerJoin('grupo_despesa', 'gd', 'gd.id = despesa.id_grupodespesa')
+            .getRawMany());
+        let listaRetorno = retorno.map(despesa => new listarRelatorioDespesa_dto_1.ListaRelatorioDespesaDTO(despesa.ID, despesa.DESCRICAO, despesa.GRUPODESPESA, despesa.DATALANC, despesa.DATAVENC, despesa.VALOR, despesa.PAGO));
         return listaRetorno;
     }
 };

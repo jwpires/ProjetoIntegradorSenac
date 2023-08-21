@@ -5,5 +5,5 @@ export declare class RelatorioDespesaService {
     private relatorioDespesaDash;
     constructor(relatorioDespesaDash: Repository<Despesa>);
     listar(): Promise<Despesa[]>;
-    listaComFiltro(NOME_MARCA?: string): Promise<ListaRelatorioDespesaDTO[]>;
+    listarRelatorioDespesa(): Promise<ListaRelatorioDespesaDTO[]>;
 }

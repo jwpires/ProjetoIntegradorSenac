@@ -9,7 +9,6 @@ export declare class RelatoriosController {
     constructor(relatorioService: RelatorioDespesaService, relatorioSaldoServide: RelatorioSaldoDashService);
     RetornaListaDespesaDash(): Promise<Despesa[]>;
     RetornaSaldosDash(): Promise<Agencia[]>;
-    RetornaListaDespesaEmAberto(): Promise<Despesa[]>;
-    RetornaListaDespesaEmAberto2(): Promise<ListaRelatorioDespesaDTO[]>;
-    RetornaListaDespesaPagas(): Promise<Despesa[]>;
+    RetornaListaDespesaEmAberto(): Promise<ListaRelatorioDespesaDTO[]>;
+    RetornaListaDespesaPagas(): Promise<ListaRelatorioDespesaDTO[]>;
 }

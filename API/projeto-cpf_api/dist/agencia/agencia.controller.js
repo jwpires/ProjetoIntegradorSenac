@@ -15,9 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AgenciaController = void 0;
 const common_1 = require("@nestjs/common");
 const decorators_1 = require("@nestjs/common/decorators");
-const agencia_entity_1 = require("./agencia.entity");
 const inserirAgencia_dto_1 = require("./dto/inserirAgencia.dto");
-const uuid_1 = require("uuid");
 const agencia_service_1 = require("./agencia.service");
 const banco_service_1 = require("../Banco/banco.service");
 let AgenciaController = class AgenciaController {
@@ -29,22 +27,7 @@ let AgenciaController = class AgenciaController {
         return this.agenciaService.listar();
     }
     async criarAgencia(dadosAgencia) {
-        var retornoAgencia;
-        try {
-            const banco = await this.bancoService.buscarBancoPorId(dadosAgencia.id_banco);
-            const agencia = new agencia_entity_1.Agencia((0, uuid_1.v4)(), banco, dadosAgencia.nomeProprietario, dadosAgencia.numeroConta, dadosAgencia.tipoConta, dadosAgencia.saldo);
-            await this.agenciaService.inserirAgencia(agencia);
-            retornoAgencia = {
-                dadosAgencia,
-                status: "Agencia Criada."
-            };
-        }
-        catch (error) {
-            retornoAgencia = {
-                error: "Erro ao criar Agência."
-            };
-        }
-        return retornoAgencia;
+        return this.agenciaService.inserirAgencia(dadosAgencia);
     }
 };
 __decorate([

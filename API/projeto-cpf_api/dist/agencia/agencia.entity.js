@@ -13,14 +13,6 @@ exports.Agencia = void 0;
 const banco_entity_1 = require("../Banco/banco.entity");
 const typeorm_1 = require("typeorm");
 let Agencia = class Agencia {
-    constructor(id, id_banco, nomeProprietario, numeroConta, tipoDeConta, saldo) {
-        this.id = id;
-        this.id_banco = id_banco;
-        this.nomeProprietario = nomeProprietario;
-        this.numeroConta = numeroConta;
-        this.tipoDeConta = tipoDeConta;
-        this.saldo = saldo;
-    }
 };
 __decorate([
     (0, typeorm_1.PrimaryColumn)(),
@@ -44,12 +36,11 @@ __decorate([
     __metadata("design:type", String)
 ], Agencia.prototype, "tipoDeConta", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)('decimal', { precision: 11, scale: 2 }),
     __metadata("design:type", Number)
 ], Agencia.prototype, "saldo", void 0);
 Agencia = __decorate([
-    (0, typeorm_1.Entity)(),
-    __metadata("design:paramtypes", [String, banco_entity_1.Banco, String, String, String, Number])
+    (0, typeorm_1.Entity)()
 ], Agencia);
 exports.Agencia = Agencia;
 //# sourceMappingURL=agencia.entity.js.map

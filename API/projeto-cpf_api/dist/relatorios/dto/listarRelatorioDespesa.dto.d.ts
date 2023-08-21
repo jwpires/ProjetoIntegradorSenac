@@ -5,5 +5,6 @@ export declare class ListaRelatorioDespesaDTO {
     readonly dataLancamento: Date;
     readonly dataVencimento: Date;
     readonly valor: number;
-    constructor(id_despesa: string, descricao: string, nomeGrupoDespesa: string, dataLancamento: Date, dataVencimento: Date, valor: number);
+    readonly pago: boolean;
+    constructor(id_despesa: string, descricao: string, nomeGrupoDespesa: string, dataLancamento: Date, dataVencimento: Date, valor: number, pago: boolean);
 }

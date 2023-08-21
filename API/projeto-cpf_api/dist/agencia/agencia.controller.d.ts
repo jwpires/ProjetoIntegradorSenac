@@ -7,5 +7,5 @@ export declare class AgenciaController {
     private readonly bancoService;
     constructor(agenciaService: AgenciaService, bancoService: BancoService);
     retornoAgencias(): Promise<Agencia[]>;
-    criarAgencia(dadosAgencia: InserirAgenciaDTO): Promise<any>;
+    criarAgencia(dadosAgencia: InserirAgenciaDTO): Promise<import("./dto/retornoGeral.dto").RetornoGeralDTO>;
 }

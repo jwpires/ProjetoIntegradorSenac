@@ -36,6 +36,11 @@ function Relatorio() {
         validaConfiguracao.contasBancarias = "menu-guia";
     }
 
+    const formatarNumero = (numero:number) => {
+        // Converte o número para uma string com duas casas decimais
+        return numero.toFixed(2);
+      }
+
     let [exibeMenu, setMenu] = useState([true, false, false]);
     const [relatorioDespesaPaga, setDespesaPaga] = useState<RelatorioDespesa[]>([]);
     const [relatorioDespesaEmAberto, setDespesaEmAberto] = useState<RelatorioDespesa[]>([]);
@@ -97,17 +102,18 @@ function Relatorio() {
                                     {
                                         relatorioDespesaPaga.map(
                                             item =>
+                                                
                                                 <>
                                                     <AccordionItem>
-                                                        <AccordionHeader targetId={item.id}>
+                                                        <AccordionHeader targetId={item.id_despesa}>
                                                             {item.descricao}
                                                         </AccordionHeader>
-                                                        <AccordionBody accordionId={item.id}>
+                                                        <AccordionBody accordionId={item.id_despesa}>
 
                                                             <p><strong>Data de lançamento:</strong> {moment(item.dataLancamento).format('DD-MM-YYYY')} </p>
                                                             <p><strong>Data de vencimento:</strong> {moment(item.dataVencimento).format('DD-MM-YYYY')} </p>
-                                                            <p><strong>Grupo de despesa:</strong> {item.id_GrupoDespesa} </p>
-                                                            <p><strong>Valor:</strong> {item.valor}</p>
+                                                            <p><strong>Grupo de despesa:</strong> {item.nomeGrupoDespesa} </p>
+                                                            <p><strong>Valor:</strong> { formatarNumero(item.valor)}</p>
                                                             <Button color="warning">Estornar</Button>
                                                             <Button color="danger">Excluir</Button>
 
@@ -138,15 +144,15 @@ function Relatorio() {
                                             item =>
                                                 <>
                                                     <AccordionItem>
-                                                        <AccordionHeader targetId={item.id}>
+                                                        <AccordionHeader targetId={item.id_despesa}>
                                                             {item.descricao}
                                                         </AccordionHeader>
-                                                        <AccordionBody accordionId={item.id}>
+                                                        <AccordionBody accordionId={item.id_despesa}>
 
                                                             <p><strong>Data de lançamento:</strong> {moment(item.dataLancamento).format('DD-MM-YYYY')} </p>
                                                             <p><strong>Data de vencimento:</strong> {moment(item.dataVencimento).format('DD-MM-YYYY')} </p>
-                                                            <p><strong>Grupo de despesa:</strong> {item.id_GrupoDespesa} </p>
-                                                            <p><strong>Valor:</strong> {item.valor}</p>
+                                                            <p><strong>Grupo de despesa:</strong> {item.nomeGrupoDespesa} </p>
+                                                            <p><strong>Valor:</strong> {formatarNumero(item.valor)}</p>
                                                             <Button color="success">Pagar</Button>
                                                             <Button color="danger">Excluir</Button>
 
@@ -176,15 +182,15 @@ function Relatorio() {
                                             item =>
                                                 <>
                                                     <AccordionItem>
-                                                        <AccordionHeader targetId={item.id}>
+                                                        <AccordionHeader targetId={item.id_despesa}>
                                                             {item.descricao}
                                                         </AccordionHeader>
-                                                        <AccordionBody accordionId={item.id}>
+                                                        <AccordionBody accordionId={item.id_despesa}>
 
                                                             <p><strong>Data de lançamento:</strong> {moment(item.dataLancamento).format('DD-MM-YYYY')} </p>
                                                             <p><strong>Data de vencimento:</strong> {moment(item.dataVencimento).format('DD-MM-YYYY')} </p>
-                                                            <p><strong>Grupo de despesa:</strong> {item.id_GrupoDespesa} </p>
-                                                            <p><strong>Valor:</strong> {item.valor}</p>
+                                                            <p><strong>Grupo de despesa:</strong> {item.nomeGrupoDespesa} </p>
+                                                            <p><strong>Valor:</strong> {formatarNumero(item.valor)}</p>
                                                             <Button color="warning">Estornar</Button>
                                                             <Button color="danger">Excluir</Button>
 

@@ -38,31 +38,7 @@ export class AgenciaController {
     @Post()
     async criarAgencia(@Body() dadosAgencia: InserirAgenciaDTO) {
 
-        var retornoAgencia: any;
-
-        
-        try {
-            const banco = await this.bancoService.buscarBancoPorId(dadosAgencia.id_banco); // Busque o objeto Banco pelo ID
-            const agencia = new Agencia(
-                uuid(),
-                banco, // Use o objeto Banco encontrado como valor para id_banco
-                dadosAgencia.nomeProprietario,
-                dadosAgencia.numeroConta,
-                dadosAgencia.tipoConta,
-                dadosAgencia.saldo
-            );
-            await this.agenciaService.inserirAgencia(agencia);
-            retornoAgencia = {
-                dadosAgencia,
-                status: "Agencia Criada."
-            };
-        } catch (error) {
-            retornoAgencia = {
-                error: "Erro ao criar Agência."
-            };
-        }
-
-        return retornoAgencia;
+        return this.agenciaService.inserirAgencia(dadosAgencia);
     }
 
 

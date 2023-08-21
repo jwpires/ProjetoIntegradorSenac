@@ -17,25 +17,8 @@ export class Agencia{
     numeroConta: string;
     @Column()
     tipoDeConta: string;
-    @Column()
+    @Column('decimal',{precision: 11, scale: 2})
     saldo: number; 
-
-    constructor(
-        id: string,
-        id_banco: Banco,
-        nomeProprietario: string,
-        numeroConta: string,
-        tipoDeConta: string,
-        saldo: number
-    )
-    {
-        this.id     =   id;
-        this.id_banco     =   id_banco;
-        this.nomeProprietario   =   nomeProprietario;
-        this.numeroConta = numeroConta;
-        this.tipoDeConta = tipoDeConta;
-        this.saldo = saldo; 
-    }
     
 
 }

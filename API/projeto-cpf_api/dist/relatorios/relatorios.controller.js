@@ -28,17 +28,12 @@ let RelatoriosController = class RelatoriosController {
         return this.relatorioSaldoServide.listar();
     }
     async RetornaListaDespesaEmAberto() {
-        const relatorios = this.relatorioService.listar();
-        const retornoDespesaEmAberto = (await relatorios).filter(item => item.pago === false);
-        return retornoDespesaEmAberto;
-    }
-    async RetornaListaDespesaEmAberto2() {
-        const relatorios = this.relatorioService.listar();
-        const retornoDespesaEmAberto = (await relatorios).filter(item => item.pago === false);
+        const relatorios = this.relatorioService.listarRelatorioDespesa();
+        const retornoDespesaEmAberto = (await relatorios).filter(item => item.pago == false);
         return retornoDespesaEmAberto;
     }
     async RetornaListaDespesaPagas() {
-        const relatorios = this.relatorioService.listar();
+        const relatorios = this.relatorioService.listarRelatorioDespesa();
         const retornoDespesaPaga = (await relatorios).filter(item => item.pago === true);
         return retornoDespesaPaga;
     }
@@ -61,12 +56,6 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], RelatoriosController.prototype, "RetornaListaDespesaEmAberto", null);
-__decorate([
-    (0, common_1.Get)('/despesas-em-aberto2'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Promise)
-], RelatoriosController.prototype, "RetornaListaDespesaEmAberto2", null);
 __decorate([
     (0, common_1.Get)('/despesas-pagas'),
     __metadata("design:type", Function),

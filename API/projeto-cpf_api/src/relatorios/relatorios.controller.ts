@@ -31,31 +31,21 @@ export class RelatoriosController{
         return this.relatorioSaldoServide.listar();
     }
 
-    @Get('/despesas-em-aberto')
-    async RetornaListaDespesaEmAberto(): Promise<Despesa[]>{
-        const relatorios = this.relatorioService.listar();
-        
-        const retornoDespesaEmAberto = (await relatorios).filter(
-            item => item.pago === false
-        )
-        
-        return retornoDespesaEmAberto;
-    }
 
-    @Get('/despesas-em-aberto2')
-    async RetornaListaDespesaEmAberto2(): Promise<ListaRelatorioDespesaDTO[]>{
-        const relatorios = this.relatorioService.listar();
+    @Get('/despesas-em-aberto')
+    async RetornaListaDespesaEmAberto(): Promise<ListaRelatorioDespesaDTO[]>{
+        const relatorios = this.relatorioService.listarRelatorioDespesa();
         
         const retornoDespesaEmAberto = (await relatorios).filter(
-            item => item.pago === false
+            item => item.pago == false
         )
         
-        return retornoDespesaEmAberto;
+        return retornoDespesaEmAberto; 
     }
 
     @Get('/despesas-pagas')
-    async RetornaListaDespesaPagas(): Promise<Despesa[]>{
-        const relatorios = this.relatorioService.listar();
+    async RetornaListaDespesaPagas(): Promise<ListaRelatorioDespesaDTO[]>{
+        const relatorios = this.relatorioService.listarRelatorioDespesa();
         
         const retornoDespesaPaga = (await relatorios).filter(
             item => item.pago === true

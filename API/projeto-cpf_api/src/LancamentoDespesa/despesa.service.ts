@@ -37,8 +37,7 @@ export class DespesasService{
             despesa.valor = dados.valor;
             despesa.pago = dados.pago;
 
-            let teste = despesa;
-
+            
         return this.despesaRepository.save(despesa).
         then(
             (result) => {

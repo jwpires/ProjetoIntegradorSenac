@@ -16,41 +16,47 @@ exports.AgenciaService = void 0;
 const common_1 = require("@nestjs/common");
 const common_2 = require("@nestjs/common");
 const typeorm_1 = require("typeorm");
+const agencia_entity_1 = require("./agencia.entity");
+const uuid_1 = require("uuid");
+const banco_service_1 = require("../Banco/banco.service");
 let AgenciaService = class AgenciaService {
-    constructor(agenciaRepository) {
+    constructor(agenciaRepository, bancoService) {
         this.agenciaRepository = agenciaRepository;
+        this.bancoService = bancoService;
     }
     async listar() {
         return this.agenciaRepository.find();
     }
-    async inserirAgencia(agencia) {
-        const id = agencia.id;
-        const id_banco = agencia.id_banco;
-        const nomeProprietario = agencia.nomeProprietario;
-        const numeroConta = agencia.numeroConta;
-        const saldo = agencia.saldo;
-        const tipoDeConta = agencia.tipoDeConta;
-        try {
-            const novaAgencia = this.agenciaRepository.create({
-                id,
-                id_banco,
-                nomeProprietario,
-                numeroConta,
-                tipoDeConta,
-                saldo
-            });
-            await this.agenciaRepository.insert(novaAgencia);
-            console.log('Agencia cadastrado com sucesso.');
-        }
-        catch (error) {
-            console.log('Erro ao cadastrar Agencia: ', error.message);
-        }
+    async inserirAgencia(dados) {
+        let agencia = new agencia_entity_1.Agencia();
+        agencia.id = (0, uuid_1.v4)();
+        agencia.id_banco = await this.bancoService.buscarBancoPorId(dados.id_banco);
+        agencia.nomeProprietario = dados.nomeProprietario;
+        agencia.numeroConta = dados.numeroConta;
+        agencia.saldo = dados.saldo;
+        agencia.tipoDeConta = dados.tipoConta;
+        return this.agenciaRepository.save(agencia).
+            then((result) => {
+            return {
+                id: agencia.id,
+                descricao: agencia.numeroConta,
+                message: "Despesa Cadastrada!"
+            };
+        })
+            .catch((error) => {
+            return {
+                id: agencia.id,
+                descricao: agencia.numeroConta,
+                message: "Despesa Não Cadastrada devido ao erro: " + error
+            };
+        });
     }
 };
 AgenciaService = __decorate([
     (0, common_2.Injectable)(),
     __param(0, (0, common_1.Inject)('AGENCIA_REPOSITORY')),
-    __metadata("design:paramtypes", [typeorm_1.Repository])
+    __metadata("design:paramtypes", [typeorm_1.Repository,
+        banco_service_1.BancoService])
 ], AgenciaService);
 exports.AgenciaService = AgenciaService;
 //# sourceMappingURL=agencia.service.js.map
