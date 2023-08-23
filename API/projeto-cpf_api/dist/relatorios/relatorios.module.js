@@ -13,7 +13,7 @@ const database_module_1 = require("../database/database.module");
 const despesa_providers_1 = require("../LancamentoDespesa/despesa.providers");
 const relatorioDespesa_service_1 = require("./relatorioDespesa.service");
 const relatorios_controller_1 = require("./relatorios.controller");
-const relatorioSaldoDash_service_1 = require("./relatorioSaldoDash.service");
+const relatorios_service_1 = require("./relatorios.service");
 let RelatorioModule = class RelatorioModule {
 };
 RelatorioModule = __decorate([
@@ -24,7 +24,7 @@ RelatorioModule = __decorate([
             ...despesa_providers_1.despesaProviders,
             ...agencia_providers_1.agenciaProviders,
             relatorioDespesa_service_1.RelatorioDespesaService,
-            relatorioSaldoDash_service_1.RelatorioSaldoDashService,
+            relatorios_service_1.RelatorioService,
         ]
     })
 ], RelatorioModule);

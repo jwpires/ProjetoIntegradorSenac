@@ -13,7 +13,7 @@ exports.RelatoriosController = void 0;
 const common_1 = require("@nestjs/common");
 const common_2 = require("@nestjs/common");
 const relatorioDespesa_service_1 = require("./relatorioDespesa.service");
-const relatorioSaldoDash_service_1 = require("./relatorioSaldoDash.service");
+const relatorios_service_1 = require("./relatorios.service");
 let RelatoriosController = class RelatoriosController {
     constructor(relatorioService, relatorioSaldoServide) {
         this.relatorioService = relatorioService;
@@ -34,7 +34,7 @@ let RelatoriosController = class RelatoriosController {
     }
     async RetornaListaDespesaPagas() {
         const relatorios = this.relatorioService.listarRelatorioDespesa();
-        const retornoDespesaPaga = (await relatorios).filter(item => item.pago === true);
+        const retornoDespesaPaga = (await relatorios).filter(item => item.pago == true);
         return retornoDespesaPaga;
     }
 };
@@ -65,7 +65,7 @@ __decorate([
 RelatoriosController = __decorate([
     (0, common_2.Controller)('/relatorios'),
     __metadata("design:paramtypes", [relatorioDespesa_service_1.RelatorioDespesaService,
-        relatorioSaldoDash_service_1.RelatorioSaldoDashService])
+        relatorios_service_1.RelatorioService])
 ], RelatoriosController);
 exports.RelatoriosController = RelatoriosController;
 //# sourceMappingURL=relatorios.controller.js.map

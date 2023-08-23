@@ -4,7 +4,7 @@ import { Agencia } from "src/agencia/agencia.entity";
 import { Repository } from "typeorm";
 
 @Injectable()
-export class RelatorioSaldoDashService{
+export class RelatorioService{
     constructor(
         @Inject('AGENCIA_REPOSITORY')
         private relatorioSaldoDash: Repository<Agencia>

@@ -4,13 +4,13 @@ import { Agencia } from "src/agencia/agencia.entity";
 import { Despesa } from "src/LancamentoDespesa/despesa.entity";
 import { ListaRelatorioDespesaDTO } from "./dto/listarRelatorioDespesa.dto";
 import { RelatorioDespesaService } from "./relatorioDespesa.service";
-import { RelatorioSaldoDashService } from "./relatorioSaldoDash.service";
+import { RelatorioService } from "./relatorios.service";
 
 @Controller('/relatorios')
 export class RelatoriosController{
     constructor(
         private readonly relatorioService: RelatorioDespesaService,
-        private readonly relatorioSaldoServide: RelatorioSaldoDashService
+        private readonly relatorioSaldoServide: RelatorioService
     ) { }
     
     /** Retorno das despesas apresentadas no Dashboard da página Home */
@@ -48,7 +48,7 @@ export class RelatoriosController{
         const relatorios = this.relatorioService.listarRelatorioDespesa();
         
         const retornoDespesaPaga = (await relatorios).filter(
-            item => item.pago === true
+            item => item.pago == true
         )
         
         return retornoDespesaPaga;
