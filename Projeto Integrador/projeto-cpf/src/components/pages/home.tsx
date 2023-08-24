@@ -60,14 +60,18 @@ function Home() {
                             dashSaldoBanco.map(
                                 dash => <>
                                     <div className="saldo">
-                                        <p><strong>{dash.numeroConta}</strong> : {dash.saldo} </p>
+                                        <p>
+                                            <strong>Nome: </strong> {dash.nomeProprietario} <br />
+                                            <strong>Banco: </strong>{dash.banco} <br />
+                                            <strong>Saldo: </strong>{dash.saldo}
+                                        </p>
                                     </div>
                                 </>
                             )
                         }
                     </div>
 
-                    <p>Total de despesa no mês : {"despesa.totalMesAtual"}</p>
+
                     <p><strong>Próximos vencimentos:</strong></p>
                     <div className="gastos">
                         {

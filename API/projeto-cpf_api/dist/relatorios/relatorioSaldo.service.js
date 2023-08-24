@@ -12,22 +12,33 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RelatorioSaldoDashService = void 0;
+exports.RelatorioSaldoService = void 0;
 const common_1 = require("@nestjs/common");
 const common_2 = require("@nestjs/common");
 const typeorm_1 = require("typeorm");
-let RelatorioSaldoDashService = class RelatorioSaldoDashService {
+const listaSaldoDTO_1 = require("./dto/listaSaldoDTO");
+let RelatorioSaldoService = class RelatorioSaldoService {
     constructor(relatorioSaldoDash) {
         this.relatorioSaldoDash = relatorioSaldoDash;
     }
-    async listar() {
-        return this.relatorioSaldoDash.find();
+    async listarRelatorioSaldo() {
+        let retornoQuery = (await this.relatorioSaldoDash
+            .createQueryBuilder('agencia')
+            .addSelect('agencia.ID', 'ID')
+            .addSelect('agencia.NOMEPROPRIETARIO', 'NOMEPROPRIETARIO')
+            .addSelect('agencia.SALDO', 'SALDO')
+            .addSelect('agencia.NUMEROCONTA', 'NUMEROCONTA')
+            .addSelect('b.NOME', 'BANCO')
+            .innerJoin('banco', 'b', 'b.ID = agencia.ID_BANCO')
+            .getRawMany());
+        let listaRetorno = retornoQuery.map(info => new listaSaldoDTO_1.ListarRelatorioSaldoDTO(info.ID, info.NOMEPROPRIETARIO, info.BANCO, info.NUMEROCONTA, info.SALDO));
+        return listaRetorno;
     }
 };
-RelatorioSaldoDashService = __decorate([
+RelatorioSaldoService = __decorate([
     (0, common_2.Injectable)(),
     __param(0, (0, common_1.Inject)('AGENCIA_REPOSITORY')),
     __metadata("design:paramtypes", [typeorm_1.Repository])
-], RelatorioSaldoDashService);
-exports.RelatorioSaldoDashService = RelatorioSaldoDashService;
-//# sourceMappingURL=relatorioSaldoDash.service.js.map
+], RelatorioSaldoService);
+exports.RelatorioSaldoService = RelatorioSaldoService;
+//# sourceMappingURL=relatorioSaldo.service.js.map

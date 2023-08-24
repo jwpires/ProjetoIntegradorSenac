@@ -1,14 +1,14 @@
-import { Agencia } from "src/agencia/agencia.entity";
 import { Despesa } from "src/LancamentoDespesa/despesa.entity";
 import { ListaRelatorioDespesaDTO } from "./dto/listarRelatorioDespesa.dto";
+import { ListarRelatorioSaldoDTO } from "./dto/listaSaldoDTO";
 import { RelatorioDespesaService } from "./relatorioDespesa.service";
-import { RelatorioService } from "./relatorios.service";
+import { RelatorioSaldoService } from "./relatorioSaldo.service";
 export declare class RelatoriosController {
     private readonly relatorioService;
     private readonly relatorioSaldoServide;
-    constructor(relatorioService: RelatorioDespesaService, relatorioSaldoServide: RelatorioService);
+    constructor(relatorioService: RelatorioDespesaService, relatorioSaldoServide: RelatorioSaldoService);
     RetornaListaDespesaDash(): Promise<Despesa[]>;
-    RetornaSaldosDash(): Promise<Agencia[]>;
+    RetornaSaldosDash(): Promise<ListarRelatorioSaldoDTO[]>;
     RetornaListaDespesaEmAberto(): Promise<ListaRelatorioDespesaDTO[]>;
     RetornaListaDespesaPagas(): Promise<ListaRelatorioDespesaDTO[]>;
 }

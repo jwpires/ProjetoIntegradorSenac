@@ -6,6 +6,7 @@ import FiltroRelatorio from "../types/filtroRelatorios";
 import { RelatorioDespesa } from "../types/relatorioDespesa";
 import { api } from "./api";
 import moment from "moment";
+import { AgenciaDash } from "../types/agenciaDash";
 
 var validaConfiguracao = {
     despesasPagas: 'menu-guia',
@@ -39,6 +40,18 @@ function Relatorio() {
     let [exibeMenu, setMenu] = useState([true, false, false]);
     const [relatorioDespesaPaga, setDespesaPaga] = useState<RelatorioDespesa[]>([]);
     const [relatorioDespesaEmAberto, setDespesaEmAberto] = useState<RelatorioDespesa[]>([]);
+    const [relatorioContaBancaria, setRelatorioContaBancaria] = useState<AgenciaDash[]>([]);
+
+    const carregaSaldoBancario = async () =>{
+        try {
+            const json = await api.listarSaldosBancarios();
+            const dataArray = Array.isArray(json) ? json : [json];
+            setRelatorioContaBancaria(dataArray);
+
+        } catch {
+            alert('Erro!');
+        }
+    }
 
     const carregaDespesasPagas = async () => {
 
@@ -67,6 +80,7 @@ function Relatorio() {
     useEffect(() => {
         carregaDespesasPagas();
         carregaDespesasEmAberto();
+        carregaSaldoBancario(); 
     }, []);
 
     return (
@@ -173,19 +187,17 @@ function Relatorio() {
                                     stayOpen
                                 >
                                     {
-                                        relatorioDespesaPaga.map(
+                                        relatorioContaBancaria.map(
                                             item =>
                                                 <>
                                                     <AccordionItem>
-                                                        <AccordionHeader targetId={item.id_despesa}>
-                                                            {item.descricao}
+                                                        <AccordionHeader targetId={item.id}>
+                                                            {item.banco}
                                                         </AccordionHeader>
-                                                        <AccordionBody accordionId={item.id_despesa}>
+                                                        <AccordionBody accordionId={item.agencia}>
 
-                                                            <p><strong>Data de lançamento:</strong> {moment(item.dataLancamento).format('DD-MM-YYYY')} </p>
-                                                            <p><strong>Data de vencimento:</strong> {moment(item.dataVencimento).format('DD-MM-YYYY')} </p>
-                                                            <p><strong>Grupo de despesa:</strong> {item.nomeGrupoDespesa} </p>
-                                                            <p><strong>Valor:</strong> {item.valor}</p>
+                                                            <p><strong>Saldo:</strong> {item.saldo} </p>
+                                                            
                                                             <Button color="warning">Estornar</Button>
                                                             <Button color="danger">Excluir</Button>
 

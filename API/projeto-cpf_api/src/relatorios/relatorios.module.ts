@@ -4,7 +4,7 @@ import { DatabaseModule } from "src/database/database.module";
 import { despesaProviders } from "src/LancamentoDespesa/despesa.providers";
 import { RelatorioDespesaService } from "./relatorioDespesa.service";
 import { RelatoriosController } from "./relatorios.controller";
-import { RelatorioService } from "./relatorios.service";
+import { RelatorioSaldoService } from "./relatorioSaldo.service";
 
 @Module({
     imports: [DatabaseModule],
@@ -13,7 +13,7 @@ import { RelatorioService } from "./relatorios.service";
         ...despesaProviders,
         ...agenciaProviders,
         RelatorioDespesaService,
-        RelatorioService,
+        RelatorioSaldoService,
     ]
 })
 

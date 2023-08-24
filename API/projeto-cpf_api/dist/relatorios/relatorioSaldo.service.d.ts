@@ -1,7 +1,8 @@
 import { Agencia } from "src/agencia/agencia.entity";
 import { Repository } from "typeorm";
-export declare class RelatorioSaldoDashService {
+import { ListarRelatorioSaldoDTO } from "./dto/listaSaldoDTO";
+export declare class RelatorioSaldoService {
     private relatorioSaldoDash;
     constructor(relatorioSaldoDash: Repository<Agencia>);
-    listar(): Promise<Agencia[]>;
+    listarRelatorioSaldo(): Promise<ListarRelatorioSaldoDTO[]>;
 }

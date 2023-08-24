@@ -3,14 +3,15 @@ import { Controller } from "@nestjs/common";
 import { Agencia } from "src/agencia/agencia.entity";
 import { Despesa } from "src/LancamentoDespesa/despesa.entity";
 import { ListaRelatorioDespesaDTO } from "./dto/listarRelatorioDespesa.dto";
+import { ListarRelatorioSaldoDTO } from "./dto/listaSaldoDTO";
 import { RelatorioDespesaService } from "./relatorioDespesa.service";
-import { RelatorioService } from "./relatorios.service";
+import { RelatorioSaldoService } from "./relatorioSaldo.service";
 
 @Controller('/relatorios')
 export class RelatoriosController{
     constructor(
         private readonly relatorioService: RelatorioDespesaService,
-        private readonly relatorioSaldoServide: RelatorioService
+        private readonly relatorioSaldoServide: RelatorioSaldoService,
     ) { }
     
     /** Retorno das despesas apresentadas no Dashboard da página Home */
@@ -27,8 +28,8 @@ export class RelatoriosController{
 
      /** Retorno dos saldos apresentadas no Dashboard da página Home */ 
     @Get('/saldo')
-    async RetornaSaldosDash():Promise<Agencia[]> {
-        return this.relatorioSaldoServide.listar();
+    async RetornaSaldosDash():Promise<ListarRelatorioSaldoDTO[]> {
+        return this.relatorioSaldoServide.listarRelatorioSaldo();
     }
 
 
