@@ -99,7 +99,7 @@ function Relatorio() {
 
                             <div className="body-relatorio">
 
-                                <FiltroRelatorio />
+                                <FiltroRelatorio tipoFiltro ='GD' />
 
 
                                 <UncontrolledAccordion
@@ -115,6 +115,7 @@ function Relatorio() {
                                                 <>
                                                     <AccordionItem>
                                                         <AccordionHeader targetId={item.id_despesa}>
+                                                            <input type="hidden" value={item.id_despesa} />
                                                             {item.descricao}
                                                         </AccordionHeader>
                                                         <AccordionBody accordionId={item.id_despesa}>
@@ -139,7 +140,7 @@ function Relatorio() {
                         {exibeMenu[1] === true &&
                             <div className="body-relatorio">
 
-                                <FiltroRelatorio />
+                                <FiltroRelatorio tipoFiltro ='GD'  />
 
 
                                 <UncontrolledAccordion
@@ -151,9 +152,11 @@ function Relatorio() {
                                     {
                                         relatorioDespesaEmAberto.map(
                                             item =>
+                                                
                                                 <>
                                                     <AccordionItem>
                                                         <AccordionHeader targetId={item.id_despesa}>
+                                                            <input type="hidden" value={item.id_despesa} />
                                                             {item.descricao}
                                                         </AccordionHeader>
                                                         <AccordionBody accordionId={item.id_despesa}>
@@ -161,8 +164,8 @@ function Relatorio() {
                                                             <p><strong>Data de lançamento:</strong> {moment(item.dataLancamento).format('DD-MM-YYYY')} </p>
                                                             <p><strong>Data de vencimento:</strong> {moment(item.dataVencimento).format('DD-MM-YYYY')} </p>
                                                             <p><strong>Grupo de despesa:</strong> {item.nomeGrupoDespesa} </p>
-                                                            <p><strong>Valor:</strong> {item.valor}</p>
-                                                            <Button color="success">Pagar</Button>
+                                                            <p><strong>Valor:</strong> { item.valor}</p>
+                                                            <Button color="warning">Estornar</Button>
                                                             <Button color="danger">Excluir</Button>
 
                                                         </AccordionBody>
@@ -177,7 +180,7 @@ function Relatorio() {
                         {exibeMenu[2] === true &&
                             <div className="body-relatorio">
 
-                                <FiltroRelatorio />
+                                <FiltroRelatorio tipoFiltro = {'BC'} />
 
 
                                 <UncontrolledAccordion
@@ -189,15 +192,18 @@ function Relatorio() {
                                     {
                                         relatorioContaBancaria.map(
                                             item =>
+                                                
                                                 <>
                                                     <AccordionItem>
                                                         <AccordionHeader targetId={item.id}>
-                                                            {item.banco}
+                                                            <input type="hidden" value={item.id} />
+                                                            {item.nomeProprietario}
                                                         </AccordionHeader>
-                                                        <AccordionBody accordionId={item.agencia}>
+                                                        <AccordionBody accordionId={item.id}>
 
-                                                            <p><strong>Saldo:</strong> {item.saldo} </p>
-                                                            
+                                                            <p><strong>Conta:</strong> {item.numeroConta} </p>
+                                                            <p><strong>Banco:</strong> { item.banco}</p>
+                                                            <p><strong>Saldo:</strong> { item.saldo}</p>
                                                             <Button color="warning">Estornar</Button>
                                                             <Button color="danger">Excluir</Button>
 
