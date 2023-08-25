@@ -1,6 +1,7 @@
 import { Inject, Injectable } from "@nestjs/common";
 import { Repository } from "typeorm";
 import { Usuario } from "./usuario.entity";
+import { promises } from "dns";
 
 @Injectable()
 export class UsuarioService{    
@@ -35,4 +36,21 @@ export class UsuarioService{
           console.log('Erro ao cadastrar Usuario', error.message);
         }
     }
-}  
+
+    async BuscarUsuario(id: string): Promise<Usuario> { // Renomeado para BuscarUsuario
+        return this.USUARIOREPOSITORY.findOne({
+            where: {
+                id,
+            }
+        });
+    }
+
+    async ForgotPassword(id: string): Promise<void> {
+        this.BuscarUsuario;
+    }
+}
+
+
+      
+      
+

@@ -103,7 +103,6 @@ export const api = {
         return json;
     },
 
-    
     InserirLancamentoDespesa: async (descricao_: string, grupoDespesa_: string, dataLancamento_: Date,
         dataVencimento_: Date, valor_: number, pago_: boolean) => {
         
@@ -130,8 +129,6 @@ export const api = {
 
         return json;
     },
-
-
     /** GETs referente ao relatórios */
     /** GET referente as depesas pagas. */
     listarRelatorioDespesasPagas: async() => {
