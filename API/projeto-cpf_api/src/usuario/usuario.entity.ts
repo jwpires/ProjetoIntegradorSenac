@@ -1,5 +1,5 @@
 
-export class UsuarioEntity{
+export class Usuario{
     id: string;
     nome: string;
     idade: BigInteger;
@@ -7,6 +7,7 @@ export class UsuarioEntity{
     email: string;
     telefone: string;
     #senha: string;
+   
 
     constructor(id: string, nome: string, idade: BigInteger, cidade: string, email: string, telefone: string, senha: string){
         this.id = id;
