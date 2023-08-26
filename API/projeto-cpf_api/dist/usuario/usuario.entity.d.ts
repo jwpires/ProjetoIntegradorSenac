@@ -1,4 +1,4 @@
-export declare class UsuarioEntity {
+export declare class Usuario {
     #private;
     id: string;
     nome: string;

@@ -32,7 +32,7 @@ let UsuarioController = class UsuarioController {
         return listaRetorno;
     }
     async criaUsuario(dadosUsuario) {
-        var usuario = new usuario_entity_1.UsuarioEntity((0, uuid_1.v4)(), dadosUsuario.nome, dadosUsuario.idade, dadosUsuario.cidade, dadosUsuario.email, dadosUsuario.telefone, dadosUsuario.senha);
+        var usuario = new usuario_entity_1.Usuario((0, uuid_1.v4)(), dadosUsuario.nome, dadosUsuario.idade, dadosUsuario.cidade, dadosUsuario.email, dadosUsuario.telefone, dadosUsuario.senha);
         var retornoUsuario;
         this.clsUsuariosArmazenados.AdicionarUsuario(usuario);
         retornoUsuario = {

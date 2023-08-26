@@ -1,5 +1,5 @@
 import { CriaUsuarioDIO } from "./dto/usuario.dto";
-import { UsuarioEntity } from "./usuario.entity";
+import { Usuario } from "./usuario.entity";
 import { UsuarioArmazenados } from "./usuario.dm";
 import { ListaUsuarioDTO } from "./dto/listaUsuario.dto";
 import { AlteraUsuarioDTO } from "./dto/atualizaUsuario.dto";
@@ -9,11 +9,11 @@ export declare class UsuarioController {
     RetornoUsuarios(): Promise<ListaUsuarioDTO[]>;
     criaUsuario(dadosUsuario: CriaUsuarioDIO): Promise<any>;
     atualizaUsuario(id: string, novosDados: AlteraUsuarioDTO): Promise<{
-        usuario: UsuarioEntity;
+        usuario: Usuario;
         message: string;
     }>;
     removeUsuario(id: string): Promise<{
-        usuario: UsuarioEntity;
+        usuario: Usuario;
         message: string;
     }>;
 }
