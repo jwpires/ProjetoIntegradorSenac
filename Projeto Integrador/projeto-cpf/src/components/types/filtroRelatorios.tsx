@@ -6,7 +6,7 @@ import { GrupoDespesa } from './grupoDespesa';
 
 
 
-function FiltroRelatorio(props:{tipoFiltro: string}) {
+function FiltroRelatorio(props: { tipoFiltro: string }) {
 
     const [banco, setBanco] = useState<Banco[]>([]);
     const [grupoDespesa, setGrupoDespesa] = useState<GrupoDespesa[]>([]);
@@ -22,8 +22,16 @@ function FiltroRelatorio(props:{tipoFiltro: string}) {
 
     }
 
+    const carregaBancos = async () => {
+
+        const json = await api.listarBancos();
+        const dataArray = Array.isArray(json) ? json : [json];
+        setBanco(dataArray);
+    }
+
     useEffect(() => {
         carregaGrupoDespesa();
+        carregaBancos();
     })
 
 
@@ -35,10 +43,6 @@ function FiltroRelatorio(props:{tipoFiltro: string}) {
                 <label><input type="radio" name="tipo_pagamento" id="" />Lançamento</label>
                 <label><input type="radio" name="tipo_pagamento" id="" checked />Vencimento</label><br />
             </div>
-
-            {/* <select className="pesquisar" name="grupoDespesa" id="">
-                <option className="pesquisars" value="">Informe o Grupo Despesa</option>
-            </select> */}
 
             {props.tipoFiltro === 'GD' &&
 
@@ -55,7 +59,7 @@ function FiltroRelatorio(props:{tipoFiltro: string}) {
             }
             {props.tipoFiltro === 'BC' &&
 
-                <select name="Banco" id="" /*onClick={carregaBancos}*/ onChange={(e) => { setSelectValueIdBanco(e.target.value) }}>
+                <select className="pesquisar" name="Banco" id="" /*onClick={carregaBancos}*/ onChange={(e) => { setSelectValueIdBanco(e.target.value) }}>
                     <option key={0} value="" >Informe o Banco</option>
                     {
                         banco.map(
@@ -65,16 +69,6 @@ function FiltroRelatorio(props:{tipoFiltro: string}) {
                 </select>
 
             }
-
-            <select className="pesquisar" name="GrupoDespesa" id="" value={idGrupoDespesa} onChange={(e) => setIdGrupoDespesa(e.target.value)}  >
-                <option key={0} value="" >Grupo de Despesa</option >
-                {
-                    grupoDespesa.map(
-                        (valor, index) => <option key={valor.id} value={valor.id}>{valor.descricao}</option>
-                    )
-                }
-            </select>
-
 
 
             <input className="pesquisar" type="text" name="" placeholder="Pesquisar por Descrição" id="" />

@@ -7,6 +7,8 @@ import { RelatorioDespesa } from "../types/relatorioDespesa";
 import { api } from "./api";
 import moment from "moment";
 import { AgenciaDash } from "../types/agenciaDash";
+import { GrupoDespesa } from "../types/grupoDespesa";
+import { Banco } from "../types/banco";
 
 var validaConfiguracao = {
     despesasPagas: 'menu-guia',
@@ -42,7 +44,28 @@ function Relatorio() {
     const [relatorioDespesaEmAberto, setDespesaEmAberto] = useState<RelatorioDespesa[]>([]);
     const [relatorioContaBancaria, setRelatorioContaBancaria] = useState<AgenciaDash[]>([]);
 
-    const carregaSaldoBancario = async () =>{
+    const [banco, setBanco] = useState<Banco[]>([]);
+    const [grupoDespesa, setGrupoDespesa] = useState<GrupoDespesa[]>([]);
+    const [idGrupoDespesa, setIdGrupoDespesa] = useState('');
+    const [IdBanco, setSelectValueIdBanco] = useState('');
+
+    const carregaGrupoDespesa = async () => {
+
+        const json = await api.listarGrupoDespesa();
+        const dataArray = Array.isArray(json) ? json : [json];
+        setGrupoDespesa(dataArray);
+
+    }
+
+    const carregaBancos = async () => {
+
+        const json = await api.listarBancos();
+        const dataArray = Array.isArray(json) ? json : [json];
+        setBanco(dataArray);
+    }
+
+
+    const carregaSaldoBancario = async () => {
         try {
             const json = await api.listarSaldosBancarios();
             const dataArray = Array.isArray(json) ? json : [json];
@@ -80,7 +103,9 @@ function Relatorio() {
     useEffect(() => {
         carregaDespesasPagas();
         carregaDespesasEmAberto();
-        carregaSaldoBancario(); 
+        carregaSaldoBancario();
+        carregaGrupoDespesa();
+        carregaBancos();
     }, []);
 
     return (
@@ -99,7 +124,31 @@ function Relatorio() {
 
                             <div className="body-relatorio">
 
-                                <FiltroRelatorio tipoFiltro ='GD' />
+                                {/* <FiltroRelatorio tipoFiltro ='GD' /> */}
+                                <div className="filtros">
+                                    <div className="raio_group">
+                                        <p>Data: <input type="date" name="" id="" /> à <input type="date" name="" id="" /> </p>
+
+                                        <label><input type="radio" name="tipo_pagamento" id="" />Lançamento</label>
+                                        <label><input type="radio" name="tipo_pagamento" id="" checked />Vencimento</label><br />
+                                    </div>
+
+                                    <select className="pesquisar" name="GrupoDespesa" id="" value={idGrupoDespesa} onChange={(e) => setIdGrupoDespesa(e.target.value)}  >
+                                        <option key={0} value="" >Grupo de Despesa</option >
+                                        {
+                                            grupoDespesa.map(
+                                                (valor, index) => <option key={valor.id} value={valor.id}>{valor.descricao}</option>
+                                            )
+                                        }
+                                    </select>
+
+
+
+
+                                    <input className="pesquisar" type="text" name="" placeholder="Pesquisar por Descrição" id="" />
+                                    <img className="imgPesquisa" src={require("../../images/botao-pesquisar.png")} alt="exibe imagem do padrao" />
+
+                                </div>
 
 
                                 <UncontrolledAccordion
@@ -111,7 +160,7 @@ function Relatorio() {
                                     {
                                         relatorioDespesaPaga.map(
                                             item =>
-                                                
+
                                                 <>
                                                     <AccordionItem>
                                                         <AccordionHeader targetId={item.id_despesa}>
@@ -123,7 +172,7 @@ function Relatorio() {
                                                             <p><strong>Data de lançamento:</strong> {moment(item.dataLancamento).format('DD-MM-YYYY')} </p>
                                                             <p><strong>Data de vencimento:</strong> {moment(item.dataVencimento).format('DD-MM-YYYY')} </p>
                                                             <p><strong>Grupo de despesa:</strong> {item.nomeGrupoDespesa} </p>
-                                                            <p><strong>Valor:</strong> { item.valor}</p>
+                                                            <p><strong>Valor:</strong> {item.valor}</p>
                                                             <Button color="warning">Estornar</Button>
                                                             <Button color="danger">Excluir</Button>
 
@@ -140,7 +189,31 @@ function Relatorio() {
                         {exibeMenu[1] === true &&
                             <div className="body-relatorio">
 
-                                <FiltroRelatorio tipoFiltro ='GD'  />
+                                {/* <FiltroRelatorio tipoFiltro='GD' /> */}
+                                <div className="filtros">
+                                    <div className="raio_group">
+                                        <p>Data: <input type="date" name="" id="" /> à <input type="date" name="" id="" /> </p>
+
+                                        <label><input type="radio" name="tipo_pagamento" id="" />Lançamento</label>
+                                        <label><input type="radio" name="tipo_pagamento" id="" checked />Vencimento</label><br />
+                                    </div>
+
+                                    <select className="pesquisar" name="GrupoDespesa" id="" value={idGrupoDespesa} onChange={(e) => setIdGrupoDespesa(e.target.value)}  >
+                                        <option key={0} value="" >Grupo de Despesa</option >
+                                        {
+                                            grupoDespesa.map(
+                                                (valor, index) => <option key={valor.id} value={valor.id}>{valor.descricao}</option>
+                                            )
+                                        }
+                                    </select>
+
+
+
+
+                                    <input className="pesquisar" type="text" name="" placeholder="Pesquisar por Descrição" id="" />
+                                    <img className="imgPesquisa" src={require("../../images/botao-pesquisar.png")} alt="exibe imagem do padrao" />
+
+                                </div>
 
 
                                 <UncontrolledAccordion
@@ -152,7 +225,7 @@ function Relatorio() {
                                     {
                                         relatorioDespesaEmAberto.map(
                                             item =>
-                                                
+
                                                 <>
                                                     <AccordionItem>
                                                         <AccordionHeader targetId={item.id_despesa}>
@@ -164,7 +237,7 @@ function Relatorio() {
                                                             <p><strong>Data de lançamento:</strong> {moment(item.dataLancamento).format('DD-MM-YYYY')} </p>
                                                             <p><strong>Data de vencimento:</strong> {moment(item.dataVencimento).format('DD-MM-YYYY')} </p>
                                                             <p><strong>Grupo de despesa:</strong> {item.nomeGrupoDespesa} </p>
-                                                            <p><strong>Valor:</strong> { item.valor}</p>
+                                                            <p><strong>Valor:</strong> {item.valor}</p>
                                                             <Button color="warning">Estornar</Button>
                                                             <Button color="danger">Excluir</Button>
 
@@ -180,7 +253,31 @@ function Relatorio() {
                         {exibeMenu[2] === true &&
                             <div className="body-relatorio">
 
-                                <FiltroRelatorio tipoFiltro = {'BC'} />
+                                {/* <FiltroRelatorio tipoFiltro={'BC'} /> */}
+                                <div className="filtros">
+                                    <div className="raio_group">
+                                        <p>Data: <input type="date" name="" id="" /> à <input type="date" name="" id="" /> </p>
+
+                                        <label><input type="radio" name="tipo_pagamento" id="" />Lançamento</label>
+                                        <label><input type="radio" name="tipo_pagamento" id="" checked />Vencimento</label><br />
+                                    </div>
+
+                                    <select className="pesquisar" name="Banco" id="" /*onClick={carregaBancos}*/ onChange={(e) => { setSelectValueIdBanco(e.target.value) }}>
+                                        <option key={0} value="" >Informe o Banco</option>
+                                        {
+                                            banco.map(
+                                                (item, chave) => <option key={item.id} value={item.id}>{item.nome}</option>
+                                            )
+                                        }
+                                    </select>
+
+
+
+
+                                    <input className="pesquisar" type="text" name="" placeholder="Pesquisar por Descrição" id="" />
+                                    <img className="imgPesquisa" src={require("../../images/botao-pesquisar.png")} alt="exibe imagem do padrao" />
+
+                                </div>
 
 
                                 <UncontrolledAccordion
@@ -192,7 +289,7 @@ function Relatorio() {
                                     {
                                         relatorioContaBancaria.map(
                                             item =>
-                                                
+
                                                 <>
                                                     <AccordionItem>
                                                         <AccordionHeader targetId={item.id}>
@@ -202,8 +299,8 @@ function Relatorio() {
                                                         <AccordionBody accordionId={item.id}>
 
                                                             <p><strong>Conta:</strong> {item.numeroConta} </p>
-                                                            <p><strong>Banco:</strong> { item.banco}</p>
-                                                            <p><strong>Saldo:</strong> { item.saldo}</p>
+                                                            <p><strong>Banco:</strong> {item.banco}</p>
+                                                            <p><strong>Saldo:</strong> {item.saldo}</p>
                                                             <Button color="warning">Estornar</Button>
                                                             <Button color="danger">Excluir</Button>
 
