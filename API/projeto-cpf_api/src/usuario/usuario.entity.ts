@@ -1,5 +1,4 @@
-
-export class Usuario{
+export class UsuarioEntity{
     id: string;
     nome: string;
     idade: BigInteger;

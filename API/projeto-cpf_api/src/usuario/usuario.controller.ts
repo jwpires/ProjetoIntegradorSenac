@@ -2,7 +2,7 @@ import {Body, Controller, Post } from "@nestjs/common";
 // import { Body } from "@nestjs/common/decorators";
 import { Delete, Get, Put } from "@nestjs/common/decorators/http/request-mapping.decorator";
 import { CriaUsuarioDIO } from "./dto/usuario.dto";
-import { Usuario } from "./usuario.entity";
+import { UsuarioEntity } from "./usuario.entity";
 import { UsuarioArmazenados } from "./usuario.dm";
 import {v4 as uuid} from 'uuid';
 import { ListaUsuarioDTO } from "./dto/listaUsuario.dto";
@@ -30,7 +30,7 @@ export class UsuarioController{
 
     @Post() /*Depois do Post é obrigatório ter um método, não importa qual é o tipo do método, mas o método deve existir*/
     async criaUsuario(@Body() dadosUsuario: CriaUsuarioDIO){ //Body informa que as informações irão ser capturadas da API
-        var usuario = new Usuario(uuid(),dadosUsuario.nome,dadosUsuario.idade,dadosUsuario.cidade,
+        var usuario = new UsuarioEntity(uuid(),dadosUsuario.nome,dadosUsuario.idade,dadosUsuario.cidade,
             dadosUsuario.email,dadosUsuario.telefone,dadosUsuario.senha);
 
         var retornoUsuario:any;

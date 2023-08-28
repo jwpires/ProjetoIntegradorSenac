@@ -1,16 +1,16 @@
 import { Inject, Injectable } from "@nestjs/common";
 import { Repository } from "typeorm";
-import { Usuario } from "./usuario.entity";
+import { UsuarioEntity } from "./usuario.entity";
 import { promises } from "dns";
 
 @Injectable()
 export class UsuarioService{    
     constructor(
         @Inject('USUARIO_REPOSITORY')
-         private USUARIOREPOSITORY: Repository<Usuario>
+         private USUARIOREPOSITORY: Repository<UsuarioEntity>
     ){}
 
-    async InserirUsuario(USUARIO_REPOSITORY:Usuario):Promise<void>{
+    async InserirUsuario(USUARIO_REPOSITORY:UsuarioEntity):Promise<void>{
       const id = USUARIO_REPOSITORY.id;
       const nome = USUARIO_REPOSITORY.nome;
       const idade = USUARIO_REPOSITORY.idade;
@@ -37,7 +37,7 @@ export class UsuarioService{
         }
     }
 
-    async BuscarUsuario(id: string): Promise<Usuario> { // Renomeado para BuscarUsuario
+    async BuscarUsuario(id: string): Promise<UsuarioEntity> { // Renomeado para BuscarUsuario
         return this.USUARIOREPOSITORY.findOne({
             where: {
                 id,
