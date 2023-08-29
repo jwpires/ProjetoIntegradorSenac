@@ -15,44 +15,42 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsuarioService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("typeorm");
+const uuid_1 = require("uuid");
+const usuario_entity_1 = require("./usuario.entity");
 let UsuarioService = class UsuarioService {
-    constructor(USUARIOREPOSITORY) {
-        this.USUARIOREPOSITORY = USUARIOREPOSITORY;
+    constructor(usuarioRepository) {
+        this.usuarioRepository = usuarioRepository;
     }
-    async InserirUsuario(USUARIO_REPOSITORY) {
-        const id = USUARIO_REPOSITORY.id;
-        const nome = USUARIO_REPOSITORY.nome;
-        const idade = USUARIO_REPOSITORY.idade;
-        const cidade = USUARIO_REPOSITORY.cidade;
-        const email = USUARIO_REPOSITORY.email;
-        const telefone = USUARIO_REPOSITORY.telefone;
-        const senha = USUARIO_REPOSITORY.senha;
-        try {
-            const novoUsuario = this.USUARIOREPOSITORY.create({
-                id,
-                nome,
-                cidade,
-                idade,
-                email,
-                telefone,
-                senha
-            });
-            await this.USUARIOREPOSITORY.insert(novoUsuario);
-            console.log('Usuario cadastrado com sucesso.');
-        }
-        catch (error) {
-            console.log('Erro ao cadastrar Usuario', error.message);
-        }
+    async listar() {
+        return this.usuarioRepository.find();
     }
-    async BuscarUsuario(id) {
-        return this.USUARIOREPOSITORY.findOne({
-            where: {
-                id,
-            }
+    async inserir(dados) {
+        let usuario = new usuario_entity_1.UsuarioEntity();
+        usuario.id = (0, uuid_1.v4)();
+        usuario.nome = dados.nome;
+        usuario.email = dados.email;
+        usuario.senha = dados.senha;
+        return this.usuarioRepository.save(usuario)
+            .then((result) => {
+            return {
+                id: usuario.id,
+                message: "Usuario cadastrada!"
+            };
+        })
+            .catch((error) => {
+            return {
+                id: "",
+                message: "Houve um erro ao cadastrar." + error.message
+            };
         });
     }
-    async ForgotPassword(id) {
-        this.BuscarUsuario;
+    async validaEmail(email) {
+        const possivelUsuario = await this.usuarioRepository.findOne({
+            where: {
+                email,
+            },
+        });
+        return (possivelUsuario !== null);
     }
 };
 UsuarioService = __decorate([

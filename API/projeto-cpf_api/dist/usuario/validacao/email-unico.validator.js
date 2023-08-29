@@ -12,30 +12,30 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.EmailUnico = exports.EmailUnicoValidator = void 0;
 const common_1 = require("@nestjs/common");
 const class_validator_1 = require("class-validator");
-const usuario_dm_1 = require("../usuario.dm");
+const usuario_service_1 = require("../usuario.service");
 let EmailUnicoValidator = class EmailUnicoValidator {
-    constructor(clsUsuarioArmazenados) {
-        this.clsUsuarioArmazenados = clsUsuarioArmazenados;
+    constructor(usuarioService) {
+        this.usuarioService = usuarioService;
     }
     async validate(value, validationArguments) {
-        const validarEmail = await this.clsUsuarioArmazenados.validaEmail(value);
+        const validarEmail = await this.usuarioService.validaEmail(value);
         return !validarEmail;
     }
 };
 EmailUnicoValidator = __decorate([
     (0, common_1.Injectable)(),
     (0, class_validator_1.ValidatorConstraint)({ async: true }),
-    __metadata("design:paramtypes", [usuario_dm_1.UsuarioArmazenados])
+    __metadata("design:paramtypes", [usuario_service_1.UsuarioService])
 ], EmailUnicoValidator);
 exports.EmailUnicoValidator = EmailUnicoValidator;
-const EmailUnico = (opcoesValidacao) => {
+const EmailUnico = (opcaoValidacao) => {
     return (objeto, propriedade) => {
         (0, class_validator_1.registerDecorator)({
             target: objeto.constructor,
             propertyName: propriedade,
-            options: opcoesValidacao,
+            options: opcaoValidacao,
             constraints: [],
-            validator: EmailUnicoValidator
+            validator: EmailUnicoValidator,
         });
     };
 };

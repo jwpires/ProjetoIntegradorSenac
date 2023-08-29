@@ -1,65 +1,27 @@
-import {Body, Controller, Post } from "@nestjs/common";
-// import { Body } from "@nestjs/common/decorators";
-import { Delete, Get, Put } from "@nestjs/common/decorators/http/request-mapping.decorator";
+import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
+import { RetornoCadastroDTO, RetornoObjDTO } from "src/dto/retorno.dto";
+import { AlteraUsuarioDTO } from "./dto/atualizaUsuario.dto";
+import { ListaUsuarioDTO } from "./dto/listaUsuario.dto";
 import { CriaUsuarioDIO } from "./dto/usuario.dto";
 import { UsuarioEntity } from "./usuario.entity";
+import { UsuarioService } from "./usuario.service";
 import { UsuarioArmazenados } from "./usuario.dm";
-import {v4 as uuid} from 'uuid';
-import { ListaUsuarioDTO } from "./dto/listaUsuario.dto";
-import { AlteraUsuarioDTO } from "./dto/atualizaUsuario.dto";
-import { Param } from "@nestjs/common/decorators";
 
 @Controller('/usuarios')
 export class UsuarioController{
-    
-    constructor(private clsUsuariosArmazenados: UsuarioArmazenados){
+    constructor(private readonly usuarioService: UsuarioService){
+
     }
 
-    @Get()
-    async RetornoUsuarios(){
-        const usuariosListados = await this.clsUsuariosArmazenados.Usuarios;
-        const listaRetorno = usuariosListados.map(
-            usuario => new ListaUsuarioDTO(
-                usuario.id,
-                usuario.nome
-            )
-        );
-        return listaRetorno;
+    @Get('listar')
+    async listar(id): Promise<UsuarioEntity[]>{
+        return this.usuarioService.listar();
     }
 
 
-    @Post() /*Depois do Post é obrigatório ter um método, não importa qual é o tipo do método, mas o método deve existir*/
-    async criaUsuario(@Body() dadosUsuario: CriaUsuarioDIO){ //Body informa que as informações irão ser capturadas da API
-        var usuario = new UsuarioEntity(uuid(),dadosUsuario.nome,dadosUsuario.idade,dadosUsuario.cidade,
-            dadosUsuario.email,dadosUsuario.telefone,dadosUsuario.senha);
-
-        var retornoUsuario:any;
-        
-            this.clsUsuariosArmazenados.AdicionarUsuario(usuario)
-            retornoUsuario={
-                dadosUsuario,
-                status:"Usuário Criado."
-            }
-
-            return retornoUsuario;
+    @Post('')
+    async cria(@Body() dados: CriaUsuarioDIO): Promise<RetornoCadastroDTO>{        
+        return this.usuarioService.inserir(dados)        
     }
-
-    @Put('/:id')
-    async atualizaUsuario(@Param('id') id: string, @Body() novosDados: AlteraUsuarioDTO){
-        const usuarioAtualizado = await this.clsUsuariosArmazenados.atualizaUsuario(id,novosDados);
-        return ({
-            usuario: usuarioAtualizado,
-            message:'Usuário Atualizado'
-        });
-    }
-
-    @Delete('/:id')
-    async removeUsuario (@Param('id') id:string){
-        const usuarioRemovido = await this.clsUsuariosArmazenados.removeUsuario(id);
-        return({
-            usuario: usuarioRemovido,
-            message: 'Usuario removido'
-        })
-   }
 
 }

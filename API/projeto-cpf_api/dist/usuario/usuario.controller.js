@@ -14,79 +14,35 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsuarioController = void 0;
 const common_1 = require("@nestjs/common");
-const request_mapping_decorator_1 = require("@nestjs/common/decorators/http/request-mapping.decorator");
 const usuario_dto_1 = require("./dto/usuario.dto");
-const usuario_entity_1 = require("./usuario.entity");
-const usuario_dm_1 = require("./usuario.dm");
-const uuid_1 = require("uuid");
-const listaUsuario_dto_1 = require("./dto/listaUsuario.dto");
-const atualizaUsuario_dto_1 = require("./dto/atualizaUsuario.dto");
-const decorators_1 = require("@nestjs/common/decorators");
+const usuario_service_1 = require("./usuario.service");
 let UsuarioController = class UsuarioController {
-    constructor(clsUsuariosArmazenados) {
-        this.clsUsuariosArmazenados = clsUsuariosArmazenados;
+    constructor(usuarioService) {
+        this.usuarioService = usuarioService;
     }
-    async RetornoUsuarios() {
-        const usuariosListados = await this.clsUsuariosArmazenados.Usuarios;
-        const listaRetorno = usuariosListados.map(usuario => new listaUsuario_dto_1.ListaUsuarioDTO(usuario.id, usuario.nome));
-        return listaRetorno;
+    async listar(id) {
+        return this.usuarioService.listar();
     }
-    async criaUsuario(dadosUsuario) {
-        var usuario = new usuario_entity_1.Usuario((0, uuid_1.v4)(), dadosUsuario.nome, dadosUsuario.idade, dadosUsuario.cidade, dadosUsuario.email, dadosUsuario.telefone, dadosUsuario.senha);
-        var retornoUsuario;
-        this.clsUsuariosArmazenados.AdicionarUsuario(usuario);
-        retornoUsuario = {
-            dadosUsuario,
-            status: "Usuário Criado."
-        };
-        return retornoUsuario;
-    }
-    async atualizaUsuario(id, novosDados) {
-        const usuarioAtualizado = await this.clsUsuariosArmazenados.atualizaUsuario(id, novosDados);
-        return ({
-            usuario: usuarioAtualizado,
-            message: 'Usuário Atualizado'
-        });
-    }
-    async removeUsuario(id) {
-        const usuarioRemovido = await this.clsUsuariosArmazenados.removeUsuario(id);
-        return ({
-            usuario: usuarioRemovido,
-            message: 'Usuario removido'
-        });
+    async cria(dados) {
+        return this.usuarioService.inserir(dados);
     }
 };
 __decorate([
-    (0, request_mapping_decorator_1.Get)(),
+    (0, common_1.Get)('listar'),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
-], UsuarioController.prototype, "RetornoUsuarios", null);
+], UsuarioController.prototype, "listar", null);
 __decorate([
-    (0, common_1.Post)(),
+    (0, common_1.Post)(''),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [usuario_dto_1.CriaUsuarioDIO]),
     __metadata("design:returntype", Promise)
-], UsuarioController.prototype, "criaUsuario", null);
-__decorate([
-    (0, request_mapping_decorator_1.Put)('/:id'),
-    __param(0, (0, decorators_1.Param)('id')),
-    __param(1, (0, common_1.Body)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, atualizaUsuario_dto_1.AlteraUsuarioDTO]),
-    __metadata("design:returntype", Promise)
-], UsuarioController.prototype, "atualizaUsuario", null);
-__decorate([
-    (0, request_mapping_decorator_1.Delete)('/:id'),
-    __param(0, (0, decorators_1.Param)('id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", Promise)
-], UsuarioController.prototype, "removeUsuario", null);
+], UsuarioController.prototype, "cria", null);
 UsuarioController = __decorate([
     (0, common_1.Controller)('/usuarios'),
-    __metadata("design:paramtypes", [usuario_dm_1.UsuarioArmazenados])
+    __metadata("design:paramtypes", [usuario_service_1.UsuarioService])
 ], UsuarioController);
 exports.UsuarioController = UsuarioController;
 //# sourceMappingURL=usuario.controller.js.map

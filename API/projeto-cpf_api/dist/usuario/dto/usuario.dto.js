@@ -28,17 +28,5 @@ __decorate([
     (0, class_validator_1.MinLength)(6, { message: "O tamano da senha dever conter no mínimo 6 caracteres" }),
     __metadata("design:type", String)
 ], CriaUsuarioDIO.prototype, "senha", void 0);
-__decorate([
-    (0, class_validator_1.IsInt)({ message: "Idade inválida" }),
-    __metadata("design:type", Object)
-], CriaUsuarioDIO.prototype, "idade", void 0);
-__decorate([
-    (0, class_validator_1.IsString)({ message: "Cidade inválida." }),
-    __metadata("design:type", String)
-], CriaUsuarioDIO.prototype, "cidade", void 0);
-__decorate([
-    (0, class_validator_1.IsString)({ message: "Telefone inválido" }),
-    __metadata("design:type", String)
-], CriaUsuarioDIO.prototype, "telefone", void 0);
 exports.CriaUsuarioDIO = CriaUsuarioDIO;
 //# sourceMappingURL=usuario.dto.js.map

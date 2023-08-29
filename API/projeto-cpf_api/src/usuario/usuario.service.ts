@@ -1,56 +1,59 @@
-import { Inject, Injectable } from "@nestjs/common";
-import { Repository } from "typeorm";
-import { UsuarioEntity } from "./usuario.entity";
-import { promises } from "dns";
+import { Injectable, Inject } from '@nestjs/common';
+import { Repository } from 'typeorm';
+import { RetornoCadastroDTO, RetornoObjDTO } from 'src/dto/retorno.dto';
+import { v4 as uuid } from 'uuid';
+import { UsuarioEntity } from './usuario.entity';
+import { CriaUsuarioDIO } from './dto/usuario.dto';
+import { AlteraUsuarioDTO } from './dto/atualizaUsuario.dto';
+import { ListaUsuarioDTO } from './dto/listaUsuario.dto';
+import { usuarioProviders } from './usuario.providers';
 
 @Injectable()
-export class UsuarioService{    
-    constructor(
-        @Inject('USUARIO_REPOSITORY')
-         private USUARIOREPOSITORY: Repository<UsuarioEntity>
-    ){}
+export class UsuarioService {
+  constructor(
+    @Inject('USUARIO_REPOSITORY')///....
+    private usuarioRepository: Repository<UsuarioEntity>,
+  ) { }
 
-    async InserirUsuario(USUARIO_REPOSITORY:UsuarioEntity):Promise<void>{
-      const id = USUARIO_REPOSITORY.id;
-      const nome = USUARIO_REPOSITORY.nome;
-      const idade = USUARIO_REPOSITORY.idade;
-      const cidade = USUARIO_REPOSITORY.cidade;
-      const email = USUARIO_REPOSITORY.email;
-      const telefone = USUARIO_REPOSITORY.telefone;
-      const senha = USUARIO_REPOSITORY.senha;
+  async listar(): Promise<UsuarioEntity[]> {
+    return this.usuarioRepository.find();
+  }
 
-      try{
-          const novoUsuario = this.USUARIOREPOSITORY.create({
-              id,
-              nome,
-              cidade,
-              idade,
-              email,
-              telefone,
-              senha
-          });
-          await this.USUARIOREPOSITORY.insert(novoUsuario);
-          console.log('Usuario cadastrado com sucesso.');
+  async inserir(dados: CriaUsuarioDIO): Promise<RetornoCadastroDTO> {
 
-      }catch(error){
-          console.log('Erro ao cadastrar Usuario', error.message);
-        }
-    }
+    let usuario = new UsuarioEntity();
+  
+    usuario.id = uuid();
+    usuario.nome = dados.nome;
+    usuario.email = dados.email;
+    usuario.senha = dados.senha
 
-    async BuscarUsuario(id: string): Promise<UsuarioEntity> { // Renomeado para BuscarUsuario
-        return this.USUARIOREPOSITORY.findOne({
-            where: {
-                id,
-            }
-        });
-    }
+    return this.usuarioRepository.save(usuario)
+      .then((result) => {
+        return <RetornoCadastroDTO>{
+          id: usuario.id,
+          message: "Usuario cadastrada!"
+        };
+      })
+      .catch((error) => {
+        return <RetornoCadastroDTO>{
+          id: "",
+          message: "Houve um erro ao cadastrar." + error.message
+        };
+      })
+  }
 
-    async ForgotPassword(id: string): Promise<void> {
-        this.BuscarUsuario;
-    }
+  async validaEmail(email: string){
+    const possivelUsuario = await this.usuarioRepository.findOne({
+        where: {
+          email,
+        },
+    });
+    return (possivelUsuario !== null);
+   }
 }
 
 
-      
-      
+
+
 

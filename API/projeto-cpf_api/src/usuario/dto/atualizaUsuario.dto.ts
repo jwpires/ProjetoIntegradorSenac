@@ -1,8 +1,8 @@
-import { IsString, IsNotEmpty, IsEmail, MinLength, isNotEmpty, IsInt, IsOptional } from "class-validator"
-import { EmailUnico } from "../validacao/email-unico.validator";
-
+import { IsEmail, IsInt, IsNotEmpty, IsOptional, IsString, MinLength } from "class-validator";
+import { EmailUnico } from "src/usuario/validacao/email-unico.validator";
 
 export class AlteraUsuarioDTO{
+
     @IsString()
     @IsNotEmpty({message: "Nome não pode ser vazio"})
     @IsOptional()
