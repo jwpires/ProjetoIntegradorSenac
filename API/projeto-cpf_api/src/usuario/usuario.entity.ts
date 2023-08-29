@@ -1,7 +1,7 @@
 import { Entity, PrimaryColumn, Column, OneToOne, JoinColumn } from "typeorm";
 
 @Entity()
-export class UsuarioEntity{
+export class Usuario{
     @PrimaryColumn()
     id: string;
 

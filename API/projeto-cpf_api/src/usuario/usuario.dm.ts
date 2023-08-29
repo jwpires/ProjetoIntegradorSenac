@@ -1,12 +1,12 @@
 //dm: significa data module, onde ficará armazenado os dados ou onde será elaborado as querys de inserção ao banco
 import { Injectable } from "@nestjs/common/decorators";
-import { UsuarioEntity } from "./usuario.entity";
+import { Usuario } from "./usuario.entity";
 
 @Injectable()  // Indica a aplicação que essa função pode ser inserida informações.
 export class UsuarioArmazenados{
-    #usuarios: UsuarioEntity[] = [];
+    #usuarios: Usuario[] = [];
     
-    AdicionarUsuario(usuario : UsuarioEntity){
+    AdicionarUsuario(usuario : Usuario){
         this.#usuarios.push(usuario);
     } 
     
@@ -37,7 +37,7 @@ export class UsuarioArmazenados{
 
 
     /* Partial<class> diz que o objeto pode ou não ter todos ou alguns campos da classe informada */
-    async atualizaUsuario(id:string, dadosAtualizacao: Partial<UsuarioEntity>){ 
+    async atualizaUsuario(id:string, dadosAtualizacao: Partial<Usuario>){ 
         
         const usuario = this.buscarPorID(id);
 
