@@ -14,5 +14,4 @@ export class UsuarioEntity{
     @Column()
     senha: string;
 
-
 }
