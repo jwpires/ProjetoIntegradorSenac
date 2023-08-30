@@ -1,6 +1,8 @@
 import { Get } from "@nestjs/common";
 import { Controller } from "@nestjs/common";
+import { Body, Param, Put } from "@nestjs/common/decorators";
 import { Agencia } from "src/agencia/agencia.entity";
+import { RetornoGeralDTO } from "src/agencia/dto/retornoGeral.dto";
 import { Despesa } from "src/LancamentoDespesa/despesa.entity";
 import { ListaRelatorioDespesaDTO } from "./dto/listarRelatorioDespesa.dto";
 import { ListarRelatorioSaldoDTO } from "./dto/listaSaldoDTO";
@@ -53,5 +55,11 @@ export class RelatoriosController{
         )
         
         return retornoDespesaPaga;
+    }
+
+    @Put('alterar-:id')
+    async alteraStatusPagamento(@Param('id') id: string): Promise<RetornoGeralDTO>{
+        return await this.relatorioService.alterarStatusPagametoDespesa(id);
+        
     }
 }

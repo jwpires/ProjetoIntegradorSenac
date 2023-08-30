@@ -28,6 +28,9 @@ let DespesaController = class DespesaController {
     async CriarDespesa(dadosDespesa) {
         return this.despesaService.inserirDespesa(dadosDespesa);
     }
+    async removeDespesa(id) {
+        return this.despesaService.remover(id);
+    }
 };
 __decorate([
     (0, common_1.Get)(),
@@ -42,6 +45,13 @@ __decorate([
     __metadata("design:paramtypes", [inserirDespesa_dto_1.InserirDespesaDTO]),
     __metadata("design:returntype", Promise)
 ], DespesaController.prototype, "CriarDespesa", null);
+__decorate([
+    (0, common_1.Delete)('remove-:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], DespesaController.prototype, "removeDespesa", null);
 DespesaController = __decorate([
     (0, common_1.Controller)('/lancamentoDespesa'),
     __metadata("design:paramtypes", [despesa_service_1.DespesasService,

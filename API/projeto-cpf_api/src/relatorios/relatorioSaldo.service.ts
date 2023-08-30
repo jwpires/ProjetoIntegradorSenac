@@ -1,7 +1,9 @@
 import { Inject } from "@nestjs/common";
 import { Injectable } from "@nestjs/common";
 import { Agencia } from "src/agencia/agencia.entity";
+import { RetornoGeralDTO } from "src/agencia/dto/retornoGeral.dto";
 import { Repository } from "typeorm";
+import { ListaRelatorioDespesaDTO } from "./dto/listarRelatorioDespesa.dto";
 import { ListarRelatorioSaldoDTO } from "./dto/listaSaldoDTO";
 
 @Injectable()

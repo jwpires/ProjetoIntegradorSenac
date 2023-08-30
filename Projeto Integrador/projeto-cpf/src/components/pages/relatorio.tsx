@@ -2,7 +2,6 @@ import HeaderMenu from "../header/HeaderMenu";
 import '../../style/style.css';
 import { useEffect, useState } from "react";
 import { AccordionBody, AccordionHeader, AccordionItem, Button, UncontrolledAccordion } from "reactstrap";
-import FiltroRelatorio from "../types/filtroRelatorios";
 import { RelatorioDespesa } from "../types/relatorioDespesa";
 import { api } from "./api";
 import moment from "moment";
@@ -100,6 +99,20 @@ function Relatorio() {
         }
     }
 
+    const removerDespesa = async (id: string) =>{
+        const json = await api.removerDespesa(id);
+        alert((json.descricao));
+        carregaDespesasPagas();
+        carregaDespesasEmAberto();
+    }
+
+    const alterarStatusPagamentoDespesa = async (id: string) =>{
+        const json = await api.alterarStatusPagamentoDespesa(id);
+        alert((json.descricao));
+        carregaDespesasPagas();
+        carregaDespesasEmAberto();
+    }
+
     useEffect(() => {
         carregaDespesasPagas();
         carregaDespesasEmAberto();
@@ -173,8 +186,8 @@ function Relatorio() {
                                                             <p><strong>Data de vencimento:</strong> {moment(item.dataVencimento).format('DD-MM-YYYY')} </p>
                                                             <p><strong>Grupo de despesa:</strong> {item.nomeGrupoDespesa} </p>
                                                             <p><strong>Valor:</strong> {item.valor}</p>
-                                                            <Button color="warning">Estornar</Button>
-                                                            <Button color="danger">Excluir</Button>
+                                                            <Button color="warning" onClick={e => alterarStatusPagamentoDespesa(item.id_despesa)}>Estornar</Button>
+                                                            <Button color="danger" onClick={e => removerDespesa(item.id_despesa)} >Excluir</Button>
 
                                                         </AccordionBody>
                                                     </AccordionItem>
@@ -238,8 +251,8 @@ function Relatorio() {
                                                             <p><strong>Data de vencimento:</strong> {moment(item.dataVencimento).format('DD-MM-YYYY')} </p>
                                                             <p><strong>Grupo de despesa:</strong> {item.nomeGrupoDespesa} </p>
                                                             <p><strong>Valor:</strong> {item.valor}</p>
-                                                            <Button color="warning">Estornar</Button>
-                                                            <Button color="danger">Excluir</Button>
+                                                            <Button color="success" onClick={e => alterarStatusPagamentoDespesa(item.id_despesa)} >Pagar</Button>
+                                                            <Button color="danger" onClick={e => removerDespesa(item.id_despesa)}>Excluir</Button>
 
                                                         </AccordionBody>
                                                     </AccordionItem>

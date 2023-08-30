@@ -8,6 +8,7 @@ import { RetornoDespesasDTO } from "./dto/retornoDespesas.dto";
 import { GrupoDespesaService } from "src/GrupoDeDespesa/grupoDespesa.service";
 import { deprecate } from "util";
 import {v4 as uuid} from 'uuid';
+import { RetornoGeralDTO } from "src/agencia/dto/retornoGeral.dto";
 
 @Injectable()
 export class DespesasService{
@@ -57,31 +58,34 @@ export class DespesasService{
                     message: "Despesa Não Cadastrada devido ao erro: " + error
                 };
             }
-        )
-            
-        // const id = despesa.id;
-        // const descricao = despesa.descricao;
-        // const id_grupoDespesa = despesa.id_grupoDespesa;
-        // const dataLancamento = despesa.dataLancamento;
-        // const dataVencimento = despesa.dataVencimento;
-        // const valor = despesa.valor;
-        // const pago = despesa.pago;
+        )        
+    }
 
-        // try {
-        //     const novaDespesa = this.despesaRepository.create({
-        //         id,
-        //         descricao,
-        //         id_grupoDespesa,
-        //         dataLancamento,
-        //         dataVencimento,
-        //         valor, 
-        //         pago
-        //     })
-        //     await this.despesaRepository.insert(novaDespesa);
-        //     console.log('Despesas cadastrada com sucesso.')
-        // } catch (error) {
-        //     console.log('Erro ao cadastrar Despesa'+ error.message)
-        // }
+
+    buscarPorID(id: string): Promise<Despesa> {
+        return this.despesaRepository.findOne({
+            where: {
+                id,
+            }
+        })
+    }
+
+    async remover(id: string): Promise<RetornoGeralDTO> {
+
+        try {
+            const despesa = await this.buscarPorID(id);
+            await this.despesaRepository.remove(despesa);
+            return <RetornoGeralDTO>{
+                id: id,
+                descricao: "Despesa removida com sucesso."
+            }
+        } catch (error) {
+            return <RetornoGeralDTO>{
+                id: id,
+                descricao: "Erro ao tentar remover despesa."
+            }
+        }
+
         
     }
 

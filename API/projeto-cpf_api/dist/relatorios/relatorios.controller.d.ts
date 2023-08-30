@@ -1,3 +1,4 @@
+import { RetornoGeralDTO } from "src/agencia/dto/retornoGeral.dto";
 import { Despesa } from "src/LancamentoDespesa/despesa.entity";
 import { ListaRelatorioDespesaDTO } from "./dto/listarRelatorioDespesa.dto";
 import { ListarRelatorioSaldoDTO } from "./dto/listaSaldoDTO";
@@ -11,4 +12,5 @@ export declare class RelatoriosController {
     RetornaSaldosDash(): Promise<ListarRelatorioSaldoDTO[]>;
     RetornaListaDespesaEmAberto(): Promise<ListaRelatorioDespesaDTO[]>;
     RetornaListaDespesaPagas(): Promise<ListaRelatorioDespesaDTO[]>;
+    alteraStatusPagamento(id: string): Promise<RetornoGeralDTO>;
 }

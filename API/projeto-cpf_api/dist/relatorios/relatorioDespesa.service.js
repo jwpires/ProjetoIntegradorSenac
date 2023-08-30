@@ -39,6 +39,30 @@ let RelatorioDespesaService = class RelatorioDespesaService {
         let listaRetorno = retorno.map(despesa => new listarRelatorioDespesa_dto_1.ListaRelatorioDespesaDTO(despesa.ID, despesa.DESCRICAO, despesa.GRUPODESPESA, despesa.DATALANC, despesa.DATAVENC, despesa.VALOR, despesa.PAGO));
         return listaRetorno;
     }
+    buscarPorID(id) {
+        return this.relatorioDespesaDash.findOne({
+            where: {
+                id,
+            }
+        });
+    }
+    async alterarStatusPagametoDespesa(id) {
+        const despesa = await this.buscarPorID(id);
+        despesa.pago == true ? despesa.pago = false : despesa.pago = true;
+        return this.relatorioDespesaDash.save(despesa)
+            .then((result) => {
+            return {
+                id: despesa.id,
+                descricao: "Despesa alterada!"
+            };
+        })
+            .catch((error) => {
+            return {
+                id: "",
+                descricao: "Houve um erro ao alterar."
+            };
+        });
+    }
 };
 RelatorioDespesaService = __decorate([
     (0, common_2.Injectable)(),

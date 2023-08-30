@@ -53,6 +53,29 @@ let DespesasService = class DespesasService {
             };
         });
     }
+    buscarPorID(id) {
+        return this.despesaRepository.findOne({
+            where: {
+                id,
+            }
+        });
+    }
+    async remover(id) {
+        try {
+            const despesa = await this.buscarPorID(id);
+            await this.despesaRepository.remove(despesa);
+            return {
+                id: id,
+                descricao: "Despesa removida com sucesso."
+            };
+        }
+        catch (error) {
+            return {
+                id: id,
+                descricao: "Erro ao tentar remover despesa."
+            };
+        }
+    }
 };
 DespesasService = __decorate([
     (0, common_1.Injectable)(),

@@ -129,7 +129,52 @@ export const api = {
 
         return json;
     },
-    /** GETs referente ao relatórios */
+
+    /** referente ao relatórios */
+
+
+    removerDespesa: async(id: string) => {
+
+        let response = await fetch("http://localhost:3000/lancamentoDespesa/remove-"+id,
+            {
+                // por padrão o method do fetch, é o get, por isso não precisamos especificar.
+                method: 'DELETE',
+                body: JSON.stringify
+                    ({
+                        //campos requisitados pela API
+                        id
+                    }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+        let json = await response.json();
+
+        return json;
+    },
+
+    alterarStatusPagamentoDespesa: async(id: string) => {
+        let response = await fetch("http://localhost:3000/relatorios/alterar-"+id,
+            {
+                // por padrão o method do fetch, é o get, por isso não precisamos especificar.
+                method: 'PUT',
+                body: JSON.stringify
+                    ({
+                        //campos requisitados pela API
+                        id
+                    }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+        let json = await response.json();
+
+        return json;
+    },
+
+
     /** GET referente as depesas pagas. */
     listarRelatorioDespesasPagas: async() => {
         let response =await fetch("http://localhost:3000/relatorios/despesas-pagas");

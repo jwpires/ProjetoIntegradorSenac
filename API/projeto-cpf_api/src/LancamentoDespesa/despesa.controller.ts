@@ -1,10 +1,11 @@
-import { Body, Controller, Get, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Post } from "@nestjs/common";
 import { Despesa } from "./despesa.entity";
 import { ListarDespesasDashboardDTO } from "./dto/exibeDespesasDashboard.dto";
 import { InserirDespesaDTO } from "./dto/inserirDespesa.dto";
 import {v4 as uuid} from 'uuid';
 import { DespesasService } from "./despesa.service";
 import { GrupoDespesaService } from "src/GrupoDeDespesa/grupoDespesa.service";
+import { RetornoGeralDTO } from "src/agencia/dto/retornoGeral.dto";
 
 @Controller('/lancamentoDespesa')
 export class DespesaController{
@@ -22,31 +23,10 @@ export class DespesaController{
     async CriarDespesa(@Body() dadosDespesa: InserirDespesaDTO) {
        
         return this.despesaService.inserirDespesa(dadosDespesa);
-
-        // let retornoDespesa: any;
-
-        // try {
-        //     const grupoDespesa = await this.grupoDespesaService.buscarGrupoDespesaPorId(dadosDespesa.id_GrupoDespesa)
-
-        //     const despesa = new Despesa(
-        //         uuid(),
-        //         dadosDespesa.descricao,
-        //         grupoDespesa,
-        //         dadosDespesa.dataLancamento,
-        //         dadosDespesa.dataVencimento,
-        //         dadosDespesa.valor,
-        //         dadosDespesa.pago
-        //     );
-        //     await this.despesaService.inserirDespesa(despesa);
-        //     retornoDespesa = {
-        //         dadosDespesa,
-        //         message: "Despesa Cadastrada!"
-        //     }
-        // } catch (error) {
-        //     retornoDespesa = {
-        //         error: "Erro ao cadastrar Despesa"
-        //     } 
-        // }
-        // return retornoDespesa;
     }
+
+    @Delete('remove-:id')
+   async removeDespesa(@Param('id') id:string):Promise<RetornoGeralDTO>{
+    return this.despesaService.remover(id);
+   }
 } 
