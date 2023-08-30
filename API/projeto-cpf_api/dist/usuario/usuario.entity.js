@@ -9,28 +9,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UsuarioEntity = void 0;
+exports.Usuario = void 0;
 const typeorm_1 = require("typeorm");
-let UsuarioEntity = class UsuarioEntity {
+let Usuario = class Usuario {
 };
 __decorate([
     (0, typeorm_1.PrimaryColumn)(),
     __metadata("design:type", String)
-], UsuarioEntity.prototype, "id", void 0);
+], Usuario.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], UsuarioEntity.prototype, "nome", void 0);
+], Usuario.prototype, "nome", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], UsuarioEntity.prototype, "email", void 0);
+], Usuario.prototype, "email", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], UsuarioEntity.prototype, "senha", void 0);
-UsuarioEntity = __decorate([
+], Usuario.prototype, "senha", void 0);
+Usuario = __decorate([
     (0, typeorm_1.Entity)()
-], UsuarioEntity);
-exports.UsuarioEntity = UsuarioEntity;
+], Usuario);
+exports.Usuario = Usuario;
 //# sourceMappingURL=usuario.entity.js.map

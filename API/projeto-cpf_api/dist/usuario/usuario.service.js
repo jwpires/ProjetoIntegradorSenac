@@ -25,7 +25,7 @@ let UsuarioService = class UsuarioService {
         return this.usuarioRepository.find();
     }
     async inserir(dados) {
-        let usuario = new usuario_entity_1.UsuarioEntity();
+        let usuario = new usuario_entity_1.Usuario();
         usuario.id = (0, uuid_1.v4)();
         usuario.nome = dados.nome;
         usuario.email = dados.email;
@@ -34,7 +34,7 @@ let UsuarioService = class UsuarioService {
             .then((result) => {
             return {
                 id: usuario.id,
-                message: "Usuario cadastrada!"
+                message: "Usuario cadastrado!"
             };
         })
             .catch((error) => {

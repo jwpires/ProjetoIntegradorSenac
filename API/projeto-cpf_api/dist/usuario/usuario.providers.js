@@ -5,7 +5,7 @@ const usuario_entity_1 = require("./usuario.entity");
 exports.usuarioProviders = [
     {
         provide: 'USUARIO_REPOSITORY',
-        useFactory: (dataSource) => dataSource.getRepository(usuario_entity_1.UsuarioEntity),
+        useFactory: (dataSource) => dataSource.getRepository(usuario_entity_1.Usuario),
         inject: ['DATA_SOURCE'],
     },
 ];

@@ -3,7 +3,7 @@ import { RetornoCadastroDTO, RetornoObjDTO } from "src/dto/retorno.dto";
 import { AlteraUsuarioDTO } from "./dto/atualizaUsuario.dto";
 import { ListaUsuarioDTO } from "./dto/listaUsuario.dto";
 import { CriaUsuarioDIO } from "./dto/usuario.dto";
-import { UsuarioEntity } from "./usuario.entity";
+import { Usuario } from "./usuario.entity";
 import { UsuarioService } from "./usuario.service";
 import { UsuarioArmazenados } from "./usuario.dm";
 
@@ -14,7 +14,7 @@ export class UsuarioController{
     }
 
     @Get('listar')
-    async listar(id): Promise<UsuarioEntity[]>{
+    async listar(id): Promise<Usuario[]>{
         return this.usuarioService.listar();
     }
 

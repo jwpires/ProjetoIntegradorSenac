@@ -11,7 +11,7 @@ import { UsuarioService } from './usuario.service';
   providers: [
     ...usuarioProviders,
     UsuarioService,
-    // EmailUnicoValidator,
+    EmailUnicoValidator,
     
   ],
 })
