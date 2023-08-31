@@ -174,6 +174,27 @@ export const api = {
         return json;
     },
 
+    alterarSaldo: async(id: string, valor: number) => {
+        let response = await fetch("http://localhost:3000/relatorios/alterarSaldo-"+id+"-valor-"+valor,
+            {
+                // por padrão o method do fetch, é o get, por isso não precisamos especificar.
+                method: 'PUT',
+                body: JSON.stringify
+                    ({
+                        //campos requisitados pela API
+                        id,
+                        valor
+                    }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+        let json = await response.json();
+
+        return json;
+    },
+
 
     /** GET referente as depesas pagas. */
     listarRelatorioDespesasPagas: async() => {

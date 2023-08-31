@@ -47,6 +47,7 @@ function Relatorio() {
     const [grupoDespesa, setGrupoDespesa] = useState<GrupoDespesa[]>([]);
     const [idGrupoDespesa, setIdGrupoDespesa] = useState('');
     const [IdBanco, setSelectValueIdBanco] = useState('');
+    const [saldo, setSaldo] = useState('');
 
     const carregaGrupoDespesa = async () => {
 
@@ -99,18 +100,30 @@ function Relatorio() {
         }
     }
 
-    const removerDespesa = async (id: string) =>{
+    const removerDespesa = async (id: string) => {
         const json = await api.removerDespesa(id);
         alert((json.descricao));
         carregaDespesasPagas();
         carregaDespesasEmAberto();
     }
 
-    const alterarStatusPagamentoDespesa = async (id: string) =>{
+    const alterarStatusPagamentoDespesa = async (id: string) => {
         const json = await api.alterarStatusPagamentoDespesa(id);
         alert((json.descricao));
         carregaDespesasPagas();
         carregaDespesasEmAberto();
+    }
+
+    const alterarSaldo = async (id: string, valor: string) => {
+        if (valor == "") {
+            alert("Informe o valor da alteração do saldo.");
+        } else {
+            const json = await api.alterarSaldo(id, parseFloat(valor));
+            alert((json.descricao));
+            setSaldo("");
+            carregaSaldoBancario();
+        }
+
     }
 
     useEffect(() => {
@@ -313,9 +326,10 @@ function Relatorio() {
 
                                                             <p><strong>Conta:</strong> {item.numeroConta} </p>
                                                             <p><strong>Banco:</strong> {item.banco}</p>
-                                                            <p><strong>Saldo:</strong> {item.saldo}</p>
-                                                            <Button color="warning">Estornar</Button>
-                                                            <Button color="danger">Excluir</Button>
+                                                            <input type="number" step=".01" name="" placeholder={item.saldo.toString()} onChange={(e) => { setSaldo(e.target.value) }} />
+                                                            {/* <p><strong>Saldo:</strong> {item.saldo}</p> */}
+                                                            <br /><br />
+                                                            <Button color="warning" onClick={e => alterarSaldo(item.id, saldo)}>Editar</Button>
 
                                                         </AccordionBody>
                                                     </AccordionItem>

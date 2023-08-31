@@ -13,4 +13,5 @@ export declare class RelatoriosController {
     RetornaListaDespesaEmAberto(): Promise<ListaRelatorioDespesaDTO[]>;
     RetornaListaDespesaPagas(): Promise<ListaRelatorioDespesaDTO[]>;
     alteraStatusPagamento(id: string): Promise<RetornoGeralDTO>;
+    alteraSaldo(id: string, saldo: number): Promise<RetornoGeralDTO>;
 }

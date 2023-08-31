@@ -22,24 +22,13 @@ export class AgenciaController {
       
     }
 
-    // @Get('/dash')
-    // async retornoAgenciaDash() {
-    //     const listarAgenciaDash = await this.armanezaAgencia.Agencia;
-    //     const retornaAgencias = listarAgenciaDash.map(
-    //         agencia => new ListarAgenciaDashboardDTO(
-    //             agencia.numeroConta,
-    //             agencia.saldo
-    //         )
-    //     )
-    //     return retornaAgencias;
-    // }
-    
-
     @Post()
     async criarAgencia(@Body() dadosAgencia: InserirAgenciaDTO) {
 
         return this.agenciaService.inserirAgencia(dadosAgencia);
     }
+
+    
 
 
 }

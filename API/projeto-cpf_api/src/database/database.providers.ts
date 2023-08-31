@@ -1,5 +1,9 @@
 import { DataSource } from "typeorm";
 
+// usuario: vitali04_cpf
+// senha:  Jos&102030
+// hostname: 
+// porta: 3306
 
 export const databaseProviders = [
     {

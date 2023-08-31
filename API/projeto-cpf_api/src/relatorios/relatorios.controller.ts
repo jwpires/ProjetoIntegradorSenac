@@ -62,4 +62,12 @@ export class RelatoriosController{
         return await this.relatorioService.alterarStatusPagametoDespesa(id);
         
     }
+
+    @Put('alterarSaldo-:id-valor-:saldo')
+    async alteraSaldo(@Param('id') id: string, @Param('saldo') saldo: number): Promise<RetornoGeralDTO>{
+        return await this.relatorioSaldoServide.alterarSaldo(id, saldo);
+        
+    }
+
+
 }

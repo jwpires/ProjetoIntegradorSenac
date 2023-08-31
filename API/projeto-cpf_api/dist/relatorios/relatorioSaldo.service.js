@@ -34,6 +34,31 @@ let RelatorioSaldoService = class RelatorioSaldoService {
         let listaRetorno = retornoQuery.map(info => new listaSaldoDTO_1.ListarRelatorioSaldoDTO(info.ID, info.NOMEPROPRIETARIO, info.BANCO, info.NUMEROCONTA, info.SALDO));
         return listaRetorno;
     }
+    buscarPorID(id) {
+        return this.relatorioSaldoDash.findOne({
+            where: {
+                id,
+            }
+        });
+    }
+    async alterarSaldo(id, valor) {
+        const agencia = await this.buscarPorID(id);
+        let saldo = agencia.saldo;
+        agencia.saldo = valor;
+        return this.relatorioSaldoDash.save(agencia)
+            .then((result) => {
+            return {
+                id: agencia.id,
+                descricao: "Saldo alterado de " + saldo + " Para: " + agencia.saldo
+            };
+        })
+            .catch((error) => {
+            return {
+                id: "",
+                descricao: "Houve um erro ao alterar."
+            };
+        });
+    }
 };
 RelatorioSaldoService = __decorate([
     (0, common_2.Injectable)(),

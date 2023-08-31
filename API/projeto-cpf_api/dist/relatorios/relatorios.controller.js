@@ -44,6 +44,9 @@ let RelatoriosController = class RelatoriosController {
     async alteraStatusPagamento(id) {
         return await this.relatorioService.alterarStatusPagametoDespesa(id);
     }
+    async alteraSaldo(id, saldo) {
+        return await this.relatorioSaldoServide.alterarSaldo(id, saldo);
+    }
 };
 __decorate([
     (0, common_1.Get)('/despesa-dash'),
@@ -76,6 +79,14 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], RelatoriosController.prototype, "alteraStatusPagamento", null);
+__decorate([
+    (0, decorators_1.Put)('alterarSaldo-:id-valor-:saldo'),
+    __param(0, (0, decorators_1.Param)('id')),
+    __param(1, (0, decorators_1.Param)('saldo')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, Number]),
+    __metadata("design:returntype", Promise)
+], RelatoriosController.prototype, "alteraSaldo", null);
 RelatoriosController = __decorate([
     (0, common_2.Controller)('/relatorios'),
     __metadata("design:paramtypes", [relatorioDespesa_service_1.RelatorioDespesaService,
