@@ -6,6 +6,7 @@ import { CriaUsuarioDIO } from "./dto/usuario.dto";
 import { Usuario } from "./usuario.entity";
 import { UsuarioService } from "./usuario.service";
 import { UsuarioArmazenados } from "./usuario.dm";
+import { RetornoGeralDTO } from "src/agencia/dto/retornoGeral.dto";
 
 @Controller('/usuarios')
 export class UsuarioController{
@@ -22,6 +23,11 @@ export class UsuarioController{
     @Post('')
     async cria(@Body() dados: CriaUsuarioDIO): Promise<RetornoCadastroDTO>{        
         return this.usuarioService.inserir(dados)        
+    }
+
+    @Get('acesso-login=:email-password=:senha')
+    async acesso(@Param('email')  email:string, @Param('senha') senha: string): Promise<RetornoGeralDTO>{
+        return this.usuarioService.findOne(email, senha);
     }
 
 }

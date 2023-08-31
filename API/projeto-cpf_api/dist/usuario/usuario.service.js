@@ -52,6 +52,25 @@ let UsuarioService = class UsuarioService {
         });
         return (possivelUsuario !== null);
     }
+    async findOne(email, senha) {
+        let login = await this.usuarioRepository.findOne({
+            where: {
+                email, senha
+            }
+        });
+        if (login == null) {
+            return {
+                id: null,
+                descricao: "Erro no Login."
+            };
+        }
+        else {
+            return {
+                id: login.id,
+                descricao: "Login realizado com sucesso."
+            };
+        }
+    }
 };
 UsuarioService = __decorate([
     (0, common_1.Injectable)(),

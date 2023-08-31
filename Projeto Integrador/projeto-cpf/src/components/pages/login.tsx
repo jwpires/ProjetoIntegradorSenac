@@ -32,6 +32,8 @@ function Login() {
 
     const UsuarioLogadoCtx = useContext(UsuarioLogadoContext);
 
+
+    /* ESSA É A FUNÇÃO PARA VALIDAR O ACESSO DE USUÁRIO */
     const RealizarLogin = async () => {
 
         let json = await api.Logar(fUser, fSenha);
@@ -60,14 +62,14 @@ function Login() {
                     <input type="text" className='input-padrao' placeholder='Login' /> 
                     <input type="password" className='input-padrao' placeholder='Senha' />
                     <input type="submit" className='botao-padrao' value="Acessar" onClick={acessaHome}/>
-                    <label><Link to={'/cadastro/NovaSenha'} className='link'>Esqueci minha senha.</Link></label>
+                    {/* <label><Link to={'/cadastro/NovaSenha'} className='link'>Esqueci minha senha.</Link></label> */}
 
-                    {/* <label>TESTES:</label>
+                    <label>TESTES:</label>
                     <br />
                     <input onChange={handlefUserChange} />
                     <br />
                     <input onChange={handlefSenhaChange} />
-                    <input type="submit" className='botao-padrao' value="Acessar" onClick={RealizarLogin}/> */}
+                    <input type="submit" className='botao-padrao' value="Acessar" onClick={RealizarLogin}/>
                 </div> 
 
             </div>
