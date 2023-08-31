@@ -26,6 +26,9 @@ let UsuarioController = class UsuarioController {
     async cria(dados) {
         return this.usuarioService.inserir(dados);
     }
+    async acesso(email, senha) {
+        return this.usuarioService.findOne(email, senha);
+    }
 };
 __decorate([
     (0, common_1.Get)('listar'),
@@ -40,6 +43,14 @@ __decorate([
     __metadata("design:paramtypes", [usuario_dto_1.CriaUsuarioDIO]),
     __metadata("design:returntype", Promise)
 ], UsuarioController.prototype, "cria", null);
+__decorate([
+    (0, common_1.Get)('acesso-login=:email-password=:senha'),
+    __param(0, (0, common_1.Param)('email')),
+    __param(1, (0, common_1.Param)('senha')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", Promise)
+], UsuarioController.prototype, "acesso", null);
 UsuarioController = __decorate([
     (0, common_1.Controller)('/usuarios'),
     __metadata("design:paramtypes", [usuario_service_1.UsuarioService])

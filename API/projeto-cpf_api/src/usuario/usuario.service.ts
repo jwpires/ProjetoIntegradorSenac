@@ -7,6 +7,8 @@ import { CriaUsuarioDIO } from './dto/usuario.dto';
 import { AlteraUsuarioDTO } from './dto/atualizaUsuario.dto';
 import { ListaUsuarioDTO } from './dto/listaUsuario.dto';
 import { usuarioProviders } from './usuario.providers';
+import { UsuarioAcessoDTO } from './dto/usuarioAcesso.dto';
+import { RetornoGeralDTO } from 'src/agencia/dto/retornoGeral.dto';
 
 @Injectable()
 export class UsuarioService {
@@ -22,7 +24,7 @@ export class UsuarioService {
   async inserir(dados: CriaUsuarioDIO): Promise<RetornoCadastroDTO> {
 
     let usuario = new Usuario();
-  
+
     usuario.id = uuid();
     usuario.nome = dados.nome;
     usuario.email = dados.email;
@@ -43,14 +45,39 @@ export class UsuarioService {
       })
   }
 
-  async validaEmail(email: string){
+  async validaEmail(email: string) {
     const possivelUsuario = await this.usuarioRepository.findOne({
-        where: {
-          email,
-        },
+      where: {
+        email,
+      },
     });
     return (possivelUsuario !== null);
-   }
+  }
+
+  async findOne(email: string, senha: string): Promise<RetornoGeralDTO> {
+
+    let login = await this.usuarioRepository.findOne({
+      where: {
+        email, senha
+      }
+    })
+
+    if (login == null) {
+      return {
+        id: null,
+        descricao: "Erro no Login."
+      }
+    } else {
+      return {
+        id: login.id,
+        descricao: "Login realizado com sucesso." 
+      }
+    }
+
+
+    // return this.usuarioRepository.find(user => user.username === username)
+
+  }
 }
 
 
