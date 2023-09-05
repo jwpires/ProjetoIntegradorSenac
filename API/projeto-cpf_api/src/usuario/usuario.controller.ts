@@ -15,15 +15,15 @@ export class UsuarioController{
     }
 
     @Get('listar')
-    async listar(id): Promise<Usuario[]>{
-        return this.usuarioService.listar();
+    async listar(): Promise<Usuario[]>{
+        return this.usuarioService.listar(); 
     }
 
 
     @Post('')
     async cria(@Body() dados: CriaUsuarioDIO): Promise<RetornoCadastroDTO>{        
         return this.usuarioService.inserir(dados)        
-    }
+    } 
 
     @Get('acesso-login=:email-password=:senha')
     async acesso(@Param('email')  email:string, @Param('senha') senha: string): Promise<RetornoGeralDTO>{

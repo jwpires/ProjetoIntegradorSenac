@@ -197,24 +197,24 @@ export const api = {
 
 
     /** GET referente as depesas pagas. */
-    listarRelatorioDespesasPagas: async() => {
-        let response =await fetch("http://localhost:3000/relatorios/despesas-pagas");
+    listarRelatorioDespesasPagas: async(dataInicio:string, dataFim:string, tipo:number) => {
+        let response =await fetch("http://localhost:3000/relatorios/despesas-pagas="+dataInicio+"="+dataFim+"="+tipo);
         let json = await response.json();
         return json;
     },
 
-    listarRelatorioDespesasEmAberto: async() => {
-        let response =await fetch("http://localhost:3000/relatorios/despesas-em-aberto");
+    listarRelatorioDespesasEmAberto: async(dataInicio:string, dataFim:string, tipo:number) => {
+        let response =await fetch("http://localhost:3000/relatorios/despesas-em-aberto="+dataInicio+"="+dataFim+"="+tipo);
         let json = await response.json();
         return json;
     },
 
     Logar: async(username: string, password: string) => {
         {
-            let response = await fetch('http://localhost:3000/auth/login',
+            let response = await fetch('http://localhost:3000//usuarios/acesso-login='+username+'-password='+password,
             {
                 method: 'POST',
-                body: JSON.stringify
+                body: JSON.stringify 
                 ({
                     username, password
                 }),

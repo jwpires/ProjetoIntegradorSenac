@@ -8,6 +8,7 @@ import moment from "moment";
 import { AgenciaDash } from "../types/agenciaDash";
 import { GrupoDespesa } from "../types/grupoDespesa";
 import { Banco } from "../types/banco";
+import { getValue } from "@testing-library/user-event/dist/utils";
 
 var validaConfiguracao = {
     despesasPagas: 'menu-guia',
@@ -48,6 +49,10 @@ function Relatorio() {
     const [idGrupoDespesa, setIdGrupoDespesa] = useState('');
     const [IdBanco, setSelectValueIdBanco] = useState('');
     const [saldo, setSaldo] = useState('');
+    const [tipo, setTipo] = useState<number>(-1);
+    const [dataInicio, setDataInicio] = useState('');
+    const [dataFim, setDataFim] = useState('');
+    
 
     const carregaGrupoDespesa = async () => {
 
@@ -79,7 +84,10 @@ function Relatorio() {
     const carregaDespesasPagas = async () => {
 
         try {
-            const json = await api.listarRelatorioDespesasPagas();
+            console.log('DataInicio:', dataInicio)
+            console.log('DataFIM:', dataFim)
+            console.log('Tipo:', tipo)
+            const json = await api.listarRelatorioDespesasPagas(dataInicio,dataFim,tipo);
             const dataArray = Array.isArray(json) ? json : [json];
             setDespesaPaga(dataArray);
 
@@ -91,7 +99,10 @@ function Relatorio() {
     const carregaDespesasEmAberto = async () => {
 
         try {
-            const json = await api.listarRelatorioDespesasEmAberto();
+            console.log('DataInicio:', dataInicio)
+            console.log('DataFIM:', dataFim)
+            console.log('Tipo:', tipo)
+            const json = await api.listarRelatorioDespesasEmAberto(dataInicio,dataFim,tipo);
             const dataArray = Array.isArray(json) ? json : [json];
             setDespesaEmAberto(dataArray);
 
@@ -126,9 +137,13 @@ function Relatorio() {
 
     }
 
+    const reset = (e: number) => {
+        setTipo(e);
+    }
+
     useEffect(() => {
-        carregaDespesasPagas();
-        carregaDespesasEmAberto();
+        //carregaDespesasPagas();
+        //carregaDespesasEmAberto();
         carregaSaldoBancario();
         carregaGrupoDespesa();
         carregaBancos();
@@ -153,10 +168,13 @@ function Relatorio() {
                                 {/* <FiltroRelatorio tipoFiltro ='GD' /> */}
                                 <div className="filtros">
                                     <div className="raio_group">
-                                        <p>Data: <input type="date" name="" id="" /> à <input type="date" name="" id="" /> </p>
+                                        <p>Data: <input type="date" onChange={e => setDataInicio(e.target.value)} />
+                                            à
+                                            <input type="date" onChange={e => setDataFim(e.target.value)} />
+                                        </p>
 
-                                        <label><input type="radio" name="tipo_pagamento" id="" />Lançamento</label>
-                                        <label><input type="radio" name="tipo_pagamento" id="" checked />Vencimento</label><br />
+                                        <label><input type="radio" name="tipo_pagamento" id="" value={0} onChange={ () => reset(0)}/>Lançamento</label>
+                                        <label><input type="radio" name="tipo_pagamento" id="" onChange={() => reset(1)} />Vencimento</label><br />
                                     </div>
 
                                     <select className="pesquisar" name="GrupoDespesa" id="" value={idGrupoDespesa} onChange={(e) => setIdGrupoDespesa(e.target.value)}  >
@@ -167,12 +185,12 @@ function Relatorio() {
                                             )
                                         }
                                     </select>
-
+                                        
 
 
 
                                     <input className="pesquisar" type="text" name="" placeholder="Pesquisar por Descrição" id="" />
-                                    <img className="imgPesquisa" src={require("../../images/botao-pesquisar.png")} alt="exibe imagem do padrao" />
+                                    <img className="imgPesquisa" src={require("../../images/botao-pesquisar.png")} alt="exibe imagem do padrao" onClick={carregaDespesasPagas} />
 
                                 </div>
 
@@ -199,8 +217,8 @@ function Relatorio() {
                                                             <p><strong>Data de vencimento:</strong> {moment(item.dataVencimento).format('DD-MM-YYYY')} </p>
                                                             <p><strong>Grupo de despesa:</strong> {item.nomeGrupoDespesa} </p>
                                                             <p><strong>Valor:</strong> {item.valor}</p>
-                                                            <Button color="warning" onClick={e => alterarStatusPagamentoDespesa(item.id_despesa)}>Estornar</Button>
-                                                            <Button color="danger" onClick={e => removerDespesa(item.id_despesa)} >Excluir</Button>
+                                                            <Button color="warning" onClick={() => alterarStatusPagamentoDespesa(item.id_despesa)}>Estornar</Button>
+                                                            <Button color="danger" onClick={() => removerDespesa(item.id_despesa)} >Excluir</Button>
 
                                                         </AccordionBody>
                                                     </AccordionItem>

@@ -44,7 +44,6 @@ function Login() {
         }else{
             alert('Usuario/Senha não encontrados.');
         }
-
     }
 
     return (

@@ -24,18 +24,37 @@ let RelatorioDespesaService = class RelatorioDespesaService {
     async listar() {
         return this.relatorioDespesaDash.find();
     }
-    async listarRelatorioDespesa() {
-        var retorno = await (this.relatorioDespesaDash
-            .createQueryBuilder('despesa')
-            .select('despesa.id', 'ID')
-            .addSelect('despesa.descricao', 'DESCRICAO')
-            .addSelect('gd.descricao', 'GRUPODESPESA')
-            .addSelect('despesa.datalancamento', 'DATALANC')
-            .addSelect('despesa.datavencimento', 'DATAVENC')
-            .addSelect('despesa.valor', 'VALOR')
-            .addSelect('despesa.pago', 'PAGO')
-            .innerJoin('grupo_despesa', 'gd', 'gd.id = despesa.id_grupodespesa')
-            .getRawMany());
+    async listarRelatorioDespesa(DATAINICIO, DATAFIM, TIPO) {
+        if (DATAINICIO != "" && DATAFIM != "") {
+            if (TIPO == 1) {
+                var retorno = await (this.relatorioDespesaDash
+                    .createQueryBuilder('despesa')
+                    .select('despesa.id', 'ID')
+                    .addSelect('despesa.descricao', 'DESCRICAO')
+                    .addSelect('gd.descricao', 'GRUPODESPESA')
+                    .addSelect('despesa.datalancamento', 'DATALANC')
+                    .addSelect('despesa.datavencimento', 'DATAVENC')
+                    .addSelect('despesa.valor', 'VALOR')
+                    .addSelect('despesa.pago', 'PAGO')
+                    .innerJoin('grupo_despesa', 'gd', 'gd.id = despesa.id_grupodespesa')
+                    .where('despesa.datalancamento BETWEEN :datainicio AND :datafim', { datainicio: DATAINICIO, datafim: DATAFIM })
+                    .getRawMany());
+            }
+            else {
+                var retorno = await (this.relatorioDespesaDash
+                    .createQueryBuilder('despesa')
+                    .select('despesa.id', 'ID')
+                    .addSelect('despesa.descricao', 'DESCRICAO')
+                    .addSelect('gd.descricao', 'GRUPODESPESA')
+                    .addSelect('despesa.datalancamento', 'DATALANC')
+                    .addSelect('despesa.datavencimento', 'DATAVENC')
+                    .addSelect('despesa.valor', 'VALOR')
+                    .addSelect('despesa.pago', 'PAGO')
+                    .innerJoin('grupo_despesa', 'gd', 'gd.id = despesa.id_grupodespesa')
+                    .where('despesa.datalancamento BETWEEN :datainicio AND :datafim', { datainicio: DATAINICIO, datafim: DATAFIM })
+                    .getRawMany());
+            }
+        }
         let listaRetorno = retorno.map(despesa => new listarRelatorioDespesa_dto_1.ListaRelatorioDespesaDTO(despesa.ID, despesa.DESCRICAO, despesa.GRUPODESPESA, despesa.DATALANC, despesa.DATAVENC, despesa.VALOR, despesa.PAGO));
         return listaRetorno;
     }

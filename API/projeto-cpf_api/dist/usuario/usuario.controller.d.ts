@@ -6,7 +6,7 @@ import { RetornoGeralDTO } from "src/agencia/dto/retornoGeral.dto";
 export declare class UsuarioController {
     private readonly usuarioService;
     constructor(usuarioService: UsuarioService);
-    listar(id: any): Promise<Usuario[]>;
+    listar(): Promise<Usuario[]>;
     cria(dados: CriaUsuarioDIO): Promise<RetornoCadastroDTO>;
     acesso(email: string, senha: string): Promise<RetornoGeralDTO>;
 }

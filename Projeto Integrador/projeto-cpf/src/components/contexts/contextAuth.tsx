@@ -17,5 +17,4 @@ export const UsuarioLogadoProvider = ({ children }: {children: ReactNode}) => {
             {children}
         </UsuarioLogadoContext.Provider>
     )
-
 }

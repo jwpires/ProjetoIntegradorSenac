@@ -20,7 +20,7 @@ let UsuarioController = class UsuarioController {
     constructor(usuarioService) {
         this.usuarioService = usuarioService;
     }
-    async listar(id) {
+    async listar() {
         return this.usuarioService.listar();
     }
     async cria(dados) {
@@ -33,7 +33,7 @@ let UsuarioController = class UsuarioController {
 __decorate([
     (0, common_1.Get)('listar'),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], UsuarioController.prototype, "listar", null);
 __decorate([
