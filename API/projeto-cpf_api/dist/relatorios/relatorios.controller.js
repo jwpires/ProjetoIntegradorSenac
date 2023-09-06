@@ -31,15 +31,11 @@ let RelatoriosController = class RelatoriosController {
     async RetornaSaldosDash() {
         return this.relatorioSaldoServide.listarRelatorioSaldo();
     }
-    async RetornaListaDespesaEmAberto(datainicio, datafim, tipo) {
-        const relatorios = this.relatorioService.listarRelatorioDespesa(datainicio, datafim, tipo);
-        const retornoDespesaEmAberto = (await relatorios).filter(item => item.pago == false);
-        return retornoDespesaEmAberto;
+    async RetornaListaDespesaEmAberto(datainicio, datafim, tipo, pago) {
+        return await this.relatorioService.listarRelatorioDespesa(datainicio, datafim, tipo, pago);
     }
-    async RetornaListaDespesaPagas(datainicio, datafim, tipo) {
-        const relatorios = this.relatorioService.listarRelatorioDespesa(datainicio, datafim, tipo);
-        const retornoDespesaPaga = (await relatorios).filter(item => item.pago == true);
-        return retornoDespesaPaga;
+    async RetornaListaDespesaPagas(datainicio, datafim, tipo, pago) {
+        return await this.relatorioService.listarRelatorioDespesa(datainicio, datafim, tipo, pago);
     }
     async alteraStatusPagamento(id) {
         return await this.relatorioService.alterarStatusPagametoDespesa(id);
@@ -61,21 +57,23 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], RelatoriosController.prototype, "RetornaSaldosDash", null);
 __decorate([
-    (0, common_1.Get)('/despesas-em-aberto=:datainicio=:datafim=:tipo'),
+    (0, common_1.Get)('/despesas-em-aberto=:datainicio=:datafim=:tipo=:pago'),
     __param(0, (0, decorators_1.Param)('datainicio')),
     __param(1, (0, decorators_1.Param)('datafim')),
     __param(2, (0, decorators_1.Param)('tipo')),
+    __param(3, (0, decorators_1.Param)('pago')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String, Number]),
+    __metadata("design:paramtypes", [String, String, Number, Number]),
     __metadata("design:returntype", Promise)
 ], RelatoriosController.prototype, "RetornaListaDespesaEmAberto", null);
 __decorate([
-    (0, common_1.Get)('/despesas-pagas=:datainicio=:datafim=:tipo'),
+    (0, common_1.Get)('/despesas-pagas=:datainicio=:datafim=:tipo=:pago'),
     __param(0, (0, decorators_1.Param)('datainicio')),
     __param(1, (0, decorators_1.Param)('datafim')),
     __param(2, (0, decorators_1.Param)('tipo')),
+    __param(3, (0, decorators_1.Param)('pago')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String, Number]),
+    __metadata("design:paramtypes", [String, String, Number, Number]),
     __metadata("design:returntype", Promise)
 ], RelatoriosController.prototype, "RetornaListaDespesaPagas", null);
 __decorate([

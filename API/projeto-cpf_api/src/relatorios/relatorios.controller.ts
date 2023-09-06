@@ -35,26 +35,18 @@ export class RelatoriosController{
     }
 
 
-    @Get('/despesas-em-aberto=:datainicio=:datafim=:tipo')
-    async RetornaListaDespesaEmAberto(@Param('datainicio') datainicio:string, @Param('datafim') datafim:string, @Param('tipo') tipo:number): Promise<ListaRelatorioDespesaDTO[]>{
-        const relatorios = this.relatorioService.listarRelatorioDespesa(datainicio, datafim, tipo);
+    @Get('/despesas-em-aberto=:datainicio=:datafim=:tipo=:pago')
+    async RetornaListaDespesaEmAberto(@Param('datainicio') datainicio:string, @Param('datafim') datafim:string, @Param('tipo') tipo:number, @Param('pago') pago:number): Promise<ListaRelatorioDespesaDTO[]>{
+        return await this.relatorioService.listarRelatorioDespesa(datainicio, datafim, tipo, pago);
         
-        const retornoDespesaEmAberto = (await relatorios).filter(
-            item => item.pago == false
-        )
         
-        return retornoDespesaEmAberto; 
+         
     }
 //http://localhost:3000/relatorios/despesas-pagas=2023-08-01=2023-08-30=1
-    @Get('/despesas-pagas=:datainicio=:datafim=:tipo')
-    async RetornaListaDespesaPagas(@Param('datainicio') datainicio:string, @Param('datafim') datafim:string, @Param('tipo') tipo:number): Promise<ListaRelatorioDespesaDTO[]>{
-        const relatorios = this.relatorioService.listarRelatorioDespesa(datainicio, datafim, tipo);
-        
-        const retornoDespesaPaga = (await relatorios).filter(
-            item => item.pago == true
-        )
-        
-        return retornoDespesaPaga;
+    @Get('/despesas-pagas=:datainicio=:datafim=:tipo=:pago')
+    async RetornaListaDespesaPagas(@Param('datainicio') datainicio:string, @Param('datafim') datafim:string, @Param('tipo') tipo:number, @Param('pago') pago:number): Promise<ListaRelatorioDespesaDTO[]>{
+        return await this.relatorioService.listarRelatorioDespesa(datainicio, datafim, tipo, pago);
+    
     }
 
     @Put('alterar-:id')

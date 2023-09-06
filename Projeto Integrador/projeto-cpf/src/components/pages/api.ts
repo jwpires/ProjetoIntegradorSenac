@@ -197,14 +197,14 @@ export const api = {
 
 
     /** GET referente as depesas pagas. */
-    listarRelatorioDespesasPagas: async(dataInicio:string, dataFim:string, tipo:number) => {
-        let response =await fetch("http://localhost:3000/relatorios/despesas-pagas="+dataInicio+"="+dataFim+"="+tipo);
+    listarRelatorioDespesasPagas: async(dataInicio:string, dataFim:string, tipo:number, pago: number) => {
+        let response =await fetch("http://localhost:3000/relatorios/despesas-pagas="+dataInicio+"="+dataFim+"="+tipo+"="+pago);
         let json = await response.json();
         return json;
     },
 
-    listarRelatorioDespesasEmAberto: async(dataInicio:string, dataFim:string, tipo:number) => {
-        let response =await fetch("http://localhost:3000/relatorios/despesas-em-aberto="+dataInicio+"="+dataFim+"="+tipo);
+    listarRelatorioDespesasEmAberto: async(dataInicio:string, dataFim:string, tipo:number, pago: number) => {
+        let response =await fetch("http://localhost:3000/relatorios/despesas-em-aberto="+dataInicio+"="+dataFim+"="+tipo+"="+pago);
         let json = await response.json();
         return json;
     },

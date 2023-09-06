@@ -24,7 +24,7 @@ let RelatorioDespesaService = class RelatorioDespesaService {
     async listar() {
         return this.relatorioDespesaDash.find();
     }
-    async listarRelatorioDespesa(DATAINICIO, DATAFIM, TIPO) {
+    async listarRelatorioDespesa(DATAINICIO, DATAFIM, TIPO, PAGO) {
         if (DATAINICIO != "" && DATAFIM != "") {
             if (TIPO == 1) {
                 var retorno = await (this.relatorioDespesaDash
@@ -37,7 +37,8 @@ let RelatorioDespesaService = class RelatorioDespesaService {
                     .addSelect('despesa.valor', 'VALOR')
                     .addSelect('despesa.pago', 'PAGO')
                     .innerJoin('grupo_despesa', 'gd', 'gd.id = despesa.id_grupodespesa')
-                    .where('despesa.datalancamento BETWEEN :datainicio AND :datafim', { datainicio: DATAINICIO, datafim: DATAFIM })
+                    .where('despesa.datavencimento BETWEEN :datainicio AND :datafim AND despesa.pago = :pago_', { datainicio: DATAINICIO, datafim: DATAFIM })
+                    .andWhere('despesa.pago = :pago_', { pago_: PAGO })
                     .getRawMany());
             }
             else {
@@ -52,6 +53,7 @@ let RelatorioDespesaService = class RelatorioDespesaService {
                     .addSelect('despesa.pago', 'PAGO')
                     .innerJoin('grupo_despesa', 'gd', 'gd.id = despesa.id_grupodespesa')
                     .where('despesa.datalancamento BETWEEN :datainicio AND :datafim', { datainicio: DATAINICIO, datafim: DATAFIM })
+                    .andWhere('despesa.pago = :pago_', { pago_: PAGO })
                     .getRawMany());
             }
         }

@@ -1,7 +1,7 @@
 import HeaderMenu from "../header/HeaderMenu";
 import '../../style/style.css';
 import { useEffect, useState } from "react";
-import { AccordionBody, AccordionHeader, AccordionItem, Button, UncontrolledAccordion } from "reactstrap";
+import { AccordionBody, AccordionHeader, AccordionItem, Button, Modal, ModalBody, ModalFooter, ModalHeader, UncontrolledAccordion } from "reactstrap";
 import { RelatorioDespesa } from "../types/relatorioDespesa";
 import { api } from "./api";
 import moment from "moment";
@@ -18,11 +18,51 @@ var validaConfiguracao = {
 
 function Relatorio() {
 
+    /**------------Manipulação Modal---------------------*/
+    const [modal, setModal] = useState(false);
+    const toggle = () => setModal(!modal);
+
+    function exibeModal() {
+        
+            toggle();
+    }
+
+    const ExibeModal = () => {
+        <>
+
+            <div className="teste" >
+
+                {/********************** * Exibe a Modal ao clicar em Pagar****************** */}
+                <Modal isOpen={modal} toggle={toggle}>
+                    <ModalHeader toggle={toggle}>Confirmação de pagamento!</ModalHeader>
+                    <ModalBody>
+
+
+                        <form action="" className="cadBanco">
+                           
+                        </form>
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button color="primary" >
+                            Confirmar
+                        </Button>{' '}
+                        <Button color="secondary" onClick={toggle}>
+                            Cancelar
+                        </Button>
+                    </ModalFooter>
+                </Modal>
+            </div>
+        </>
+    }
+
     const ExibeDespesasPagas = () => {
         setMenu([true, false, false]);
         validaConfiguracao.despesasPagas = "menu-guia";
         validaConfiguracao.despesasEmAberto = "";
         validaConfiguracao.contasBancarias = "";
+        setDataFim('');
+        setDataFim('');
+        setTipo(1);
     }
 
     const ExibeDespesasEmAberto = () => {
@@ -30,6 +70,9 @@ function Relatorio() {
         validaConfiguracao.despesasPagas = "";
         validaConfiguracao.despesasEmAberto = "menu-guia";
         validaConfiguracao.contasBancarias = "";
+        setDataFim('');
+        setDataFim('');
+        setTipo(1);
     }
 
     const ExibeContasBancarias = () => {
@@ -37,6 +80,9 @@ function Relatorio() {
         validaConfiguracao.despesasPagas = "";
         validaConfiguracao.despesasEmAberto = "";
         validaConfiguracao.contasBancarias = "menu-guia";
+        setDataFim('');
+        setDataFim('');
+        setTipo(1);
     }
 
     let [exibeMenu, setMenu] = useState([true, false, false]);
@@ -49,10 +95,10 @@ function Relatorio() {
     const [idGrupoDespesa, setIdGrupoDespesa] = useState('');
     const [IdBanco, setSelectValueIdBanco] = useState('');
     const [saldo, setSaldo] = useState('');
-    const [tipo, setTipo] = useState<number>(-1);
+    const [tipo, setTipo] = useState<number>(1);
     const [dataInicio, setDataInicio] = useState('');
     const [dataFim, setDataFim] = useState('');
-    
+
 
     const carregaGrupoDespesa = async () => {
 
@@ -87,7 +133,7 @@ function Relatorio() {
             console.log('DataInicio:', dataInicio)
             console.log('DataFIM:', dataFim)
             console.log('Tipo:', tipo)
-            const json = await api.listarRelatorioDespesasPagas(dataInicio,dataFim,tipo);
+            const json = await api.listarRelatorioDespesasPagas(dataInicio, dataFim, tipo, 1);
             const dataArray = Array.isArray(json) ? json : [json];
             setDespesaPaga(dataArray);
 
@@ -102,7 +148,7 @@ function Relatorio() {
             console.log('DataInicio:', dataInicio)
             console.log('DataFIM:', dataFim)
             console.log('Tipo:', tipo)
-            const json = await api.listarRelatorioDespesasEmAberto(dataInicio,dataFim,tipo);
+            const json = await api.listarRelatorioDespesasEmAberto(dataInicio, dataFim, tipo, 0);
             const dataArray = Array.isArray(json) ? json : [json];
             setDespesaEmAberto(dataArray);
 
@@ -138,7 +184,10 @@ function Relatorio() {
     }
 
     const reset = (e: number) => {
+        console.log((tipo));
+
         setTipo(e);
+        console.log((tipo));
     }
 
     useEffect(() => {
@@ -173,7 +222,7 @@ function Relatorio() {
                                             <input type="date" onChange={e => setDataFim(e.target.value)} />
                                         </p>
 
-                                        <label><input type="radio" name="tipo_pagamento" id="" value={0} onChange={ () => reset(0)}/>Lançamento</label>
+                                        <label><input type="radio" name="tipo_pagamento" id="" onChange={() => reset(0)} />Lançamento</label>
                                         <label><input type="radio" name="tipo_pagamento" id="" onChange={() => reset(1)} />Vencimento</label><br />
                                     </div>
 
@@ -185,7 +234,7 @@ function Relatorio() {
                                             )
                                         }
                                     </select>
-                                        
+
 
 
 
@@ -236,10 +285,13 @@ function Relatorio() {
                                 {/* <FiltroRelatorio tipoFiltro='GD' /> */}
                                 <div className="filtros">
                                     <div className="raio_group">
-                                        <p>Data: <input type="date" name="" id="" /> à <input type="date" name="" id="" /> </p>
+                                        <p>Data: <input type="date" onChange={e => setDataInicio(e.target.value)} />
+                                            à
+                                            <input type="date" onChange={e => setDataFim(e.target.value)} />
+                                        </p>
 
-                                        <label><input type="radio" name="tipo_pagamento" id="" />Lançamento</label>
-                                        <label><input type="radio" name="tipo_pagamento" id="" checked />Vencimento</label><br />
+                                        <label><input type="radio" name="tipo_pagamento" id="" onChange={() => reset(0)} />Lançamento</label>
+                                        <label><input type="radio" name="tipo_pagamento" id="" onChange={() => reset(1)} />Vencimento</label><br />
                                     </div>
 
                                     <select className="pesquisar" name="GrupoDespesa" id="" value={idGrupoDespesa} onChange={(e) => setIdGrupoDespesa(e.target.value)}  >
@@ -255,7 +307,7 @@ function Relatorio() {
 
 
                                     <input className="pesquisar" type="text" name="" placeholder="Pesquisar por Descrição" id="" />
-                                    <img className="imgPesquisa" src={require("../../images/botao-pesquisar.png")} alt="exibe imagem do padrao" />
+                                    <img className="imgPesquisa" src={require("../../images/botao-pesquisar.png")} alt="exibe imagem do padrao" onClick={carregaDespesasEmAberto} />
 
                                 </div>
 
