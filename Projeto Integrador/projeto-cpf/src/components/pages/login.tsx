@@ -7,10 +7,6 @@ import { api } from './api';
 import { UsuarioLogadoContext, UsuarioLogadoProvider } from '../contexts/contextAuth';
 
 
-
-
-
-
 function Login() {
 
     const [fUser, setfUser] = useState('');

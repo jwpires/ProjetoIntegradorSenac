@@ -19,15 +19,18 @@ export class UsuarioController{
         return this.usuarioService.listar(); 
     }
 
-
     @Post('')
     async cria(@Body() dados: CriaUsuarioDIO): Promise<RetornoCadastroDTO>{        
         return this.usuarioService.inserir(dados)        
     } 
 
-    @Get('acesso-login=:email-password=:senha')
-    async acesso(@Param('email')  email:string, @Param('senha') senha: string): Promise<RetornoGeralDTO>{
-        return this.usuarioService.findOne(email, senha);
-    }
+    // @Get('acesso-login=:email-password=:senha')
+    // async acesso(@Param('email')  email:string, @Param('senha') senha: string): Promise<RetornoGeralDTO>{
+    //     return this.usuarioService.findOne(email, senha);
+    // }
 
+    @Post('acesso-login=:email-password=:senha')
+    async Login(@Param('email')  email:string, @Param('senha') senha: string): Promise<RetornoGeralDTO>{
+        return this.usuarioService.findOne(email, senha);
 }
+};

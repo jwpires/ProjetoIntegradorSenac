@@ -8,5 +8,5 @@ export declare class UsuarioController {
     constructor(usuarioService: UsuarioService);
     listar(): Promise<Usuario[]>;
     cria(dados: CriaUsuarioDIO): Promise<RetornoCadastroDTO>;
-    acesso(email: string, senha: string): Promise<RetornoGeralDTO>;
+    Login(email: string, senha: string): Promise<RetornoGeralDTO>;
 }

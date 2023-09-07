@@ -14,7 +14,6 @@ export const api = {
         return json; 
     },
 
-
  /* Interação de GET, POST com a tela de Cadastro de Banco */
     listarBancos: async () => {
 
@@ -22,7 +21,6 @@ export const api = {
         let json = await response.json();
         return json;
     },
-
 
     InserirBanco: async (nomeBanco: string) => {
 
@@ -131,8 +129,6 @@ export const api = {
     },
 
     /** referente ao relatórios */
-
-
     removerDespesa: async(id: string) => {
 
         let response = await fetch("http://localhost:3000/lancamentoDespesa/remove-"+id,
@@ -194,7 +190,6 @@ export const api = {
 
         return json;
     },
-
 
     /** GET referente as depesas pagas. */
     listarRelatorioDespesasPagas: async(dataInicio:string, dataFim:string, tipo:number, pago: number) => {
