@@ -29,9 +29,23 @@ export class RelatoriosController{
     }
 
      /** Retorno dos saldos apresentadas no Dashboard da página Home */ 
-    @Get('/saldo')
-    async RetornaSaldosDash():Promise<ListarRelatorioSaldoDTO[]> {
-        return this.relatorioSaldoServide.listarRelatorioSaldo();
+    @Get('/saldo/:banco?/:descricao?')
+    async RetornaSaldosDash(@Param('banco') banco: string = undefined, @Param('descricao') descricao: string = undefined):Promise<ListarRelatorioSaldoDTO[]> {
+        if( banco == 'undefined' && descricao == 'undefined'){
+            return this.relatorioSaldoServide.listarRelatorioSaldo(undefined, undefined);
+        }else{
+            if( banco == 'undefined'){
+                return this.relatorioSaldoServide.listarRelatorioSaldo(undefined, descricao);
+            }
+            else{
+                if( descricao == 'undefined'){
+                    return this.relatorioSaldoServide.listarRelatorioSaldo(banco, undefined);
+                }else{
+                    return this.relatorioSaldoServide.listarRelatorioSaldo(banco, descricao);
+                }
+            }
+        }
+        return this.relatorioSaldoServide.listarRelatorioSaldo(banco, descricao);
     }
 
 
@@ -42,7 +56,7 @@ export class RelatoriosController{
         
          
     }
-//http://localhost:3000/relatorios/despesas-pagas=2023-08-01=2023-08-30=1
+
     @Get('/despesas-pagas=:datainicio=:datafim=:tipo=:pago')
     async RetornaListaDespesaPagas(@Param('datainicio') datainicio:string, @Param('datafim') datafim:string, @Param('tipo') tipo:number, @Param('pago') pago:number): Promise<ListaRelatorioDespesaDTO[]>{
         return await this.relatorioService.listarRelatorioDespesa(datainicio, datafim, tipo, pago);

@@ -8,8 +8,14 @@ export const api = {
         return json;
     },
 
-    listarSaldosBancarios: async () => {
-        let response =  await fetch("http://localhost:3000/relatorios/saldo");
+    listarSaldosBancarios: async (banco?:string, descricao?: string) => {
+        if(banco == "")
+            var a;
+
+        if(descricao =="")
+            descricao = undefined;
+
+        let response =  await fetch("http://localhost:3000/relatorios/saldo/"+a+"/"+a);
         let json = await response.json();
         return json; 
     },

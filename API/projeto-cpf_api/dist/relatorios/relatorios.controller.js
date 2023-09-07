@@ -28,8 +28,24 @@ let RelatoriosController = class RelatoriosController {
         const retornoRelatorioDash = (await relatorios).filter(item => item.pago === false);
         return retornoRelatorioDash;
     }
-    async RetornaSaldosDash() {
-        return this.relatorioSaldoServide.listarRelatorioSaldo();
+    async RetornaSaldosDash(banco = undefined, descricao = undefined) {
+        if (banco == 'undefined' && descricao == 'undefined') {
+            return this.relatorioSaldoServide.listarRelatorioSaldo(undefined, undefined);
+        }
+        else {
+            if (banco == 'undefined') {
+                return this.relatorioSaldoServide.listarRelatorioSaldo(undefined, descricao);
+            }
+            else {
+                if (descricao == 'undefined') {
+                    return this.relatorioSaldoServide.listarRelatorioSaldo(banco, undefined);
+                }
+                else {
+                    return this.relatorioSaldoServide.listarRelatorioSaldo(banco, descricao);
+                }
+            }
+        }
+        return this.relatorioSaldoServide.listarRelatorioSaldo(banco, descricao);
     }
     async RetornaListaDespesaEmAberto(datainicio, datafim, tipo, pago) {
         return await this.relatorioService.listarRelatorioDespesa(datainicio, datafim, tipo, pago);
@@ -51,9 +67,11 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], RelatoriosController.prototype, "RetornaListaDespesaDash", null);
 __decorate([
-    (0, common_1.Get)('/saldo'),
+    (0, common_1.Get)('/saldo/:banco?/:descricao?'),
+    __param(0, (0, decorators_1.Param)('banco')),
+    __param(1, (0, decorators_1.Param)('descricao')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [String, String]),
     __metadata("design:returntype", Promise)
 ], RelatoriosController.prototype, "RetornaSaldosDash", null);
 __decorate([
