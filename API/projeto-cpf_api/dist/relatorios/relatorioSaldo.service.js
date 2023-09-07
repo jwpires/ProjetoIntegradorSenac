@@ -21,16 +21,59 @@ let RelatorioSaldoService = class RelatorioSaldoService {
     constructor(relatorioSaldoDash) {
         this.relatorioSaldoDash = relatorioSaldoDash;
     }
-    async listarRelatorioSaldo() {
-        let retornoQuery = (await this.relatorioSaldoDash
-            .createQueryBuilder('agencia')
-            .addSelect('agencia.ID', 'ID')
-            .addSelect('agencia.NOMEPROPRIETARIO', 'NOMEPROPRIETARIO')
-            .addSelect('agencia.SALDO', 'SALDO')
-            .addSelect('agencia.NUMEROCONTA', 'NUMEROCONTA')
-            .addSelect('b.NOME', 'BANCO')
-            .innerJoin('banco', 'b', 'b.ID = agencia.ID_BANCO')
-            .getRawMany());
+    async listarRelatorioSaldo(BANCO, DESCRICAO) {
+        if (BANCO !== undefined && DESCRICAO !== undefined) {
+            var retornoQuery = (await this.relatorioSaldoDash
+                .createQueryBuilder('agencia')
+                .addSelect('agencia.ID', 'ID')
+                .addSelect('agencia.NOMEPROPRIETARIO', 'NOMEPROPRIETARIO')
+                .addSelect('agencia.SALDO', 'SALDO')
+                .addSelect('agencia.NUMEROCONTA', 'NUMEROCONTA')
+                .addSelect('b.NOME', 'BANCO')
+                .innerJoin('banco', 'b', 'b.ID = agencia.ID_BANCO')
+                .where('b.NOME = :banco', { banco: BANCO })
+                .andWhere('agencia.NOMEPROPRIETARIO like :nome', { nome: `%${DESCRICAO}%` })
+                .getRawMany());
+        }
+        else {
+            if (BANCO !== undefined) {
+                var retornoQuery = (await this.relatorioSaldoDash
+                    .createQueryBuilder('agencia')
+                    .addSelect('agencia.ID', 'ID')
+                    .addSelect('agencia.NOMEPROPRIETARIO', 'NOMEPROPRIETARIO')
+                    .addSelect('agencia.SALDO', 'SALDO')
+                    .addSelect('agencia.NUMEROCONTA', 'NUMEROCONTA')
+                    .addSelect('b.NOME', 'BANCO')
+                    .innerJoin('banco', 'b', 'b.ID = agencia.ID_BANCO')
+                    .where('b.NOME = :banco', { banco: BANCO })
+                    .getRawMany());
+            }
+            else {
+                if (DESCRICAO !== undefined) {
+                    var retornoQuery = (await this.relatorioSaldoDash
+                        .createQueryBuilder('agencia')
+                        .addSelect('agencia.ID', 'ID')
+                        .addSelect('agencia.NOMEPROPRIETARIO', 'NOMEPROPRIETARIO')
+                        .addSelect('agencia.SALDO', 'SALDO')
+                        .addSelect('agencia.NUMEROCONTA', 'NUMEROCONTA')
+                        .addSelect('b.NOME', 'BANCO')
+                        .innerJoin('banco', 'b', 'b.ID = agencia.ID_BANCO')
+                        .where('agencia.NOMEPROPRIETARIO = :nome', { nome: DESCRICAO })
+                        .getRawMany());
+                }
+                else {
+                    var retornoQuery = (await this.relatorioSaldoDash
+                        .createQueryBuilder('agencia')
+                        .addSelect('agencia.ID', 'ID')
+                        .addSelect('agencia.NOMEPROPRIETARIO', 'NOMEPROPRIETARIO')
+                        .addSelect('agencia.SALDO', 'SALDO')
+                        .addSelect('agencia.NUMEROCONTA', 'NUMEROCONTA')
+                        .addSelect('b.NOME', 'BANCO')
+                        .innerJoin('banco', 'b', 'b.ID = agencia.ID_BANCO')
+                        .getRawMany());
+                }
+            }
+        }
         let listaRetorno = retornoQuery.map(info => new listaSaldoDTO_1.ListarRelatorioSaldoDTO(info.ID, info.NOMEPROPRIETARIO, info.BANCO, info.NUMEROCONTA, info.SALDO));
         return listaRetorno;
     }

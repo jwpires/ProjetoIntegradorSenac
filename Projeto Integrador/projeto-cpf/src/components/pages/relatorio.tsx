@@ -9,6 +9,7 @@ import { AgenciaDash } from "../types/agenciaDash";
 import { GrupoDespesa } from "../types/grupoDespesa";
 import { Banco } from "../types/banco";
 import { getValue } from "@testing-library/user-event/dist/utils";
+import ItemLista from "./Exemplos/itemLista";
 
 var validaConfiguracao = {
     despesasPagas: 'menu-guia',
@@ -98,6 +99,8 @@ function Relatorio() {
     const [tipo, setTipo] = useState<number>(1);
     const [dataInicio, setDataInicio] = useState('');
     const [dataFim, setDataFim] = useState('');
+    const [banco_, setBanco_] = useState('');
+    const [descricao_,setDescricao_] = useState('');
 
 
     const carregaGrupoDespesa = async () => {
@@ -117,8 +120,9 @@ function Relatorio() {
 
 
     const carregaSaldoBancario = async () => {
+        mostrar();
         try {
-            const json = await api.listarSaldosBancarios();
+            const json = await api.listarSaldosBancarios(banco_, descricao_);
             const dataArray = Array.isArray(json) ? json : [json];
             setRelatorioContaBancaria(dataArray);
 
@@ -190,10 +194,13 @@ function Relatorio() {
         console.log((tipo));
     }
 
+    const mostrar = () =>{
+        console.log("teste",banco_);
+        console.log("descricao: ",descricao_)
+    }
+
     useEffect(() => {
-        //carregaDespesasPagas();
-        //carregaDespesasEmAberto();
-        carregaSaldoBancario();
+         carregaSaldoBancario();
         carregaGrupoDespesa();
         carregaBancos();
     }, []);
@@ -351,18 +358,12 @@ function Relatorio() {
 
                                 {/* <FiltroRelatorio tipoFiltro={'BC'} /> */}
                                 <div className="filtros">
-                                    <div className="raio_group">
-                                        <p>Data: <input type="date" name="" id="" /> à <input type="date" name="" id="" /> </p>
-
-                                        <label><input type="radio" name="tipo_pagamento" id="" />Lançamento</label>
-                                        <label><input type="radio" name="tipo_pagamento" id="" checked />Vencimento</label><br />
-                                    </div>
-
-                                    <select className="pesquisar" name="Banco" id="" /*onClick={carregaBancos}*/ onChange={(e) => { setSelectValueIdBanco(e.target.value) }}>
-                                        <option key={0} value="" >Informe o Banco</option>
+                                   
+                                    <select className="pesquisar" name="Banco" id=""value={banco_} onChange={(e) => { setBanco_(e.target.value) }}>
+                                        <option key={0} value={undefined} >Informe o Banco</option>
                                         {
                                             banco.map(
-                                                (item, chave) => <option key={item.id} value={item.id}>{item.nome}</option>
+                                                (item, chave) => <option key={item.id}  value={item.nome}>{item.nome}</option>
                                             )
                                         }
                                     </select>
@@ -370,8 +371,8 @@ function Relatorio() {
 
 
 
-                                    <input className="pesquisar" type="text" name="" placeholder="Pesquisar por Descrição" id="" />
-                                    <img className="imgPesquisa" src={require("../../images/botao-pesquisar.png")} alt="exibe imagem do padrao" />
+                                    <input className="pesquisar" type="text" name="" placeholder="Pesquisar por Descrição" onChange={e => {setDescricao_(e.target.value)}} />
+                                    <img className="imgPesquisa" src={require("../../images/botao-pesquisar.png")} alt="exibe imagem do padrao" onClick={carregaSaldoBancario} />
 
                                 </div>
 

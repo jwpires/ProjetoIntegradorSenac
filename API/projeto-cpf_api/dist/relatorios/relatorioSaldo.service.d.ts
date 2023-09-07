@@ -5,7 +5,7 @@ import { ListarRelatorioSaldoDTO } from "./dto/listaSaldoDTO";
 export declare class RelatorioSaldoService {
     private relatorioSaldoDash;
     constructor(relatorioSaldoDash: Repository<Agencia>);
-    listarRelatorioSaldo(): Promise<ListarRelatorioSaldoDTO[]>;
+    listarRelatorioSaldo(BANCO?: string, DESCRICAO?: string): Promise<ListarRelatorioSaldoDTO[]>;
     buscarPorID(id: string): Promise<Agencia>;
     alterarSaldo(id: string, valor: number): Promise<RetornoGeralDTO>;
 }

@@ -9,7 +9,7 @@ export declare class RelatoriosController {
     private readonly relatorioSaldoServide;
     constructor(relatorioService: RelatorioDespesaService, relatorioSaldoServide: RelatorioSaldoService);
     RetornaListaDespesaDash(): Promise<Despesa[]>;
-    RetornaSaldosDash(): Promise<ListarRelatorioSaldoDTO[]>;
+    RetornaSaldosDash(banco?: string, descricao?: string): Promise<ListarRelatorioSaldoDTO[]>;
     RetornaListaDespesaEmAberto(datainicio: string, datafim: string, tipo: number, pago: number): Promise<ListaRelatorioDespesaDTO[]>;
     RetornaListaDespesaPagas(datainicio: string, datafim: string, tipo: number, pago: number): Promise<ListaRelatorioDespesaDTO[]>;
     alteraStatusPagamento(id: string): Promise<RetornoGeralDTO>;

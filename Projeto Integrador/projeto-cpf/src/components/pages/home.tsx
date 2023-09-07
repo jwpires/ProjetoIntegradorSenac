@@ -26,8 +26,10 @@ function Home() {
 
     const carregaSaldosBancariosDash = async () => {
 
+        let a: string = "";
+        let b: string = "";
         try {
-            const json = await api.listarSaldosBancarios();
+            const json = await api.listarSaldosBancarios( a , b);
             const dataArray = Array.isArray(json) ? json : [json];
             setSaldoBanco(dataArray);
             console.log(dataArray);
