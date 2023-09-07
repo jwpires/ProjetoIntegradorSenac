@@ -31,4 +31,5 @@ UsersService = __decorate([
     (0, common_1.Injectable)()
 ], UsersService);
 exports.UsersService = UsersService;
+;
 //# sourceMappingURL=users.service.js.map

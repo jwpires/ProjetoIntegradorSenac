@@ -6,6 +6,11 @@ type ContextType = {
     setName:(QUALQUER_COISA: string) => void;
 }
 
+type ContextType2 = {
+    nome: string;
+    
+}
+
 export const UsuarioLogadoContext = createContext<ContextType | null>(null);
 
 export const UsuarioLogadoProvider = ({ children }: {children: ReactNode}) => {
