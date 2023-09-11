@@ -27,9 +27,9 @@ let AuthService = class AuthService {
     constructor(usersService) {
         this.usersService = usersService;
     }
-    async sigIn(USUARIO_REPOSITORY) {
-        const user = await this.usersService.findOne(USUARIO_REPOSITORY);
-        if ((user === null || user === void 0 ? void 0 : user.password) !== password) {
+    async signIn(username, pass) {
+        const user = await this.usersService.findOne(username);
+        if ((user === null || user === void 0 ? void 0 : user.password) !== pass) {
             throw new common_1.UnauthorizedException();
         }
         const { password } = user, result = __rest(user, ["password"]);
