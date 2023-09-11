@@ -207,14 +207,45 @@ export const api = {
     },
 
     /** GET referente as depesas pagas. */
-    listarRelatorioDespesasPagas: async(dataInicio:string, dataFim:string, tipo:number, pago: number) => {
-        let response =await fetch("http://localhost:3000/relatorios/despesas-pagas="+dataInicio+"="+dataFim+"="+tipo+"="+pago);
+    listarRelatorioDespesasPagas: async (dataInicio: string, dataFim: string, tipo: number, pago: number, gdespesa: string, descricao: string) => {
+        
+        let indefinido: string = 'undefined';
+    
+        if (gdespesa != "" && descricao != "") {
+            var response =await fetch("http://localhost:3000/relatorios/despesas-pagas="+dataInicio+"="+dataFim+"="+tipo+"="+pago+"="+gdespesa+"="+descricao);
+        } else {
+            if (gdespesa == "") {
+                var response =await fetch("http://localhost:3000/relatorios/despesas-pagas="+dataInicio+"="+dataFim+"="+tipo+"="+pago+"="+indefinido+"="+descricao);
+            } else {
+                if (descricao == "") {
+                    var response = await fetch("http://localhost:3000/relatorios/despesas-pagas=" + dataInicio + "=" + dataFim + "=" + tipo + "=" + pago + "=" + gdespesa + "=" + indefinido);
+                } else {
+                    var response = await fetch("http://localhost:3000/relatorios/despesas-pagas=" + dataInicio + "=" + dataFim + "=" + tipo + "=" + pago + "=" + indefinido+ "=" + indefinido);
+                }
+            }
+        }
+
         let json = await response.json();
         return json;
     },
 
-    listarRelatorioDespesasEmAberto: async(dataInicio:string, dataFim:string, tipo:number, pago: number) => {
-        let response =await fetch("http://localhost:3000/relatorios/despesas-em-aberto="+dataInicio+"="+dataFim+"="+tipo+"="+pago);
+    listarRelatorioDespesasEmAberto: async (dataInicio: string, dataFim: string, tipo: number, pago: number, gdespesa:string, descricao: string) => {
+        let indefinido: string = 'undefined';
+    
+        if (gdespesa != "" && descricao != "") {
+            var response =await fetch("http://localhost:3000/relatorios/despesas-em-aberto="+dataInicio+"="+dataFim+"="+tipo+"="+pago+"="+gdespesa+"="+descricao);
+        } else {
+            if (gdespesa == "") {
+                var response =await fetch("http://localhost:3000/relatorios/despesas-em-aberto="+dataInicio+"="+dataFim+"="+tipo+"="+pago+"="+indefinido+"="+descricao);
+            } else {
+                if (descricao == "") {
+                    var response =await fetch("http://localhost:3000/relatorios/despesas-em-aberto="+dataInicio+"="+dataFim+"="+tipo+"="+pago+"="+gdespesa+"="+indefinido);
+                } else {
+                    var response =await fetch("http://localhost:3000/relatorios/despesas-em-aberto="+dataInicio+"="+dataFim+"="+tipo+"="+pago+"="+indefinido+"="+indefinido);
+                }   
+            }
+        }
+
         let json = await response.json();
         return json;
     },

@@ -16,7 +16,7 @@ export class RelatorioSaldoService {
     async listarRelatorioSaldo(BANCO?: string, DESCRICAO?: string): Promise<ListarRelatorioSaldoDTO[]> {
 
         if (BANCO !== undefined && DESCRICAO !== undefined) {
-            var retornoQuery = (await this.relatorioSaldoDash
+            var retornoQuery = (await this.relatorioSaldoDash 
                 .createQueryBuilder('agencia')
                 .addSelect('agencia.ID', 'ID')
                 .addSelect('agencia.NOMEPROPRIETARIO', 'NOMEPROPRIETARIO')

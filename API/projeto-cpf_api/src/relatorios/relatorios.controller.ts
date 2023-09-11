@@ -48,18 +48,47 @@ export class RelatoriosController{
     } 
 
 
-    @Get('/despesas-em-aberto=:datainicio=:datafim=:tipo=:pago')
-    async RetornaListaDespesaEmAberto(@Param('datainicio') datainicio:string, @Param('datafim') datafim:string, @Param('tipo') tipo:number, @Param('pago') pago:number): Promise<ListaRelatorioDespesaDTO[]>{
-        return await this.relatorioService.listarRelatorioDespesa(datainicio, datafim, tipo, pago);
+    @Get('/despesas-em-aberto=:datainicio=:datafim=:tipo=:pago=:gdespesa=:descricao')
+    async RetornaListaDespesaEmAberto(@Param('datainicio') datainicio: string, @Param('datafim') datafim: string, @Param('tipo') tipo: number, @Param('pago') pago: number,
+        @Param('gdespesa') gdespesa: string, @Param('descricao') descricao: string): Promise<ListaRelatorioDespesaDTO[]>{
+        
+            if (gdespesa !== "undefined" && descricao !== "undefined") {
+                return await this.relatorioService.listarRelatorioDespesa(datainicio, datafim, tipo, pago, gdespesa, descricao);
+            } else {
+                if (gdespesa == "undefined" ) {
+                    return await this.relatorioService.listarRelatorioDespesa(datainicio, datafim, tipo, pago, undefined, descricao);
+                } else {
+                    if (descricao == "undefined" ) {
+                        return await this.relatorioService.listarRelatorioDespesa(datainicio, datafim, tipo, pago, gdespesa, undefined);
+                    } else {
+                        return await this.relatorioService.listarRelatorioDespesa(datainicio, datafim, tipo, pago, undefined, undefined);
+                    }
+                    
+                }
+            }
         
         
          
     }
 
-    @Get('/despesas-pagas=:datainicio=:datafim=:tipo=:pago')
-    async RetornaListaDespesaPagas(@Param('datainicio') datainicio:string, @Param('datafim') datafim:string, @Param('tipo') tipo:number, @Param('pago') pago:number): Promise<ListaRelatorioDespesaDTO[]>{
-        return await this.relatorioService.listarRelatorioDespesa(datainicio, datafim, tipo, pago);
-    
+    @Get('/despesas-pagas=:datainicio=:datafim=:tipo=:pago=:gdespesa=:descricao')
+    async RetornaListaDespesaPagas(@Param('datainicio') datainicio: string, @Param('datafim') datafim: string, @Param('tipo') tipo: number,
+        @Param('pago') pago: number, @Param('gdespesa') gdespesa: string, @Param('descricao') descricao: string): Promise<ListaRelatorioDespesaDTO[]>{
+        
+        if (gdespesa !== "undefined" && descricao !== "undefined") {
+            return await this.relatorioService.listarRelatorioDespesa(datainicio, datafim, tipo, pago, gdespesa, descricao);
+        } else {
+            if (gdespesa == "undefined" ) {
+                return await this.relatorioService.listarRelatorioDespesa(datainicio, datafim, tipo, pago, undefined, descricao);
+            } else {
+                if (descricao == "undefined" ) {
+                    return await this.relatorioService.listarRelatorioDespesa(datainicio, datafim, tipo, pago, gdespesa, undefined);
+                }
+                else {
+                    return await this.relatorioService.listarRelatorioDespesa(datainicio, datafim, tipo, pago, undefined, undefined);
+                }
+            }
+        }
     }
 
     @Put('alterar-:id')
