@@ -45,7 +45,6 @@ let RelatoriosController = class RelatoriosController {
                 }
             }
         }
-        return this.relatorioSaldoServide.listarRelatorioSaldo(banco, descricao);
     }
     async RetornaListaDespesaEmAberto(datainicio, datafim, tipo, pago) {
         return await this.relatorioService.listarRelatorioDespesa(datainicio, datafim, tipo, pago);

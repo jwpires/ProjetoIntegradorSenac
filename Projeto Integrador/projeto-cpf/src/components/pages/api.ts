@@ -8,14 +8,23 @@ export const api = {
         return json;
     },
 
-    listarSaldosBancarios: async (banco?:string, descricao?: string) => {
-        if(banco == "")
-            var a;
+    listarSaldosBancarios: async (banco?: string, descricao?: string) => {
+        let indefinido: string = 'undefined';
+        if (banco == "" && descricao == "") {
+            var response =  await fetch("http://localhost:3000/relatorios/saldo/"+indefinido+"/"+indefinido); 
+        } else {
+            if (banco == "") {
+               var response =  await fetch("http://localhost:3000/relatorios/saldo/"+indefinido+"/"+descricao); 
+            } else {
+                if (descricao == "") {
+                    var response =  await fetch("http://localhost:3000/relatorios/saldo/"+banco+"/"+indefinido); 
+                } else {
+                    var response =  await fetch("http://localhost:3000/relatorios/saldo/"+banco+"/"+descricao);
+                 }
+            }
+        }
 
-        if(descricao =="")
-            descricao = undefined;
-
-        let response =  await fetch("http://localhost:3000/relatorios/saldo/"+a+"/"+a);
+        //let response =  await fetch("http://localhost:3000/relatorios/saldo/"+a+"/"+a);
         let json = await response.json();
         return json; 
     },

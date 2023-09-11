@@ -122,7 +122,7 @@ function Relatorio() {
     const carregaSaldoBancario = async () => {
         mostrar();
         try {
-            const json = await api.listarSaldosBancarios(banco_, descricao_);
+            const json = await api.listarSaldosBancarios(banco_,descricao_);
             const dataArray = Array.isArray(json) ? json : [json];
             setRelatorioContaBancaria(dataArray);
 
@@ -200,7 +200,7 @@ function Relatorio() {
     }
 
     useEffect(() => {
-         carregaSaldoBancario();
+         //carregaSaldoBancario();
         carregaGrupoDespesa();
         carregaBancos();
     }, []);
@@ -360,7 +360,7 @@ function Relatorio() {
                                 <div className="filtros">
                                    
                                     <select className="pesquisar" name="Banco" id=""value={banco_} onChange={(e) => { setBanco_(e.target.value) }}>
-                                        <option key={0} value={undefined} >Informe o Banco</option>
+                                        <option key={0} value={""} >Informe o Banco</option>
                                         {
                                             banco.map(
                                                 (item, chave) => <option key={item.id}  value={item.nome}>{item.nome}</option>
@@ -371,7 +371,7 @@ function Relatorio() {
 
 
 
-                                    <input className="pesquisar" type="text" name="" placeholder="Pesquisar por Descrição" onChange={e => {setDescricao_(e.target.value)}} />
+                                    <input className="pesquisar" type="text" name="" placeholder="Pesquisar por Descrição" value={descricao_} onChange={e => {setDescricao_(e.target.value)}} />
                                     <img className="imgPesquisa" src={require("../../images/botao-pesquisar.png")} alt="exibe imagem do padrao" onClick={carregaSaldoBancario} />
 
                                 </div>

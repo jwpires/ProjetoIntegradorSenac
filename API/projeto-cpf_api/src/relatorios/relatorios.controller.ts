@@ -45,8 +45,7 @@ export class RelatoriosController{
                 }
             }
         }
-        return this.relatorioSaldoServide.listarRelatorioSaldo(banco, descricao);
-    }
+    } 
 
 
     @Get('/despesas-em-aberto=:datainicio=:datafim=:tipo=:pago')
