@@ -45,13 +45,42 @@ let RelatoriosController = class RelatoriosController {
                 }
             }
         }
-        return this.relatorioSaldoServide.listarRelatorioSaldo(banco, descricao);
     }
-    async RetornaListaDespesaEmAberto(datainicio, datafim, tipo, pago) {
-        return await this.relatorioService.listarRelatorioDespesa(datainicio, datafim, tipo, pago);
+    async RetornaListaDespesaEmAberto(datainicio, datafim, tipo, pago, gdespesa, descricao) {
+        if (gdespesa !== "undefined" && descricao !== "undefined") {
+            return await this.relatorioService.listarRelatorioDespesa(datainicio, datafim, tipo, pago, gdespesa, descricao);
+        }
+        else {
+            if (gdespesa == "undefined") {
+                return await this.relatorioService.listarRelatorioDespesa(datainicio, datafim, tipo, pago, undefined, descricao);
+            }
+            else {
+                if (descricao == "undefined") {
+                    return await this.relatorioService.listarRelatorioDespesa(datainicio, datafim, tipo, pago, gdespesa, undefined);
+                }
+                else {
+                    return await this.relatorioService.listarRelatorioDespesa(datainicio, datafim, tipo, pago, undefined, undefined);
+                }
+            }
+        }
     }
-    async RetornaListaDespesaPagas(datainicio, datafim, tipo, pago) {
-        return await this.relatorioService.listarRelatorioDespesa(datainicio, datafim, tipo, pago);
+    async RetornaListaDespesaPagas(datainicio, datafim, tipo, pago, gdespesa, descricao) {
+        if (gdespesa !== "undefined" && descricao !== "undefined") {
+            return await this.relatorioService.listarRelatorioDespesa(datainicio, datafim, tipo, pago, gdespesa, descricao);
+        }
+        else {
+            if (gdespesa == "undefined") {
+                return await this.relatorioService.listarRelatorioDespesa(datainicio, datafim, tipo, pago, undefined, descricao);
+            }
+            else {
+                if (descricao == "undefined") {
+                    return await this.relatorioService.listarRelatorioDespesa(datainicio, datafim, tipo, pago, gdespesa, undefined);
+                }
+                else {
+                    return await this.relatorioService.listarRelatorioDespesa(datainicio, datafim, tipo, pago, undefined, undefined);
+                }
+            }
+        }
     }
     async alteraStatusPagamento(id) {
         return await this.relatorioService.alterarStatusPagametoDespesa(id);
@@ -75,23 +104,27 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], RelatoriosController.prototype, "RetornaSaldosDash", null);
 __decorate([
-    (0, common_1.Get)('/despesas-em-aberto=:datainicio=:datafim=:tipo=:pago'),
+    (0, common_1.Get)('/despesas-em-aberto=:datainicio=:datafim=:tipo=:pago=:gdespesa=:descricao'),
     __param(0, (0, decorators_1.Param)('datainicio')),
     __param(1, (0, decorators_1.Param)('datafim')),
     __param(2, (0, decorators_1.Param)('tipo')),
     __param(3, (0, decorators_1.Param)('pago')),
+    __param(4, (0, decorators_1.Param)('gdespesa')),
+    __param(5, (0, decorators_1.Param)('descricao')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String, Number, Number]),
+    __metadata("design:paramtypes", [String, String, Number, Number, String, String]),
     __metadata("design:returntype", Promise)
 ], RelatoriosController.prototype, "RetornaListaDespesaEmAberto", null);
 __decorate([
-    (0, common_1.Get)('/despesas-pagas=:datainicio=:datafim=:tipo=:pago'),
+    (0, common_1.Get)('/despesas-pagas=:datainicio=:datafim=:tipo=:pago=:gdespesa=:descricao'),
     __param(0, (0, decorators_1.Param)('datainicio')),
     __param(1, (0, decorators_1.Param)('datafim')),
     __param(2, (0, decorators_1.Param)('tipo')),
     __param(3, (0, decorators_1.Param)('pago')),
+    __param(4, (0, decorators_1.Param)('gdespesa')),
+    __param(5, (0, decorators_1.Param)('descricao')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String, Number, Number]),
+    __metadata("design:paramtypes", [String, String, Number, Number, String, String]),
     __metadata("design:returntype", Promise)
 ], RelatoriosController.prototype, "RetornaListaDespesaPagas", null);
 __decorate([

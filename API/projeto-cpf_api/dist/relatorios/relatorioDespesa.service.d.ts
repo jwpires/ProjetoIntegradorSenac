@@ -6,7 +6,7 @@ export declare class RelatorioDespesaService {
     private relatorioDespesaDash;
     constructor(relatorioDespesaDash: Repository<Despesa>);
     listar(): Promise<Despesa[]>;
-    listarRelatorioDespesa(DATAINICIO?: string, DATAFIM?: string, TIPO?: number, PAGO?: number): Promise<ListaRelatorioDespesaDTO[]>;
+    listarRelatorioDespesa(DATAINICIO?: string, DATAFIM?: string, TIPO?: number, PAGO?: number, GDESPESA?: string, DESCRICAO?: string): Promise<ListaRelatorioDespesaDTO[]>;
     buscarPorID(id: string): Promise<Despesa>;
     alterarStatusPagametoDespesa(id: string): Promise<RetornoGeralDTO>;
 }

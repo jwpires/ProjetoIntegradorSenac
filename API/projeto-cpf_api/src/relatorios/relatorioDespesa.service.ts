@@ -16,52 +16,158 @@ export class RelatorioDespesaService {
     return this.relatorioDespesaDash.find();
   }
 
-  async listarRelatorioDespesa(DATAINICIO?: string, DATAFIM?: string,  TIPO?: number, PAGO?: number): Promise<ListaRelatorioDespesaDTO[]> { 
+  async listarRelatorioDespesa(DATAINICIO?: string, DATAFIM?: string, TIPO?: number, PAGO?: number, GDESPESA?: string, DESCRICAO?: string): Promise<ListaRelatorioDespesaDTO[]> {
 
-    
+
     if (DATAINICIO != "" && DATAFIM != "") {
 
       if (TIPO == 1) {
-        var retorno = await (this.relatorioDespesaDash // select marca.id as ID, marca.nome AS NOME_, pes_f.nome from marca ......
-          .createQueryBuilder('despesa')
-          .select('despesa.id', 'ID')
-          .addSelect('despesa.descricao', 'DESCRICAO')
-          .addSelect('gd.descricao', 'GRUPODESPESA')
-          .addSelect('despesa.datalancamento', 'DATALANC')
-          .addSelect('despesa.datavencimento', 'DATAVENC')
-          .addSelect('despesa.valor', 'VALOR')
-          .addSelect('despesa.pago', 'PAGO')
-          .innerJoin('grupo_despesa', 'gd', 'gd.id = despesa.id_grupodespesa')
-          .where('despesa.datavencimento BETWEEN :datainicio AND :datafim AND despesa.pago = :pago_' , { datainicio: DATAINICIO, datafim: DATAFIM})
-          .andWhere('despesa.pago = :pago_',{pago_: PAGO})
-          .getRawMany());
-        // var sql = await (this.relatorioDespesaDash // select marca.id as ID, marca.nome AS NOME_, pes_f.nome from marca ......
-        // .createQueryBuilder('despesa')
-        // .select('despesa.id', 'ID')
-        // .addSelect('despesa.descricao', 'DESCRICAO')
-        // .addSelect('gd.descricao', 'GRUPODESPESA')
-        // .addSelect('despesa.datalancamento', 'DATALANC')
-        // .addSelect('despesa.datavencimento', 'DATAVENC')
-        // .addSelect('despesa.valor', 'VALOR')
-        // .addSelect('despesa.pago', 'PAGO')
-        // .innerJoin('grupo_despesa', 'gd', 'gd.id = despesa.id_grupodespesa')
-        // .where('despesa.datalancamento BETWEEN :datainicio AND :datafim' , { datainicio: DATAINICIO, datafim: DATAFIM})
-        // .andWhere('despesa.pago = :pago_',{pago_: PAGO})
-        // .getQueryAndParameters());
+
+        if (GDESPESA != undefined && DESCRICAO != undefined) {
+          var retorno = await (this.relatorioDespesaDash // select marca.id as ID, marca.nome AS NOME_, pes_f.nome from marca ......
+            .createQueryBuilder('despesa')
+            .select('despesa.id', 'ID')
+            .addSelect('despesa.descricao', 'DESCRICAO')
+            .addSelect('gd.descricao', 'GRUPODESPESA')
+            .addSelect('despesa.datalancamento', 'DATALANC')
+            .addSelect('despesa.datavencimento', 'DATAVENC')
+            .addSelect('despesa.valor', 'VALOR')
+            .addSelect('despesa.pago', 'PAGO')
+            .innerJoin('grupo_despesa', 'gd', 'gd.id = despesa.id_grupodespesa')
+            .where('despesa.datavencimento BETWEEN :datainicio AND :datafim AND despesa.pago = :pago_', { datainicio: DATAINICIO, datafim: DATAFIM })
+            .andWhere('despesa.pago = :pago_', { pago_: PAGO })
+            .andWhere('gd.descricao = :nomeGDespesa', { nomeGDespesa: GDESPESA })
+            .andWhere('despesa.descricao = :nomeDespesa', { nomeDespesa: DESCRICAO })
+            .getRawMany());
+        } else {
+          if (GDESPESA != undefined) {
+            var retorno = await (this.relatorioDespesaDash // select marca.id as ID, marca.nome AS NOME_, pes_f.nome from marca ......
+              .createQueryBuilder('despesa')
+              .select('despesa.id', 'ID')
+              .addSelect('despesa.descricao', 'DESCRICAO')
+              .addSelect('gd.descricao', 'GRUPODESPESA')
+              .addSelect('despesa.datalancamento', 'DATALANC')
+              .addSelect('despesa.datavencimento', 'DATAVENC')
+              .addSelect('despesa.valor', 'VALOR')
+              .addSelect('despesa.pago', 'PAGO')
+              .innerJoin('grupo_despesa', 'gd', 'gd.id = despesa.id_grupodespesa')
+              .where('despesa.datavencimento BETWEEN :datainicio AND :datafim AND despesa.pago = :pago_', { datainicio: DATAINICIO, datafim: DATAFIM })
+              .andWhere('despesa.pago = :pago_', { pago_: PAGO })
+              .andWhere('despesa.descricao = :nomeDespesa', { nomeDespesa: DESCRICAO })
+              .getRawMany());
+          } else {
+            if (DESCRICAO != undefined) {
+              var retorno = await (this.relatorioDespesaDash // select marca.id as ID, marca.nome AS NOME_, pes_f.nome from marca ......
+                .createQueryBuilder('despesa')
+                .select('despesa.id', 'ID')
+                .addSelect('despesa.descricao', 'DESCRICAO')
+                .addSelect('gd.descricao', 'GRUPODESPESA')
+                .addSelect('despesa.datalancamento', 'DATALANC')
+                .addSelect('despesa.datavencimento', 'DATAVENC')
+                .addSelect('despesa.valor', 'VALOR')
+                .addSelect('despesa.pago', 'PAGO')
+                .innerJoin('grupo_despesa', 'gd', 'gd.id = despesa.id_grupodespesa')
+                .where('despesa.datavencimento BETWEEN :datainicio AND :datafim AND despesa.pago = :pago_', { datainicio: DATAINICIO, datafim: DATAFIM })
+                .andWhere('despesa.pago = :pago_', { pago_: PAGO })
+                .andWhere('despesa.descricao = :nomeDespesa', { nomeDespesa: DESCRICAO })
+                .getRawMany());
+            } else {
+              var retorno = await (this.relatorioDespesaDash // select marca.id as ID, marca.nome AS NOME_, pes_f.nome from marca ......
+                .createQueryBuilder('despesa')
+                .select('despesa.id', 'ID')
+                .addSelect('despesa.descricao', 'DESCRICAO')
+                .addSelect('gd.descricao', 'GRUPODESPESA')
+                .addSelect('despesa.datalancamento', 'DATALANC')
+                .addSelect('despesa.datavencimento', 'DATAVENC')
+                .addSelect('despesa.valor', 'VALOR')
+                .addSelect('despesa.pago', 'PAGO')
+                .innerJoin('grupo_despesa', 'gd', 'gd.id = despesa.id_grupodespesa')
+                .where('despesa.datavencimento BETWEEN :datainicio AND :datafim AND despesa.pago = :pago_', { datainicio: DATAINICIO, datafim: DATAFIM })
+                .andWhere('despesa.pago = :pago_', { pago_: PAGO })
+                .getRawMany());
+            }
+          }
+        }
       } else {
-        var retorno = await (this.relatorioDespesaDash // select marca.id as ID, marca.nome AS NOME_, pes_f.nome from marca ......
-          .createQueryBuilder('despesa')
-          .select('despesa.id', 'ID')
-          .addSelect('despesa.descricao', 'DESCRICAO')
-          .addSelect('gd.descricao', 'GRUPODESPESA')
-          .addSelect('despesa.datalancamento', 'DATALANC')
-          .addSelect('despesa.datavencimento', 'DATAVENC')
-          .addSelect('despesa.valor', 'VALOR')
-          .addSelect('despesa.pago', 'PAGO')
-          .innerJoin('grupo_despesa', 'gd', 'gd.id = despesa.id_grupodespesa')
-          .where('despesa.datalancamento BETWEEN :datainicio AND :datafim', { datainicio: DATAINICIO, datafim: DATAFIM})
-          .andWhere('despesa.pago = :pago_',{pago_: PAGO})
-          .getRawMany());
+        //Filtro por data de lançamento
+        if (GDESPESA != undefined && DESCRICAO != undefined) {
+          var retorno = await (this.relatorioDespesaDash // select marca.id as ID, marca.nome AS NOME_, pes_f.nome from marca ......
+            .createQueryBuilder('despesa')
+            .select('despesa.id', 'ID')
+            .addSelect('despesa.descricao', 'DESCRICAO')
+            .addSelect('gd.descricao', 'GRUPODESPESA')
+            .addSelect('despesa.datalancamento', 'DATALANC')
+            .addSelect('despesa.datavencimento', 'DATAVENC')
+            .addSelect('despesa.valor', 'VALOR')
+            .addSelect('despesa.pago', 'PAGO')
+            .innerJoin('grupo_despesa', 'gd', 'gd.id = despesa.id_grupodespesa')
+            .where('despesa.datalancamento BETWEEN :datainicio AND :datafim AND despesa.pago = :pago_', { datainicio: DATAINICIO, datafim: DATAFIM })
+            .andWhere('despesa.pago = :pago_', { pago_: PAGO })
+            .andWhere('gd.descricao = :nomeGDespesa', { nomeGDespesa: GDESPESA })
+            .andWhere('despesa.descricao = :nomeDespesa', { nomeDespesa: DESCRICAO })
+            .getRawMany());
+        } else {
+          if (GDESPESA != undefined) {
+            var retorno = await (this.relatorioDespesaDash // select marca.id as ID, marca.nome AS NOME_, pes_f.nome from marca ......
+              .createQueryBuilder('despesa')
+              .select('despesa.id', 'ID')
+              .addSelect('despesa.descricao', 'DESCRICAO')
+              .addSelect('gd.descricao', 'GRUPODESPESA')
+              .addSelect('despesa.datalancamento', 'DATALANC')
+              .addSelect('despesa.datavencimento', 'DATAVENC')
+              .addSelect('despesa.valor', 'VALOR')
+              .addSelect('despesa.pago', 'PAGO')
+              .innerJoin('grupo_despesa', 'gd', 'gd.id = despesa.id_grupodespesa')
+              .where('despesa.datalancamento BETWEEN :datainicio AND :datafim AND despesa.pago = :pago_', { datainicio: DATAINICIO, datafim: DATAFIM })
+              .andWhere('despesa.pago = :pago_', { pago_: PAGO })
+              .andWhere('despesa.descricao = :nomeDespesa', { nomeDespesa: DESCRICAO })
+              .getRawMany());
+          } else {
+            if (DESCRICAO != undefined) {
+              var retorno = await (this.relatorioDespesaDash // select marca.id as ID, marca.nome AS NOME_, pes_f.nome from marca ......
+                .createQueryBuilder('despesa')
+                .select('despesa.id', 'ID')
+                .addSelect('despesa.descricao', 'DESCRICAO')
+                .addSelect('gd.descricao', 'GRUPODESPESA')
+                .addSelect('despesa.datalancamento', 'DATALANC')
+                .addSelect('despesa.datavencimento', 'DATAVENC')
+                .addSelect('despesa.valor', 'VALOR')
+                .addSelect('despesa.pago', 'PAGO')
+                .innerJoin('grupo_despesa', 'gd', 'gd.id = despesa.id_grupodespesa')
+                .where('despesa.datalancamento BETWEEN :datainicio AND :datafim AND despesa.pago = :pago_', { datainicio: DATAINICIO, datafim: DATAFIM })
+                .andWhere('despesa.pago = :pago_', { pago_: PAGO })
+                .andWhere('despesa.descricao = :nomeDespesa', { nomeDespesa: DESCRICAO })
+                .getRawMany());
+            } else {
+              var retorno = await (this.relatorioDespesaDash // select marca.id as ID, marca.nome AS NOME_, pes_f.nome from marca ......
+                .createQueryBuilder('despesa')
+                .select('despesa.id', 'ID')
+                .addSelect('despesa.descricao', 'DESCRICAO')
+                .addSelect('gd.descricao', 'GRUPODESPESA')
+                .addSelect('despesa.datalancamento', 'DATALANC')
+                .addSelect('despesa.datavencimento', 'DATAVENC')
+                .addSelect('despesa.valor', 'VALOR')
+                .addSelect('despesa.pago', 'PAGO')
+                .innerJoin('grupo_despesa', 'gd', 'gd.id = despesa.id_grupodespesa')
+                .where('despesa.datalancamento BETWEEN :datainicio AND :datafim AND despesa.pago = :pago_', { datainicio: DATAINICIO, datafim: DATAFIM })
+                .andWhere('despesa.pago = :pago_', { pago_: PAGO })
+                .getRawMany());
+            }
+          }
+        }
+        // var retorno = await (this.relatorioDespesaDash // select marca.id as ID, marca.nome AS NOME_, pes_f.nome from marca ......
+        //   .createQueryBuilder('despesa')
+        //   .select('despesa.id', 'ID')
+        //   .addSelect('despesa.descricao', 'DESCRICAO')
+        //   .addSelect('gd.descricao', 'GRUPODESPESA')
+        //   .addSelect('despesa.datalancamento', 'DATALANC')
+        //   .addSelect('despesa.datavencimento', 'DATAVENC')
+        //   .addSelect('despesa.valor', 'VALOR')
+        //   .addSelect('despesa.pago', 'PAGO')
+        //   .innerJoin('grupo_despesa', 'gd', 'gd.id = despesa.id_grupodespesa')
+        //   .where('despesa.datalancamento BETWEEN :datainicio AND :datafim', { datainicio: DATAINICIO, datafim: DATAFIM})
+        //   .andWhere('despesa.pago = :pago_',{pago_: PAGO})
+        //   .getRawMany());
       }
     }
 

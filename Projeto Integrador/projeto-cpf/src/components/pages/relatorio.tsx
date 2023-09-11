@@ -64,6 +64,8 @@ function Relatorio() {
         setDataFim('');
         setDataFim('');
         setTipo(1);
+        setBanco_('');
+        setDescricao_('');
     }
 
     const ExibeDespesasEmAberto = () => {
@@ -74,6 +76,8 @@ function Relatorio() {
         setDataFim('');
         setDataFim('');
         setTipo(1);
+        setBanco_('');
+        setDescricao_('');
     }
 
     const ExibeContasBancarias = () => {
@@ -84,6 +88,8 @@ function Relatorio() {
         setDataFim('');
         setDataFim('');
         setTipo(1);
+        setBanco_('');
+        setDescricao_('');
     }
 
     let [exibeMenu, setMenu] = useState([true, false, false]);
@@ -100,7 +106,7 @@ function Relatorio() {
     const [dataInicio, setDataInicio] = useState('');
     const [dataFim, setDataFim] = useState('');
     const [banco_, setBanco_] = useState('');
-    const [descricao_,setDescricao_] = useState('');
+    const [descricao_, setDescricao_] = useState('');
 
 
     const carregaGrupoDespesa = async () => {
@@ -122,7 +128,7 @@ function Relatorio() {
     const carregaSaldoBancario = async () => {
         mostrar();
         try {
-            const json = await api.listarSaldosBancarios(banco_, descricao_);
+            const json = await api.listarSaldosBancarios(banco_,descricao_);
             const dataArray = Array.isArray(json) ? json : [json];
             setRelatorioContaBancaria(dataArray);
 
@@ -137,7 +143,7 @@ function Relatorio() {
             console.log('DataInicio:', dataInicio)
             console.log('DataFIM:', dataFim)
             console.log('Tipo:', tipo)
-            const json = await api.listarRelatorioDespesasPagas(dataInicio, dataFim, tipo, 1);
+            const json = await api.listarRelatorioDespesasPagas(dataInicio, dataFim, tipo, 1, idGrupoDespesa, descricao_);
             const dataArray = Array.isArray(json) ? json : [json];
             setDespesaPaga(dataArray);
 
@@ -152,7 +158,7 @@ function Relatorio() {
             console.log('DataInicio:', dataInicio)
             console.log('DataFIM:', dataFim)
             console.log('Tipo:', tipo)
-            const json = await api.listarRelatorioDespesasEmAberto(dataInicio, dataFim, tipo, 0);
+            const json = await api.listarRelatorioDespesasEmAberto(dataInicio, dataFim, tipo, 0, idGrupoDespesa, descricao_);
             const dataArray = Array.isArray(json) ? json : [json];
             setDespesaEmAberto(dataArray);
 
@@ -200,7 +206,7 @@ function Relatorio() {
     }
 
     useEffect(() => {
-         carregaSaldoBancario();
+         //carregaSaldoBancario();
         carregaGrupoDespesa();
         carregaBancos();
     }, []);
@@ -237,7 +243,7 @@ function Relatorio() {
                                         <option key={0} value="" >Grupo de Despesa</option >
                                         {
                                             grupoDespesa.map(
-                                                (valor, index) => <option key={valor.id} value={valor.id}>{valor.descricao}</option>
+                                                (valor, index) => <option key={valor.id} value={valor.descricao}>{valor.descricao}</option>
                                             )
                                         }
                                     </select>
@@ -245,7 +251,7 @@ function Relatorio() {
 
 
 
-                                    <input className="pesquisar" type="text" name="" placeholder="Pesquisar por Descrição" id="" />
+                                    <input className="pesquisar" type="text" name="" placeholder="Pesquisar por Descrição" id="" value={descricao_} onChange={e => setDescricao_(e.target.value)} />
                                     <img className="imgPesquisa" src={require("../../images/botao-pesquisar.png")} alt="exibe imagem do padrao" onClick={carregaDespesasPagas} />
 
                                 </div>
@@ -305,7 +311,7 @@ function Relatorio() {
                                         <option key={0} value="" >Grupo de Despesa</option >
                                         {
                                             grupoDespesa.map(
-                                                (valor, index) => <option key={valor.id} value={valor.id}>{valor.descricao}</option>
+                                                (valor, index) => <option key={valor.id} value={valor.descricao}>{valor.descricao}</option>
                                             )
                                         }
                                     </select>
@@ -313,7 +319,7 @@ function Relatorio() {
 
 
 
-                                    <input className="pesquisar" type="text" name="" placeholder="Pesquisar por Descrição" id="" />
+                                    <input className="pesquisar" type="text" name="" placeholder="Pesquisar por Descrição" id="" value={descricao_} onChange={e => setDescricao_(e.target.value)} />
                                     <img className="imgPesquisa" src={require("../../images/botao-pesquisar.png")} alt="exibe imagem do padrao" onClick={carregaDespesasEmAberto} />
 
                                 </div>
@@ -360,7 +366,7 @@ function Relatorio() {
                                 <div className="filtros">
                                    
                                     <select className="pesquisar" name="Banco" id=""value={banco_} onChange={(e) => { setBanco_(e.target.value) }}>
-                                        <option key={0} value={undefined} >Informe o Banco</option>
+                                        <option key={0} value={""} >Informe o Banco</option>
                                         {
                                             banco.map(
                                                 (item, chave) => <option key={item.id}  value={item.nome}>{item.nome}</option>
@@ -371,7 +377,7 @@ function Relatorio() {
 
 
 
-                                    <input className="pesquisar" type="text" name="" placeholder="Pesquisar por Descrição" onChange={e => {setDescricao_(e.target.value)}} />
+                                    <input className="pesquisar" type="text" name="" placeholder="Pesquisar por Descrição" value={descricao_} onChange={e => {setDescricao_(e.target.value)}} />
                                     <img className="imgPesquisa" src={require("../../images/botao-pesquisar.png")} alt="exibe imagem do padrao" onClick={carregaSaldoBancario} />
 
                                 </div>

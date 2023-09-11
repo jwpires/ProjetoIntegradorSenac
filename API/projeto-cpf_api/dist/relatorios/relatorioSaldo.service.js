@@ -58,7 +58,7 @@ let RelatorioSaldoService = class RelatorioSaldoService {
                         .addSelect('agencia.NUMEROCONTA', 'NUMEROCONTA')
                         .addSelect('b.NOME', 'BANCO')
                         .innerJoin('banco', 'b', 'b.ID = agencia.ID_BANCO')
-                        .where('agencia.NOMEPROPRIETARIO = :nome', { nome: DESCRICAO })
+                        .where('agencia.NOMEPROPRIETARIO like :nome', { nome: `%${DESCRICAO}%` })
                         .getRawMany());
                 }
                 else {
