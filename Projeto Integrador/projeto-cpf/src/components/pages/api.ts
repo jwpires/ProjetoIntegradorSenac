@@ -250,21 +250,26 @@ export const api = {
         return json;
     },
 
-    Logar: async(username: string, password: string) => {
+    Logar: async(login: string, senha: string) => {
         {
-            let response = await fetch('http://localhost:3000//usuarios/acesso-login='+username+'-password='+password,
+            console.log("dentro da função POST")
+            console.log('login: ',login);
+            console.log('senha: ',senha)
+            let response = await fetch('http://localhost:3000/auth/login',
             {
                 method: 'POST',
                 body: JSON.stringify 
                 ({
-                    username, password
+                    username: login, 
+                    password: senha,
                 }),
                 headers:{
-                    'Content-Type' : 'applications/json; charset=utf-8'
+                    'Content-Type' : 'application/json; charset=utf-8'
                 }
             });
+            
             let json = await response.json();
-            console.log(json);
+            //console.log(json);
             return json;
         }
     }
