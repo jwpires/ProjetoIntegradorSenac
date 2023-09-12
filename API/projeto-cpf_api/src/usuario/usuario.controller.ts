@@ -7,6 +7,7 @@ import { Usuario } from "./usuario.entity";
 import { UsuarioService } from "./usuario.service";
 import { UsuarioArmazenados } from "./usuario.dm";
 import { RetornoGeralDTO } from "src/agencia/dto/retornoGeral.dto";
+import { RetornoDTO } from "./dto/retornodto";
 
 @Controller('/usuarios')
 export class UsuarioController{
@@ -30,7 +31,7 @@ export class UsuarioController{
     // }
 
     @Post('acesso-login=:email-password=:senha')
-    async Login(@Param('email')  email:string, @Param('senha') senha: string): Promise<RetornoGeralDTO>{
+    async Login(@Param('email')  email:string, @Param('senha') senha: string): Promise<RetornoDTO>{
         return this.usuarioService.findOne(email, senha);
 }
 };

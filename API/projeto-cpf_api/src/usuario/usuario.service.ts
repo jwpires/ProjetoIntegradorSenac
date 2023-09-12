@@ -55,7 +55,7 @@ export class UsuarioService {
     return (possivelUsuario !== null);
   }
 
-  async findOne(email: string, senha: string): Promise<RetornoDTO> {
+  async findOne(email: string, senha: string): Promise<RetornoDTO | undefined> {
 
     let login = await this.usuarioRepository.findOne({
       where: {
