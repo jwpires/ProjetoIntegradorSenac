@@ -9,5 +9,5 @@ export declare class UsuarioService {
     listar(): Promise<Usuario[]>;
     inserir(dados: CriaUsuarioDIO): Promise<RetornoCadastroDTO>;
     validaEmail(email: string): Promise<boolean>;
-    findOne(email: string, senha: string): Promise<RetornoDTO>;
+    findOne(email: string, senha: string): Promise<RetornoDTO | undefined>;
 }

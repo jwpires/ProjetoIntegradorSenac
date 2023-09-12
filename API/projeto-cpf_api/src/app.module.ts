@@ -8,7 +8,7 @@ import { DespesaModule } from './LancamentoDespesa/despesa.module';
 import { MarcaModule } from './marcaTesteConexaoBanco/marca.module';
 import { ProdutoModule } from './Produto/produto.module';
 import { RelatorioModule } from './relatorios/relatorios.module';
-import { UsersModule } from './users/users.module';
+// import { UsersModule } from './users/users.module_';
 import { UsuarioModule } from './usuario/usuario.module';
 
 
@@ -23,7 +23,7 @@ import { UsuarioModule } from './usuario/usuario.module';
         RelatorioModule,
         AuthModule,
         UsuarioModule,
-        UsersModule,
+        // UsersModule,
         HttpModule], 
   controllers:[],
 })
