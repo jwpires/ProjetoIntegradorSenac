@@ -60,13 +60,15 @@ let UsuarioService = class UsuarioService {
         });
         if (login == null) {
             return {
-                id: null,
+                email: null,
+                senha: null,
                 descricao: "Erro no Login."
             };
         }
         else {
             return {
-                id: login.id,
+                email: login.email,
+                senha: login.senha,
                 descricao: "Login realizado com sucesso."
             };
         }

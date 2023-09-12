@@ -1,6 +1,6 @@
-import { UsersService } from '../users/users.service';
+import { UsuarioService } from 'src/usuario/usuario.service';
 export declare class AuthService {
     private usersService;
-    constructor(usersService: UsersService);
+    constructor(usersService: UsuarioService);
     signIn(username: string, pass: string): Promise<any>;
 }

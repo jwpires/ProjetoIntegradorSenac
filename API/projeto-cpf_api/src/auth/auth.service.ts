@@ -11,39 +11,21 @@ import { promises } from 'dns';
 export class AuthService {
 
     constructor(
-        private usersService: UsersService
+        private usersService: UsuarioService
         ) {}
-
-
-        // async sigIn (USUARIO_REPOSITORY): Promise <void>{
-        //   const user = await this.usersService.findOne(USUARIO_REPOSITORY);
-        //   if (user?.password !== password) {
-        //           throw new UnauthorizedException();
-        //         }
-        //          const { password, ...result } = user;
-        //          // TODO: Generate a JWT and return it here
-        //          // instead of the user object
-        //          return result;
-        //     }
-        //   }
         
-        
+
     async signIn (username: string, pass: string): Promise<any> { 
       // async sigIn (USUARIO_REPOSITORY, pass: string ): Promise <void>{
-        const user = await this.usersService.findOne(username);
+        const user = await this.usersService.findOne(username,pass);
         // const user = await databaseProviders.int.findOne()
         
-        if (user?.password !== pass) {
+        if (user?.senha !== pass) {
           throw new UnauthorizedException();
         }
-        const { password, ...result } = user;
+        const { senha, ...result } = user;
         // TODO: Generate a JWT and return it here
         // instead of the user object
         return result;
       }
-
-    // async sigIn (USUARIO_REPOSITORY): Promise <any>{
-      
-    // }
-    
 }

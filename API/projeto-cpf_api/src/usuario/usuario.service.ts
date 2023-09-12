@@ -9,6 +9,7 @@ import { ListaUsuarioDTO } from './dto/listaUsuario.dto';
 import { usuarioProviders } from './usuario.providers';
 import { UsuarioAcessoDTO } from './dto/usuarioAcesso.dto';
 import { RetornoGeralDTO } from 'src/agencia/dto/retornoGeral.dto';
+import { RetornoDTO } from './dto/retornodto';
 
 @Injectable()
 export class UsuarioService {
@@ -54,7 +55,7 @@ export class UsuarioService {
     return (possivelUsuario !== null);
   }
 
-  async findOne(email: string, senha: string): Promise<RetornoGeralDTO> {
+  async findOne(email: string, senha: string): Promise<RetornoDTO> {
 
     let login = await this.usuarioRepository.findOne({
       where: {
@@ -64,12 +65,14 @@ export class UsuarioService {
 
     if (login == null) {
       return {
-        id: null,
+        email: null,
+        senha: null,
         descricao: "Erro no Login."
       }
     } else {
       return {
-        id: login.id,
+        email: login.email,
+        senha: login.senha,
         descricao: "Login realizado com sucesso." 
       }
     }

@@ -22,23 +22,23 @@ var __rest = (this && this.__rest) || function (s, e) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthService = void 0;
 const common_1 = require("@nestjs/common");
-const users_service_1 = require("../users/users.service");
+const usuario_service_1 = require("../usuario/usuario.service");
 let AuthService = class AuthService {
     constructor(usersService) {
         this.usersService = usersService;
     }
     async signIn(username, pass) {
-        const user = await this.usersService.findOne(username);
-        if ((user === null || user === void 0 ? void 0 : user.password) !== pass) {
+        const user = await this.usersService.findOne(username, pass);
+        if ((user === null || user === void 0 ? void 0 : user.senha) !== pass) {
             throw new common_1.UnauthorizedException();
         }
-        const { password } = user, result = __rest(user, ["password"]);
+        const { senha } = user, result = __rest(user, ["senha"]);
         return result;
     }
 };
 AuthService = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [users_service_1.UsersService])
+    __metadata("design:paramtypes", [usuario_service_1.UsuarioService])
 ], AuthService);
 exports.AuthService = AuthService;
 //# sourceMappingURL=auth.service.js.map
