@@ -212,15 +212,15 @@ export const api = {
         let indefinido: string = 'undefined';
     
         if (gdespesa != "" && descricao != "") {
-            var response =await fetch("http://localhost:3000/relatorios/despesas-pagas="+dataInicio+"="+dataFim+"="+tipo+"="+pago+"="+gdespesa+"="+descricao);
+            var response =await fetch("http://localhost:3000/relatorios/despesas-pagas/"+dataInicio+"/"+dataFim+"/"+tipo+"/"+pago+"/"+gdespesa+"/"+descricao);
         } else {
             if (gdespesa == "") {
-                var response =await fetch("http://localhost:3000/relatorios/despesas-pagas="+dataInicio+"="+dataFim+"="+tipo+"="+pago+"="+indefinido+"="+descricao);
+                var response =await fetch("http://localhost:3000/relatorios/despesas-pagas/"+dataInicio+"/"+dataFim+"/"+tipo+"/"+pago+"/"+indefinido+"/"+descricao);
             } else {
                 if (descricao == "") {
-                    var response = await fetch("http://localhost:3000/relatorios/despesas-pagas=" + dataInicio + "=" + dataFim + "=" + tipo + "=" + pago + "=" + gdespesa + "=" + indefinido);
+                    var response = await fetch("http://localhost:3000/relatorios/despesas-pagas/" + dataInicio + "/" + dataFim + "/" + tipo + "/" + pago + "/" + gdespesa + "/" + indefinido);
                 } else {
-                    var response = await fetch("http://localhost:3000/relatorios/despesas-pagas=" + dataInicio + "=" + dataFim + "=" + tipo + "=" + pago + "=" + indefinido+ "=" + indefinido);
+                    var response = await fetch("http://localhost:3000/relatorios/despesas-pagas/" + dataInicio + "/" + dataFim + "/" + tipo + "/" + pago + "/" + indefinido+ "/" + indefinido);
                 }
             }
         }
@@ -233,15 +233,15 @@ export const api = {
         let indefinido: string = 'undefined';
     
         if (gdespesa != "" && descricao != "") {
-            var response =await fetch("http://localhost:3000/relatorios/despesas-em-aberto="+dataInicio+"="+dataFim+"="+tipo+"="+pago+"="+gdespesa+"="+descricao);
+            var response =await fetch("http://localhost:3000/relatorios/despesas-em-aberto/"+dataInicio+"/"+dataFim+"/"+tipo+"/"+pago+"/"+gdespesa+"/"+descricao);
         } else {
             if (gdespesa == "") {
-                var response =await fetch("http://localhost:3000/relatorios/despesas-em-aberto="+dataInicio+"="+dataFim+"="+tipo+"="+pago+"="+indefinido+"="+descricao);
+                var response =await fetch("http://localhost:3000/relatorios/despesas-em-aberto/"+dataInicio+"/"+dataFim+"/"+tipo+"/"+pago+"/"+indefinido+"/"+descricao);
             } else {
                 if (descricao == "") {
-                    var response =await fetch("http://localhost:3000/relatorios/despesas-em-aberto="+dataInicio+"="+dataFim+"="+tipo+"="+pago+"="+gdespesa+"="+indefinido);
+                    var response =await fetch("http://localhost:3000/relatorios/despesas-em-aberto/"+dataInicio+"/"+dataFim+"/"+tipo+"/"+pago+"/"+gdespesa+"/"+indefinido);
                 } else {
-                    var response =await fetch("http://localhost:3000/relatorios/despesas-em-aberto="+dataInicio+"="+dataFim+"="+tipo+"="+pago+"="+indefinido+"="+indefinido);
+                    var response =await fetch("http://localhost:3000/relatorios/despesas-em-aberto/"+dataInicio+"/"+dataFim+"/"+tipo+"/"+pago+"/"+indefinido+"/"+indefinido);
                 }   
             }
         }

@@ -37,7 +37,7 @@ export class RelatorioDespesaService {
             .where('despesa.datavencimento BETWEEN :datainicio AND :datafim AND despesa.pago = :pago_', { datainicio: DATAINICIO, datafim: DATAFIM })
             .andWhere('despesa.pago = :pago_', { pago_: PAGO })
             .andWhere('gd.descricao = :nomeGDespesa', { nomeGDespesa: GDESPESA })
-            .andWhere('despesa.descricao = :nomeDespesa', { nomeDespesa: DESCRICAO })
+            .andWhere('despesa.descricao like :nomeDespesa', { nomeDespesa: `%${DESCRICAO}%` })
             .getRawMany());
         } else {
           if (GDESPESA != undefined) {
@@ -53,7 +53,7 @@ export class RelatorioDespesaService {
               .innerJoin('grupo_despesa', 'gd', 'gd.id = despesa.id_grupodespesa')
               .where('despesa.datavencimento BETWEEN :datainicio AND :datafim AND despesa.pago = :pago_', { datainicio: DATAINICIO, datafim: DATAFIM })
               .andWhere('despesa.pago = :pago_', { pago_: PAGO })
-              .andWhere('despesa.descricao = :nomeDespesa', { nomeDespesa: DESCRICAO })
+              .andWhere('gd.descricao = :nomeGDespesa', { nomeGDespesa: GDESPESA })
               .getRawMany());
           } else {
             if (DESCRICAO != undefined) {
@@ -69,7 +69,7 @@ export class RelatorioDespesaService {
                 .innerJoin('grupo_despesa', 'gd', 'gd.id = despesa.id_grupodespesa')
                 .where('despesa.datavencimento BETWEEN :datainicio AND :datafim AND despesa.pago = :pago_', { datainicio: DATAINICIO, datafim: DATAFIM })
                 .andWhere('despesa.pago = :pago_', { pago_: PAGO })
-                .andWhere('despesa.descricao = :nomeDespesa', { nomeDespesa: DESCRICAO })
+                .andWhere('despesa.descricao like :nomeDespesa', { nomeDespesa: `%${DESCRICAO}%` })
                 .getRawMany());
             } else {
               var retorno = await (this.relatorioDespesaDash // select marca.id as ID, marca.nome AS NOME_, pes_f.nome from marca ......
@@ -104,7 +104,7 @@ export class RelatorioDespesaService {
             .where('despesa.datalancamento BETWEEN :datainicio AND :datafim AND despesa.pago = :pago_', { datainicio: DATAINICIO, datafim: DATAFIM })
             .andWhere('despesa.pago = :pago_', { pago_: PAGO })
             .andWhere('gd.descricao = :nomeGDespesa', { nomeGDespesa: GDESPESA })
-            .andWhere('despesa.descricao = :nomeDespesa', { nomeDespesa: DESCRICAO })
+            .andWhere('despesa.descricao like :nomeDespesa', { nomeDespesa: `%${DESCRICAO}%` })
             .getRawMany());
         } else {
           if (GDESPESA != undefined) {
@@ -120,7 +120,7 @@ export class RelatorioDespesaService {
               .innerJoin('grupo_despesa', 'gd', 'gd.id = despesa.id_grupodespesa')
               .where('despesa.datalancamento BETWEEN :datainicio AND :datafim AND despesa.pago = :pago_', { datainicio: DATAINICIO, datafim: DATAFIM })
               .andWhere('despesa.pago = :pago_', { pago_: PAGO })
-              .andWhere('despesa.descricao = :nomeDespesa', { nomeDespesa: DESCRICAO })
+              .andWhere('gd.descricao = :nomeGDespesa', { nomeGDespesa: GDESPESA })
               .getRawMany());
           } else {
             if (DESCRICAO != undefined) {
@@ -136,7 +136,7 @@ export class RelatorioDespesaService {
                 .innerJoin('grupo_despesa', 'gd', 'gd.id = despesa.id_grupodespesa')
                 .where('despesa.datalancamento BETWEEN :datainicio AND :datafim AND despesa.pago = :pago_', { datainicio: DATAINICIO, datafim: DATAFIM })
                 .andWhere('despesa.pago = :pago_', { pago_: PAGO })
-                .andWhere('despesa.descricao = :nomeDespesa', { nomeDespesa: DESCRICAO })
+                .andWhere('despesa.descricao like :nomeDespesa', { nomeDespesa: `%${DESCRICAO}%` })
                 .getRawMany());
             } else {
               var retorno = await (this.relatorioDespesaDash // select marca.id as ID, marca.nome AS NOME_, pes_f.nome from marca ......

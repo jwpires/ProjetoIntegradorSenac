@@ -22,39 +22,16 @@ function Relatorio() {
     /**------------Manipulação Modal---------------------*/
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);
+    var id_exclusao: string = '';
 
-    function exibeModal() {
-        
-            toggle();
+    function exibeModal(id: string) {
+        console.log('id: ',id);
+        id_exclusao = id;
+        console.log('id_exclusao: ',id_exclusao);
+        toggle();
     }
 
-    const ExibeModal = () => {
-        <>
-
-            <div className="teste" >
-
-                {/********************** * Exibe a Modal ao clicar em Pagar****************** */}
-                <Modal isOpen={modal} toggle={toggle}>
-                    <ModalHeader toggle={toggle}>Confirmação de pagamento!</ModalHeader>
-                    <ModalBody>
-
-
-                        <form action="" className="cadBanco">
-                           
-                        </form>
-                    </ModalBody>
-                    <ModalFooter>
-                        <Button color="primary" >
-                            Confirmar
-                        </Button>{' '}
-                        <Button color="secondary" onClick={toggle}>
-                            Cancelar
-                        </Button>
-                    </ModalFooter>
-                </Modal>
-            </div>
-        </>
-    }
+    
 
     const ExibeDespesasPagas = () => {
         setMenu([true, false, false]);
@@ -108,6 +85,34 @@ function Relatorio() {
     const [banco_, setBanco_] = useState('');
     const [descricao_, setDescricao_] = useState('');
 
+    const handleConfirmation = (id:string) => {
+        const result = window.confirm('Você deseja continuar?');
+        
+        if (result) {
+          // O usuário clicou em "OK"
+          console.log('Usuário escolheu Sim');
+            removerDespesa(id);
+        } else {
+          // O usuário clicou em "Cancelar"
+          console.log('Usuário escolheu Não');
+          // Faça o que precisa ser feito quando o usuário escolhe "Não" ou cancela
+        }
+      };
+
+      const handleConfirmationAlterar = (id:string) => {
+        const result = window.confirm('Você deseja continuar?');
+        
+        if (result) {
+          // O usuário clicou em "OK"
+          console.log('Usuário escolheu Sim');
+          alterarSaldo(id, saldo)
+        } else {
+          // O usuário clicou em "Cancelar"
+          console.log('Usuário escolheu Não');
+          // Faça o que precisa ser feito quando o usuário escolhe "Não" ou cancela
+        }
+      };
+
 
     const carregaGrupoDespesa = async () => {
 
@@ -128,7 +133,7 @@ function Relatorio() {
     const carregaSaldoBancario = async () => {
         mostrar();
         try {
-            const json = await api.listarSaldosBancarios(banco_,descricao_);
+            const json = await api.listarSaldosBancarios(banco_, descricao_);
             const dataArray = Array.isArray(json) ? json : [json];
             setRelatorioContaBancaria(dataArray);
 
@@ -143,6 +148,8 @@ function Relatorio() {
             console.log('DataInicio:', dataInicio)
             console.log('DataFIM:', dataFim)
             console.log('Tipo:', tipo)
+            console.log('GDespesa: ', idGrupoDespesa);
+            console.log('descricao: ', descricao_);
             const json = await api.listarRelatorioDespesasPagas(dataInicio, dataFim, tipo, 1, idGrupoDespesa, descricao_);
             const dataArray = Array.isArray(json) ? json : [json];
             setDespesaPaga(dataArray);
@@ -158,6 +165,8 @@ function Relatorio() {
             console.log('DataInicio:', dataInicio)
             console.log('DataFIM:', dataFim)
             console.log('Tipo:', tipo)
+            console.log('GDespesa: ', idGrupoDespesa);
+            console.log('descricao: ', descricao_);
             const json = await api.listarRelatorioDespesasEmAberto(dataInicio, dataFim, tipo, 0, idGrupoDespesa, descricao_);
             const dataArray = Array.isArray(json) ? json : [json];
             setDespesaEmAberto(dataArray);
@@ -168,10 +177,12 @@ function Relatorio() {
     }
 
     const removerDespesa = async (id: string) => {
+        console.log(id);
         const json = await api.removerDespesa(id);
         alert((json.descricao));
         carregaDespesasPagas();
-        carregaDespesasEmAberto();
+        carregaDespesasEmAberto()
+        toggle();
     }
 
     const alterarStatusPagamentoDespesa = async (id: string) => {
@@ -200,13 +211,13 @@ function Relatorio() {
         console.log((tipo));
     }
 
-    const mostrar = () =>{
-        console.log("teste",banco_);
-        console.log("descricao: ",descricao_)
+    const mostrar = () => {
+        console.log("teste", banco_);
+        console.log("descricao: ", descricao_)
     }
 
     useEffect(() => {
-         //carregaSaldoBancario();
+        //carregaSaldoBancario();
         carregaGrupoDespesa();
         carregaBancos();
     }, []);
@@ -280,15 +291,20 @@ function Relatorio() {
                                                             <p><strong>Grupo de despesa:</strong> {item.nomeGrupoDespesa} </p>
                                                             <p><strong>Valor:</strong> {item.valor}</p>
                                                             <Button color="warning" onClick={() => alterarStatusPagamentoDespesa(item.id_despesa)}>Estornar</Button>
-                                                            <Button color="danger" onClick={() => removerDespesa(item.id_despesa)} >Excluir</Button>
-
+                                                            {/* <Button color="danger" onClick={() => removerDespesa(item.id_despesa)} >Excluir</Button> */}
+                                                            <Button color="danger" onClick={() =>handleConfirmation(item.id_despesa)} >Excluir</Button>
+                                                            
+                
                                                         </AccordionBody>
                                                     </AccordionItem>
                                                 </>
                                         )
                                     }
                                 </UncontrolledAccordion>
+
+
                             </div>
+
 
                         }
                         {/* DESPESAS EM ABERTO */}
@@ -348,7 +364,7 @@ function Relatorio() {
                                                             <p><strong>Grupo de despesa:</strong> {item.nomeGrupoDespesa} </p>
                                                             <p><strong>Valor:</strong> {item.valor}</p>
                                                             <Button color="success" onClick={e => alterarStatusPagamentoDespesa(item.id_despesa)} >Pagar</Button>
-                                                            <Button color="danger" onClick={e => removerDespesa(item.id_despesa)}>Excluir</Button>
+                                                            <Button color="danger" onClick={() =>handleConfirmation(item.id_despesa)} >Excluir</Button>
 
                                                         </AccordionBody>
                                                     </AccordionItem>
@@ -364,12 +380,12 @@ function Relatorio() {
 
                                 {/* <FiltroRelatorio tipoFiltro={'BC'} /> */}
                                 <div className="filtros">
-                                   
-                                    <select className="pesquisar" name="Banco" id=""value={banco_} onChange={(e) => { setBanco_(e.target.value) }}>
+
+                                    <select className="pesquisar" name="Banco" id="" value={banco_} onChange={(e) => { setBanco_(e.target.value) }}>
                                         <option key={0} value={""} >Informe o Banco</option>
                                         {
                                             banco.map(
-                                                (item, chave) => <option key={item.id}  value={item.nome}>{item.nome}</option>
+                                                (item, chave) => <option key={item.id} value={item.nome}>{item.nome}</option>
                                             )
                                         }
                                     </select>
@@ -377,7 +393,7 @@ function Relatorio() {
 
 
 
-                                    <input className="pesquisar" type="text" name="" placeholder="Pesquisar por Descrição" value={descricao_} onChange={e => {setDescricao_(e.target.value)}} />
+                                    <input className="pesquisar" type="text" name="" placeholder="Pesquisar por Descrição" value={descricao_} onChange={e => { setDescricao_(e.target.value) }} />
                                     <img className="imgPesquisa" src={require("../../images/botao-pesquisar.png")} alt="exibe imagem do padrao" onClick={carregaSaldoBancario} />
 
                                 </div>
@@ -406,7 +422,7 @@ function Relatorio() {
                                                             <input type="number" step=".01" name="" placeholder={item.saldo.toString()} onChange={(e) => { setSaldo(e.target.value) }} />
                                                             {/* <p><strong>Saldo:</strong> {item.saldo}</p> */}
                                                             <br /><br />
-                                                            <Button color="warning" onClick={e => alterarSaldo(item.id, saldo)}>Editar</Button>
+                                                            <Button color="warning" onClick={e => handleConfirmationAlterar(item.id)}>Editar</Button>
 
                                                         </AccordionBody>
                                                     </AccordionItem>
