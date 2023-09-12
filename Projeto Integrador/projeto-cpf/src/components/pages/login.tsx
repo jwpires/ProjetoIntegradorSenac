@@ -38,6 +38,7 @@ function Login() {
             UsuarioLogadoCtx?.setName(fUser);
             navegacao('/home');
         }else{
+            
             alert('Usuario/Senha não encontrados.');
         }
     }
@@ -56,15 +57,15 @@ function Login() {
                 <div className="campos">
                     <input type="text" className='input-padrao' placeholder='Login' /> 
                     <input type="password" className='input-padrao' placeholder='Senha' />
-                    <input type="submit" className='botao-padrao' value="Acessar" onClick={acessaHome}/>
+                    <input type="submit" className='botao-padrao' value="Acessar" onClick={RealizarLogin}/>
                     {/* <label><Link to={'/cadastro/NovaSenha'} className='link'>Esqueci minha senha.</Link></label> */}
 
-                    <label>TESTES:</label>
+                    {/* <label>TESTES:</label>
                     <br />
                     <input onChange={handlefUserChange} />
                     <br />
                     <input onChange={handlefSenhaChange} />
-                    <input type="submit" className='botao-padrao' value="Acessar" onClick={RealizarLogin}/>
+                    <input type="submit" className='botao-padrao' value="Acessar" onClick={RealizarLogin}/> */}
                 </div> 
 
             </div>
