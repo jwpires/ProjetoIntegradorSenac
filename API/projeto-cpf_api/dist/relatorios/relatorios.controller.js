@@ -47,15 +47,15 @@ let RelatoriosController = class RelatoriosController {
         }
     }
     async RetornaListaDespesaEmAberto(datainicio, datafim, tipo, pago, gdespesa, descricao) {
-        if (gdespesa !== "undefined" && descricao !== "undefined") {
+        if (gdespesa != 'undefined' && descricao != 'undefined') {
             return await this.relatorioService.listarRelatorioDespesa(datainicio, datafim, tipo, pago, gdespesa, descricao);
         }
         else {
-            if (gdespesa == "undefined") {
+            if (gdespesa == 'undefined') {
                 return await this.relatorioService.listarRelatorioDespesa(datainicio, datafim, tipo, pago, undefined, descricao);
             }
             else {
-                if (descricao == "undefined") {
+                if (descricao == 'undefined') {
                     return await this.relatorioService.listarRelatorioDespesa(datainicio, datafim, tipo, pago, gdespesa, undefined);
                 }
                 else {
@@ -104,7 +104,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], RelatoriosController.prototype, "RetornaSaldosDash", null);
 __decorate([
-    (0, common_1.Get)('/despesas-em-aberto=:datainicio=:datafim=:tipo=:pago=:gdespesa=:descricao'),
+    (0, common_1.Get)('/despesas-em-aberto/:datainicio?/:datafim?/:tipo/:pago?/:gdespesa?/:descricao?'),
     __param(0, (0, decorators_1.Param)('datainicio')),
     __param(1, (0, decorators_1.Param)('datafim')),
     __param(2, (0, decorators_1.Param)('tipo')),
@@ -116,7 +116,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], RelatoriosController.prototype, "RetornaListaDespesaEmAberto", null);
 __decorate([
-    (0, common_1.Get)('/despesas-pagas=:datainicio=:datafim=:tipo=:pago=:gdespesa=:descricao'),
+    (0, common_1.Get)('/despesas-pagas/:datainicio?/:datafim?/:tipo?/:pago?/:gdespesa?/:descricao?'),
     __param(0, (0, decorators_1.Param)('datainicio')),
     __param(1, (0, decorators_1.Param)('datafim')),
     __param(2, (0, decorators_1.Param)('tipo')),

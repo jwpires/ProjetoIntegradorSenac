@@ -41,7 +41,7 @@ let RelatorioDespesaService = class RelatorioDespesaService {
                         .where('despesa.datavencimento BETWEEN :datainicio AND :datafim AND despesa.pago = :pago_', { datainicio: DATAINICIO, datafim: DATAFIM })
                         .andWhere('despesa.pago = :pago_', { pago_: PAGO })
                         .andWhere('gd.descricao = :nomeGDespesa', { nomeGDespesa: GDESPESA })
-                        .andWhere('despesa.descricao = :nomeDespesa', { nomeDespesa: DESCRICAO })
+                        .andWhere('despesa.descricao like :nomeDespesa', { nomeDespesa: `%${DESCRICAO}%` })
                         .getRawMany());
                 }
                 else {
@@ -58,7 +58,7 @@ let RelatorioDespesaService = class RelatorioDespesaService {
                             .innerJoin('grupo_despesa', 'gd', 'gd.id = despesa.id_grupodespesa')
                             .where('despesa.datavencimento BETWEEN :datainicio AND :datafim AND despesa.pago = :pago_', { datainicio: DATAINICIO, datafim: DATAFIM })
                             .andWhere('despesa.pago = :pago_', { pago_: PAGO })
-                            .andWhere('despesa.descricao = :nomeDespesa', { nomeDespesa: DESCRICAO })
+                            .andWhere('gd.descricao = :nomeGDespesa', { nomeGDespesa: GDESPESA })
                             .getRawMany());
                     }
                     else {
@@ -75,7 +75,7 @@ let RelatorioDespesaService = class RelatorioDespesaService {
                                 .innerJoin('grupo_despesa', 'gd', 'gd.id = despesa.id_grupodespesa')
                                 .where('despesa.datavencimento BETWEEN :datainicio AND :datafim AND despesa.pago = :pago_', { datainicio: DATAINICIO, datafim: DATAFIM })
                                 .andWhere('despesa.pago = :pago_', { pago_: PAGO })
-                                .andWhere('despesa.descricao = :nomeDespesa', { nomeDespesa: DESCRICAO })
+                                .andWhere('despesa.descricao like :nomeDespesa', { nomeDespesa: `%${DESCRICAO}%` })
                                 .getRawMany());
                         }
                         else {
@@ -111,7 +111,7 @@ let RelatorioDespesaService = class RelatorioDespesaService {
                         .where('despesa.datalancamento BETWEEN :datainicio AND :datafim AND despesa.pago = :pago_', { datainicio: DATAINICIO, datafim: DATAFIM })
                         .andWhere('despesa.pago = :pago_', { pago_: PAGO })
                         .andWhere('gd.descricao = :nomeGDespesa', { nomeGDespesa: GDESPESA })
-                        .andWhere('despesa.descricao = :nomeDespesa', { nomeDespesa: DESCRICAO })
+                        .andWhere('despesa.descricao like :nomeDespesa', { nomeDespesa: `%${DESCRICAO}%` })
                         .getRawMany());
                 }
                 else {
@@ -128,7 +128,7 @@ let RelatorioDespesaService = class RelatorioDespesaService {
                             .innerJoin('grupo_despesa', 'gd', 'gd.id = despesa.id_grupodespesa')
                             .where('despesa.datalancamento BETWEEN :datainicio AND :datafim AND despesa.pago = :pago_', { datainicio: DATAINICIO, datafim: DATAFIM })
                             .andWhere('despesa.pago = :pago_', { pago_: PAGO })
-                            .andWhere('despesa.descricao = :nomeDespesa', { nomeDespesa: DESCRICAO })
+                            .andWhere('gd.descricao = :nomeGDespesa', { nomeGDespesa: GDESPESA })
                             .getRawMany());
                     }
                     else {
@@ -145,7 +145,7 @@ let RelatorioDespesaService = class RelatorioDespesaService {
                                 .innerJoin('grupo_despesa', 'gd', 'gd.id = despesa.id_grupodespesa')
                                 .where('despesa.datalancamento BETWEEN :datainicio AND :datafim AND despesa.pago = :pago_', { datainicio: DATAINICIO, datafim: DATAFIM })
                                 .andWhere('despesa.pago = :pago_', { pago_: PAGO })
-                                .andWhere('despesa.descricao = :nomeDespesa', { nomeDespesa: DESCRICAO })
+                                .andWhere('despesa.descricao like :nomeDespesa', { nomeDespesa: `%${DESCRICAO}%` })
                                 .getRawMany());
                         }
                         else {
