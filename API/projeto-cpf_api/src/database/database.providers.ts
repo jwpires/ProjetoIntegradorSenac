@@ -11,13 +11,13 @@ export const databaseProviders = [
         useFactory: async () => {
             const dataSource = new DataSource({
                 type: 'mysql', // qual banco será conectado
-                host: 'localhost', // host utilizado
+                host: 'ns582.hostgator.com.br', // host utilizado
                 port: 3306, //porta de conexão
-                username: 'root', // usuário do banco
-                password: '', // senha do usuário do banco
+                username: 'vitali04_cpf', // usuário do banco
+                password: 'Jos&102030', // senha do usuário do banco
                 database:'integrador_cpf', // nome do banco que será acessado
                 entities: [
-                    __dirname + '/../**/*.entity{.ts,.js}',  
+                    __dirname + '/../**/*.entity{.ts,.js}', 
                 ],
                 synchronize: false, /**sincroniza sempre o banco com os objetos da API - 
                 orientado utilizar somente em ambiente de teste e não de produção */
