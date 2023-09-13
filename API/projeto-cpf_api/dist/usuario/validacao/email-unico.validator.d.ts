@@ -1,4 +1,4 @@
-import { ValidationArguments, ValidationOptions, ValidatorConstraintInterface } from "class-validator";
+import { ValidationArguments, ValidatorConstraintInterface } from "class-validator";
 import { UsuarioService } from "src/usuario/usuario.service";
 export declare class EmailUnicoValidator implements ValidatorConstraintInterface {
     private readonly usuarioService;
