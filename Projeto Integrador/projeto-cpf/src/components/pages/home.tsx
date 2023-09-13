@@ -52,9 +52,9 @@ function Home() {
             <div className="container_main_padrao-tela">
                 <div className="container_padrao-tela">
 
-                    <div className="nomeUsuario">
+                    {/* <div className="nomeUsuario">
                         <label id="nomeUsuario">Usuário: </label>
-                    </div>
+                    </div> */}
 
                     {/* Deverá constar um map para apresentar os valores de saldo dentro de cada div */}
                     <div className="saldos">

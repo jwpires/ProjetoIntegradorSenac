@@ -3,7 +3,7 @@ export const api = {
 /* Interação da API na pagina HOME com depesas em abertas e saldos de contas bancárias */
 
     listarDespesasDash: async() => {
-        let response =await fetch("http://localhost:3000/relatorios/despesa-dash");
+        let response =await fetch("https://cpfservice.onrender.com/relatorios/despesa-dash");
         let json = await response.json();
         return json;
     },
@@ -11,20 +11,20 @@ export const api = {
     listarSaldosBancarios: async (banco?: string, descricao?: string) => {
         let indefinido: string = 'undefined';
         if (banco == "" && descricao == "") {
-            var response =  await fetch("http://localhost:3000/relatorios/saldo/"+indefinido+"/"+indefinido); 
+            var response =  await fetch("https://cpfservice.onrender.com/relatorios/saldo/"+indefinido+"/"+indefinido); 
         } else {
             if (banco == "") {
-               var response =  await fetch("http://localhost:3000/relatorios/saldo/"+indefinido+"/"+descricao); 
+               var response =  await fetch("https://cpfservice.onrender.com/relatorios/saldo/"+indefinido+"/"+descricao); 
             } else {
                 if (descricao == "") {
-                    var response =  await fetch("http://localhost:3000/relatorios/saldo/"+banco+"/"+indefinido); 
+                    var response =  await fetch("https://cpfservice.onrender.com/relatorios/saldo/"+banco+"/"+indefinido); 
                 } else {
-                    var response =  await fetch("http://localhost:3000/relatorios/saldo/"+banco+"/"+descricao);
+                    var response =  await fetch("https://cpfservice.onrender.com/relatorios/saldo/"+banco+"/"+descricao);
                  }
             }
         }
 
-        //let response =  await fetch("http://localhost:3000/relatorios/saldo/"+a+"/"+a);
+        //let response =  await fetch("https://cpfservice.onrender.com/relatorios/saldo/"+a+"/"+a);
         let json = await response.json();
         return json; 
     },
@@ -32,14 +32,14 @@ export const api = {
  /* Interação de GET, POST com a tela de Cadastro de Banco */
     listarBancos: async () => {
 
-        let response = await fetch("http://localhost:3000/bancos");
+        let response = await fetch("https://cpfservice.onrender.com/bancos");
         let json = await response.json();
         return json;
     },
 
     InserirBanco: async (nomeBanco: string) => {
 
-        let response = await fetch("http://localhost:3000/bancos",
+        let response = await fetch("https://cpfservice.onrender.com/bancos",
             {
                 // por padrão o method do fetch, é o get, por isso não precisamos especificar.
                 method: 'POST',
@@ -62,7 +62,7 @@ export const api = {
 
     /*Informações de POST e GET tela de cadastro de conta corrente.*/
     InserirContaCorrente: async (idBanco: string, nomeProprietario: string, numeroConta: string, tipoConta: string, saldo: number) => {
-        let response = await fetch("http://localhost:3000/agencia",
+        let response = await fetch("https://cpfservice.onrender.com/agencia",
             {
                 // por padrão o method do fetch, é o get, por isso não precisamos especificar.
                 method: 'POST',
@@ -87,7 +87,7 @@ export const api = {
 
     /** POST ao que se refere as informações de cadastro de Grupo de Despesa */
     InserirGrupoDespesa: async (nome_: string) => {
-        let response = await fetch("http://localhost:3000/grupoDespesa",
+        let response = await fetch("https://cpfservice.onrender.com/grupoDespesa",
             {
                 // por padrão o method do fetch, é o get, por isso não precisamos especificar.
                 method: 'POST',
@@ -109,7 +109,7 @@ export const api = {
     /** POST E GET referente a tela de cadastro de lançamento de despesa */
     listarGrupoDespesa: async () => {
 
-        let response = await fetch("http://localhost:3000/grupoDespesa");
+        let response = await fetch("https://cpfservice.onrender.com/grupoDespesa");
         let json = await response.json();
 
 
@@ -119,7 +119,7 @@ export const api = {
     InserirLancamentoDespesa: async (descricao_: string, grupoDespesa_: string, dataLancamento_: Date,
         dataVencimento_: Date, valor_: number, pago_: boolean) => {
         
-        let response = await fetch("http://localhost:3000/lancamentoDespesa",
+        let response = await fetch("https://cpfservice.onrender.com/lancamentoDespesa",
             {
                 // por padrão o method do fetch, é o get, por isso não precisamos especificar.
                 method: 'POST',
@@ -146,7 +146,7 @@ export const api = {
     /** referente ao relatórios */
     removerDespesa: async(id: string) => {
 
-        let response = await fetch("http://localhost:3000/lancamentoDespesa/remove-"+id,
+        let response = await fetch("https://cpfservice.onrender.com/lancamentoDespesa/remove-"+id,
             {
                 // por padrão o method do fetch, é o get, por isso não precisamos especificar.
                 method: 'DELETE',
@@ -166,7 +166,7 @@ export const api = {
     },
 
     alterarStatusPagamentoDespesa: async(id: string) => {
-        let response = await fetch("http://localhost:3000/relatorios/alterar-"+id,
+        let response = await fetch("https://cpfservice.onrender.com/relatorios/alterar-"+id,
             {
                 // por padrão o method do fetch, é o get, por isso não precisamos especificar.
                 method: 'PUT',
@@ -186,7 +186,7 @@ export const api = {
     },
 
     alterarSaldo: async(id: string, valor: number) => {
-        let response = await fetch("http://localhost:3000/relatorios/alterarSaldo-"+id+"-valor-"+valor,
+        let response = await fetch("https://cpfservice.onrender.com/relatorios/alterarSaldo-"+id+"-valor-"+valor,
             {
                 // por padrão o method do fetch, é o get, por isso não precisamos especificar.
                 method: 'PUT',
@@ -212,15 +212,15 @@ export const api = {
         let indefinido: string = 'undefined';
     
         if (gdespesa != "" && descricao != "") {
-            var response =await fetch("http://localhost:3000/relatorios/despesas-pagas/"+dataInicio+"/"+dataFim+"/"+tipo+"/"+pago+"/"+gdespesa+"/"+descricao);
+            var response =await fetch("https://cpfservice.onrender.com/relatorios/despesas-pagas/"+dataInicio+"/"+dataFim+"/"+tipo+"/"+pago+"/"+gdespesa+"/"+descricao);
         } else {
             if (gdespesa == "") {
-                var response =await fetch("http://localhost:3000/relatorios/despesas-pagas/"+dataInicio+"/"+dataFim+"/"+tipo+"/"+pago+"/"+indefinido+"/"+descricao);
+                var response =await fetch("https://cpfservice.onrender.com/relatorios/despesas-pagas/"+dataInicio+"/"+dataFim+"/"+tipo+"/"+pago+"/"+indefinido+"/"+descricao);
             } else {
                 if (descricao == "") {
-                    var response = await fetch("http://localhost:3000/relatorios/despesas-pagas/" + dataInicio + "/" + dataFim + "/" + tipo + "/" + pago + "/" + gdespesa + "/" + indefinido);
+                    var response = await fetch("https://cpfservice.onrender.com/relatorios/despesas-pagas/" + dataInicio + "/" + dataFim + "/" + tipo + "/" + pago + "/" + gdespesa + "/" + indefinido);
                 } else {
-                    var response = await fetch("http://localhost:3000/relatorios/despesas-pagas/" + dataInicio + "/" + dataFim + "/" + tipo + "/" + pago + "/" + indefinido+ "/" + indefinido);
+                    var response = await fetch("https://cpfservice.onrender.com/relatorios/despesas-pagas/" + dataInicio + "/" + dataFim + "/" + tipo + "/" + pago + "/" + indefinido+ "/" + indefinido);
                 }
             }
         }
@@ -233,15 +233,15 @@ export const api = {
         let indefinido: string = 'undefined';
     
         if (gdespesa != "" && descricao != "") {
-            var response =await fetch("http://localhost:3000/relatorios/despesas-em-aberto/"+dataInicio+"/"+dataFim+"/"+tipo+"/"+pago+"/"+gdespesa+"/"+descricao);
+            var response =await fetch("https://cpfservice.onrender.com/relatorios/despesas-em-aberto/"+dataInicio+"/"+dataFim+"/"+tipo+"/"+pago+"/"+gdespesa+"/"+descricao);
         } else {
             if (gdespesa == "") {
-                var response =await fetch("http://localhost:3000/relatorios/despesas-em-aberto/"+dataInicio+"/"+dataFim+"/"+tipo+"/"+pago+"/"+indefinido+"/"+descricao);
+                var response =await fetch("https://cpfservice.onrender.com/relatorios/despesas-em-aberto/"+dataInicio+"/"+dataFim+"/"+tipo+"/"+pago+"/"+indefinido+"/"+descricao);
             } else {
                 if (descricao == "") {
-                    var response =await fetch("http://localhost:3000/relatorios/despesas-em-aberto/"+dataInicio+"/"+dataFim+"/"+tipo+"/"+pago+"/"+gdespesa+"/"+indefinido);
+                    var response =await fetch("https://cpfservice.onrender.com/relatorios/despesas-em-aberto/"+dataInicio+"/"+dataFim+"/"+tipo+"/"+pago+"/"+gdespesa+"/"+indefinido);
                 } else {
-                    var response =await fetch("http://localhost:3000/relatorios/despesas-em-aberto/"+dataInicio+"/"+dataFim+"/"+tipo+"/"+pago+"/"+indefinido+"/"+indefinido);
+                    var response =await fetch("https://cpfservice.onrender.com/relatorios/despesas-em-aberto/"+dataInicio+"/"+dataFim+"/"+tipo+"/"+pago+"/"+indefinido+"/"+indefinido);
                 }   
             }
         }
@@ -250,21 +250,26 @@ export const api = {
         return json;
     },
 
-    Logar: async(username: string, password: string) => {
+    Logar: async(login: string, senha: string) => {
         {
-            let response = await fetch('http://localhost:3000//usuarios/acesso-login='+username+'-password='+password,
+            console.log("dentro da função POST")
+            console.log('login: ',login);
+            console.log('senha: ',senha)
+            let response = await fetch('https://cpfservice.onrender.com/auth/login',
             {
                 method: 'POST',
                 body: JSON.stringify 
                 ({
-                    username, password
+                    username: login, 
+                    password: senha,
                 }),
                 headers:{
-                    'Content-Type' : 'applications/json; charset=utf-8'
+                    'Content-Type' : 'application/json; charset=utf-8'
                 }
             });
+            
             let json = await response.json();
-            console.log(json);
+            //console.log(json);
             return json;
         }
     }

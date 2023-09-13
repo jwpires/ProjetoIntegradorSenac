@@ -31,15 +31,19 @@ function Login() {
 
     /* ESSA É A FUNÇÃO PARA VALIDAR O ACESSO DE USUÁRIO */
     const RealizarLogin = async () => {
+        
+        console.log(fUser);
+        console.log(fSenha);
 
         let json = await api.Logar(fUser, fSenha);
-        if(json.userId){
+        console.log(json);
+        if(json.email){
             alert ('Bem vindo,'+ fUser);
             UsuarioLogadoCtx?.setName(fUser);
             navegacao('/home');
         }else{
             
-            alert('Usuario/Senha não encontrados.');
+            alert('Usuario/Senha não encontrados.'+json.message);
         }
     }
 
@@ -50,14 +54,16 @@ function Login() {
             <div className="container_padrao">
 
                 <header>
-                    <h1 className='descricao'><Link to={'/cadastro/Usuario'} className='link'>Cadastre-se aqui!</Link></h1>
+                    {/* <h1 className='descricao'><Link to={'/cadastro/Usuario'} className='link'>Cadastre-se aqui!</Link></h1> */}
+                    <h1 className='descricao'>Suas Finanças em dia!</h1>
                 
                 </header>
 
                 <div className="campos">
-                    <input type="text" className='input-padrao' placeholder='Login' /> 
-                    <input type="password" className='input-padrao' placeholder='Senha' />
-                    <input type="submit" className='botao-padrao' value="Acessar" onClick={RealizarLogin}/>
+                    <input type="text" className='input-padrao' placeholder='Login' onChange={handlefUserChange} /> 
+                    <input type="password" className='input-padrao' placeholder='Senha' onChange={handlefSenhaChange} />
+                    <input type="button" className='botao-padrao' value="Acessar" onClick={RealizarLogin}/>
+                    
                     {/* <label><Link to={'/cadastro/NovaSenha'} className='link'>Esqueci minha senha.</Link></label> */}
 
                     {/* <label>TESTES:</label>

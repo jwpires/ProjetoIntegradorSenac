@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+var _a, _b, _c, _d, _e, _f;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RelatoriosController = void 0;
 const common_1 = require("@nestjs/common");
@@ -93,7 +94,7 @@ __decorate([
     (0, common_1.Get)('/despesa-dash'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Promise)
+    __metadata("design:returntype", typeof (_a = typeof Promise !== "undefined" && Promise) === "function" ? _a : Object)
 ], RelatoriosController.prototype, "RetornaListaDespesaDash", null);
 __decorate([
     (0, common_1.Get)('/saldo/:banco?/:descricao?'),
@@ -101,7 +102,7 @@ __decorate([
     __param(1, (0, decorators_1.Param)('descricao')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, String]),
-    __metadata("design:returntype", Promise)
+    __metadata("design:returntype", typeof (_b = typeof Promise !== "undefined" && Promise) === "function" ? _b : Object)
 ], RelatoriosController.prototype, "RetornaSaldosDash", null);
 __decorate([
     (0, common_1.Get)('/despesas-em-aberto/:datainicio?/:datafim?/:tipo/:pago?/:gdespesa?/:descricao?'),
@@ -113,7 +114,7 @@ __decorate([
     __param(5, (0, decorators_1.Param)('descricao')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, String, Number, Number, String, String]),
-    __metadata("design:returntype", Promise)
+    __metadata("design:returntype", typeof (_c = typeof Promise !== "undefined" && Promise) === "function" ? _c : Object)
 ], RelatoriosController.prototype, "RetornaListaDespesaEmAberto", null);
 __decorate([
     (0, common_1.Get)('/despesas-pagas/:datainicio?/:datafim?/:tipo?/:pago?/:gdespesa?/:descricao?'),
@@ -125,14 +126,14 @@ __decorate([
     __param(5, (0, decorators_1.Param)('descricao')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, String, Number, Number, String, String]),
-    __metadata("design:returntype", Promise)
+    __metadata("design:returntype", typeof (_d = typeof Promise !== "undefined" && Promise) === "function" ? _d : Object)
 ], RelatoriosController.prototype, "RetornaListaDespesaPagas", null);
 __decorate([
     (0, decorators_1.Put)('alterar-:id'),
     __param(0, (0, decorators_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", Promise)
+    __metadata("design:returntype", typeof (_e = typeof Promise !== "undefined" && Promise) === "function" ? _e : Object)
 ], RelatoriosController.prototype, "alteraStatusPagamento", null);
 __decorate([
     (0, decorators_1.Put)('alterarSaldo-:id-valor-:saldo'),
@@ -140,7 +141,7 @@ __decorate([
     __param(1, (0, decorators_1.Param)('saldo')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, Number]),
-    __metadata("design:returntype", Promise)
+    __metadata("design:returntype", typeof (_f = typeof Promise !== "undefined" && Promise) === "function" ? _f : Object)
 ], RelatoriosController.prototype, "alteraSaldo", null);
 RelatoriosController = __decorate([
     (0, common_2.Controller)('/relatorios'),

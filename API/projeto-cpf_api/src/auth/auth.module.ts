@@ -5,9 +5,10 @@ import { AuthService } from './auth.service';
 import { UsuarioService } from 'src/usuario/usuario.service';
 import { UsuarioModule } from 'src/usuario/usuario.module';
 import { usuarioProviders } from 'src/usuario/usuario.providers';
+import { DatabaseModule } from 'src/database/database.module';
 
 @Module({
-  imports: [UsuarioModule],
+  imports: [DatabaseModule],
   controllers: [AuthController],
   providers: [AuthService, UsuarioService, ...usuarioProviders]
 })
