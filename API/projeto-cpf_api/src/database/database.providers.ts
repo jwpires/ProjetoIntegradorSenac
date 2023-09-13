@@ -15,7 +15,7 @@ export const databaseProviders = [
                 port: 3306, //porta de conexão
                 username: 'vitali04_cpf', // usuário do banco
                 password: 'Jos&102030', // senha do usuário do banco
-                database:'integrador_cpf', // nome do banco que será acessado
+                database:'vitali04_cpf', // nome do banco que será acessado
                 entities: [
                     __dirname + '/../**/*.entity{.ts,.js}', 
                 ],
